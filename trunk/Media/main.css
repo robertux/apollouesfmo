@@ -1,0 +1,15 @@
+body {
+	background-color: #FFFFFF;
+	color: #FFFFFF;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+}
+#mainContent{
+	background-image: url(Background1.jpg);
+	background-position: center;	
+	top: 0px;
+	height: 600px;
+	width: 800px;
+}
+
