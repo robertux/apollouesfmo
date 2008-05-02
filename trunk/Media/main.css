@@ -1,15 +1,45 @@
 body {
-	background-color: #FFFFFF;
+	background-image: url(BkgPattern.png);
 	color: #FFFFFF;
 	margin: 0px;
 	padding: 0px;
 	text-align: center;
 }
-#mainContent{
-	background-image: url(Background1.jpg);
-	background-position: center;	
+
+#fondoPrincipal{
+	background-image: url(Background2.png);
 	top: 0px;
+	background-position-x: center;
+	background-position-y: center;
 	height: 600px;
 	width: 800px;
 }
 
+#contenidoPrincipal{
+	position: relative;
+	background-color: #FFFFFF;
+	top: 60px;
+	left: 410px;
+	height: 430px;
+	width: 330px;
+}
+
+#loginBox{
+	background-color: #CCCCCC;
+	height: 30px;
+	width: 320px;
+	position: relative;
+	top: 5px;
+	left: 5px;
+	text-align: left;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: smaller;
+	color: #000000;
+}
+
+p{
+	
+}
+input{
+	
+}
