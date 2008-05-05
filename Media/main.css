@@ -17,7 +17,9 @@ body {
 
 #contenidoPrincipal{
 	position: relative;
-	background-color: #FFFFFF;
+	background-color: transparent;
+	border-color: #FFFFFF;
+	border-style: solid;
 	top: 60px;
 	left: 410px;
 	height: 430px;
@@ -25,21 +27,21 @@ body {
 }
 
 #loginBox{
-	background-color: #CCCCCC;
+	background-color: transparent;
+	border-color: #CCCCCC;
+	border-style: solid;
 	height: 30px;
-	width: 320px;
+	width: 315px;
 	position: relative;
 	top: 5px;
 	left: 5px;
 	text-align: left;
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: smaller;
-	color: #000000;
+	vertical-align: top;
 }
 
-p{
-	
-}
-input{
-	
+.TextBox {
+    border: 0px solid #FF0000;
+	width: 120px;
 }
