@@ -5,6 +5,9 @@
 		<meta content="text/html">
         <title>UES FMO - Unidad de Postgrados</title>
 		<link type="text/css" rel="stylesheet" href="Media/main.css">
+		<link type="text/css" rel="stylesheet" href="Media/widgets.css">
+		<script type="text/javascript" src="mootools.js"></script>
+		<script type="text/javascript" scr="demo.js"></script>		
     </head>
     <body>
     	<div id="fondoPrincipal">
@@ -12,11 +15,25 @@
     			<div id="loginBox">
     				<form action="#" method="POST" accept-charset="utf-8">
 						<p>
-							<input type="text" id="txtNombre" />
-							<input type="password" id="txtPassword" />
-							<input type="submit" value="Continue" />
+							<input type="text" id="txtNombre" class="TextBox"/>
+							<input type="password" id="txtPassword" class="TextBox" />
+							<input type="submit" value="Login" />
 						</p>
 					</form>
+				</div>
+				<div class="WidgetList">
+					<div class="Widget">
+						<div class="WidgetTitle">titulo widget1</h3></div>
+						<div class="WidgetContent">
+							<p>widget1</p>
+						</div>
+					</div>
+					<div class="Widget">
+						<div class="WidgetTitle">titulo widget1</h3></div>
+						<div class="WidgetContent">
+							<p>widget2</p>
+						</div>
+					</div>
 				</div>
     		</div>
     	</div>
