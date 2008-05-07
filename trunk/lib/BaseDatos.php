@@ -16,7 +16,7 @@
 			$this->nombrebd = $pbdname;
 		}
 		
-		function __construct(){
+		function BaseDatos(){
 			$this->servidor = "localhost";
 			$this->usuario = "apollouser";
 			$this->clave = "apollopwd";

@@ -7,41 +7,41 @@ body {
 }
 
 #fondoPrincipal{
-	background-image: url(Background2.png);
+	background-image: url(Background3.png);
 	top: 0px;
 	background-position-x: center;
 	background-position-y: center;
 	height: 600px;
 	width: 800px;
+	border-width: 1px;
 }
 
 #contenidoPrincipal{
-	position: relative;
+	position: absolute;;
 	background-color: transparent;
 	border-color: #FFFFFF;
 	border-style: solid;
-	top: 60px;
+	border-width: 1px;
+	top: 50px;
 	left: 410px;
-	height: 430px;
+	height: 450px;
 	width: 330px;
 }
 
 #loginBox{
-	background-color: transparent;
-	border-color: #CCCCCC;
-	border-style: solid;
-	height: 30px;
+	background-image: url(HorizontalFrame.png);
+	/*border-color: #000000;
+	border-style: solid;*/
+        border-width: 1px;
+        border-spacing: 6px;
+		border-width: 1px;
+	height: 50px;
 	width: 315px;
-	position: relative;
+	position: absolute;;
 	top: 5px;
 	left: 5px;
 	text-align: left;
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: smaller;
-	vertical-align: top;
-}
-
-.TextBox {
-    border: 0px solid #FF0000;
-	width: 120px;
+    /*vertical-align: top;*/
 }

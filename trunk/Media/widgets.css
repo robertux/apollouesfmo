@@ -2,35 +2,50 @@
 	background-color: transparent;
 	border-style: solid;
 	border-color: #CCCCCC;
-	position: relative;
+	border-width: 1px;
+	position: absolute;
 	left: 5px;
-	top: 10px;
+	top: 60px;
 	width: 315px;
 	height: 370px;
 }
 
 .Widget{
-	background-color: #CCCCCC;
+	background-color: #FEFEFE;
+	opacity: 60%;
 	border-style: solid;
 	border-color: #AAAAAA;
+	border-width: 1px;
 	position: relative;
 	padding: 5px 5px 5px 5px;
+	left: 5px;
+	top: 5px;
+	height: 100px;
+	width: 295px;
+	margin: 5px 0px 10px 0px;
 }
 
 .WidgetTitle{
-	background-color: #AAAAAA;
-	border-style: solid;
-	border-color: #AAAAAA;
+	background-image: url(TitlePattern.png);
+        background-repeat: repeat-x;
+	border-bottom-style: solid;
+	border-bottom-width: 0px;
+	border-bottom-color: #000000;
 	position: relative;
 	/*font-size: larger;*/
 	color: #000000;
 	font-weight: bolder;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
+	left: -5px;
+	top: -5px;
+	width: 305px;
+	height: 25px;
 	}
 
 .WidgetContent{
 	color: #000000;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
+	
 }
 
 #p{
