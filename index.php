@@ -6,20 +6,19 @@
         <title>UES FMO - Unidad de Postgrados</title>
 		<link type="text/css" rel="stylesheet" href="Media/main.css">
 		<link type="text/css" rel="stylesheet" href="Media/widgets.css">
+		<link type="text/css" rel="stylesheet" href="Media/forms.css">
 		<script type="text/javascript" src="mootools.js"></script>
-		<script type="text/javascript" scr="demo.js"></script>		
+		<script type="text/javascript" scr="demo.js"></script>
+		<?php require_once("lib/VisualUsuario.php"); ?>
     </head>
     <body>
     	<div id="fondoPrincipal">
     		<div id="contenidoPrincipal">
     			<div id="loginBox">
-    				<form action="#" method="POST" accept-charset="utf-8">
-						<p>
-							<input type="text" id="txtNombre" class="TextBox"/>
-							<input type="password" id="txtPassword" class="TextBox" />
-							<input type="submit" value="Login" />
-						</p>
-					</form>
+    				<?php 
+						$vuser = new VisualUsuario();
+						$vuser->Show();
+					?>
 				</div>
 				<div class="WidgetList">
 					<div class="Widget">
