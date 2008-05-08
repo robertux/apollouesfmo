@@ -22,13 +22,13 @@
 				</div>
 				<div class="WidgetList">
 					<div class="Widget">
-						<div class="WidgetTitle">titulo widget1</h3></div>
+						<div class="WidgetTitle">Estudiantes</h3></div>
 						<div class="WidgetContent">
 							<p>widget1</p>
 						</div>
 					</div>
 					<div class="Widget">
-						<div class="WidgetTitle">titulo widget1</h3></div>
+						<div class="WidgetTitle">Docentes</h3></div>
 						<div class="WidgetContent">
 							<p>widget2</p>
 						</div>
