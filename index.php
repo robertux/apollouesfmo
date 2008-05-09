@@ -20,7 +20,7 @@
 						$vuser->Show();
 					?>
 				</div>
-				<div class="WidgetList">
+				<!--<div class="WidgetList">
 					<div class="Widget">
 						<div class="WidgetTitle">Estudiantes</h3></div>
 						<div class="WidgetContent">
@@ -33,7 +33,7 @@
 							<p>widget2</p>
 						</div>
 					</div>
-				</div>
+				</div>-->
     		</div>
     	</div>
     </body>
