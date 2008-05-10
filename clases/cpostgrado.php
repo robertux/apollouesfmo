@@ -1,14 +1,17 @@
 <?php 
 require_once("cconexion.php");
 
-class cUsuario
+class cPostGrado
 {
 	private $con;
 	
 	private $id;
-	//private $consulta;
 	public $nombre;
-	public $clave;
+	public $notaminima;
+	public $totaluvs;
+	public $cumminimo;
+	public $abreviatura;
+	public $maxalum;
 	
 	public $error;
 	
@@ -22,33 +25,28 @@ class cUsuario
     // destructor
     public function __destruct() 
     {
-        //..
+        //...
     }
     
-    public function Get($pNombre, $pClave)
+    //Just for now...
+    public function Get($pId)
     {
-    	$this->Consultar("SELECT * FROM usuario WHERE nombre = '$pNombre' AND clave = '$pClave';");
+    	$this->Consultar("SELECT id, nombre, notaminima, totaluvs, cumminimo, abreviatura, maxalum FROM postgrado WHERE id = '$pId';");
     }
     
     public function Insert()
     {
-    	$this->Consultar("INSERT INTO usuario(clave,nombre) VALUES ('$this->nombre','$this->clave');");
-    }
-    
-    //just in case
-    public function Insert($pNombre, $pClave)
-    {
-    	$this->Consultar("INSERT INTO usuario(clave,nombre) VALUES ('$pNombre','$pClave');");
+    	//...
     }
     
     public function Update()
     {
-    	$this->Consultar("UPDATE usuario SET clave = '$this->clave', nombre = '$this->nombre' WHERE id = $this->id;");
+    	//...
     }
 	
 	public function Delete()
     {
-    	$this->Consultar("DELETE FROM usuario WHERE id = $this->id;");
+    	//$this->Consultar("DELETE FROM postgrado WHERE id = $this->id;");
     }
     
     function Consultar($consulta)
@@ -63,9 +61,14 @@ class cUsuario
         		// llenemos los datos
         		while($row = $resultado->fetch_array()) 
         		{
+        			//id, nombre, notaminima, totaluvs, cumminimo, abreviatura, maxalum
             		$this->id = $row[0];
-            		$this->clave = $row[1];
-            		$this->nombre = $row[2];
+            		$this->nombre = $row[1];
+            		$this->notaminima = $row[2];
+            		$this->totaluvs = $row[3];
+            		$this->comminimo = $row[4];
+            		$this->abreviatura = $row[5];
+            		$this->maxalum = $row[6];
         		}
     		}
     		else
