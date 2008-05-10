@@ -3,8 +3,8 @@
 class cConexion
 {
 	private $host = "localhost";
-	private $user = "apollouser";
-	private $pass = "apollopwd";
+	private $user = "root";
+	private $pass = "toor";
 	private $db = "apollo";
 
 	public $mysqli;
@@ -12,13 +12,13 @@ class cConexion
 	
     public function Conectar()
     {
-		// craer el objeto mysqli y abrir la conexion
-		$this->mysqli = new mysqli($host, $user, $pass, $db);
+		// crear el objeto mysqli y abrir la conexion
+		$this->mysqli = new mysqli($this->host, $this->user, $this->pass, $this->db);
 		// veamos si hay errores
 		if (mysqli_connect_errno()) {
 			$this->error = "No me pude conectar!";
     		die($this->error);
-		} 
+		}
     }
     
 }

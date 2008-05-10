@@ -19,7 +19,6 @@ class cPostGrado
     public function __construct() 
     {
     	$this->con = new cConexion();
-		$this->con->Conectar();
     }
     
     // destructor
@@ -51,6 +50,7 @@ class cPostGrado
     
     function Consultar($consulta)
     {
+    	$this->con->Conectar();
 		// ejecutar la consulta
 		if ($resultado = $this->con->mysqli->query($consulta))
 		{
@@ -70,14 +70,14 @@ class cPostGrado
             		$this->abreviatura = $row[5];
             		$this->maxalum = $row[6];
         		}
+        		// liberar la memoria
+    			$resultado->close();
     		}
     		else
     		{
 	        	// no
         		$this->error .= "No encontre registros!";
     		}
-	   	// liberar la memoria
-    	$resultado->close();
 		}
 		else 
 		{
