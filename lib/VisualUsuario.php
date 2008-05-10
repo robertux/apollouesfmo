@@ -30,7 +30,7 @@
 			<form id='frmLogout' action='index.php?action=logout' method='POST' accept-charset='utf-8'>				
 				<p>
 					<div class='LoginBoxFrame'>
-						<label for='btnSubmit' class='lblInput'>Bienvenido Usuario Roberto Linares</label>
+						<label for='btnSubmit' class='lblInput'>Bienvenido <b>Cipriano Esmerejildo</b></label>
 						<input type='submit' id='btnSubmit' value='Cerrar Sesion' class='btnSubmit'/>					
 					</div>
 				</p>

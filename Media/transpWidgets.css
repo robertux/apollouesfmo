@@ -1,0 +1,83 @@
+.WidgetListLeft{
+	background-color: transparent;
+	/*border-style: solid;
+	border-color: #CCCCCC;
+	border-width: 1px;*/
+	position: absolute;
+	left: 5px;
+	top: 120px;
+	width: 315px;
+	height: 370px;
+}
+
+.WidgetListRight{
+	background-color: transparent;
+	/*border-style: solid;
+	border-color: #CCCCCC;
+	border-width: 1px;*/
+	position: absolute;
+	float: right;
+	right: -63px;
+	top: 120px;
+	width: 315px;
+	height: 370px;
+}
+
+.WidgetLeft{
+	background-image: url(WidgetBkgLeft.png);	
+	/*border-style: solid;
+	border-color: #AAAAAA;*/
+	border-width: 1px;
+	position: relative;
+	padding: 5px 5px 5px 5px;
+	left: 0px;
+	top: 0px;
+	height: 120px;
+	width: 240px;
+	margin: 5px 0px 10px 0px;
+}
+
+.WidgetRight{
+	background-image: url(WidgetBkgRight.png);
+	/*border-style: solid;
+	border-color: #AAAAAA;*/
+	border-width: 1px;
+	position: relative;
+	padding: 5px 5px 5px 5px;
+	left: 0px;
+	top: 0px;
+	height: 120px;
+	width: 240px;
+	margin: 5px 0px 10px 0px;
+}
+
+.WidgetTitle{
+	background-color: transparent;
+	background-image: url(WidgetTitle2.png);
+        background-repeat: repeat-x;
+	position: absolute;
+	color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: smaller;
+	left: 3px;
+	top: 3px;
+	width: 246px;
+	height: 20px;
+	}
+
+.WidgetContent{
+	color: #000000;
+	position: relative;
+	top: 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: smaller;
+	text-align: left;
+	padding: 2px 2px 2px 2px;
+}
+
+/*
+#p{	
+	color: #000000;
+	text-align: left;
+}
+*/

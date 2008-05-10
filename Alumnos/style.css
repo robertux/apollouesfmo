@@ -1,0 +1,56 @@
+/* CSS RESET */
+html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;font-variant:normal;}sup {vertical-align:text-top;}sub {vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}legend{color:#000;}
+
+body {font:13px/1.231 arial,helvetica,clean,sans-serif;}table{font-size:inherit;font-size:100%;}pre,code,kbd,samp,tt{font-family:monospace;line-height:100%;}
+/* CSS RESET */
+
+
+body {
+	text-align:center;
+	color:#000;
+	background-image: url(images/BkgPattern.jpg);
+}
+a {
+	font-weight: bold;
+	text-decoration:none;
+	color:#9b3535;
+	cursor: pointer;
+}
+a:hover {
+	font-weight: bold;
+	text-decoration: underline;
+	cursor: pointer;
+}
+#wrap {
+	width:900px;
+	text-align:left;
+	margin:0 auto;
+}
+
+.fl{ float:left; }
+.fr{ float:right; }
+.clearfix{ clear:both}
+
+
+/* header */
+#header { position:relative; height:111px;  background:url(images/hd2.png); left: 6px; }
+
+#logo {position:relative; top:30px; left:80px}
+#logo h1 {
+	font-size:34px;
+	color: #9B3535
+}
+#logo div {
+	padding-left:100px
+}
+#nav { position:absolute; top:35px; left:420px; background:url(images/nav.jpg); width:451px;height:30px; line-height:30px; padding:0 0 0 20px  }
+#nav li {float:left;  font-weight:700; width:80px; padding:0 5px }
+#nav a {text-decoration:none; display:block; text-align:center; color:#fff}
+#nav a:hover {background: #c62f2f; color:#000000}
+/* content */
+
+#content{ background:url(images/bg2.png); }
+#innerContent { margin: 10px 0  0 70px; }
+.img { margin:0px 0  0 70px; }
+/* footer */
+#footer { background-image: url(images/ft2.png); background-repeat:no-repeat; width: 100%; height:100px; position:relative; }
