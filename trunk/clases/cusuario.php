@@ -16,7 +16,7 @@ class cUsuario
     public function __construct() 
     {
     	$this->con = new cConexion();
-		$this->con->Conectar();
+		//$this->con->Conectar();
     }
     
     // destructor
@@ -36,10 +36,10 @@ class cUsuario
     }
     
     //just in case
-    public function Insert($pNombre, $pClave)
+    /*public function Insert($pNombre, $pClave)
     {
     	$this->Consultar("INSERT INTO usuario(clave,nombre) VALUES ('$pNombre','$pClave');");
-    }
+    }*/
     
     public function Update()
     {
@@ -53,6 +53,7 @@ class cUsuario
     
     function Consultar($consulta)
     {
+    	$this->con->Conectar();
 		// ejecutar la consulta
 		if ($resultado = $this->con->mysqli->query($consulta))
 		{
@@ -67,14 +68,14 @@ class cUsuario
             		$this->clave = $row[1];
             		$this->nombre = $row[2];
         		}
+        		// liberar la memoria
+    			$resultado->close();
     		}
     		else
     		{
 	        	// no
         		$this->error .= "No encontre registros!";
     		}
-	   	// liberar la memoria
-    	$resultado->close();
 		}
 		else 
 		{
