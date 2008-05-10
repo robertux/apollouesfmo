@@ -58,7 +58,12 @@ class cUsuario
     
     public function Update()
     {
-    	$this->Consultar("UPDATE usuario SET clave = '$this->clave', nombre = '$this->nombre' WHERE id = $this->id");
+    	$this->Consultar("UPDATE usuario SET clave = '$this->clave', nombre = '$this->nombre' WHERE id = $this->id;");
+    }
+	
+	public function Delete()
+    {
+    	$this->Consultar("DELETE FROM usuario WHERE id = $this->id;");
     }
     
     function Consultar($consulta)
