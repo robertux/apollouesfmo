@@ -1,9 +1,17 @@
-<?php
-	require_once("incluye.php");
-	$pag = new pagina();
-	$pag->encabezado("");
-	$pag->cuerpo();
-?>
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+    <head>
+        <meta name="generator" content="HTML Tidy, see www.w3.org">
+		<meta content="text/html">
+        <title>UES FMO - Unidad de Postgrados</title>
+		<link type="text/css" rel="stylesheet" href="Media/main.css">
+		<link type="text/css" rel="stylesheet" href="Media/transpWidgets.css">
+		<link type="text/css" rel="stylesheet" href="Media/forms.css">
+		<script type="text/javascript" src="mootools.js"></script>
+		<script type="text/javascript" scr="demo.js"></script>
+		<?php require_once("lib/VisualUsuario.php"); ?>
+    </head>
+    <body>
     	<div id="fondoPrincipal">
     		<div id="contenidoPrincipal">
     			<div id="loginBox">
@@ -42,6 +50,6 @@
 				</div>
     		</div>
     	</div>
-<?php
-	$pag->pie();
-?>
+    </body>
+</html>
+
