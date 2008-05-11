@@ -3,8 +3,8 @@
 class cConexion
 {
 	private $host = "localhost";
-	private $user = "root";
-	private $pass = "toor";
+	private $user = "apollouser";
+	private $pass = "apollopwd";
 	private $db = "apollo";
 
 	public $mysqli;

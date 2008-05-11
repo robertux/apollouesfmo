@@ -227,7 +227,7 @@ CREATE TABLE `materia` (
   `nombre` varchar(50) NOT NULL,
   `uvs` int(11) NOT NULL,
   `tipo` int(11) NOT NULL,
-  `requisitopara` int(11) NOT NULL,
+  `requisitopara` text,
   `postgrado` int(11) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `fk_postgrado_id_materia` (`postgrado`),
@@ -351,7 +351,7 @@ CREATE TABLE `usuario` (
   `clave` varchar(10) default NULL,
   `nombre` varchar(15) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usuario`
