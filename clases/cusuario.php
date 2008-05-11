@@ -34,12 +34,12 @@ class cUsuario
     
     public function Get($pNombre, $pClave)
     {
-    	$this->Consultar("SELECT * FROM usuario WHERE nombre = '$pNombre' AND clave = '$pClave';");
+    	$this->Consultar("SELECT * FROM usuario WHERE nombre = '$pNombre' AND clave = '$pClave';", false);
     }
     
     public function Insert()
     {
-    	$this->Consultar("INSERT INTO usuario(clave,nombre) VALUES ('$this->nombre','$this->clave');");
+    	$this->Consultar("INSERT INTO usuario(clave,nombre) VALUES ('$this->nombre','$this->clave');", false);
     }
     
     //just in case
@@ -50,12 +50,12 @@ class cUsuario
     
     public function Update()
     {
-    	$this->Consultar("UPDATE usuario SET clave = '$this->clave', nombre = '$this->nombre' WHERE id = $this->id;");
+    	$this->Consultar("UPDATE usuario SET clave = '$this->clave', nombre = '$this->nombre' WHERE id = $this->id;", false);
     }
 	
 	public function Delete()
     {
-    	$this->Consultar("DELETE FROM usuario WHERE id = $this->id;");
+    	$this->Consultar("DELETE FROM usuario WHERE id = $this->id;", false);
     }
     
     function Consultar($Consulta, $GetLista)
