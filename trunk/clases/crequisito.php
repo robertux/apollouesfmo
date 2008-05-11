@@ -1,14 +1,13 @@
 <?php 
 require_once("cconexion.php");
 
-class cUsuario
+class cRequisito
 {
 	private $con;
 	
 	public $id;
-	//private $consulta;
 	public $nombre;
-	public $clave;
+	public $postgrado;
 	
 	public $error;
 	
@@ -24,38 +23,42 @@ class cUsuario
     {
         //..
     }
-
+    
     //Obtenemos una lista (un resultset) de este objeto
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
     public function GetLista()
     {
-    	return($this->Consultar("SELECT * FROM usuario;", true));
+    	return($this->Consultar("SELECT * FROM requisito;", true));
     }
     
-    public function Get($pNombre, $pClave)
+    public function GetId($pId)
     {
-    	$this->Consultar("SELECT * FROM usuario WHERE nombre = '$pNombre' AND clave = '$pClave';");
+    	$this->Consultar("SELECT * FROM requisito WHERE id = $pId;");
+    }
+    
+    public function GetNombre($pNombre)
+    {
+    	$this->Consultar("SELECT * FROM requisito WHERE nombre = '$pNombre';");
+    }
+    
+    public function GetPostGrado($pPostGrado)
+    {
+    	$this->Consultar("SELECT * FROM requisito WHERE postgrado = $pPostGrado;");
     }
     
     public function Insert()
     {
-    	$this->Consultar("INSERT INTO usuario(clave,nombre) VALUES ('$this->nombre','$this->clave');");
+    	$this->Consultar("INSERT INTO requisito(nombre,postgrado) VALUES ('$this->nombre',$this->postgrado);");
     }
-    
-    //just in case
-    /*public function Insert($pNombre, $pClave)
-    {
-    	$this->Consultar("INSERT INTO usuario(clave,nombre) VALUES ('$pNombre','$pClave');");
-    }*/
     
     public function Update()
     {
-    	$this->Consultar("UPDATE usuario SET clave = '$this->clave', nombre = '$this->nombre' WHERE id = $this->id;");
+    	$this->Consultar("UPDATE requisito SET nombre = '$this->nombre', postgrado = $this->postgrado WHERE id = $this->id;");
     }
 	
 	public function Delete()
     {
-    	$this->Consultar("DELETE FROM usuario WHERE id = $this->id;");
+    	$this->Consultar("DELETE FROM requisito WHERE id = $this->id;");
     }
     
     function Consultar($Consulta, $GetLista)
@@ -76,9 +79,9 @@ class cUsuario
     			{
         			while($row = $resultado->fetch_array()) 
         			{
-	            		$this->id = $row[0];
-    	        		$this->clave = $row[1];
-        	    		$this->nombre = $row[2];
+            			$this->id = $row[0];
+            			$this->nombre = $row[1];
+            			$this->postgrado = $row[2];
         			}
         			// liberar la memoria
     				$resultado->close();

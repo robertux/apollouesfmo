@@ -1,14 +1,13 @@
 <?php 
 require_once("cconexion.php");
 
-class cUsuario
+class cCurso
 {
 	private $con;
 	
 	public $id;
-	//private $consulta;
-	public $nombre;
-	public $clave;
+	public $fechainicio;
+	public $postgrado;
 	
 	public $error;
 	
@@ -24,50 +23,44 @@ class cUsuario
     {
         //..
     }
-
+        
     //Obtenemos una lista (un resultset) de este objeto
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
     public function GetLista()
     {
-    	return($this->Consultar("SELECT * FROM usuario;", true));
+    	return($this->Consultar("SELECT * FROM curso;", true));
     }
     
-    public function Get($pNombre, $pClave)
+    public function GetId($pId)
     {
-    	$this->Consultar("SELECT * FROM usuario WHERE nombre = '$pNombre' AND clave = '$pClave';");
+    	$this->Consultar("SELECT * FROM curso WHERE id = $pId;", false);
     }
     
     public function Insert()
     {
-    	$this->Consultar("INSERT INTO usuario(clave,nombre) VALUES ('$this->nombre','$this->clave');");
+    	$this->Consultar("INSERT INTO curso(fechainicio,postgrado) VALUES ('$this->fechainicio',$this->postgrado);", false);
     }
-    
-    //just in case
-    /*public function Insert($pNombre, $pClave)
-    {
-    	$this->Consultar("INSERT INTO usuario(clave,nombre) VALUES ('$pNombre','$pClave');");
-    }*/
     
     public function Update()
     {
-    	$this->Consultar("UPDATE usuario SET clave = '$this->clave', nombre = '$this->nombre' WHERE id = $this->id;");
+    	$this->Consultar("UPDATE curso SET fechainicio = '$this->fechainicio', postgrado = $this->postgrado WHERE id = $this->id;", false);
     }
 	
 	public function Delete()
     {
-    	$this->Consultar("DELETE FROM usuario WHERE id = $this->id;");
+    	$this->Consultar("DELETE FROM curso WHERE id = $this->id;", false);
     }
     
     function Consultar($Consulta, $GetLista)
     {
     	$this->con->Conectar();
 		// ejecutar la consulta
-		if ($resultado = $this->con->mysqli->query($consulta))
+		if ($resultado = $this->con->mysqli->query($Consulta))
 		{
     		// hay registros?
     		if ($resultado->num_rows > 0) 
     		{
-        		// si
+    			//si
     			if ($GetLista)
     			{
     				return ($resultado);
@@ -77,8 +70,8 @@ class cUsuario
         			while($row = $resultado->fetch_array()) 
         			{
 	            		$this->id = $row[0];
-    	        		$this->clave = $row[1];
-        	    		$this->nombre = $row[2];
+    	        		$this->fechainicio = $row[1];
+						$this->postgrado = $row[2];
         			}
         			// liberar la memoria
     				$resultado->close();
