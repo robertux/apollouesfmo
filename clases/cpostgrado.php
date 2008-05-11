@@ -5,7 +5,7 @@ class cPostGrado
 {
 	private $con;
 	
-	private $id;
+	public $id;
 	public $nombre;
 	public $notaminima;
 	public $totaluvs;
@@ -27,10 +27,17 @@ class cPostGrado
         //...
     }
     
+    //Obtenemos una lista (un resultset) de este objeto
+    //Ojo, el objeto NO toma NINGUN valor de esta lista.
+    public function GetLista()
+    {
+    	return($this->Consultar("SELECT * FROM postgrado;", true));
+    }
+    
     //Just for now...
     public function Get($pId)
     {
-    	$this->Consultar("SELECT id, nombre, notaminima, totaluvs, cumminimo, abreviatura, maxalum FROM postgrado WHERE id = '$pId';");
+    	$this->Consultar("SELECT id, nombre, notaminima, totaluvs, cumminimo, abreviatura, maxalum FROM postgrado WHERE id = $pId;");
     }
     
     public function Insert()
@@ -48,7 +55,7 @@ class cPostGrado
     	//$this->Consultar("DELETE FROM postgrado WHERE id = $this->id;");
     }
     
-    function Consultar($consulta)
+    function Consultar($Consulta, $GetLista)
     {
     	$this->con->Conectar();
 		// ejecutar la consulta
@@ -58,25 +65,31 @@ class cPostGrado
     		if ($resultado->num_rows > 0) 
     		{
         		// si
-        		// llenemos los datos
-        		while($row = $resultado->fetch_array()) 
-        		{
-        			//id, nombre, notaminima, totaluvs, cumminimo, abreviatura, maxalum
-            		$this->id = $row[0];
-            		$this->nombre = $row[1];
-            		$this->notaminima = $row[2];
-            		$this->totaluvs = $row[3];
-            		$this->comminimo = $row[4];
-            		$this->abreviatura = $row[5];
-            		$this->maxalum = $row[6];
-        		}
-        		// liberar la memoria
-    			$resultado->close();
+    			if ($GetLista)
+    			{
+    				return ($resultado);
+    			}
+    			else
+    			{
+        			while($row = $resultado->fetch_array()) 
+        			{
+	        			//id, nombre, notaminima, totaluvs, cumminimo, abreviatura, maxalum
+    	        		$this->id = $row[0];
+        	    		$this->nombre = $row[1];
+            			$this->notaminima = $row[2];
+            			$this->totaluvs = $row[3];
+            			$this->comminimo = $row[4];
+            			$this->abreviatura = $row[5];
+            			$this->maxalum = $row[6];
+        			}
+        			// liberar la memoria
+    				$resultado->close();
+    			}
     		}
     		else
     		{
 	        	// no
-        		$this->error .= "No encontre registros!";
+        		$this->error .= "No hay resultados para mostrar!";
     		}
 		}
 		else 

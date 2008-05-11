@@ -1,14 +1,14 @@
 <?php 
 require_once("cconexion.php");
 
-class cUsuario
+class cCosto
 {
 	private $con;
 	
 	public $id;
-	//private $consulta;
 	public $nombre;
-	public $clave;
+	public $valor;
+	public $postgrado;
 	
 	public $error;
 	
@@ -16,46 +16,39 @@ class cUsuario
     public function __construct() 
     {
     	$this->con = new cConexion();
-		//$this->con->Conectar();
     }
     
     // destructor
     public function __destruct() 
     {
-        //..
+        //...
     }
-
+    
     //Obtenemos una lista (un resultset) de este objeto
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
     public function GetLista()
     {
-    	return($this->Consultar("SELECT * FROM usuario;", true));
+    	return($this->Consultar("SELECT * FROM costo;", true));
     }
     
-    public function Get($pNombre, $pClave)
+    public function GetId($pId)
     {
-    	$this->Consultar("SELECT * FROM usuario WHERE nombre = '$pNombre' AND clave = '$pClave';");
+    	$this->Consultar("SELECT * FROM costo WHERE id = $pId;");
     }
     
     public function Insert()
     {
-    	$this->Consultar("INSERT INTO usuario(clave,nombre) VALUES ('$this->nombre','$this->clave');");
+    	$this->Consultar("INSERT INTO costo(nombre,valor,postgrado) VALUES ('$this->nombre',$this->valor,$this->postgrado);");
     }
-    
-    //just in case
-    /*public function Insert($pNombre, $pClave)
-    {
-    	$this->Consultar("INSERT INTO usuario(clave,nombre) VALUES ('$pNombre','$pClave');");
-    }*/
     
     public function Update()
     {
-    	$this->Consultar("UPDATE usuario SET clave = '$this->clave', nombre = '$this->nombre' WHERE id = $this->id;");
+    	$this->Consultar("UPDATE costo SET nombre = '$this->nombre', valor = $this->valor, postgrado = $this->postgrado WHERE id = $this->id;");
     }
 	
 	public function Delete()
     {
-    	$this->Consultar("DELETE FROM usuario WHERE id = $this->id;");
+    	$this->Consultar("DELETE FROM costo WHERE id = $this->id;");
     }
     
     function Consultar($Consulta, $GetLista)
@@ -76,9 +69,10 @@ class cUsuario
     			{
         			while($row = $resultado->fetch_array()) 
         			{
-	            		$this->id = $row[0];
-    	        		$this->clave = $row[1];
-        	    		$this->nombre = $row[2];
+            			$this->id = $row[0];
+            			$this->nombre = $row[1];
+            			$this->valor = $row[2];
+            			$this->postgrado = $row[3];
         			}
         			// liberar la memoria
     				$resultado->close();
