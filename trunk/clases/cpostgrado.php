@@ -37,7 +37,7 @@ class cPostGrado
     //Just for now...
     public function Get($pId)
     {
-    	$this->Consultar("SELECT id, nombre, notaminima, totaluvs, cumminimo, abreviatura, maxalum FROM postgrado WHERE id = $pId;");
+    	$this->Consultar("SELECT id, nombre, notaminima, totaluvs, cumminimo, abreviatura, maxalum FROM postgrado WHERE id = $pId;", false);
     }
     
     public function Insert()

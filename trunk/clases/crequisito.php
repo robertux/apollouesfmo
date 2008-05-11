@@ -33,32 +33,32 @@ class cRequisito
     
     public function GetId($pId)
     {
-    	$this->Consultar("SELECT * FROM requisito WHERE id = $pId;");
+    	$this->Consultar("SELECT * FROM requisito WHERE id = $pId;", false);
     }
     
     public function GetNombre($pNombre)
     {
-    	$this->Consultar("SELECT * FROM requisito WHERE nombre = '$pNombre';");
+    	$this->Consultar("SELECT * FROM requisito WHERE nombre = '$pNombre';", false);
     }
     
     public function GetPostGrado($pPostGrado)
     {
-    	$this->Consultar("SELECT * FROM requisito WHERE postgrado = $pPostGrado;");
+    	$this->Consultar("SELECT * FROM requisito WHERE postgrado = $pPostGrado;", false);
     }
     
     public function Insert()
     {
-    	$this->Consultar("INSERT INTO requisito(nombre,postgrado) VALUES ('$this->nombre',$this->postgrado);");
+    	$this->Consultar("INSERT INTO requisito(nombre,postgrado) VALUES ('$this->nombre',$this->postgrado);", false);
     }
     
     public function Update()
     {
-    	$this->Consultar("UPDATE requisito SET nombre = '$this->nombre', postgrado = $this->postgrado WHERE id = $this->id;");
+    	$this->Consultar("UPDATE requisito SET nombre = '$this->nombre', postgrado = $this->postgrado WHERE id = $this->id;", false);
     }
 	
 	public function Delete()
     {
-    	$this->Consultar("DELETE FROM requisito WHERE id = $this->id;");
+    	$this->Consultar("DELETE FROM requisito WHERE id = $this->id;", false);
     }
     
     function Consultar($Consulta, $GetLista)

@@ -33,22 +33,22 @@ class cCosto
     
     public function GetId($pId)
     {
-    	$this->Consultar("SELECT * FROM costo WHERE id = $pId;");
+    	$this->Consultar("SELECT * FROM costo WHERE id = $pId;", false);
     }
     
     public function Insert()
     {
-    	$this->Consultar("INSERT INTO costo(nombre,valor,postgrado) VALUES ('$this->nombre',$this->valor,$this->postgrado);");
+    	$this->Consultar("INSERT INTO costo(nombre,valor,postgrado) VALUES ('$this->nombre',$this->valor,$this->postgrado);", false);
     }
     
     public function Update()
     {
-    	$this->Consultar("UPDATE costo SET nombre = '$this->nombre', valor = $this->valor, postgrado = $this->postgrado WHERE id = $this->id;");
+    	$this->Consultar("UPDATE costo SET nombre = '$this->nombre', valor = $this->valor, postgrado = $this->postgrado WHERE id = $this->id;", false);
     }
 	
 	public function Delete()
     {
-    	$this->Consultar("DELETE FROM costo WHERE id = $this->id;");
+    	$this->Consultar("DELETE FROM costo WHERE id = $this->id;", false);
     }
     
     function Consultar($Consulta, $GetLista)
