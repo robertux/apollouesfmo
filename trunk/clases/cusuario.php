@@ -62,7 +62,7 @@ class cUsuario
     {
     	$this->con->Conectar();
 		// ejecutar la consulta
-		if ($resultado = $this->con->mysqli->query($consulta))
+		if ($resultado = $this->con->mysqli->query($Consulta))
 		{
     		// hay registros?
     		if ($resultado->num_rows > 0) 
