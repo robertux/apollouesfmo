@@ -31,17 +31,22 @@ class cRequisito
     	return($this->Consultar("SELECT * FROM requisito;", true));
     }
     
-    public function GetId($pId)
+    public function GetListaPostGrado($pPostGrado)
+    {
+    	return($this->Consultar("SELECT * FROM requisito WHERE postgrado = $pPostGrado;", true));
+    }
+    
+    public function GetPorId($pId)
     {
     	$this->Consultar("SELECT * FROM requisito WHERE id = $pId;", false);
     }
     
-    public function GetNombre($pNombre)
+    public function GetPorNombre($pNombre)
     {
     	$this->Consultar("SELECT * FROM requisito WHERE nombre = '$pNombre';", false);
     }
     
-    public function GetPostGrado($pPostGrado)
+    public function GetPorPostGrado($pPostGrado)
     {
     	$this->Consultar("SELECT * FROM requisito WHERE postgrado = $pPostGrado;", false);
     }

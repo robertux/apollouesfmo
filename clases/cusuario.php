@@ -32,7 +32,7 @@ class cUsuario
     	return($this->Consultar("SELECT * FROM usuario;", true));
     }
     
-    public function Get($pNombre, $pClave)
+    public function GetPorNombreClave($pNombre, $pClave)
     {
     	$this->Consultar("SELECT * FROM usuario WHERE nombre = '$pNombre' AND clave = '$pClave';", false);
     }
@@ -42,7 +42,7 @@ class cUsuario
     	$this->Consultar("INSERT INTO usuario(clave,nombre) VALUES ('$this->nombre','$this->clave');", false);
     }
     
-    //just in case
+    //?
     /*public function Insert($pNombre, $pClave)
     {
     	$this->Consultar("INSERT INTO usuario(clave,nombre) VALUES ('$pNombre','$pClave');");

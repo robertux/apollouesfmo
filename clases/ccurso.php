@@ -31,12 +31,17 @@ class cCurso
     	return($this->Consultar("SELECT * FROM curso;", true));
     }
     
-    public function GetId($pId)
+    public function GetListaPostGrado($pPostGrado)
+    {
+    	return($this->Consultar("SELECT * FROM curso WHERE postgrado = $pPostGrado;", true));
+    }
+    
+    public function GetPorId($pId)
     {
     	$this->Consultar("SELECT * FROM curso WHERE id = $pId;", false);
     }
     
-    public function Insert()
+    /*public function Insert()
     {
     	$this->Consultar("INSERT INTO curso(fechainicio,postgrado) VALUES ('$this->fechainicio',$this->postgrado);", false);
     }
@@ -49,7 +54,7 @@ class cCurso
 	public function Delete()
     {
     	$this->Consultar("DELETE FROM curso WHERE id = $this->id;", false);
-    }
+    }*/
     
     function Consultar($Consulta, $GetLista)
     {

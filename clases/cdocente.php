@@ -1,16 +1,15 @@
 <?php 
 require_once("cconexion.php");
 
-class cMateria
+class cDocente
 {
 	private $con;
-	
+	//id, apellidos, nombres, gradoacademico, usuario
 	public $id;
-	public $nombre; //string
-	public $uvs;
-	public $tipo;
-	public $requisitopara;
-	public $postgrado;
+	public $apellidos;
+	public $nombres;
+	public $gradoacademico;
+	public $usuario;
 	
 	public $error;
 	
@@ -31,17 +30,17 @@ class cMateria
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
     public function GetLista()
     {
-    	return($this->Consultar("SELECT * FROM materia;", true));
-    }
-    
-    public function GetListaPostGrado($pPostGrado)
-    {
-    	return($this->Consultar("SELECT * FROM materia WHERE postgrado = $pPostGrado;", true));
+    	return($this->Consultar("SELECT * FROM docente;", true));
     }
     
     public function GetPorId($pId)
     {
-    	$this->Consultar("SELECT * FROM materia WHERE id = $pId;", false);
+    	$this->Consultar("SELECT * FROM docente WHERE id = $pId;", false);
+    }
+    
+    public function GetPorUsuario($pUsuario)
+    {
+    	$this->Consultar("SELECT * FROM docente WHERE usuario = $pUsuario;", false);
     }
     
     /*public function GetNombre($pNombre)
@@ -87,12 +86,12 @@ class cMateria
     			{
         			while($row = $resultado->fetch_array()) 
         			{
+        				////id, apellidos, nombres, gradoacademico, usuario
 	            		$this->id = $row[0];
-    	        		$this->nombre = $row[1];
-        	    		$this->uvs = $row[2];
-        	    		$this->tipo = $row[3];
-						$this->requisitopara = $row[4];
-						$this->postgrado = $row[5];
+    	        		$this->apellidos = $row[1];
+        	    		$this->nombres = $row[2];
+        	    		$this->gradoacademico = $row[3];
+						$this->usuario = $row[4];
         			}
         			// liberar la memoria
     				$resultado->close();
