@@ -8,5 +8,6 @@ require_once("lib/VisualUsuario.php");
 
 /*CLASES*/
 require_once("pagina.php");
+require_once("lib/widget.php")
 //etc...
 ?>

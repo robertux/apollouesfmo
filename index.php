@@ -13,32 +13,22 @@
 					?>
 				</div>
 				<div class="WidgetListLeft">
-					<div class="WidgetLeft">
-						<div class="WidgetTitle">Novedades en la Unidad</h3></div>
-						<div class="WidgetContent">
-							<p>widget1</p>
-						</div>
-					</div>
-					<div class="WidgetLeft">
-						<div class="WidgetTitle">Novedades en Foro</h3></div>
-						<div class="WidgetContent">
-							<p>widget2</p>
-						</div>
-					</div>					
+					<?php
+						$wgUnidad = new Widget("Novedades en la Unidad", "Contenido del Widget Autogenerado", "WidgetLeft", "Ir a la Revista de la Unidad", "Unidad/index.php?section=revista");
+						$wgUnidad->Show();
+						
+						$wgForo = new Widget("Novedades en el Foro", "Contenido del Widget Autogenerado", "WidgetLeft", "Ir al Foro", "Foro/index.php");
+						$wgForo->Show();
+					?>				
 				</div>
 				<div class="WidgetListRight">
-					<div class="WidgetRight">
-						<div class="WidgetTitle">Cursos Actuales y Proximos</h3></div>
-						<div class="WidgetContent">
-							<p>widget3</p>
-						</div>
-					</div>
-					<div class="WidgetRight">
-						<div class="WidgetTitle">Acerca de la Unidad</h3></div>
-						<div class="WidgetContent">
-							<p>widget4</p>
-						</div>
-					</div>
+					<?php
+						$wgCursos = new Widget("Cursos Actuales y Proximos", "Contenido del Widget Autogenerado", "WidgetRight", "Ir a Todos los Cursos", "Cursos/index.php");
+						$wgCursos->Show();
+						
+						$wgAbout = new Widget("Acerca de la Unidad", "Contenido del Widget Autogenerado", "WidgetRight", "Ver mas Informacion", "Unidad/index.php");
+						$wgAbout->Show();
+					?>
 				</div>
     		</div>
     	</div>

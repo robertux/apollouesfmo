@@ -18,6 +18,7 @@
 -- Create schema apollo
 --
 
+DROP DATABASE IF EXISTS apollo;
 CREATE DATABASE IF NOT EXISTS apollo;
 USE apollo;
 
