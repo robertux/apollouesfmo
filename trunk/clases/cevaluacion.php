@@ -1,16 +1,15 @@
 <?php 
 require_once("cconexion.php");
 
-class cMateria
+class cEvaluacion
 {
 	private $con;
-	
+	//id, fecha, porcentaje, nota, modulo
 	public $id;
-	public $nombre; //string
-	public $uvs;
-	public $tipo;
-	public $requisitopara;
-	public $postgrado;
+	public $fecha;
+	public $porcentaje;
+	public $nota;
+	public $modulo;
 	
 	public $error;
 	
@@ -31,42 +30,32 @@ class cMateria
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
     public function GetLista()
     {
-    	return($this->Consultar("SELECT * FROM materia;", true));
+    	return($this->Consultar("SELECT * FROM evaluacion;", true));
     }
     
-    public function GetListaPostGrado($pPostGrado)
+    public function GetListaModulo($pModulo)
     {
-    	return($this->Consultar("SELECT * FROM materia WHERE postgrado = $pPostGrado;", true));
+    	$this->Consultar("SELECT * FROM evaluacion WHERE modulo = $pModulo;", true);
     }
     
     public function GetPorId($pId)
     {
-    	$this->Consultar("SELECT * FROM materia WHERE id = $pId;", false);
+    	$this->Consultar("SELECT * FROM evaluacion WHERE id = $pId;", false);
     }
     
-    /*public function GetNombre($pNombre)
+    /*public function Insert()
     {
-    	$this->Consultar("SELECT * FROM materia WHERE nombre = '$pNombre';", false);
-    }
-    
-    public function GetPostGrado($pPostGrado)
-    {
-    	$this->Consultar("SELECT * FROM materia WHERE postgrado = $pPostGrado;", false);
-    }
-    
-    public function Insert()
-    {
-    	$this->Consultar("INSERT INTO materia(nombre,uvs,tipo,requisitopara,postgrado) VALUES ('$this->nombre',$this->uvs,$this->tipo,'$this->requisitopara',$this->postgrado);", false);
+    	//...
     }
     
     public function Update()
     {
-    	$this->Consultar("UPDATE materia SET nombre = '$this->nombre', uvs = $this->uvs, tipo = $this->tipo, requisitopara = '$this->requisitopara', postgrado = $this->postgrado WHERE id = $this->id;", false);
+    	//...
     }
 	
 	public function Delete()
     {
-    	$this->Consultar("DELETE FROM materia WHERE id = $this->id;", false);
+    	//...
     }*/
     
     function Consultar($Consulta, $GetLista)
@@ -87,12 +76,12 @@ class cMateria
     			{
         			while($row = $resultado->fetch_array()) 
         			{
+        				//id, fecha, porcentaje, nota, modulo
 	            		$this->id = $row[0];
-    	        		$this->nombre = $row[1];
-        	    		$this->uvs = $row[2];
-        	    		$this->tipo = $row[3];
-						$this->requisitopara = $row[4];
-						$this->postgrado = $row[5];
+    	        		$this->fecha = $row[1];
+        	    		$this->porcentaje = $row[2];
+        	    		$this->nota = $row[3];
+						$this->modulo = $row[4];
         			}
         			// liberar la memoria
     				$resultado->close();

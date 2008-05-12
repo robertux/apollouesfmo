@@ -1,16 +1,16 @@
 <?php 
 require_once("cconexion.php");
 
-class cMateria
+class cInscripcion
 {
 	private $con;
-	
+	//id, alumno, curso, fecha, notafinal, estado
 	public $id;
-	public $nombre; //string
-	public $uvs;
-	public $tipo;
-	public $requisitopara;
-	public $postgrado;
+	public $alumno; 
+	public $curso;
+	public $fecha;
+	public $notafinal;
+	public $estado;
 	
 	public $error;
 	
@@ -31,42 +31,47 @@ class cMateria
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
     public function GetLista()
     {
-    	return($this->Consultar("SELECT * FROM materia;", true));
-    }
-    
-    public function GetListaPostGrado($pPostGrado)
-    {
-    	return($this->Consultar("SELECT * FROM materia WHERE postgrado = $pPostGrado;", true));
+    	return($this->Consultar("SELECT * FROM inscripcion;", true));
     }
     
     public function GetPorId($pId)
     {
-    	$this->Consultar("SELECT * FROM materia WHERE id = $pId;", false);
+    	$this->Consultar("SELECT * FROM inscripcion WHERE id = $pId;", false);
     }
     
-    /*public function GetNombre($pNombre)
+    public function GetPorAlumno($pAlumno)
     {
-    	$this->Consultar("SELECT * FROM materia WHERE nombre = '$pNombre';", false);
+    	$this->Consultar("SELECT * FROM inscripcion WHERE alumno = $pAlumno;", false);
     }
     
-    public function GetPostGrado($pPostGrado)
+    public function GetPorCurso($pCurso)
     {
-    	$this->Consultar("SELECT * FROM materia WHERE postgrado = $pPostGrado;", false);
+    	$this->Consultar("SELECT * FROM inscripcion WHERE curso = $pCurso;", false);
     }
     
-    public function Insert()
+    /*public function Insert()
     {
-    	$this->Consultar("INSERT INTO materia(nombre,uvs,tipo,requisitopara,postgrado) VALUES ('$this->nombre',$this->uvs,$this->tipo,'$this->requisitopara',$this->postgrado);", false);
+    	$this->Consultar("INSERT INTO 
+    	modulo(correlativo, docente, fechainicio, duracion, notafinal, curso, materia)
+    	VALUES ($this->correlativo,$this->docente,'$this->fechainicio',$this->duracion,$this->notafinal, $this->curso, $this->materia);", false);
     }
     
     public function Update()
     {
-    	$this->Consultar("UPDATE materia SET nombre = '$this->nombre', uvs = $this->uvs, tipo = $this->tipo, requisitopara = '$this->requisitopara', postgrado = $this->postgrado WHERE id = $this->id;", false);
+    	$this->Consultar("UPDATE modulo SET 
+    	correlativo = $this->nombre, 
+    	docente = $this->docente,
+    	fechainicio = '$this->fechainicio',
+    	duracion= $this->duracion,
+    	notafinal = $this->notafinal,
+    	curso = $this->curso,
+    	materia = $this->materia    	
+    	WHERE id = $this->id;", false);
     }
 	
 	public function Delete()
     {
-    	$this->Consultar("DELETE FROM materia WHERE id = $this->id;", false);
+    	$this->Consultar("DELETE FROM modulo WHERE id = $this->id;", false);
     }*/
     
     function Consultar($Consulta, $GetLista)
@@ -87,12 +92,13 @@ class cMateria
     			{
         			while($row = $resultado->fetch_array()) 
         			{
+        				//id, alumno, curso, fecha, notafinal, estado
 	            		$this->id = $row[0];
-    	        		$this->nombre = $row[1];
-        	    		$this->uvs = $row[2];
-        	    		$this->tipo = $row[3];
-						$this->requisitopara = $row[4];
-						$this->postgrado = $row[5];
+    	        		$this->alumno = $row[1];
+        	    		$this->curso = $row[2];
+        	    		$this->fecha = $row[3];
+						$this->notafinal = $row[4];
+						$this->estado = $row[5];
         			}
         			// liberar la memoria
     				$resultado->close();

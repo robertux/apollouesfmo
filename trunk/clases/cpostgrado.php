@@ -35,12 +35,12 @@ class cPostGrado
     }
     
     //Just for now...
-    public function Get($pId)
+    public function GetPorId($pId)
     {
-    	$this->Consultar("SELECT id, nombre, notaminima, totaluvs, cumminimo, abreviatura, maxalum FROM postgrado WHERE id = $pId;", false);
+    	$this->Consultar("SELECT * FROM postgrado WHERE id = $pId;", false);
     }
     
-    public function Insert()
+    /*public function Insert()
     {
     	//...
     }
@@ -52,8 +52,8 @@ class cPostGrado
 	
 	public function Delete()
     {
-    	//$this->Consultar("DELETE FROM postgrado WHERE id = $this->id;");
-    }
+    	//...
+    }*/
     
     function Consultar($Consulta, $GetLista)
     {

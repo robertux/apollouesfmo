@@ -36,12 +36,27 @@ class cModulo
     	return($this->Consultar("SELECT * FROM modulo;", true));
     }
     
-    public function GetId($pId)
+    public function GetPorId($pId)
     {
     	$this->Consultar("SELECT * FROM modulo WHERE id = $pId;", false);
     }
     
-    public function Insert()
+    public function GetPorDocente($pDocente)
+    {
+    	$this->Consultar("SELECT * FROM modulo WHERE docente = $pDocente;", false);
+    }
+    
+    public function GetPorCurso($pCurso)
+    {
+    	$this->Consultar("SELECT * FROM modulo WHERE curso = $pCurso;", false);
+    }
+    
+    public function GetPorMateria($pMateria)
+    {
+    	$this->Consultar("SELECT * FROM modulo WHERE materia = $pMateria;", false);
+    }
+    
+    /*public function Insert()
     {
     	$this->Consultar("INSERT INTO 
     	modulo(correlativo, docente, fechainicio, duracion, notafinal, curso, materia)
@@ -64,7 +79,7 @@ class cModulo
 	public function Delete()
     {
     	$this->Consultar("DELETE FROM modulo WHERE id = $this->id;", false);
-    }
+    }*/
     
     function Consultar($Consulta, $GetLista)
     {

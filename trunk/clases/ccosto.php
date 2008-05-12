@@ -31,7 +31,12 @@ class cCosto
     	return($this->Consultar("SELECT * FROM costo;", true));
     }
     
-    public function GetId($pId)
+    public function GetListaPostGrado($pPostGrado)
+    {
+    	return($this->Consultar("SELECT * FROM costo WHERE postgrado = $pPostGrado;", true));
+    }
+    
+    public function GetPorId($pId)
     {
     	$this->Consultar("SELECT * FROM costo WHERE id = $pId;", false);
     }
