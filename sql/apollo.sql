@@ -31,7 +31,7 @@ CREATE TABLE `alumno` (
   `apellidos` varchar(200) NOT NULL,
   `nombres` varchar(200) NOT NULL,
   `direccion` text NOT NULL,
-  `telefono` int(10) unsigned NOT NULL,
+  `telefono` varchar(8) default NULL,
   `fechanacimiento` date NOT NULL,
   `usuario` int(11) NOT NULL,
   PRIMARY KEY  (`id`),
