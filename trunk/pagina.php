@@ -21,7 +21,6 @@ public function encabezado($accion="")
 	//echo "<script type=\"text/javascript\" src=\"/includes/funciones.js\"></script>\n";
 	//if (isset($_SESSION['autentificado']) && $_SESSION["autentificado"] == $_SESSION["aut"]){ }
 	echo "</head>";
-	$this->cuerpo();
 }
 
 public function cuerpo($accion="")

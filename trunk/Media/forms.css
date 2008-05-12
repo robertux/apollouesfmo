@@ -34,7 +34,8 @@
         cursor: pointer;        
 }
 
-.errorMsg{	
+.errorMsg{
+	font-size: smaller;
 	margin: 2px 3px 2px 3px;
 	background-color: transparent;
 	border: 0px solid #000000;

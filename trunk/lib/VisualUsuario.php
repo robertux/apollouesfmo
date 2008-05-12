@@ -8,10 +8,10 @@
 		function Show(){
 			if(isset($_GET["action"])){
 				if($_GET["action"] == "login"){				
-					//if($this->LoadUser($_POST["txtNombre"], $_POST["txtClave"]))
+					if($this->LoadUser($_POST["txtNombre"], $_POST["txtClave"]))
 						$this->ShowUserInfo();
-					//else
-	                    //$this->ShowLoginBox("Nombre de usuario y/o clave invalidos");
+					else
+						$this->ShowLoginBox("Nombre de usuario y/o clave invalidos");
 				}
 				else
 					$this->ShowLoginBox("");
@@ -21,8 +21,8 @@
 			
 		}
 		
-		function LoadUser($usrName, $usrClave){
-			
+		function LoadUser($usrName, $usrClave){			
+			return true;
 		}
 		
 		function ShowUserInfo(){

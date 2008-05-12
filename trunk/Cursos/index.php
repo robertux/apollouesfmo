@@ -10,13 +10,13 @@
   <div id="header">
     <div id="logo">
       <h1>Mis Cursos</h1>
-      <div>Cipriano Esmerejildo de los Angeles Pinzon    <a>[Cerrar Sesion]</a></div>
+      <div>Cipriano Esmerejildo de los Angeles Pinzon    <a href="../index.php?action=logout">[Cerrar Sesion]</a></div>
     </div>
     <ul id="nav">
-      <li><a href="#">Principal</a></li>
-      <li><a href="#">Mis Cursos</a></li>
-      <li><a href="#">Foro</a></li>
-      <li><a href="#">Acerca de</a></li>
+      <li><a href="../index.php">Principal</a></li>
+      <li><a>Mis Cursos</a></li>
+      <li><a href="../Foro/index.php">Foro</a></li>
+      <li><a href="../Unidad/index.php">La Unidad</a></li>
     </ul>
   </div>
   <!-- /header -->

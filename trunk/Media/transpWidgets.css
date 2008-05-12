@@ -75,6 +75,21 @@
 	padding: 2px 2px 2px 2px;
 }
 
+.Footer{
+	position: absolute;
+	text-align: right;
+	text-decoration: none;
+	color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: smaller;
+	font-weight: bold;
+	bottom: 5px;
+	right: 5px;
+}
+
+a{ color: #610d0d; }
+a:hover { color: #850505; }
+
 /*
 #p{	
 	color: #000000;
