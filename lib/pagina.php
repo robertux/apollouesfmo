@@ -14,9 +14,9 @@ public function encabezado($accion="")
 	echo "<META NAME=\"ROBOTS\" CONTENT=\"INDEX, FOLLOW\">\n";
 	echo "<META NAME=\"REVISIT-AFTER\" CONTENT=\"1 DAYS\">\n";
 	echo "<META NAME=\"RATING\" CONTENT=\"GENERAL\">\n";
-	echo "<link rel=\"stylesheet\" href=\"media/main.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
-	echo "<link rel=\"stylesheet\" href=\"media/transpWidgets.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
-	echo "<link rel=\"stylesheet\" href=\"media/forms.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
+	echo "<link rel=\"stylesheet\" href=\"css/main.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
+	echo "<link rel=\"stylesheet\" href=\"css/transpWidgets.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
+	echo "<link rel=\"stylesheet\" href=\"css/forms.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
 	//echo "<script type=\"text/javascript\" src=\"/calendario/calendario/javascripts.js\"></script>\n";
 	//echo "<script type=\"text/javascript\" src=\"/includes/funciones.js\"></script>\n";
 	//if (isset($_SESSION['autentificado']) && $_SESSION["autentificado"] == $_SESSION["aut"]){ }
