@@ -2,6 +2,7 @@
 /* AQUI SE COLOCAN LOS REQUIRE QUE TODAS LAS PAGINAS NECESITAN */
 
 define("URL","http://localhost/apollo/"); //"http://www.uesocc.edu.sv/postgrados/" 
+define("UNIDAD", "Unidad de PostGrados - UES FMOcc");
 
 /*LIBRERIA*/
 //require_once("lib/funciones.php");
