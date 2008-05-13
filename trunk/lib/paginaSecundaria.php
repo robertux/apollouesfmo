@@ -1,7 +1,10 @@
 <?php
-    class paginaSecundaria{
+
+    class paginaSecundaria
+    {
     	
-		public function encabezado(){
+		public function encabezado()
+		{
 			session_start();
 			echo "<!DOCTYPE html PUBLIC \"-//IETF//DTD HTML 2.0//EN\"><html><head><title>";
 			echo "Portal Unidad de PostGrados - Universidad de El Salvador</title>\n";
@@ -17,7 +20,8 @@
 			echo "</head>";
 		}
 		
-		public function cuerpo(){
+		public function cuerpo()
+		{
 			echo "<body>";
 		}
     }

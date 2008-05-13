@@ -1,6 +1,8 @@
 <?php
 /* AQUI SE COLOCAN LOS REQUIRE QUE TODAS LAS PAGINAS NECESITAN */
 
+define("URL","http://localhost/apollo/"); //"http://www.uesocc.edu.sv/postgrados/" 
+
 /*LIBRERIA*/
 //require_once("lib/funciones.php");
 //require_once("lib/encabezado.php");

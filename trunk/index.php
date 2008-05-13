@@ -2,7 +2,7 @@
 	require_once("incluye.php");
 	$pag = new paginaPrincipal();
 	$pag->encabezado("");
-	$pag->cuerpo();
+	$pag->cuerpo("");
 ?>
     	<div id="fondoPrincipal">
     		<div id="contenidoPrincipal">
@@ -32,6 +32,4 @@
 				</div>
     		</div>
     	</div>
-<?php
-	$pag->pie();
-?>
+<?php $pag->pie(); ?>
