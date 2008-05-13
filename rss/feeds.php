@@ -1,77 +1,169 @@
 <?php
 include_once("../incluye.php");
 require_once("cfeed.php");
-require_once("../clases/cconexion.php");
+//require_once("../clases/cconexion.php");
+require_once("../clases/cnovedades.php");
 
-$rss = new UniversalFeedCreator();
-$rss->useCached();
-$rss->title = "UES Novedades en la Unidad de PostGrados";
-$rss->description = "noticias recientes en la Unidad de PostGrados";
-$rss->link = URL."index.php?section=revista";
-$rss->syndicationURL = URL."rss/testfeed.php";
+/**
+ * Ultimas Novedades			novedades
+ * Actividad en el Foro			foro
+ * Noticias sobre los Cursos	cursos
+ */
 
-$image = new FeedImage();
-$image->title = "Minerva logo";
-$image->url = URL."media/minerva_small.gif";
-$image->link = URL."index.php";
-$image->description = "Click para visitar el sitio de la Unidad de PostGrados.";
-$rss->image = $image;
-
-$con = new cConexion();
-$consulta = "SELECT * FROM novedades ORDER BY fecha DESC LIMIT 10;";
-$con->Conectar();
-// ejecutar la consulta
-if ($resultado = $con->mysqli->query($consulta))
+class GenerarFeedsPostGrado
 {
-	// hay registros?
-	if ($resultado->num_rows > 0)
+	public $generare;
+	private $rss;
+	
+	// constructor
+    public function __construct() 
+    {    	
+		$this->rss = new UniversalFeedCreator();
+		$this->rss->useCached();
+		
+		$image = new FeedImage();
+		$image->title = "Minerva logo";
+		$image->url = URL."media/minerva_small.gif";
+		$image->link = URL."index.php";
+		$image->description = "Click para visitar el sitio de la Unidad de PostGrados, UES - FMOcc.";
+		$this->rss->image = $image;
+    }
+    
+    // destructor
+    public function __destruct() { }
+	
+	public function Genero()
 	{
-		while($row = $resultado->fetch_array())
-		{
-    		$item = new FeedItem();
-    		$item->title = $row[0];
-    		$item->link = $row[1];
-    		$item->description = $row[2];
-    		$item->date = $row[3];
-    		$item->source = URL;
-    		$item->author = "Unidad de PostGrados";
-    		
-    		$rss->addItem($item);
+		switch ($this->generare) {
+			case "novedades":
+				$this->Novedades();
+				break;
+			case "cursos":
+				$this->Cursos();
+				break;
+			case "foro":
+				$this->Foros();
+				break;
+			default:
+				break;
 		}
 	}
-	else
+
+	private function Novedades()
 	{
-		// no
+		$this->rss->title = "Novedades";
+		$this->rss->description = "Noticias recientes en la Unidad de PostGrados";
+		$this->rss->link = URL."index.php?section=revista";
+		$this->rss->syndicationURL = URL."rss/feeds.php?genera=novedades";
+		
+		$this->novedades = new cNovedades();
+		
+		$listanovedades = $this->novedades->GetUltimos();
+		if ($listanovedades)
+		{			
+			while($row = $listanovedades->fetch_array())
+			{
+    			$item = new FeedItem();
+    			$item->title = $row[1];
+    			$item->link = $row[2];
+    			$item->description = $row[3];
+    			$item->date = $row[4];
+    			$item->source = URL;
+    			$item->author = UNIDAD;
+    			
+    			$this->rss->addItem($item);
+			}
+			$listanovedades->close();
+		}
+		else 
+		{
+			$this->FeedError();
+		}
+		$this->rss->saveFeed("RSS2.0", "postgrado-novedades.xml"); 
+	}
+	
+	private function Cursos()
+	{
+		$this->rss->title = "Cursos";
+		$this->rss->description = "Avisos sobre los Cursos de la Unidad de PostGrados";
+		$this->rss->link = URL."cursos/index.php";
+		$this->rss->syndicationURL = URL."rss/feeds.php?genera=cursos";
+		
+		//$this->novedades = new cNovedades();
+		/*
+		$listanovedades = $this->novedades->GetUltimos();
+		if ($listanovedades)
+		{			
+			while($row = $listanovedades->fetch_array())
+			{
+    			$item = new FeedItem();
+    			$item->title = $row[1];
+    			$item->link = $row[2];
+    			$item->description = $row[3];
+    			$item->date = $row[4];
+    			$item->source = URL;
+    			$item->author = UNIDAD;
+    			
+    			$this->rss->addItem($item);
+			}
+			$listanovedades->close();
+		}
+		else 
+		{*/
+			$this->FeedError();
+		//}
+		$this->rss->saveFeed("RSS2.0", "postgrado-cursos.xml"); 
+	}
+	
+	private function Foros()
+	{
+		$this->rss->title = "Foros";
+		$this->rss->description = "Ultimas entradas en el Foro de la Unidad de PostGrados";
+		$this->rss->link = URL."foro/index.php";
+		$this->rss->syndicationURL = URL."rss/feeds.php?genera=foro";
+		
+		//$this->novedades = new cNovedades();
+		/*
+		$listanovedades = $this->novedades->GetUltimos();
+		if ($listanovedades)
+		{			
+			while($row = $listanovedades->fetch_array())
+			{
+    			$item = new FeedItem();
+    			$item->title = $row[1];
+    			$item->link = $row[2];
+    			$item->description = $row[3];
+    			$item->date = $row[4];
+    			$item->source = URL;
+    			$item->author = UNIDAD;
+    			
+    			$this->rss->addItem($item);
+			}
+			$listanovedades->close();
+		}
+		else 
+		{*/
+			$this->FeedError();
+		//}
+		$this->rss->saveFeed("RSS2.0", "postgrado-foros.xml"); 
+	}
+	
+	private function FeedError()
+	{
 		$item = new FeedItem();
     	$item->title = "No hay nada que mostrar";
     	$item->link = URL;
-    	$item->description = "Aun no hay novedades que mostrar.";
+    	$item->description = "No hay nada que mostrar.";
     	$now = new FeedDate();
     	$item->date = $now->rfc822();
     	$item->source = URL;
-    	$item->author = "Unidad de PostGrados";
-    	
-    	$rss->addItem($item);
+    	$item->author = UNIDAD;
+    	$this->rss->addItem($item);	
 	}
-	$resultado->close();
+	
 }
-else
-{
-	// tiremos el error (si hay)... ojala que no :P
-	$item = new FeedItem();
-    $item->title = "Ocurrio un error!";
-    $item->link = URL;
-    $item->description = "¡Ocurrio un error al obtener las noticias!<br>
-    Precisamente en la consulta: " .$consulta ."<br>y el error es: ".$con->mysqli->error;
-    $now = new FeedDate();
-    $item->date = $now->rfc822();
-    $item->source = URL;
-    $item->author = "Unidad de PostGrados";
-    
-    $rss->addItem($item);
-}
-// cerrar la conexion
-$con->mysqli->close();
-// salvamos el feed
-$rss->saveFeed("RSS2.0", "postgrado-novedades.xml"); 
+
+$gfpg = new GenerarFeedsPostGrado();
+$gfpg->generare = $_GET[genera]; //$gfpg->generare = "cursos";
+$gfpg->Genero();
 ?>
