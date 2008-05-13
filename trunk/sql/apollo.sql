@@ -18,7 +18,6 @@
 -- Create schema apollo
 --
 
-DROP DATABASE IF EXISTS apollo;
 CREATE DATABASE IF NOT EXISTS apollo;
 USE apollo;
 
@@ -272,6 +271,26 @@ CREATE TABLE `modulo` (
 
 /*!40000 ALTER TABLE `modulo` DISABLE KEYS */;
 /*!40000 ALTER TABLE `modulo` ENABLE KEYS */;
+
+
+--
+-- Definition of table `novedades`
+--
+
+DROP TABLE IF EXISTS `novedades`;
+CREATE TABLE `novedades` (
+  `titulo` varchar(20) NOT NULL,
+  `vinculo` varchar(50) NOT NULL,
+  `descripcion` text NOT NULL,
+  `fecha` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `novedades`
+--
+
+/*!40000 ALTER TABLE `novedades` DISABLE KEYS */;
+/*!40000 ALTER TABLE `novedades` ENABLE KEYS */;
 
 
 --
