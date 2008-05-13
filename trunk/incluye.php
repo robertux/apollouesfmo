@@ -12,6 +12,7 @@ require_once("lib/VisualUsuario.php");
 /*CLASES*/
 require_once("lib/paginaPrincipal.php");
 require_once("lib/paginaSecundaria.php");
-require_once("lib/widget.php")
+require_once("lib/widget.php");
+require_once("lib/mainContentManager.php");
 //etc...
 ?>

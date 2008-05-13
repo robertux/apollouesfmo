@@ -3,6 +3,8 @@
 	$pag = new paginaPrincipal();
 	$pag->encabezado();
 	$pag->cuerpo();
+	
+	$mcm = new MainContentManager();
 ?>
     	<div id="fondoPrincipal">
     		<div id="contenidoPrincipal">
@@ -14,19 +16,19 @@
 				</div>
 				<div class="WidgetListLeft">
 					<?php
-						$wgUnidad = new Widget("Novedades en la Unidad", "Contenido del Widget Autogenerado", "WidgetLeft", "Ir a la Revista de la Unidad", "Unidad/index.php?opt=news");
+						$wgUnidad = new Widget("Novedades en la Unidad", $mcm->showNews(), "WidgetLeft", "Ir a la Revista de la Unidad", "Unidad/index.php?opt=news");
 						$wgUnidad->Show();
 						
-						$wgForo = new Widget("Novedades en el Foro", "Contenido del Widget Autogenerado", "WidgetLeft", "Ir al Foro", "Foro/index.php?opt=cat");
+						$wgForo = new Widget("Novedades en el Foro", $mcm->showForum(), "WidgetLeft", "Ir al Foro", "Forum/index.php?opt=cat");
 						$wgForo->Show();
 					?>				
 				</div>
 				<div class="WidgetListRight">
 					<?php
-						$wgCursos = new Widget("Cursos Actuales y Proximos", "Contenido del Widget Autogenerado", "WidgetRight", "Ir a Todos los Cursos", "Cursos/index.php?opt=actual");
+						$wgCursos = new Widget("Cursos Actuales y Proximos", $mcm->showCourses(), "WidgetRight", "Ir a Todos los Cursos", "Cursos/index.php?opt=actual");
 						$wgCursos->Show();
 						
-						$wgAbout = new Widget("Acerca de la Unidad", "Contenido del Widget Autogenerado", "WidgetRight", "Ver mas Informacion", "Unidad/index.php?opt=about");
+						$wgAbout = new Widget("Acerca de la Unidad", $mcm->showAbout(), "WidgetRight", "Ver mas Informacion", "Unidad/index.php?opt=about");
 						$wgAbout->Show();
 					?>
 				</div>
