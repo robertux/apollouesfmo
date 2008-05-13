@@ -24,7 +24,7 @@
 }
 
 .WidgetLeft{
-	background-image: url(WidgetBkgLeft.png);	
+	background-image: url(../Media/widgets/WidgetBkgLeft.png);	
 	/*border-style: solid;
 	border-color: #AAAAAA;*/
 	border-width: 1px;
@@ -38,7 +38,7 @@
 }
 
 .WidgetRight{
-	background-image: url(WidgetBkgRight.png);
+	background-image: url(../Media/widgets/WidgetBkgRight.png);
 	/*border-style: solid;
 	border-color: #AAAAAA;*/
 	border-width: 1px;
@@ -53,7 +53,7 @@
 
 .WidgetTitle{
 	background-color: transparent;
-	background-image: url(WidgetTitle2.png);
+	background-image: url(../Media/widgets/WidgetTitle2.png);
         background-repeat: repeat-x;
 	position: absolute;
 	color: #000000;

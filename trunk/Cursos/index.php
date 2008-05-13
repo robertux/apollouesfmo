@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>UES FMO - Unidad de Postgrados - Alumno</title>
-<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
 </head>
 <body>
 <div id="wrap">
@@ -20,7 +20,7 @@
     </ul>
   </div>
   <!-- /header -->
-  <div id="content"> <img src="images/MainBanner.png" alt="" class="img" />
+  <div id="content"> <img src="../Media/style/MainBanner.png" alt="" class="img" />
     <p id="innerContent">
 	<br /><br /><br />
 	Usted aun no esta inscrito en ningun curso de postgrado.
