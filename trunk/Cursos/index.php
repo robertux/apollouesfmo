@@ -9,13 +9,13 @@
 <div id="wrap">
   <div id="header">
     <div id="logo">
-      <h1>Foro</h1>
+      <h1>Mis Cursos</h1>
       <div>Cipriano Esmerejildo de los Angeles Pinzon    <a href="../index.php?action=logout">[Cerrar Sesion]</a></div>
     </div>
     <ul id="nav">
       <li><a href="../index.php">Principal</a></li>
-      <li><a href="../Cursos/index.php">Mis Cursos</a></li>
-      <li><a>Foro</a></li>
+      <li><a>Mis Cursos</a></li>
+      <li><a href="../Foro/index.php">Foro</a></li>
       <li><a href="../Unidad/index.php">La Unidad</a></li>
     </ul>
   </div>

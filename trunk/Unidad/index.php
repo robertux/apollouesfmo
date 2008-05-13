@@ -15,7 +15,7 @@
     <ul id="nav">
       <li><a href="../index.php">Principal</a></li>
       <li><a href="../Cursos/index.php">Mis Cursos</a></li>
-      <li><a href="../Forum/index.php">Foro</a></li>
+      <li><a href="../Foro/index.php">Foro</a></li>
       <li><a>La Unidad</a></li>
     </ul>
   </div>
