@@ -1,8 +1,9 @@
 <?php
-class pagina{
-
-	public function encabezado($accion="")
-	{
+    
+	class paginaPrincipal{
+		
+		
+	public function encabezado(){
 		session_start();
 		echo "<!DOCTYPE html PUBLIC \"-//IETF//DTD HTML 2.0//EN\"><html><head><title>";
 		echo "Portal Unidad de PostGrados - Universidad de El Salvador</title>\n";
@@ -23,24 +24,13 @@ class pagina{
 		echo "</head>";
 	}
 	
-	public function cuerpo($accion="")
-	{
-		if($accion=="")
-		{
-			echo "<body>";
-		}
-		else
-		{
-			echo "<body topmargin=\"0\" leftmargin=\"0\" marginheight=\"0\" marginwidth=\"0\"  vlink=\"#f6f9ff\" link=\"#f6f9ff\" $accion >";
-		}
+	public function cuerpo(){
+		echo "<body>";
 	}
 	
-	public function pie()
-	{
-		$retorna = "";
-		$retorna .= "</body></html>";
-		return ($devuelve);
+	public function pie(){
+		echo "</body></html>";
 	}
-
-}
+		}
+	
 ?>

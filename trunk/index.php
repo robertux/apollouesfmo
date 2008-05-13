@@ -1,6 +1,6 @@
 <?php
 	require_once("incluye.php");
-	$pag = new pagina();
+	$pag = new paginaPrincipal();
 	$pag->encabezado("");
 	$pag->cuerpo();
 ?>
