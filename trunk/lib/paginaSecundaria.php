@@ -17,12 +17,18 @@
 			echo "<META NAME=\"REVISIT-AFTER\" CONTENT=\"1 DAYS\">\n";
 			echo "<META NAME=\"RATING\" CONTENT=\"GENERAL\">\n";
 			echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/style.css\" />";
+			echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/rightMenu.css\" />";
 			echo "</head>";
 		}
 		
 		public function cuerpo()
 		{
-			echo "<body>";
+			echo "<body>";			
+		}
+		
+		public function pie()
+		{
+			echo "</body></html>";
 		}
     }
 ?>

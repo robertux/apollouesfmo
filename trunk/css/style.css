@@ -49,8 +49,18 @@ a:hover {
 #nav a:hover {background: #c62f2f; color:#000000}
 /* content */
 
-#content{ background:url(../Media/style/bg2.png); }
-#innerContent { margin: 10px 0  0 70px; }
+#content{
+	background:url(../Media/style/bg2.png);
+}
+
+#innerContent {
+	position: relative;
+	left: 70px;
+	top: 20px;
+	width: 550px;
+	 /*margin: 10px 0  0 70px;*/
+	 
+}
 .img { margin:0px 0  0 70px; }
 /* footer */
 #footer { background-image: url(../Media/style/ft2.png); background-repeat:no-repeat; width: 100%; height:100px; position:relative; }
