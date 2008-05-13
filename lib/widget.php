@@ -15,10 +15,10 @@
 			$this->masLink = $pMasLink;
 		}
 		
-		function Show(){
+		function Show($content = ""){
 			echo("
 			<div class='$this->clase'>
-				<div class='WidgetTitle'>$this->titulo</div>
+				<div class='WidgetTitle'><a href='$this->masLink'>$this->titulo</a></div>
 				<div class='WidgetContent'>
 					<p>$this->contenido</p>
 				</div>
