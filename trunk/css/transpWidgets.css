@@ -5,8 +5,8 @@
 	border-width: 1px;*/
 	position: absolute;
 	left: 5px;
-	top: 120px;
-	width: 315px;
+	top: 160px;
+	width: 350px;
 	height: 370px;
 }
 
@@ -16,38 +16,40 @@
 	border-color: #CCCCCC;
 	border-width: 1px;*/
 	position: absolute;
-	float: right;
-	right: -63px;
-	top: 120px;
-	width: 315px;
+	/*float: right;*/
+	right: 5px;
+	top: 160px;
+	width: 350px;
 	height: 370px;
 }
 
 .WidgetLeft{
 	background-image: url(../Media/widgets/WidgetBkgLeft.png);	
-	/*border-style: solid;
-	border-color: #AAAAAA;*/
+	border-style: solid;
+	border-color: #aa2222;
 	border-width: 1px;
 	position: relative;
-	padding: 5px 5px 5px 5px;
+	/*padding: 5px 5px 5px 5px;*/
 	left: 0px;
 	top: 0px;
-	height: 120px;
-	width: 240px;
+	float: left;
+	height: 170px;
+	width: 340px;
 	margin: 5px 0px 10px 0px;
 }
 
 .WidgetRight{
 	background-image: url(../Media/widgets/WidgetBkgRight.png);
-	/*border-style: solid;
-	border-color: #AAAAAA;*/
+	border-style: solid;
+	border-color: #aa2222;
 	border-width: 1px;
 	position: relative;
-	padding: 5px 5px 5px 5px;
-	left: 0px;
+	/*padding: 5px 5px 5px 5px;*/
+	right: 0px;
+	float: right;
 	top: 0px;
-	height: 120px;
-	width: 240px;
+	height: 170px;
+	width: 340px;
 	margin: 5px 0px 10px 0px;
 }
 
@@ -55,14 +57,15 @@
 	background-color: transparent;
 	background-image: url(../Media/widgets/WidgetTitle2.png);
         background-repeat: repeat-x;
-	position: absolute;
+	position: relative;
 	color: #000000;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: smaller;
-	left: 3px;
-	top: 3px;
-	width: 246px;
-	height: 20px;
+	/*left: 3px;
+	top: 3px;*/
+	width: 340px;
+	height: 25px;
+	/*margin: 2px 2px 2px 2px;*/
 	}
 
 .WidgetContent{
@@ -89,6 +92,17 @@
 
 a{ color: #610d0d; }
 a:hover { color: #850505; }
+
+#TitleText {
+	color: #000000;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 12pt;
+	position:absolute;
+	/*padding: 10px 2px 2px 10px;*/
+	top: 20%;
+	left: 5%;
+}
 
 /*
 #p{	

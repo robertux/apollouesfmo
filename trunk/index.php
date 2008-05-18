@@ -8,12 +8,12 @@
 ?>
     	<div id="fondoPrincipal">
     		<div id="contenidoPrincipal">
-    			<div id="loginBox">
+    			<!--<div id="loginBox">
     				<?php 
 						$vuser = new VisualUsuario();
 						$vuser->Show();
 					?>
-				</div>
+				</div>-->
 				<div class="WidgetListLeft">
 					<?php
 						$wgUnidad = new Widget("Novedades en la Unidad", $mcm->showNews(), "WidgetLeft", "Ir a la Revista de la Unidad", "Unidad/index.php?opt=news");
