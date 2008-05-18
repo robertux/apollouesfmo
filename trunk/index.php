@@ -16,20 +16,24 @@
 				</div>-->
 				<div class="WidgetListLeft">
 					<?php
-						$wgUnidad = new Widget("Novedades en la Unidad", $mcm->showNews(), "WidgetLeft", "Ir a la Revista de la Unidad", "Unidad/index.php?opt=news");
-						$wgUnidad->Show();
+						//ejemplo de uso de widget nuevo
+						$wdg = new Widget();
+						$wdg->claseCSS="WidgetLeft";
+						$wdg->Titulo="Novedades en la Unidad";
+						$wdg->masURL="Unidad/index.php?opt=news";
+						$wdg->Show();
 						
-						$wgForo = new Widget("Novedades en el Foro", $mcm->showForum(), "WidgetLeft", "Ir al Foro", "Forum/index.php?opt=cat");
-						$wgForo->Show();
+						//$wgForo = new Widget("Novedades en el Foro", $mcm->showForum(), "WidgetLeft", "Ir al Foro", "Forum/index.php?opt=cat");
+						//$wgForo->Show();
 					?>				
 				</div>
 				<div class="WidgetListRight">
-					<?php
+					<?php /*
 						$wgCursos = new Widget("Cursos Actuales y Proximos", $mcm->showCourses(), "WidgetRight", "Ir a Todos los Cursos", "Cursos/index.php?opt=actual");
 						$wgCursos->Show();
 						
 						$wgAbout = new Widget("Acerca de la Unidad", $mcm->showAbout(), "WidgetRight", "Ver mas Informacion", "Unidad/index.php?opt=about");
-						$wgAbout->Show();
+						$wgAbout->Show();*/
 					?>
 				</div>
     		</div>
