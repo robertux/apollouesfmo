@@ -1,5 +1,5 @@
 <?php 
-require_once("cconexion.php");
+include("cconexion.php");
 
 class cMateria
 {
