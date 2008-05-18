@@ -279,17 +279,28 @@ CREATE TABLE `modulo` (
 
 DROP TABLE IF EXISTS `novedades`;
 CREATE TABLE `novedades` (
-  `titulo` varchar(20) NOT NULL,
-  `vinculo` varchar(50) NOT NULL,
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `titulo` varchar(50) NOT NULL,
+  `vinculo` varchar(100) default NULL,
   `descripcion` text NOT NULL,
-  `fecha` date NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `fecha` datetime NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `FECHA` (`fecha`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `novedades`
 --
 
 /*!40000 ALTER TABLE `novedades` DISABLE KEYS */;
+INSERT INTO `novedades` (`id`,`titulo`,`vinculo`,`descripcion`,`fecha`) VALUES 
+ (1,'Atencion Estudiantes de Ingenieria de Sistemas','http://localhost/apollo/Unidad/index.php?opt=news&newid=1','Atencion estudiantes de Ingenieria de Sistemas, se necesitan cuatro estudiantes para construir el sitio web de la Unidad de PostGrados.','2008-02-02 00:00:00'),
+ (2,'Estudiantes asignados al servicio social','http://localhost/apollo/Unidad/index.php?opt=news&newid=2','Los estudiantes de Ingenieria de Sistemas: Rodrigo S. Amaya y Roberto C. Linares, son ahora los encargados de la realizacion del sitio web de la Unidad de PostGrados.\r\nEsperamos que terminen el proyecto en el mejor de los terminos, procurando tomar en cuenta las necesidades de los usuarios y de la problacion estudiantil que use el sitio.\r\n\r\nGracias a estos jovenes, pronto la Unidad de PostGrados tendra su propio sitio web de trabajo.\r\n\r\n¡Esten pendientes!','2008-03-03 00:00:00'),
+ (3,'Sitio Web de Prueba','http://localhost/apollo/Unidad/index.php?opt=news&newid=3','Se acaba de publicar el primer diseño de prueba del sitio web de la Unidad de PostGrados.','2008-04-04 00:00:00'),
+ (4,'Generador de Noticias','http://localhost/apollo/Unidad/index.php?opt=news&newid=4','Ya esta listo el nuevo generador de noticias de la Unidad de PostGrados, gracias a este, podremos mantener informados a todos nuestros visitantes de las ultimas novedades que ocurren en la Unidad. ¡No olviden suscribirse!','2008-04-28 00:00:00'),
+ (5,'Noticia de prueba 1','http://localhost/apollo/index.php','Esta es una noticia de prueba','2008-04-29 00:00:00'),
+ (6,'Noticia de prueba 2','http://localhost/apollo/index.php','Otra noticia de prueba','2008-05-01 00:00:00'),
+ (7,'Noticia de prueba 3','http://localhost/apollo/index.php','Y otra noticia de prueba más...','2008-05-02 00:00:00');
 /*!40000 ALTER TABLE `novedades` ENABLE KEYS */;
 
 
@@ -371,7 +382,7 @@ CREATE TABLE `usuario` (
   `clave` varchar(10) default NULL,
   `nombre` varchar(15) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usuario`
