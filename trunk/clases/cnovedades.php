@@ -1,5 +1,5 @@
 <?php 
-require_once("cconexion.php");
+include("cconexion.php");
 
 class cNovedades
 {
@@ -36,6 +36,11 @@ class cNovedades
     public function GetUltimos($pNumero = 10)
     {
     	return($this->Consultar("SELECT id, titulo, vinculo, descripcion, fecha FROM novedades ORDER BY fecha DESC LIMIT $pNumero;", true));
+    }
+    
+    public function GetParaWidget($pNumero = 5)
+    {
+    	return($this->Consultar("SELECT titulo, vinculo FROM novedades ORDER BY fecha DESC LIMIT $pNumero;", true));
     }
     
     public function Insert()

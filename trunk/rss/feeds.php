@@ -2,11 +2,11 @@
 include_once("../incluye.php");
 require_once("cfeed.php");
 //require_once("../clases/cconexion.php");
-require_once("../clases/cnovedades.php");
+require_once(RUTA."clases/cnovedades.php");
 
 /**
- * Ultimas Novedades			novedades
- * Actividad en el Foro			foro
+ * Ultimas Novedades		novedades
+ * Actividad en el Foro		foro
  * Noticias sobre los Cursos	cursos
  */
 
@@ -164,6 +164,7 @@ class GenerarFeedsPostGrado
 }
 
 $gfpg = new GenerarFeedsPostGrado();
-$gfpg->generare = $_GET[genera]; //$gfpg->generare = "cursos";
+//$gfpg->generare = $_GET[genera]; 
+$gfpg->generare = "novedades";
 $gfpg->Genero();
 ?>
