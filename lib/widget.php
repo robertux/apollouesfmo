@@ -18,7 +18,7 @@
 		function Show($content = ""){
 			echo("
 			<div class='$this->clase'>
-				<div class='WidgetTitle'><a href='$this->masLink'>$this->titulo</a></div>
+				<div class='WidgetTitle'><a id='TitleText' href='$this->masLink'>$this->titulo</a></div>
 				<div class='WidgetContent'>
 					<p>$this->contenido</p>
 				</div>
