@@ -17,23 +17,23 @@
 				<div class="WidgetListLeft">
 					<?php
 						//ejemplo de uso de widget nuevo
-						$wdg = new Widget();
+						$wdg = new WidgetNovedades();
 						$wdg->claseCSS="WidgetLeft";
 						$wdg->Titulo="Novedades en la Unidad";
 						$wdg->masURL="Unidad/index.php?opt=news";
 						$wdg->Show();
-						
-						//$wgForo = new Widget("Novedades en el Foro", $mcm->showForum(), "WidgetLeft", "Ir al Foro", "Forum/index.php?opt=cat");
-						//$wgForo->Show();
+
+						$wgForo = new Widget("Novedades en el Foro", "Forum/index.php?opt=cat", $mcm->showForum(), "WidgetLeft");
+						$wgForo->Show();
 					?>				
 				</div>
 				<div class="WidgetListRight">
-					<?php /*
-						$wgCursos = new Widget("Cursos Actuales y Proximos", $mcm->showCourses(), "WidgetRight", "Ir a Todos los Cursos", "Cursos/index.php?opt=actual");
+					<?php
+						$wgCursos = new Widget("Cursos Actuales y Proximos", "Cursos/index.php?opt=actual", $mcm->showCourses(), "WidgetRight");
 						$wgCursos->Show();
 						
-						$wgAbout = new Widget("Acerca de la Unidad", $mcm->showAbout(), "WidgetRight", "Ver mas Informacion", "Unidad/index.php?opt=about");
-						$wgAbout->Show();*/
+						$wgAbout = new Widget("Acerca de la Unidad", "Unidad/index.php?opt=about", $mcm->showAbout(), "WidgetRight");
+						$wgAbout->Show();
 					?>
 				</div>
     		</div>
