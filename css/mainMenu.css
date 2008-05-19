@@ -1,0 +1,38 @@
+
+#vdividermenu ul{
+	padding: 0;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1em;
+	float: left;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	width: 100%;
+	/*border: 1px solid #625e00;*/
+	background-color: transparent;
+}
+
+* html #vdividermenu ul{ /*IE only rule, reduce menu width*/
+	width: 99%;
+}
+
+#vdividermenu ul li{
+	display: inline;
+}
+
+#vdividermenu ul li a{
+	float: left;
+	color: black;
+	padding: 2px 12px;
+	text-decoration: none;
+	background: transparent url(../media/vertical.gif) center right no-repeat;
+}
+
+#vdividermenu ul li a:visited{
+	color: black;
+}
+
+#vdividermenu ul li a:hover{
+	color: black;
+	background-color:  #b22627;
+}
