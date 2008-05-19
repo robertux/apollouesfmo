@@ -1,5 +1,5 @@
 <?php
-include(RUTA."clases/cnovedades.php");
+include(RUTA."/clases/cnovedades.php");
 
 class Widget{
 		public $Contenido; //protected
@@ -17,7 +17,7 @@ class Widget{
 		
 		public function Show($pContenido = ""){
 			echo("<div class='$this->claseCSS'>
-				<div class='WidgetTitle'><a id='TitleText' href='$this->masURL'>$this->Titulo</a></div>
+				<div class='WidgetTitle'><a id='TitleBlock' href='$this->masURL'><div id='TitleText'>$this->Titulo</div></a></div>
 				<div class='WidgetContent'>");
 				if ($pContenido=="") {
 					echo "<p>$this->Contenido</p>";
@@ -50,12 +50,11 @@ class WidgetNovedades extends Widget{
 		$resultado->close();
         $this->Contenido .= "</ul></div>";
     }
-
 		
 	public function Show(){
 		echo("
 		<div class='$this->claseCSS'>
-		<div class='WidgetTitle'><a id='TitleText' href='$this->masURL'>$this->Titulo</a></div>
+		<div class='WidgetTitle'><a id='TitleBlock' href='$this->masURL'><div id='TitleText'>$this->Titulo</div></a></div>
 			$this->Contenido
 			<div class='footer'><a href='$this->masURL'>Ver m&aacute;s...</a></div>
 		</div>

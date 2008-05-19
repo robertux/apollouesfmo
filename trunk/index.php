@@ -6,14 +6,18 @@
 	
 	$mcm = new MainContentManager();
 ?>
+   		<div id="loginBox">
+			<?php
+				$vuser = new VisualUsuario();
+				$vuser->Show();
+			?>
+		</div>
     	<div id="fondoPrincipal">
     		<div id="contenidoPrincipal">
-    			<!--<div id="loginBox">
-    				<?php 
-						$vuser = new VisualUsuario();
-						$vuser->Show();
-					?>
-				</div>-->
+    			<?php
+					$principal = new MainMenu();
+					$principal->Show();
+				?>
 				<div class="WidgetListLeft">
 					<?php
 						//ejemplo de uso de widget nuevo

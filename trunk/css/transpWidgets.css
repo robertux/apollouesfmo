@@ -53,12 +53,8 @@
 	margin: 5px 0px 10px 0px;
 }
 
-.WidgetTitle{
-	background-color: transparent;
-	background-image: url(../Media/widgets/WidgetTitle2.png);
-        background-repeat: repeat-x;
+.WidgetTitle{	
 	position: relative;
-	color: #000000;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: smaller;
 	/*left: 3px;
@@ -93,15 +89,32 @@
 a{ color: #610d0d; }
 a:hover { color: #850505; }
 
-#TitleText {
+#TitleBlock {
+	background-color: #b22627;
 	color: #000000;
 	font-weight: bold;
 	text-decoration: none;
 	font-size: 12pt;
-	position:absolute;
-	/*padding: 10px 2px 2px 10px;*/
+	position:absolute;	
+	height: 100%;
+	width: 100%;
+	/*border-style: solid;
+	border-width: 1px;
+	border-color: #FFFFFF;*/
+}
+
+#TitleBlock:hover{
+	background-color: #a20404;
+	text-decoration: underline;
+}
+
+#TitleText{
+	position: absolute;
 	top: 20%;
 	left: 5%;
+	/*border-style: solid;
+	border-color: #FFFFFF;
+	border-width: 1px;*/
 }
 
 /*
