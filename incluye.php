@@ -13,5 +13,6 @@ require_once(RUTA."/lib/paginaSecundaria.php");
 require_once(RUTA."/lib/mainContentManager.php");
 require_once(RUTA."/lib/widget.php");
 require_once(RUTA."/lib/MainMenu.php");
+require_once(RUTA."/lib/Post.php");
 //etc...
 ?>

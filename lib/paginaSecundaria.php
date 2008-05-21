@@ -18,6 +18,9 @@
 			echo "<META NAME=\"RATING\" CONTENT=\"GENERAL\">\n";
 			echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/style.css\" />";
 			echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/rightMenu.css\" />";
+			echo "<link rel=\"stylesheet\" href=\"../css/forms.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";			
+			echo "<link rel=\"stylesheet\" href=\"../css/main.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
+			echo "<link rel=\"stylesheet\" href=\"../css/posts.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";			
 			echo "</head>";
 		}
 		
