@@ -1,5 +1,5 @@
 <?php
-	require_once("../incluye.php");
+	require_once("../lib/PaginaSecundaria.php");
 	$pag = new paginaSecundaria();
 	$pag->encabezado();
 	$pag->cuerpo();
@@ -21,11 +21,11 @@
   <div id="content"> <img src="../Media/style/MainBanner.png" alt="" class="img" />
     <p id="innerContent">
 	<br /><br /><br />
-	Contenido principal del Foro
-	<br /><br /><br />
-		<br /><br /><br />
-	<br /><br /><br />
-	<br /><br /><br />
+	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quisque vitae urna. In in dolor sed sem euismod ullamcorper. Fusce pharetra urna at risus. Duis nec magna lacinia nibh molestie bibendum. Praesent vehicula massa et sem. Suspendisse potenti. Nullam eget mi. Sed scelerisque. Pellentesque odio nulla, porta in, porta ac, dictum vitae, turpis. Suspendisse auctor arcu ut elit. Nullam nulla. Donec luctus blandit lacus. Etiam orci elit, sollicitudin nec, aliquet sit amet, fringilla in, metus. Sed elit. Vivamus gravida congue mauris. Donec facilisis ultrices leo.
+	<br /><br />
+	Pellentesque ultricies vulputate lacus. Nulla facilisi. Etiam rhoncus dapibus eros. Ut at lorem. Suspendisse potenti. Curabitur diam. Aliquam nec libero at purus gravida elementum. Suspendisse et massa id est fringilla rhoncus. Aliquam nec enim. Nulla eu ante ac mi posuere egestas. Praesent risus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec eleifend vestibulum nunc. In hac habitasse platea dictumst. Donec non risus. Etiam eleifend mauris eu urna. Duis ultricies ipsum eget lorem. Sed fringilla. In libero lectus, gravida vitae, tempor at, euismod et, quam. 
+	<br /><br />
+	<br /><br /><br />	
 	</p>
   </div>
     <div id="rightMenu">

@@ -1,15 +1,17 @@
-
 #vdividermenu ul{
 	padding: 0;
-	margin-left: auto;
+	/*margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 1em;
+	margin-bottom: 1em;*/
 	float: left;
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	width: 100%;
 	/*border: 1px solid #625e00;*/
 	background-color: transparent;
+	border-style: solid;
+	border-color: black;
+	border-width: 1px;
 }
 
 * html #vdividermenu ul{ /*IE only rule, reduce menu width*/
@@ -22,13 +24,21 @@
 
 #vdividermenu ul li a{
 	float: left;
+	background-color: transparent;
 	color: black;
 	padding: 2px 12px;
 	text-decoration: none;
 	background: transparent url(../media/vertical.gif) center right no-repeat;
+	width: 22%;
+}
+
+a #current{
+	color: black;
+	background-color:  #b22627;
 }
 
 #vdividermenu ul li a:visited{
+    background-color: transparent;
 	color: black;
 }
 

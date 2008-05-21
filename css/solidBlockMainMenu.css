@@ -1,0 +1,39 @@
+#vdividermenu ul{
+	margin: 0;
+	padding: 0;
+	float: left;
+	font: 13px Arial;
+	width: 100%;
+	/*border: 1px solid #625e00;
+	border-width: 1px 0;
+	background: black url(../Media/blockdefault.gif) center center repeat-x;*/
+	background-color: transparent;
+}
+
+#vdividermenu ul li{
+	display: inline;
+}
+
+#vdividermenu ul li a{
+	float: left;
+	color: white;
+	padding: 9px 11px;
+	text-decoration: none;
+	border-right: 1px solid white;
+	width: 22.4%;
+	text-align: center;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: medium;
+	color: #000000;
+}
+
+#vdividermenu ul li a:visited{
+	color: #000000;
+}
+
+#vdividermenu ul li a:hover, #vdividermenu ul li #current{
+	color: #000000;
+	/*background: transparent url(../Media/blockactive.gif) center center repeat-x;*/
+	background-color: #bd0d0d;
+	font-weight: bold;
+}
