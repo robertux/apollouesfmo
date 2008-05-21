@@ -36,7 +36,7 @@
 				</div>
 				<div class="WidgetListRight">
 					<?php
-						$wgCursos = new Widget("Cursos Actuales y Proximos", "Cursos/index.php?opt=actual", $mcm->showCourses(), "WidgetRight");
+						$wgCursos = new Widget("Maestrias Actuales y Proximas", "Cursos/index.php?opt=actual", $mcm->showCourses(), "WidgetRight");
 						$wgCursos->Show();
 						
 						$wgAbout = new Widget("Acerca de la Unidad", "Unidad/index.php?opt=about", $mcm->showAbout(), "WidgetRight");

@@ -1,0 +1,37 @@
+#Post{
+	position: relative;
+	left: 70px;
+	top: 20px;
+	width: 550px;
+	border-style: solid;
+	border-color: #ddd;
+	border-width: 1px;
+	margin-bottom: 15px;
+}
+
+#PostTitle{
+	position: absolute;	
+	border-bottom: 1px solid #eee;
+	width: 538px;
+	padding: 6px;
+	background-color: #f4f4f4;
+}
+
+#innerTitle{
+	position: relative;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-align: left;
+	font-size: 14px;
+	color: #aa2222;	
+}
+
+#innerContent {
+	color: black;
+	position: relative;	
+	padding-top: 35px;
+	margin: 10px 10px  10px 10px;
+	/*border-style: solid;
+	border-color: black;
+	border-width: 1px;*/
+}

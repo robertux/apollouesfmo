@@ -8,13 +8,17 @@
 	$pag->cuerpo();
 ?>
 <div id="wrap">
+	<?php
+		$vuser = new VisualUsuario();
+		$vuser->Show();
+	?>	
   <div id="header">
     <div id="logo">
       <h1>Foro</h1>
     </div>
     <ul id="nav">
       <li><a href="../index.php">Principal</a></li>
-      <li><a href="../Cursos/index.php?opt=mine">Cursos</a></li>
+      <li><a href="../Cursos/index.php?opt=mine">Maestrias</a></li>
       <li><a>Foro</a></li>
       <li><a href="../Unidad/index.php?opt=about">La Unidad</a></li>
     </ul>
