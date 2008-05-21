@@ -1,5 +1,8 @@
 <?php
+	define("URL", "http://localhost/apollo/");//"http://ramayac.no-ip.biz/apollo/"); //"http://www.uesocc.edu.sv/postgrados/" 
+	define("RUTA", realpath("../"));
 	require_once("../incluye.php");
+	
 	$pag = new paginaSecundaria();
 	$pag->encabezado();
 	$pag->cuerpo();
@@ -7,8 +10,7 @@
 <div id="wrap">
   <div id="header">
     <div id="logo">
-      <h1>Cursos</h1>
-      <div>Cipriano Esmerejildo de los Angeles Pinzon    <a href="../index.php?action=logout">[Cerrar Sesion]</a></div>
+      <h1>Cursos</h1>      
     </div>
     <ul id="nav">
       <li><a href="../index.php">Principal</a></li>

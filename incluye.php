@@ -1,8 +1,5 @@
 <?php
 /* AQUI SE COLOCAN LOS REQUIRE QUE TODAS LAS PAGINAS NECESITAN */
-
-define("URL", "http://localhost/apollo/");//"http://ramayac.no-ip.biz/apollo/"); //"http://www.uesocc.edu.sv/postgrados/" 
-define("RUTA", realpath("./"));
 define("UNIDAD", "Unidad de PostGrados - UES FMOcc");
 
 /*LIBRERIA*/
