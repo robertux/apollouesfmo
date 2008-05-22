@@ -2,7 +2,7 @@
 	position: relative;
 	left: 70px;
 	top: 20px;
-	width: 550px;
+	/*width: 550px;*/
 	border-style: solid;
 	border-color: #ddd;
 	border-width: 1px;
@@ -12,7 +12,7 @@
 #PostTitle{
 	position: absolute;	
 	border-bottom: 1px solid #eee;
-	width: 538px;
+	/*width: 538px;*/
 	padding: 6px;
 	background-color: #f4f4f4;
 }
@@ -34,4 +34,38 @@
 	/*border-style: solid;
 	border-color: black;
 	border-width: 1px;*/
+}
+
+
+/*-------------------Posts internos---------------*/
+#innerPost{
+	position: relative;
+	border-style: solid;
+	border-color: #ddd;
+	border-width: 1px;
+	margin-bottom: 15px;
+	
+	left: 10px;
+}
+
+#innerPost #PostTitle{
+	padding: 2px;	
+}
+
+#innerPost #PostTitle #innerTitle{
+	position: relative;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-align: left;
+	font-size: 14px;
+	color: #686C7A;
+}
+
+#innerInnerPost #PostTitle #innerTitle{
+	position: relative;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	text-align: left;
+	font-size: 14px;
+	color: #686C7A;
 }

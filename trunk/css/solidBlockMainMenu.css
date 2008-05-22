@@ -37,3 +37,7 @@
 	background-color: #bd0d0d;
 	font-weight: bold;
 }
+
+#vdividermenu ul li #current{
+	border-left: 0px none #000000;
+}
