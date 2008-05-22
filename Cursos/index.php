@@ -2,6 +2,9 @@
 	define("URL", "http://localhost/apollo/");//"http://ramayac.no-ip.biz/apollo/"); //"http://www.uesocc.edu.sv/postgrados/" 
 	define("RUTA", realpath("../"));
 	require_once("../incluye.php");
+	require_once("Curso.php");
+	require_once("CursosContentManager.php");
+	require_once("Materia.php");
 	
 	$pag = new paginaSecundaria();
 	$pag->encabezado();
@@ -27,9 +30,8 @@
   <div id="content"> <img src="../Media/style/MainBanner.png" alt="" class="img" />
     <?php
 	
-	$pst1 = new Post("
+	/*$pst1 = new Post("
 		El ciego y el creativo","
---------------------------------------------------------------------------------
 
 Dicen que una vez, había un ciego sentado en la vereda, con una gorra a sus pies y un pedazo de madera que, escrito con tiza blanca, decía: 'POR FAVOR AYUDEME, SOY CIEGO'.
 
@@ -47,14 +49,16 @@ Cuántas veces en nuestras vidas las cosas no salen, y nos enojamos, peleamos y 
 Quizá tenemos problemas con las personas a nuestro alrededor y nunca recibimos ayuda, cuando lo que debemos hacer es simplemente sonreír.
 Sin importar cual sea tu situación, haz un alto, analiza, revisa . Si es necesario corrige e incluso cambia todo si es necesario. Afortunadamente en la carretera de la vida, Jesús siempre nos permite virar en 'U'.
 ");
-	$pst1->Show();
+	$pst1->Show();*/
+	$ccm = new CursosContentManager($_GET["opt"]);
+	$ccm->Show();
 	?>
 	</div>
   <div id="rightMenu">
 	<ul>
-	<li><a href="index.php?opt=mine">Mis Cursos</a></li>
-	<li><a href="index.php?opt=actual">Cursos Actuales</a></li>
-	<li><a href="index.php?opt=next">Cursos Proximos</a></li>
+	<li><a href="index.php?opt=mine">Mis Maestrias</a></li>
+	<li><a href="index.php?opt=actual">Maestrias Actuales</a></li>
+	<li><a href="index.php?opt=next">Maestrias Proximas</a></li>
 	<li><a href="index.php?opt=stuff">Material Didactico</a></li>
 	<li><a href="index.php?opt=serv">Servicio Social</a></li>
 	</ul>
