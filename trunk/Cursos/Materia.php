@@ -16,7 +16,7 @@
 		}
 		
 		public function GetAsPost(){
-			$pst = new InnerInnerPost($this->codigo . $this->nombre, $this->GenerarNotas(), 500);
+			$pst = new InnerInnerPost($this->codigo . " - " . $this->nombre, $this->GenerarNotas(), 500);
 			return $pst->ToString();
 			//return "contenido de la materia ". $this->nombre . "<br />";
 		}
