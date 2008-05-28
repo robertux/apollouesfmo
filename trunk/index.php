@@ -1,7 +1,6 @@
 <?php
-	define("URL", "http://localhost/apollo/");//"http://ramayac.no-ip.biz/apollo/"); //"http://www.uesocc.edu.sv/postgrados/" 
-	define("RUTA", realpath("./"));
-	
+	//define("URL", "http://localhost/apollo/");//"http://ramayac.no-ip.biz/apollo/"); //"http://www.uesocc.edu.sv/postgrados/" 
+	//define("RUTA", realpath("./"));
 	require_once("incluye.php");
 	$pag = new paginaPrincipal();
 	$pag->encabezado();

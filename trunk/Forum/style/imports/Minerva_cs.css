@@ -1,0 +1,153 @@
+/****************************************************************/
+/* 1. BACKGROUND AND TEXT COLOURS */
+/****************************************************************/
+
+/* 1.1 Default background colour and text colour */
+
+BODY {BACKGROUND-COLOR: #aa4040}
+
+.pun {COLOR: #666}
+
+DIV.box, .pun BLOCKQUOTE, DIV.codebox, #adminconsole FIELDSET TH, .rowodd, .roweven {BACKGROUND-COLOR: #F1F1F1}
+#adminconsole TD, #adminconsole TH {BORDER-COLOR: #F1F1F1}
+
+/* 1. 2 Darker background colours */
+
+TD.tc2, TD.tc3, TD.tcmod, #postpreview, #viewprofile DD, DIV.forminfo,
+#adminconsole FIELDSET TD, DIV.blockmenu DIV.box, #adstats DD {BACKGROUND-COLOR: #DEDFDF}
+
+/* 1.3 Main headers and navigation bar background and text colour */
+
+#brdmenu {BACKGROUND: #d56f6f url(../../img/Minerva/bg-barre.gif); COLOR: #FFF; font-weight:bold; }
+.pun H2 {BACKGROUND-COLOR: #d56f6f; COLOR: #FFF; font-weight:bold;}
+.pun H2 {BACKGROUND: #d56f6f url(../../img/Minerva/bg-barre.gif);border-left: 1px solid #d56f6f;border-right: 1px solid #d56f6f;}
+
+/* 1.4 Table header rows */
+
+.pun TH {BACKGROUND-COLOR: #D1D1D1;}
+
+/* 1.5 Fieldset legend text colour */
+
+.pun LEGEND {COLOR: #000}
+
+/* 1.6 Highlighted text for various items */
+
+.pun DIV.blockmenu LI.isactive A, #posterror LI STRONG {COLOR: #333}
+
+/****************************************************************/
+/* 2. POST BACKGROUNDS AND TEXT */
+/****************************************************************/
+
+/* 2.1 This is the setup for posts. */
+
+DIV.blockpost DIV.box, DIV.postright, DIV.postfootright {BACKGROUND-COLOR: #F1F1F1}
+DIV.postright, DIV.postfootright {BORDER-LEFT-COLOR: #DEDFDF}
+DIV.postleft, DIV.postfootleft, DIV.blockpost LABEL {BACKGROUND-COLOR: #DEDFDF}
+
+/* 2.2 Background for post headers and text colour for post numbers in viewtopic */
+
+DIV.blockpost H2 {BACKGROUND-COLOR: #555}
+DIV.blockpost H2 SPAN.conr {COLOR: #fff}
+
+/* 2.3 This is the line above the signature in posts. Colour and background should be the same */
+
+.pun HR {BACKGROUND-COLOR: #D7D7D7; COLOR: #D7D7D7}
+
+/****************************************************************/
+/* 3. BORDER COLOURS */
+/****************************************************************/
+
+/* 3.1 All external borders */
+
+DIV.box {BORDER-COLOR: #d56f6f}
+
+/* 3.2 Makes the top border of posts match the colour used for post headers */
+
+/*DIV.blockpost DIV.box {BORDER-COLOR: #006fC9 #0066B9 #0066B9}*/
+DIV.blockpost DIV.box {BORDER:0;BORDER-TOP:1px solid #d56f6f;BORDER-BOTTOM:1px solid #d56f6f;BORDER-LEFT:1px solid #d56f6f;BORDER-RIGHT:1px solid #d56f6f}
+
+/* 3.3 Table internal borders. By default TH is same as background so border is invisible */
+
+.pun TD {BORDER-COLOR: #CCC}
+.pun TH {BORDER-COLOR: #D1D1D1}
+
+/* 3.4 Creates the inset border for quote boxes, code boxes and form info boxes */
+
+.pun BLOCKQUOTE, DIV.codebox, DIV.forminfo, DIV.blockpost LABEL {BORDER-COLOR: #ACA899 #FFF #FFF #ACA899}
+
+/* 3.5 Gecko's default fieldset borders are really nasty so this gives them a colour
+without interferring with IE's rather nice default */
+
+.pun DIV>FIELDSET {BORDER-COLOR: #ACA899}
+
+/****************************************************************/
+/* 4. LINK COLOURS */
+/****************************************************************/
+
+/* 4.1 This is the default for all links */
+
+.pun A:link, .pun A:visited {COLOR: #555; text-decoration:none}
+.pun A:hover {COLOR: #d56f6f}
+
+/* 4.2 This is the colour for links in header rows and the navigation bar */
+
+.pun H2 A:link, .pun H2 A:visited, #brdmenu A:link, #brdmenu A:visited {COLOR: #FFF}
+.pun H2 A:hover, #brdmenu A:hover {COLOR: #FFF}
+
+/* 4.3 This is for closed topics and "hot" links */
+
+LI.postreport A:link, LI.postreport A:visited, TR.iclosed TD.tcl A:link, TR.iclosed TD.tcl A:visited {COLOR: #888}
+LI.postreport A:hover, TR.iclosed TD.tcl A:hover {COLOR: #AAA}
+LI.maintenancelink A:link, LI.maintenancelink A:visited {COLOR: #B42000}
+LI.maintenancelink A:hover {COLOR: #B42000}
+
+/****************************************************************/
+/* 5. POST STATUS INDICATORS */
+/****************************************************************/
+
+/* These are the post status indicators which appear at the left of some tables. 
+.inew = new posts, .iredirect = redirect forums, .iclosed = closed topics and
+.isticky = sticky topics. The default is "icon". By default only .inew is different.*/
+
+DIV.icon {/*BORDER-COLOR: #E6E6E6 #DEDEDE #DADADA #E2E2E2*/BACKGROUND: url(../../img/Minerva/nonew.gif);}
+/*TR.iredirect DIV.icon {BORDER-COLOR: #F1F1F1 #F1F1F1 #F1F1F1 #F1F1F1}*/
+DIV.inew {/*BORDER-COLOR: #0080D7 #0065C0 #0058B3 #0072CA*/BACKGROUND: url(../../img/Minerva/new.gif)}
+
+/****************************************************************/
+/* 6. EXTRAS */
+/****************************************************************/
+
+#punwrap {
+	background: url(../../img/Minerva/bg.jpg);
+}
+.pun {
+	background: url(../../img/Minerva/haut.jpg);
+}
+#brdfooter {
+	background: url(../../img/Minerva/bas.jpg);
+}
+.calendar_no {background-color: #E6E3E4}
+.calendar_day{background-color: #E1EFFF}
+
+/*for a big logo */
+.pun H1 
+{
+/* your logo and position */
+background-image: url(../../img/Minerva/logo.gif);
+background-repeat: no-repeat;
+background-position: center; /* you set your logo position here */
+display: block;
+height: 99px; /* logo height in here add width: size px if u need*/
+}
+
+/*header title*/
+.pun H1 span
+{
+/* your font style */
+font-size: 0px; /* title size */
+/* position for your text (board title) with the logo */
+position: absolute; 
+top: -150px; 
+left: 90px; 
+}
+

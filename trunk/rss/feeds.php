@@ -1,7 +1,8 @@
 <?php
-include_once("../incluye.php");
+//include_once("../incluye.php");
 require_once("cfeed.php");
 //require_once("../clases/cconexion.php");
+define("RUTA", realpath("../"));
 require_once(RUTA."clases/cnovedades.php");
 
 /**
