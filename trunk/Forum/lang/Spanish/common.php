@@ -110,7 +110,7 @@ $lang_common = array(
 'BBCode error 5'		=>	'Falta uno o más marcadores de inicio para un [/quote].',
 
 // Stuff for the navigator (top of every page)
-'Index'					=>	'Inicio',
+'Index'					=>	'Inicio del Foro',
 'User list'				=>	'Lista de usuarios',
 'Rules'					=>  'Reglas',
 'Search'				=>  'Busca',
@@ -124,7 +124,7 @@ $lang_common = array(
 'Last visit'			=>	'Ultima visita',
 'Show new posts'		=>	'Muestra mensajes nuevos desde la última visita',
 'Mark all as read'		=>	'Marca todos los temas como leidos',
-'Link separator'		=>	'',	// The text that separates links in the navigator
+'Link separator'		=>	'  -',	// The text that separates links in the navigator
 
 // Stuff for the page footer
 'Board footer'			=>	'Pie del foro',

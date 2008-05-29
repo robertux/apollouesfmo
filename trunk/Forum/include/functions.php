@@ -270,6 +270,8 @@ function generate_navlinks()
 {
 	global $pun_config, $lang_common, $pun_user;
 
+	//La portada de la Unidad tambien siempre debe de mostrarse
+	$links[] = '<li id="navindex"><a href="../index.php">Principal</a> ';
 	// Index and Userlist should always be displayed
 	$links[] = '<li id="navindex"><a href="index.php">'.$lang_common['Index'].'</a>';
 	$links[] = '<li id="navuserlist"><a href="userlist.php">'.$lang_common['User list'].'</a>';
