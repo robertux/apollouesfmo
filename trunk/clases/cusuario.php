@@ -1,5 +1,5 @@
 <?php 
-include("cconexion.php");
+//include_once("cconexion.php");
 
 class cUsuario
 {
@@ -15,6 +15,9 @@ class cUsuario
 	// constructor
     public function __construct() 
     {
+    	$this->id = 0;
+		$this->nombre = "";
+		$this->clave - "";
     	$this->con = new cConexion();
 		//$this->con->Conectar();
     }
@@ -34,8 +37,13 @@ class cUsuario
     
     public function GetPorNombreClave($pNombre, $pClave)
     {
-    	$this->Consultar("SELECT * FROM usuario WHERE nombre = '$pNombre' AND clave = '$pClave';", false);
+    	return $this->Consultar("SELECT * FROM usuario WHERE nombre = '$pNombre' AND clave = '$pClave';", false);
     }
+	
+	public function GetPorId($pId)
+	{
+		return $this->Consultar("SELECT * FROM usuario WHERE id = '$pId';", false);
+	}
     
     public function Insert()
     {
@@ -61,6 +69,7 @@ class cUsuario
     function Consultar($Consulta, $GetLista)
     {
     	$this->con->Conectar();
+		$resultConsulta = false;
 		// ejecutar la consulta
 		if ($resultado = $this->con->mysqli->query($Consulta))
 		{
@@ -83,11 +92,13 @@ class cUsuario
         			// liberar la memoria
     				$resultado->close();
     			}
+				$resultConsulta = true;
     		}
     		else
     		{
 	        	// no
         		$this->error .= "No hay resultados para mostrar!";
+				return false;
     		}
 		}
 		else 
@@ -97,6 +108,7 @@ class cUsuario
 		}
 		// cerrar la conexion
 		$this->con->mysqli->close();
+		return $resultConsulta;
     }
 }
 ?>
