@@ -1,10 +1,12 @@
 <?php
 	
-	include_once("Usuario.php");
+	//include_once("Usuario.php");
+	define("RUTA", realpath("../"));
+	require_once(RUTA."/clases/cusuario.php");
 
     class VisualUsuario{
     	var $usr;
-		
+				
 		function Show(){
 			if(isset($_GET["action"])){
 				if($_GET["action"] == "login"){				
@@ -23,7 +25,14 @@
 		}
 		
 		function LoadUser($usrName, $usrClave){			
-			return true;
+			$this->usr = new cUsuario();
+			if($this->usr->GetPorNombreClave($usrName, $usrClave)){
+				session_start();
+				session_register("current_user");
+				return true;
+			}
+			return false;
+			
 		}
 		
 		function ShowUserInfo(){
@@ -32,7 +41,7 @@
 				<p>
 					<div class='LoginBoxFrame'>
 						<div class='LoginBoxInnerFrame'>
-							<label for='btnSubmit' class='lblInput'>Bienvenido <b>Cipriano Esmerejildo</b></label>
+							<label for='btnSubmit' class='lblInput'>Bienvenido <b>" . $this->usr->nombre . "</b></label>
 							<input type='submit' id='btnSubmit' value='Cerrar Sesion' class='btnSubmit'/>
 						</div>
 					</div>
