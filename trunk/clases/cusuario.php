@@ -9,6 +9,7 @@ class cUsuario
 	//private $consulta;
 	public $nombre;
 	public $clave;
+	public $privilegio;
 	
 	public $error;
 	
@@ -17,7 +18,8 @@ class cUsuario
     {
     	$this->id = 0;
 		$this->nombre = "";
-		$this->clave - "";
+		$this->clave = "";
+		$this->privilegio = "";
     	$this->con = new cConexion();
 		//$this->con->Conectar();
     }
@@ -32,22 +34,22 @@ class cUsuario
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
     public function GetLista()
     {
-    	return($this->Consultar("SELECT * FROM usuario;", true));
+    	return($this->Consultar("SELECT * FROM foro_users;", true));
     }
     
     public function GetPorNombreClave($pNombre, $pClave)
     {
-    	return $this->Consultar("SELECT * FROM usuario WHERE nombre = '$pNombre' AND clave = '$pClave';", false);
+    	return $this->Consultar("SELECT * FROM foro_users WHERE username = '$pNombre' AND password = '$pClave';", false);
     }
 	
 	public function GetPorId($pId)
 	{
-		return $this->Consultar("SELECT * FROM usuario WHERE id = '$pId';", false);
+		return $this->Consultar("SELECT * FROM foro_users WHERE id = '$pId';", false);
 	}
     
     public function Insert()
     {
-    	$this->Consultar("INSERT INTO usuario(clave,nombre) VALUES ('$this->nombre','$this->clave');", false);
+    	$this->Consultar("INSERT INTO foro_users(id, password, username) VALUES ('$this->id', '$this->nombre','$this->clave');", false);
     }
     
     //?
@@ -58,12 +60,12 @@ class cUsuario
     
     public function Update()
     {
-    	$this->Consultar("UPDATE usuario SET clave = '$this->clave', nombre = '$this->nombre' WHERE id = $this->id;", false);
+    	$this->Consultar("UPDATE foro_users SET password = '$this->clave', username = '$this->nombre' WHERE id = $this->id;", false);
     }
 	
 	public function Delete()
     {
-    	$this->Consultar("DELETE FROM usuario WHERE id = $this->id;", false);
+    	$this->Consultar("DELETE FROM foro_users WHERE id = $this->id;", false);
     }
     
     function Consultar($Consulta, $GetLista)
@@ -87,7 +89,13 @@ class cUsuario
         			{
 	            		$this->id = $row[0];
     	        		$this->clave = $row[1];
-        	    		$this->nombre = $row[2];						
+        	    		$this->nombre = $row[2];
+						$conTemp = new cConexion();
+						$conTemp->Conectar();
+						$resPriv = $conTemp->mysqli->query("SELECT nombre FROM privilegio p INNER JOIN asignacion a ON p.id = a.privilegio INNER JOIN foro_users u ON a.usuario = u.id WHERE u.id=$this->id;");
+						if($resRow = $resPriv->fetch_array())
+							$this->privilegio = $resRow[0];
+						$conTemp->mysqli->close();
         			}
         			// liberar la memoria
     				$resultado->close();
