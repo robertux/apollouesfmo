@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.0.51-3
+-- Server version	5.0.51a-community-nt
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -22,11 +22,11 @@ CREATE DATABASE IF NOT EXISTS apollo;
 USE apollo;
 
 --
--- Definition of table `apollo`.`alumno`
+-- Definition of table `alumno`
 --
 
-DROP TABLE IF EXISTS `apollo`.`alumno`;
-CREATE TABLE  `apollo`.`alumno` (
+DROP TABLE IF EXISTS `alumno`;
+CREATE TABLE `alumno` (
   `id` int(11) NOT NULL auto_increment,
   `apellidos` varchar(200) NOT NULL,
   `nombres` varchar(200) NOT NULL,
@@ -40,47 +40,44 @@ CREATE TABLE  `apollo`.`alumno` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `apollo`.`alumno`
+-- Dumping data for table `alumno`
 --
 
 /*!40000 ALTER TABLE `alumno` DISABLE KEYS */;
-LOCK TABLES `alumno` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `alumno` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`asignacion`
+-- Definition of table `asignacion`
 --
 
-DROP TABLE IF EXISTS `apollo`.`asignacion`;
-CREATE TABLE  `apollo`.`asignacion` (
+DROP TABLE IF EXISTS `asignacion`;
+CREATE TABLE `asignacion` (
   `id` int(11) NOT NULL auto_increment,
-  `usuario` int(11) NOT NULL,
+  `usuario` int(10) unsigned NOT NULL default '0',
   `privilegio` int(11) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `fk_usuario_id_asignacion` (`usuario`),
   KEY `fk_privilegio_id_asignacion` (`privilegio`),
-  CONSTRAINT `fk_privilegio_id_asignacion` FOREIGN KEY (`privilegio`) REFERENCES `privilegio` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_usuario_id_asignacion` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_privilegio_id_asignacion` FOREIGN KEY (`privilegio`) REFERENCES `privilegio` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `apollo`.`asignacion`
+-- Dumping data for table `asignacion`
 --
 
 /*!40000 ALTER TABLE `asignacion` DISABLE KEYS */;
-LOCK TABLES `asignacion` WRITE;
-UNLOCK TABLES;
+INSERT INTO `asignacion` (`id`,`usuario`,`privilegio`) VALUES 
+ (1,3,4);
 /*!40000 ALTER TABLE `asignacion` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`costo`
+-- Definition of table `costo`
 --
 
-DROP TABLE IF EXISTS `apollo`.`costo`;
-CREATE TABLE  `apollo`.`costo` (
+DROP TABLE IF EXISTS `costo`;
+CREATE TABLE `costo` (
   `id` int(11) NOT NULL auto_increment,
   `nombre` varchar(50) NOT NULL,
   `valor` double NOT NULL,
@@ -91,21 +88,19 @@ CREATE TABLE  `apollo`.`costo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `apollo`.`costo`
+-- Dumping data for table `costo`
 --
 
 /*!40000 ALTER TABLE `costo` DISABLE KEYS */;
-LOCK TABLES `costo` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `costo` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`curso`
+-- Definition of table `curso`
 --
 
-DROP TABLE IF EXISTS `apollo`.`curso`;
-CREATE TABLE  `apollo`.`curso` (
+DROP TABLE IF EXISTS `curso`;
+CREATE TABLE `curso` (
   `id` int(11) NOT NULL auto_increment,
   `fechainicio` date NOT NULL,
   `postgrado` int(11) NOT NULL,
@@ -115,21 +110,19 @@ CREATE TABLE  `apollo`.`curso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `apollo`.`curso`
+-- Dumping data for table `curso`
 --
 
 /*!40000 ALTER TABLE `curso` DISABLE KEYS */;
-LOCK TABLES `curso` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `curso` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`docente`
+-- Definition of table `docente`
 --
 
-DROP TABLE IF EXISTS `apollo`.`docente`;
-CREATE TABLE  `apollo`.`docente` (
+DROP TABLE IF EXISTS `docente`;
+CREATE TABLE `docente` (
   `id` int(11) NOT NULL auto_increment,
   `apellidos` varchar(200) NOT NULL,
   `nombres` varchar(200) NOT NULL,
@@ -141,21 +134,19 @@ CREATE TABLE  `apollo`.`docente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `apollo`.`docente`
+-- Dumping data for table `docente`
 --
 
 /*!40000 ALTER TABLE `docente` DISABLE KEYS */;
-LOCK TABLES `docente` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `docente` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`evaluacion`
+-- Definition of table `evaluacion`
 --
 
-DROP TABLE IF EXISTS `apollo`.`evaluacion`;
-CREATE TABLE  `apollo`.`evaluacion` (
+DROP TABLE IF EXISTS `evaluacion`;
+CREATE TABLE `evaluacion` (
   `id` int(11) NOT NULL auto_increment,
   `fecha` date NOT NULL,
   `porcentaje` double NOT NULL,
@@ -167,21 +158,19 @@ CREATE TABLE  `apollo`.`evaluacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `apollo`.`evaluacion`
+-- Dumping data for table `evaluacion`
 --
 
 /*!40000 ALTER TABLE `evaluacion` DISABLE KEYS */;
-LOCK TABLES `evaluacion` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `evaluacion` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_bans`
+-- Definition of table `foro_bans`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_bans`;
-CREATE TABLE  `apollo`.`foro_bans` (
+DROP TABLE IF EXISTS `foro_bans`;
+CREATE TABLE `foro_bans` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `username` varchar(200) default NULL,
   `ip` varchar(255) default NULL,
@@ -192,21 +181,19 @@ CREATE TABLE  `apollo`.`foro_bans` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_bans`
+-- Dumping data for table `foro_bans`
 --
 
 /*!40000 ALTER TABLE `foro_bans` DISABLE KEYS */;
-LOCK TABLES `foro_bans` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_bans` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_categories`
+-- Definition of table `foro_categories`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_categories`;
-CREATE TABLE  `apollo`.`foro_categories` (
+DROP TABLE IF EXISTS `foro_categories`;
+CREATE TABLE `foro_categories` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `cat_name` varchar(80) NOT NULL default 'New Category',
   `disp_position` int(10) NOT NULL default '0',
@@ -214,25 +201,24 @@ CREATE TABLE  `apollo`.`foro_categories` (
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_categories`
+-- Dumping data for table `foro_categories`
 --
 
 /*!40000 ALTER TABLE `foro_categories` DISABLE KEYS */;
-LOCK TABLES `foro_categories` WRITE;
-INSERT INTO `apollo`.`foro_categories` VALUES  (1,'Maestria Administracion Financiera',2),
+INSERT INTO `foro_categories` (`id`,`cat_name`,`disp_position`) VALUES 
+ (1,'Maestria Administracion Financiera',2),
  (3,'Maestria en Metodos y Tecnicas de Investigacion Social',1),
  (4,'Ayuda del Foro',99),
  (5,'Bienvenidos',0);
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_categories` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_censoring`
+-- Definition of table `foro_censoring`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_censoring`;
-CREATE TABLE  `apollo`.`foro_censoring` (
+DROP TABLE IF EXISTS `foro_censoring`;
+CREATE TABLE `foro_censoring` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `search_for` varchar(60) NOT NULL default '',
   `replace_with` varchar(60) NOT NULL default '',
@@ -240,35 +226,34 @@ CREATE TABLE  `apollo`.`foro_censoring` (
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_censoring`
+-- Dumping data for table `foro_censoring`
 --
 
 /*!40000 ALTER TABLE `foro_censoring` DISABLE KEYS */;
-LOCK TABLES `foro_censoring` WRITE;
-INSERT INTO `apollo`.`foro_censoring` VALUES  (1,'puta','****'),
+INSERT INTO `foro_censoring` (`id`,`search_for`,`replace_with`) VALUES 
+ (1,'puta','****'),
  (2,'cerote','******');
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_censoring` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_config`
+-- Definition of table `foro_config`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_config`;
-CREATE TABLE  `apollo`.`foro_config` (
+DROP TABLE IF EXISTS `foro_config`;
+CREATE TABLE `foro_config` (
   `conf_name` varchar(255) NOT NULL default '',
   `conf_value` text,
   PRIMARY KEY  (`conf_name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_config`
+-- Dumping data for table `foro_config`
 --
 
 /*!40000 ALTER TABLE `foro_config` DISABLE KEYS */;
-LOCK TABLES `foro_config` WRITE;
-INSERT INTO `apollo`.`foro_config` VALUES  ('o_cur_version','1.2.17'),
+INSERT INTO `foro_config` (`conf_name`,`conf_value`) VALUES 
+ ('o_cur_version','1.2.17'),
  ('o_board_title','Unidad de PostGrados, UES-FMOcc'),
  ('o_board_desc','¡Hacia la libertad, por la Cultura!'),
  ('o_server_timezone','0'),
@@ -302,8 +287,8 @@ INSERT INTO `apollo`.`foro_config` VALUES  ('o_cur_version','1.2.17'),
  ('o_regs_report','0'),
  ('o_mailing_list','ramayac@gmail.com'),
  ('o_avatars','1'),
- ('o_avatars_dir','img/avatars');
-INSERT INTO `apollo`.`foro_config` VALUES  ('o_avatars_width','60'),
+ ('o_avatars_dir','img/avatars'),
+ ('o_avatars_width','60'),
  ('o_avatars_height','60'),
  ('o_avatars_size','10240'),
  ('o_search_all_forums','1'),
@@ -331,23 +316,22 @@ INSERT INTO `apollo`.`foro_config` VALUES  ('o_avatars_width','60'),
  ('p_message_all_caps','1'),
  ('p_subject_all_caps','1'),
  ('p_sig_all_caps','1'),
- ('p_sig_bbcode','1');
-INSERT INTO `apollo`.`foro_config` VALUES  ('p_sig_img_tag','0'),
+ ('p_sig_bbcode','1'),
+ ('p_sig_img_tag','0'),
  ('p_sig_length','400'),
  ('p_sig_lines','4'),
  ('p_allow_banned_email','1'),
  ('p_allow_dupe_email','0'),
  ('p_force_guest_email','1');
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_config` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_forum_perms`
+-- Definition of table `foro_forum_perms`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_forum_perms`;
-CREATE TABLE  `apollo`.`foro_forum_perms` (
+DROP TABLE IF EXISTS `foro_forum_perms`;
+CREATE TABLE `foro_forum_perms` (
   `group_id` int(10) NOT NULL default '0',
   `forum_id` int(10) NOT NULL default '0',
   `read_forum` tinyint(1) NOT NULL default '1',
@@ -357,24 +341,23 @@ CREATE TABLE  `apollo`.`foro_forum_perms` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_forum_perms`
+-- Dumping data for table `foro_forum_perms`
 --
 
 /*!40000 ALTER TABLE `foro_forum_perms` DISABLE KEYS */;
-LOCK TABLES `foro_forum_perms` WRITE;
-INSERT INTO `apollo`.`foro_forum_perms` VALUES  (3,1,0,0,0),
+INSERT INTO `foro_forum_perms` (`group_id`,`forum_id`,`read_forum`,`post_replies`,`post_topics`) VALUES 
+ (3,1,0,0,0),
  (3,2,0,0,0),
  (3,4,0,0,0);
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_forum_perms` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_forums`
+-- Definition of table `foro_forums`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_forums`;
-CREATE TABLE  `apollo`.`foro_forums` (
+DROP TABLE IF EXISTS `foro_forums`;
+CREATE TABLE `foro_forums` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `forum_name` varchar(80) NOT NULL default 'New forum',
   `forum_desc` text,
@@ -392,25 +375,24 @@ CREATE TABLE  `apollo`.`foro_forums` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_forums`
+-- Dumping data for table `foro_forums`
 --
 
 /*!40000 ALTER TABLE `foro_forums` DISABLE KEYS */;
-LOCK TABLES `foro_forums` WRITE;
-INSERT INTO `apollo`.`foro_forums` VALUES  (1,'Metodos de Investigacion y Teoria del Conocimiento',NULL,NULL,NULL,1,1,1211988301,1,'foro',0,1,1),
+INSERT INTO `foro_forums` (`id`,`forum_name`,`forum_desc`,`redirect_url`,`moderators`,`num_topics`,`num_posts`,`last_post`,`last_post_id`,`last_poster`,`sort_by`,`disp_position`,`cat_id`) VALUES 
+ (1,'Metodos de Investigacion y Teoria del Conocimiento',NULL,NULL,NULL,1,1,1211988301,1,'foro',0,1,1),
  (2,'Metodologia Hipotetica Deductiva',NULL,NULL,NULL,0,0,NULL,NULL,NULL,0,1,3),
  (3,'Bienvenida',NULL,NULL,NULL,0,0,NULL,NULL,NULL,0,0,5),
  (4,'Reglas de Uso',NULL,NULL,NULL,0,0,NULL,NULL,NULL,0,1,5);
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_forums` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_groups`
+-- Definition of table `foro_groups`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_groups`;
-CREATE TABLE  `apollo`.`foro_groups` (
+DROP TABLE IF EXISTS `foro_groups`;
+CREATE TABLE `foro_groups` (
   `g_id` int(10) unsigned NOT NULL auto_increment,
   `g_title` varchar(50) NOT NULL default '',
   `g_user_title` varchar(50) default NULL,
@@ -431,25 +413,24 @@ CREATE TABLE  `apollo`.`foro_groups` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_groups`
+-- Dumping data for table `foro_groups`
 --
 
 /*!40000 ALTER TABLE `foro_groups` DISABLE KEYS */;
-LOCK TABLES `foro_groups` WRITE;
-INSERT INTO `apollo`.`foro_groups` VALUES  (1,'Administrators','Administrator',1,1,1,1,1,1,1,1,1,1,0,0,0),
+INSERT INTO `foro_groups` (`g_id`,`g_title`,`g_user_title`,`g_read_board`,`g_post_replies`,`g_post_topics`,`g_post_polls`,`g_edit_posts`,`g_delete_posts`,`g_delete_topics`,`g_set_title`,`g_search`,`g_search_users`,`g_edit_subjects_interval`,`g_post_flood`,`g_search_flood`) VALUES 
+ (1,'Administrators','Administrator',1,1,1,1,1,1,1,1,1,1,0,0,0),
  (2,'Moderators','Moderator',1,1,1,1,1,1,1,1,1,1,0,0,0),
  (3,'Guest',NULL,1,0,0,0,0,0,0,0,1,1,0,0,0),
  (4,'Members',NULL,1,1,1,1,1,1,1,0,1,1,300,60,30);
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_groups` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_online`
+-- Definition of table `foro_online`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_online`;
-CREATE TABLE  `apollo`.`foro_online` (
+DROP TABLE IF EXISTS `foro_online`;
+CREATE TABLE `foro_online` (
   `user_id` int(10) unsigned NOT NULL default '1',
   `ident` varchar(200) NOT NULL default '',
   `logged` int(10) unsigned NOT NULL default '0',
@@ -459,22 +440,21 @@ CREATE TABLE  `apollo`.`foro_online` (
 ) ENGINE=MEMORY DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_online`
+-- Dumping data for table `foro_online`
 --
 
 /*!40000 ALTER TABLE `foro_online` DISABLE KEYS */;
-LOCK TABLES `foro_online` WRITE;
-INSERT INTO `apollo`.`foro_online` VALUES  (1,'190.87.146.115',1212558388,0);
-UNLOCK TABLES;
+INSERT INTO `foro_online` (`user_id`,`ident`,`logged`,`idle`) VALUES 
+ (1,'127.0.0.1',1212648062,0);
 /*!40000 ALTER TABLE `foro_online` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_posts`
+-- Definition of table `foro_posts`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_posts`;
-CREATE TABLE  `apollo`.`foro_posts` (
+DROP TABLE IF EXISTS `foro_posts`;
+CREATE TABLE `foro_posts` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `poster` varchar(200) NOT NULL default '',
   `poster_id` int(10) unsigned NOT NULL default '1',
@@ -492,22 +472,21 @@ CREATE TABLE  `apollo`.`foro_posts` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_posts`
+-- Dumping data for table `foro_posts`
 --
 
 /*!40000 ALTER TABLE `foro_posts` DISABLE KEYS */;
-LOCK TABLES `foro_posts` WRITE;
-INSERT INTO `apollo`.`foro_posts` VALUES  (1,'foro',2,'127.0.0.1',NULL,'If you are looking at this (which I guess you are), the install of PunBB appears to have worked! Now log in and head over to the administration control panel to configure your forum.',0,1211988301,NULL,NULL,1);
-UNLOCK TABLES;
+INSERT INTO `foro_posts` (`id`,`poster`,`poster_id`,`poster_ip`,`poster_email`,`message`,`hide_smilies`,`posted`,`edited`,`edited_by`,`topic_id`) VALUES 
+ (1,'foro',2,'127.0.0.1',NULL,'If you are looking at this (which I guess you are), the install of PunBB appears to have worked! Now log in and head over to the administration control panel to configure your forum.',0,1211988301,NULL,NULL,1);
 /*!40000 ALTER TABLE `foro_posts` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_ranks`
+-- Definition of table `foro_ranks`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_ranks`;
-CREATE TABLE  `apollo`.`foro_ranks` (
+DROP TABLE IF EXISTS `foro_ranks`;
+CREATE TABLE `foro_ranks` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `rank` varchar(50) NOT NULL default '',
   `min_posts` mediumint(8) unsigned NOT NULL default '0',
@@ -515,24 +494,23 @@ CREATE TABLE  `apollo`.`foro_ranks` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_ranks`
+-- Dumping data for table `foro_ranks`
 --
 
 /*!40000 ALTER TABLE `foro_ranks` DISABLE KEYS */;
-LOCK TABLES `foro_ranks` WRITE;
-INSERT INTO `apollo`.`foro_ranks` VALUES  (1,'Nuevo Miembro',0),
+INSERT INTO `foro_ranks` (`id`,`rank`,`min_posts`) VALUES 
+ (1,'Nuevo Miembro',0),
  (2,'Miembro',20),
  (3,'Miembro Activo',40);
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_ranks` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_reports`
+-- Definition of table `foro_reports`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_reports`;
-CREATE TABLE  `apollo`.`foro_reports` (
+DROP TABLE IF EXISTS `foro_reports`;
+CREATE TABLE `foro_reports` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `post_id` int(10) unsigned NOT NULL default '0',
   `topic_id` int(10) unsigned NOT NULL default '0',
@@ -547,21 +525,19 @@ CREATE TABLE  `apollo`.`foro_reports` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_reports`
+-- Dumping data for table `foro_reports`
 --
 
 /*!40000 ALTER TABLE `foro_reports` DISABLE KEYS */;
-LOCK TABLES `foro_reports` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_reports` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_search_cache`
+-- Definition of table `foro_search_cache`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_search_cache`;
-CREATE TABLE  `apollo`.`foro_search_cache` (
+DROP TABLE IF EXISTS `foro_search_cache`;
+CREATE TABLE `foro_search_cache` (
   `id` int(10) unsigned NOT NULL default '0',
   `ident` varchar(200) NOT NULL default '',
   `search_data` text,
@@ -570,21 +546,19 @@ CREATE TABLE  `apollo`.`foro_search_cache` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_search_cache`
+-- Dumping data for table `foro_search_cache`
 --
 
 /*!40000 ALTER TABLE `foro_search_cache` DISABLE KEYS */;
-LOCK TABLES `foro_search_cache` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_search_cache` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_search_matches`
+-- Definition of table `foro_search_matches`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_search_matches`;
-CREATE TABLE  `apollo`.`foro_search_matches` (
+DROP TABLE IF EXISTS `foro_search_matches`;
+CREATE TABLE `foro_search_matches` (
   `post_id` int(10) unsigned NOT NULL default '0',
   `word_id` mediumint(8) unsigned NOT NULL default '0',
   `subject_match` tinyint(1) NOT NULL default '0',
@@ -593,21 +567,19 @@ CREATE TABLE  `apollo`.`foro_search_matches` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_search_matches`
+-- Dumping data for table `foro_search_matches`
 --
 
 /*!40000 ALTER TABLE `foro_search_matches` DISABLE KEYS */;
-LOCK TABLES `foro_search_matches` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_search_matches` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_search_words`
+-- Definition of table `foro_search_words`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_search_words`;
-CREATE TABLE  `apollo`.`foro_search_words` (
+DROP TABLE IF EXISTS `foro_search_words`;
+CREATE TABLE `foro_search_words` (
   `id` mediumint(8) unsigned NOT NULL auto_increment,
   `word` varchar(20) character set utf8 collate utf8_bin NOT NULL default '',
   PRIMARY KEY  (`word`),
@@ -615,42 +587,38 @@ CREATE TABLE  `apollo`.`foro_search_words` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_search_words`
+-- Dumping data for table `foro_search_words`
 --
 
 /*!40000 ALTER TABLE `foro_search_words` DISABLE KEYS */;
-LOCK TABLES `foro_search_words` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_search_words` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_subscriptions`
+-- Definition of table `foro_subscriptions`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_subscriptions`;
-CREATE TABLE  `apollo`.`foro_subscriptions` (
+DROP TABLE IF EXISTS `foro_subscriptions`;
+CREATE TABLE `foro_subscriptions` (
   `user_id` int(10) unsigned NOT NULL default '0',
   `topic_id` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`user_id`,`topic_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_subscriptions`
+-- Dumping data for table `foro_subscriptions`
 --
 
 /*!40000 ALTER TABLE `foro_subscriptions` DISABLE KEYS */;
-LOCK TABLES `foro_subscriptions` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_subscriptions` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_topics`
+-- Definition of table `foro_topics`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_topics`;
-CREATE TABLE  `apollo`.`foro_topics` (
+DROP TABLE IF EXISTS `foro_topics`;
+CREATE TABLE `foro_topics` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `poster` varchar(200) NOT NULL default '',
   `subject` varchar(255) NOT NULL default '',
@@ -670,22 +638,21 @@ CREATE TABLE  `apollo`.`foro_topics` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_topics`
+-- Dumping data for table `foro_topics`
 --
 
 /*!40000 ALTER TABLE `foro_topics` DISABLE KEYS */;
-LOCK TABLES `foro_topics` WRITE;
-INSERT INTO `apollo`.`foro_topics` VALUES  (1,'foro','Test post',1211988301,1211988301,1,'foro',0,0,0,0,NULL,1);
-UNLOCK TABLES;
+INSERT INTO `foro_topics` (`id`,`poster`,`subject`,`posted`,`last_post`,`last_post_id`,`last_poster`,`num_views`,`num_replies`,`closed`,`sticky`,`moved_to`,`forum_id`) VALUES 
+ (1,'foro','Test post',1211988301,1211988301,1,'foro',0,0,0,0,NULL,1);
 /*!40000 ALTER TABLE `foro_topics` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`foro_users`
+-- Definition of table `foro_users`
 --
 
-DROP TABLE IF EXISTS `apollo`.`foro_users`;
-CREATE TABLE  `apollo`.`foro_users` (
+DROP TABLE IF EXISTS `foro_users`;
+CREATE TABLE `foro_users` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `group_id` int(10) unsigned NOT NULL default '4',
   `username` varchar(200) NOT NULL default '',
@@ -726,27 +693,27 @@ CREATE TABLE  `apollo`.`foro_users` (
   PRIMARY KEY  (`id`),
   KEY `foro_users_registered_idx` (`registered`),
   KEY `foro_users_username_idx` (`username`(8))
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`foro_users`
+-- Dumping data for table `foro_users`
 --
 
 /*!40000 ALTER TABLE `foro_users` DISABLE KEYS */;
-LOCK TABLES `foro_users` WRITE;
-INSERT INTO `apollo`.`foro_users` VALUES  (1,3,'Guest','Guest','Guest',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'English','Oxygen',0,NULL,0,'0.0.0.0',0,NULL,NULL,NULL),
+INSERT INTO `foro_users` (`id`,`group_id`,`username`,`password`,`email`,`title`,`realname`,`url`,`jabber`,`icq`,`msn`,`aim`,`yahoo`,`location`,`use_avatar`,`signature`,`disp_topics`,`disp_posts`,`email_setting`,`save_pass`,`notify_with_post`,`show_smilies`,`show_img`,`show_img_sig`,`show_avatars`,`show_sig`,`timezone`,`language`,`style`,`num_posts`,`last_post`,`registered`,`registration_ip`,`last_visit`,`admin_note`,`activate_string`,`activate_key`) VALUES 
+ (1,3,'Guest','Guest','Guest',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'English','Oxygen',0,NULL,0,'0.0.0.0',0,NULL,NULL,NULL),
  (2,1,'foro','d033e22ae348aeb5660fc2140aec35850c4da997','ramayac@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'English','Sulfur',1,1211988301,1211988301,'127.0.0.1',1212555026,NULL,NULL,NULL),
- (3,4,'robertux','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8','blendboy@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'Spanish','Minerva',0,NULL,1212555571,'190.87.147.129',1212555632,NULL,NULL,NULL);
-UNLOCK TABLES;
+ (3,4,'robertux','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8','blendboy@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'Spanish','Minerva',0,NULL,1212555571,'190.87.147.129',1212644512,NULL,NULL,NULL),
+ (4,4,'estudiante','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8','foobar@foobar.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'Spanish','Minerva',0,NULL,1212647868,'127.0.0.1',1212647869,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `foro_users` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`horario`
+-- Definition of table `horario`
 --
 
-DROP TABLE IF EXISTS `apollo`.`horario`;
-CREATE TABLE  `apollo`.`horario` (
+DROP TABLE IF EXISTS `horario`;
+CREATE TABLE `horario` (
   `id` int(11) NOT NULL auto_increment,
   `dia` int(11) NOT NULL,
   `horainicio` time NOT NULL,
@@ -760,21 +727,19 @@ CREATE TABLE  `apollo`.`horario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `apollo`.`horario`
+-- Dumping data for table `horario`
 --
 
 /*!40000 ALTER TABLE `horario` DISABLE KEYS */;
-LOCK TABLES `horario` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `horario` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`inscripcion`
+-- Definition of table `inscripcion`
 --
 
-DROP TABLE IF EXISTS `apollo`.`inscripcion`;
-CREATE TABLE  `apollo`.`inscripcion` (
+DROP TABLE IF EXISTS `inscripcion`;
+CREATE TABLE `inscripcion` (
   `id` int(11) NOT NULL auto_increment,
   `alumno` int(11) NOT NULL,
   `curso` int(11) NOT NULL,
@@ -789,21 +754,19 @@ CREATE TABLE  `apollo`.`inscripcion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `apollo`.`inscripcion`
+-- Dumping data for table `inscripcion`
 --
 
 /*!40000 ALTER TABLE `inscripcion` DISABLE KEYS */;
-LOCK TABLES `inscripcion` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `inscripcion` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`materia`
+-- Definition of table `materia`
 --
 
-DROP TABLE IF EXISTS `apollo`.`materia`;
-CREATE TABLE  `apollo`.`materia` (
+DROP TABLE IF EXISTS `materia`;
+CREATE TABLE `materia` (
   `id` int(11) NOT NULL auto_increment,
   `nombre` varchar(50) NOT NULL,
   `uvs` int(11) NOT NULL,
@@ -816,21 +779,19 @@ CREATE TABLE  `apollo`.`materia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `apollo`.`materia`
+-- Dumping data for table `materia`
 --
 
 /*!40000 ALTER TABLE `materia` DISABLE KEYS */;
-LOCK TABLES `materia` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `materia` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`modulo`
+-- Definition of table `modulo`
 --
 
-DROP TABLE IF EXISTS `apollo`.`modulo`;
-CREATE TABLE  `apollo`.`modulo` (
+DROP TABLE IF EXISTS `modulo`;
+CREATE TABLE `modulo` (
   `id` int(11) NOT NULL auto_increment,
   `correlativo` int(11) NOT NULL,
   `docente` int(11) NOT NULL,
@@ -849,21 +810,19 @@ CREATE TABLE  `apollo`.`modulo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `apollo`.`modulo`
+-- Dumping data for table `modulo`
 --
 
 /*!40000 ALTER TABLE `modulo` DISABLE KEYS */;
-LOCK TABLES `modulo` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `modulo` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`novedades`
+-- Definition of table `novedades`
 --
 
-DROP TABLE IF EXISTS `apollo`.`novedades`;
-CREATE TABLE  `apollo`.`novedades` (
+DROP TABLE IF EXISTS `novedades`;
+CREATE TABLE `novedades` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `titulo` varchar(50) NOT NULL,
   `vinculo` varchar(100) default NULL,
@@ -874,28 +833,27 @@ CREATE TABLE  `apollo`.`novedades` (
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `apollo`.`novedades`
+-- Dumping data for table `novedades`
 --
 
 /*!40000 ALTER TABLE `novedades` DISABLE KEYS */;
-LOCK TABLES `novedades` WRITE;
-INSERT INTO `apollo`.`novedades` VALUES  (1,'Atencion Estudiantes de Ingenieria de Sistemas','http://localhost/apollo/Unidad/index.php?opt=news&newid=1','Atencion estudiantes de Ingenieria de Sistemas, se necesitan cuatro estudiantes para construir el sitio web de la Unidad de PostGrados.','2008-02-02 00:00:00'),
+INSERT INTO `novedades` (`id`,`titulo`,`vinculo`,`descripcion`,`fecha`) VALUES 
+ (1,'Atencion Estudiantes de Ingenieria de Sistemas','http://localhost/apollo/Unidad/index.php?opt=news&newid=1','Atencion estudiantes de Ingenieria de Sistemas, se necesitan cuatro estudiantes para construir el sitio web de la Unidad de PostGrados.','2008-02-02 00:00:00'),
  (2,'Estudiantes asignados al servicio social','http://localhost/apollo/Unidad/index.php?opt=news&newid=2','Los estudiantes de Ingenieria de Sistemas: Rodrigo S. Amaya y Roberto C. Linares, son ahora los encargados de la realizacion del sitio web de la Unidad de PostGrados.\r\nEsperamos que terminen el proyecto en el mejor de los terminos, procurando tomar en cuenta las necesidades de los usuarios y de la problacion estudiantil que use el sitio.\r\n\r\nGracias a estos jovenes, pronto la Unidad de PostGrados tendra su propio sitio web de trabajo.\r\n\r\n¡Esten pendientes!','2008-03-03 00:00:00'),
  (3,'Sitio Web de Prueba','http://localhost/apollo/Unidad/index.php?opt=news&newid=3','Se acaba de publicar el primer diseño de prueba del sitio web de la Unidad de PostGrados.','2008-04-04 00:00:00'),
- (4,'Generador de Noticias','http://localhost/apollo/Unidad/index.php?opt=news&newid=4','Ya esta listo el nuevo generador de noticias de la Unidad de PostGrados, gracias a este, podremos mantener informados a todos nuestros visitantes de las ultimas novedades que ocurren en la Unidad. ¡No olviden suscribirse!','2008-04-28 00:00:00');
-INSERT INTO `apollo`.`novedades` VALUES  (5,'Noticia de prueba 1','http://localhost/apollo/index.php','Esta es una noticia de prueba','2008-04-29 00:00:00'),
+ (4,'Generador de Noticias','http://localhost/apollo/Unidad/index.php?opt=news&newid=4','Ya esta listo el nuevo generador de noticias de la Unidad de PostGrados, gracias a este, podremos mantener informados a todos nuestros visitantes de las ultimas novedades que ocurren en la Unidad. ¡No olviden suscribirse!','2008-04-28 00:00:00'),
+ (5,'Noticia de prueba 1','http://localhost/apollo/index.php','Esta es una noticia de prueba','2008-04-29 00:00:00'),
  (6,'Noticia de prueba 2','http://localhost/apollo/index.php','Otra noticia de prueba','2008-05-01 00:00:00'),
  (7,'Noticia de prueba 3','http://localhost/apollo/index.php','Y otra noticia de prueba más...','2008-05-02 00:00:00');
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `novedades` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`postgrado`
+-- Definition of table `postgrado`
 --
 
-DROP TABLE IF EXISTS `apollo`.`postgrado`;
-CREATE TABLE  `apollo`.`postgrado` (
+DROP TABLE IF EXISTS `postgrado`;
+CREATE TABLE `postgrado` (
   `id` int(11) NOT NULL auto_increment,
   `nombre` varchar(200) NOT NULL,
   `notaminima` double unsigned NOT NULL default '7',
@@ -907,48 +865,46 @@ CREATE TABLE  `apollo`.`postgrado` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `apollo`.`postgrado`
+-- Dumping data for table `postgrado`
 --
 
 /*!40000 ALTER TABLE `postgrado` DISABLE KEYS */;
-LOCK TABLES `postgrado` WRITE;
-INSERT INTO `apollo`.`postgrado` VALUES  (1,'Maestría en filosofía cuántica pedagógica',7,60,7.5,'MFCP',15),
+INSERT INTO `postgrado` (`id`,`nombre`,`notaminima`,`totaluvs`,`cumminimo`,`abreviatura`,`maxalum`) VALUES 
+ (1,'Maestría en filosofía cuántica pedagógica',7,60,7.5,'MFCP',15),
  (2,'Maestría en uranología moderna urbana',8,100,8.5,'MUMU',10);
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `postgrado` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`privilegio`
+-- Definition of table `privilegio`
 --
 
-DROP TABLE IF EXISTS `apollo`.`privilegio`;
-CREATE TABLE  `apollo`.`privilegio` (
+DROP TABLE IF EXISTS `privilegio`;
+CREATE TABLE `privilegio` (
   `id` int(11) NOT NULL auto_increment,
   `nombre` varchar(50) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `apollo`.`privilegio`
+-- Dumping data for table `privilegio`
 --
 
 /*!40000 ALTER TABLE `privilegio` DISABLE KEYS */;
-LOCK TABLES `privilegio` WRITE;
-INSERT INTO `apollo`.`privilegio` VALUES  (1,'general'),
+INSERT INTO `privilegio` (`id`,`nombre`) VALUES 
+ (1,'general'),
  (2,'estudiante'),
- (3,'maestro'),
+ (3,'docente'),
  (4,'admin');
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `privilegio` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`requisito`
+-- Definition of table `requisito`
 --
 
-DROP TABLE IF EXISTS `apollo`.`requisito`;
-CREATE TABLE  `apollo`.`requisito` (
+DROP TABLE IF EXISTS `requisito`;
+CREATE TABLE `requisito` (
   `id` int(11) NOT NULL auto_increment,
   `nombre` varchar(200) NOT NULL,
   `postgrado` int(11) NOT NULL,
@@ -958,36 +914,35 @@ CREATE TABLE  `apollo`.`requisito` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `apollo`.`requisito`
+-- Dumping data for table `requisito`
 --
 
 /*!40000 ALTER TABLE `requisito` DISABLE KEYS */;
-LOCK TABLES `requisito` WRITE;
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `requisito` ENABLE KEYS */;
 
 
 --
--- Definition of table `apollo`.`usuario`
+-- Definition of table `usuario`
 --
 
-DROP TABLE IF EXISTS `apollo`.`usuario`;
-CREATE TABLE  `apollo`.`usuario` (
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE `usuario` (
   `id` int(11) NOT NULL auto_increment,
   `clave` varchar(10) default NULL,
   `nombre` varchar(15) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `apollo`.`usuario`
+-- Dumping data for table `usuario`
 --
 
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-LOCK TABLES `usuario` WRITE;
-INSERT INTO `apollo`.`usuario` VALUES  (1,'ninguno','ninguna'),
- (2,'password','robertux');
-UNLOCK TABLES;
+INSERT INTO `usuario` (`id`,`clave`,`nombre`) VALUES 
+ (0,'ninguno','ninguna'),
+ (1,'password','robertux'),
+ (2,'password','estudiante'),
+ (3,'password','docente');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 
