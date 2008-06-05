@@ -87,7 +87,7 @@ class cUsuario
         			{
 	            		$this->id = $row[0];
     	        		$this->clave = $row[1];
-        	    		$this->nombre = $row[2];
+        	    		$this->nombre = $row[2];						
         			}
         			// liberar la memoria
     				$resultado->close();

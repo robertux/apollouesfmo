@@ -6,35 +6,60 @@
 
     class VisualUsuario{
     	var $usr;
-				
-		function Show(){
-			if(isset($_GET["action"])){
-				if($_GET["action"] == "login"){				
-					if($this->LoadUser($_POST["txtNombre"], $_POST["txtClave"]))
-					//if(false)
+		
+		function VisualUsuario(){
+			$usr = new cUsuario();
+		}
+		
+		//Muestra el loginBox, en base a una accion (login/logout) y a las variables de sesion
+		function Show(){ 
+						
+			if(isset($_GET["action"])){ //el usuario desea hacer alguna accion con el login?
+				if($_GET["action"] == "login"){ //la acicon a realizar es login?
+					if($this->LoadUser($_POST["txtNombre"], $_POST["txtClave"])){  //el nombre y clave de usuario coincidio con un registro en la bd?
+						$this->ShowUserInfo();						//Muestra al usuario encontrado!!!
+						$_SESSION["CurrentUser"] = $this->usr->id;	//Registra la nueva variable de sesion!
+					}
+					else{
+						$this->ShowLoginBox("Nombre de usuario y/o clave invalidos");	//Caso contrario, muestra un mensaje de error
+						$_SESSION["CurrentUser"] = "";								//Quita el registro de la sesion!!!
+					}
+				}
+				else{ //el usuario desea desloguearse?
+					$this->ShowLoginBox("");			//Muestra el loginbox
+					$_SESSION["CurrentUser"] = "";		//Quita registros existentes en la sesion!!!
+				}
+			}
+			else{
+				if($_SESSION["CurrentUser"] != ""){ //existe algun usuario registrado en la sesion?
+					if($this->LoadUserById($_SESSION["CurrentUser"])){
 						$this->ShowUserInfo();
-					else
-						$this->ShowLoginBox("Nombre de usuario y/o clave invalidos");
+					}
 				}
 				else
 					$this->ShowLoginBox("");
-			}
-			else
-				$this->ShowLoginBox("");
-			
+			}							
 		}
-		
+
+		//Verifica si el usuario y clave pasados coinciden con un registro en la bd
 		function LoadUser($usrName, $usrClave){			
 			$this->usr = new cUsuario();
-			if($this->usr->GetPorNombreClave($usrName, $usrClave)){
-				session_start();
-				session_register("current_user");
+			if($this->usr->GetPorNombreClave($usrName, $usrClave)){				
 				return true;
 			}
 			return false;
 			
 		}
 		
+		function loadUserById($pId){
+			$this->usr = new cUsuario();
+			if($this->usr->GetPorId($pId)){		
+				return true;
+			}
+			return false;
+		}
+		
+		//Muestra un mensaje de bienvenida con el nombre del usuario logueado mas el boton para desloguearse
 		function ShowUserInfo(){
 			echo("
 			<form id='frmLogout' action='index.php?action=logout' method='POST' accept-charset='utf-8'>				
@@ -50,6 +75,7 @@
 			");
 		}
 		
+		//Muestra el cuadro de login con sus textbox y boton submit. Alternativamente puede mostrar un mensaje de error
 		function ShowLoginBox($errorMsg){
 			echo("
 			<form id='frmLogin' action='index.php?action=login' method='POST' accept-charset='utf-8'>
