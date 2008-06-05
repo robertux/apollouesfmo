@@ -44,7 +44,8 @@
 		//Verifica si el usuario y clave pasados coinciden con un registro en la bd
 		function LoadUser($usrName, $usrClave){			
 			$this->usr = new cUsuario();
-			if($this->usr->GetPorNombreClave($usrName, $usrClave)){				
+			$claveEncriptada = sha1($usrClave);
+			if($this->usr->GetPorNombreClave($usrName, $claveEncriptada)){				
 				return true;
 			}
 			return false;
@@ -66,7 +67,7 @@
 				<p>
 					<div class='LoginBoxFrame'>
 						<div class='LoginBoxInnerFrame'>
-							<label for='btnSubmit' class='lblInput'>Bienvenido <b>" . $this->usr->nombre . "</b></label>
+							<label for='btnSubmit' class='lblInput'>Bienvenido <b>" . $this->usr->nombre . " [" . $this->usr->privilegio . "]</b></label>
 							<input type='submit' id='btnSubmit' value='Cerrar Sesion' class='btnSubmit'/>
 						</div>
 					</div>
