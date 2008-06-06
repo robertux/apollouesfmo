@@ -21,7 +21,8 @@
 			echo "<link rel=\"stylesheet\" href=\"../css/forms.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";			
 			echo "<link rel=\"stylesheet\" href=\"../css/main.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
 			echo "<link rel=\"stylesheet\" href=\"../css/posts.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
-			echo "<link rel=\"stylesheet\" href=\"../css/tables.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";			
+			echo "<link rel=\"stylesheet\" href=\"../css/tables.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
+			echo "<link rel=\"stylesheet\" href=\"../css/toolbox.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";			
 			echo "</head>";
 		}
 		
