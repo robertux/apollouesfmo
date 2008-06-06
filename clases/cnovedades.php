@@ -3,7 +3,8 @@ include("cconexion.php");
 
 class cNovedades
 {
-	private $con;
+	//que pena... poner publico esto :$
+	public $con;
 	//id, titulo, vinculo, descripcion, fecha
 	public $id;
 	public $titulo;
@@ -24,6 +25,11 @@ class cNovedades
     public function __destruct() 
     {
         //..
+    }
+    
+    public function GetPorId($pId)
+    {
+    	return($this->Consultar("SELECT id, titulo, vinculo, descripcion, fecha FROM novedades WHERE id = $pId;", false));
     }
     
     //Obtenemos una lista (un resultset) de este objeto
@@ -65,7 +71,8 @@ class cNovedades
     	$this->Consultar("DELETE FROM novedades WHERE id = $this->id;", false);
     }
     
-    function Consultar($Consulta, $GetLista)
+    //en este caso es necesario hacer publica esta funcion.
+    public function Consultar($Consulta, $GetLista)
     {
     	$this->con->Conectar();
 		// ejecutar la consulta
