@@ -24,6 +24,7 @@
 		}
 		
 		public function ShowAbout(){
+			
 			$pst = new Post("Acerca de la Unidad", "
 			<p id='PostInnerContent'>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed in eros. Praesent sed ligula. Nullam quam. Etiam posuere cursus eros. Duis in sapien. Pellentesque non augue. Maecenas ut lacus nec tellus vehicula vulputate. Phasellus sem libero, vehicula sed, tempor at, facilisis a, mi. Duis lobortis urna a nunc. Nunc condimentum, diam eget tristique consectetuer, est risus ultricies erat, sit amet auctor enim risus a ligula. Vivamus id tortor eget massa molestie rhoncus. Nulla at arcu. Ut egestas tempus metus. Nullam pellentesque dui ac libero. Pellentesque libero dolor, aliquet sed, aliquam tincidunt, egestas nec, tortor. Fusce ligula nunc, iaculis ac, fermentum ac, egestas eu, quam.</p>
 
@@ -31,6 +32,7 @@
 
 			<p id='PostInnerContent'>Vivamus vitae massa. Maecenas tortor. Cras rhoncus urna et metus. Nulla commodo, risus eget tristique blandit, augue tellus vulputate pede, nec porttitor nibh augue a nibh. Nam sagittis nulla in elit dignissim scelerisque. Aliquam erat volutpat. Curabitur feugiat bibendum augue. Mauris ultrices, massa ut viverra euismod, nunc est lacinia urna, eget eleifend turpis enim id nisi. Proin semper nunc ut sapien. Nullam sagittis vestibulum lacus. Praesent in turpis eu ligula convallis fringilla. Aliquam erat volutpat. In adipiscing ante et odio. Integer enim enim, sollicitudin sit amet, posuere in, ultrices vel, tortor. In fringilla, augue congue blandit rhoncus, lectus ipsum vehicula mauris, et pharetra sapien est vitae diam. Cras convallis ipsum nec velit. Vestibulum rhoncus feugiat tellus. </p>
 			");
+			$pst->tbox->btnEdit->enabled = true;
 			$pst->Show();
 		}
 		
@@ -67,6 +69,10 @@
 				</tr>
 			</table>
 			", 500);
+			
+			$pstPreview->tbox->btnAdd->enabled = true;
+			$pstPreview->tbox->btnEdit->enabled = true;
+			$pstPreview->tbox->btnDel->enabled = true;
 			$pstContent = new InnerPost("Procesos Generales", "<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' />", 500);			
 			$pst = new Post("Procesos Academicos de la Unidad", $pstPreview->ToString() . $pstContent->ToString());
 			$pst->Show();
