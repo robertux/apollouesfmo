@@ -1,6 +1,6 @@
 <?php
-
-include_once("./lib/VisualNovedades.php");
+define("RUTA", realpath("../"));
+require_once(RUTA."/lib/VisualNovedades.php");
 
 /**
 * Prueba del objeto VisualNovedades
@@ -8,6 +8,8 @@ include_once("./lib/VisualNovedades.php");
 session_start();
 echo '<html><head><title>apollo -- novedades</title><meta name="generator" http-equiv="content-type" content="text/html"></head><body>';
 echo '<table class="bd" width="100%"><tr><td class="hr"><h2>Editar Noticias de la Unidad de PostGrados</h2></td></tr></table>';
+
+echo "<br><h1>Esta es una pagina de PRUEBA, aun no esta finalizada!</h1><br>";
 
 $visualnov = new VisualNovedades();
 $visualnov->file = "VisualNovedades.php";
