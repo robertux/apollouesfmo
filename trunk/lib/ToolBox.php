@@ -26,18 +26,18 @@
 	
 	class ToolBoxButton{
 		
-		public $alt;
+		public $id;
 		public $title;
 		public $imgURL;
 		public $onClick;
 		public $enabled;
 		
-		public function ToolBoxButton($pNombre="add", $pEnabled=false, $pOnClick="#"){
-			$this->alt = $pNombre;
+		public function ToolBoxButton($pId="add", $pEnabled=false, $pOnClick="#"){
+			$this->id = $pId;
 			switch($pNombre){
 				case "add": $this->title = "agregar";	break;
 				case "edit": $this->title = "editar";	break;
-				case "del": $this->title = "eliminar";		break;
+				case "del": $this->title = "eliminar";	break;
 			}			
 			$this->enabled = $pEnabled;
 			$this->onClick = $pOnClick;
@@ -53,7 +53,7 @@
 					<a href='$this->targetURL'><img src='$this->imgURL' alt='$this->alt' /></a>
 				";*/
 				return"
-					<input type='button' title='$this->title' id='$this->alt' onClick='$this->onClick' />
+					<input type='button' title='$this->title' id='$this->id' onClick='$this->onClick' />
 				";
 			else
 				return "";
