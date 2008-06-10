@@ -24,7 +24,12 @@ $pag->cuerpo();
     </ul>
   </div>
 <div id="content"><img src="../Media/style/MainBanner.png" alt="" class="img" />
-	<div id="post"><?php
+	<div id='Post' style='width: 747px;'>
+	 <div id='PostTitle' style='width: 735px;'>
+		<p id='innerTitle'>Administre las Novedades de la Unidad de PostGrados</p>
+	 </div><br/><br/>
+	  <div id='PostContent'>
+			<?php
 			/**
 			* Prueba del objeto VisualNovedades
 			*/
@@ -44,10 +49,12 @@ $pag->cuerpo();
 
 			if (!isset($visualnov->page)) $visualnov->page = 1;
 			//echo "\n<b>DEBUG: accion : $visualnov->a, id : $visualnov->recid, sql : $visualnov->sql </b>";
-		//echo "descripcion =" . @$_GET["descripcion"] ."\n";
+		    //echo "descripcion =" . @$_GET["descripcion"] ."\n";
 			$visualnov->CommitSQL();
 			$visualnov->ShowAction();
-		?></div>
+			?>
+	  </div>
+	 </div>
   </div>
     <!--<div id="rightMenu">
 	<ul>

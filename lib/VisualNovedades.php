@@ -78,35 +78,38 @@ class VisualNovedades{
 		//if ($startrec == 0) then 
 		if ($startrec < $count) {$res->data_seek($startrec);}
 		$reccount = min($this->showrecs * $this->page, $count);
+		
+		echo '<table>
+		<tr><th>Registros mostrados</th><td>'.$reccount.' de '.$count.'</td></tr>
+		</table>'.$this->showpagenav($this->page, $pagecount);
 
-		echo '<table class="bd" border="0" cellspacing="1" cellpadding="4"><tr><td>Tabla: novedades</td></tr><tr><td>Registros mostrados '.$reccount.' de '.$count.'</td></tr></table><hr size="1" noshade>'.$this->showpagenav($this->page, $pagecount);
-
-		echo '<br><table class="tbl" border="1" cellspacing="1" cellpadding="5"width="100%">
+		//echo '<table border="1">
+		echo '<table border="0">
 		<tr>
-			<td class="hr">&nbsp;</td>
-			<td class="hr">&nbsp;</td>
-			<td class="hr">&nbsp;</td>
-			<td class="hr">Titulo de la Noticia:</td>
-			<td class="hr">Vinculo a la Noticia:</td>
-			<td class="hr">Descripcion:</td>
-			<td class="hr">Fecha:</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>Titulo de la Noticia:</td>
+			<td>Vinculo a la Noticia:</td>
+			<td>Descripcion:</td>
+			<td>Fecha:</td>
 		</tr>';
 
 		for ($i = $startrec; $i < $reccount; $i++)
 		{
 			$row = $res->fetch_array();
-			$style = "dr";
+			/*$style = "dr";
 			if ($i % 2 != 0) {
 				$style = "sr";
-			}
-			echo '<tr>
-	  	<td class="'.$style.'"><a href="'.$this->file.'?a=view&recid='.$i.'">Ver</a></td>
-	  	<td class="'.$style.'"><a href="'.$this->file.'?a=edit&recid='.$i.'">Modificar</a></td>
-	  	<td class="'.$style.'"><a href="'.$this->file.'?a=del&recid='.$i.'">Eliminar</a></td>
-	  	<td class="'.$style.'">'.htmlspecialchars($row["titulo"]).'</td>
-	  	<td class="'.$style.'">'.htmlspecialchars($row["vinculo"]).'</td>
-	  	<td class="'.$style.'">'.htmlspecialchars($row["descripcion"]).'</td>
-	  	<td class="'.$style.'">'.htmlspecialchars($row["fecha"]).'</td></tr>';
+			}*/
+		echo '<tr>
+	  	<td><a href="'.$this->file.'?a=view&recid='.$i.'">Ver</a></td>
+	  	<td><a href="'.$this->file.'?a=edit&recid='.$i.'">Modificar</a></td>
+	  	<td><a href="'.$this->file.'?a=del&recid='.$i.'">Eliminar</a></td>
+	  	<td>'.htmlspecialchars($row["titulo"]).'</td>
+	  	<td>'.htmlspecialchars($row["vinculo"]).'</td>
+	  	<td>'.htmlspecialchars($row["descripcion"]).'</td>
+	  	<td>'.htmlspecialchars($row["fecha"]).'</td></tr>';
 		}
 		$res->close();
 		echo "</table><br>";
@@ -167,12 +170,11 @@ class VisualNovedades{
 		echo '<br>';
 		$this->showrow($row, $this->recid);
 		echo '<br>
-		<hr size="1" noshade>
-		<table class="bd" border="0" cellspacing="1" cellpadding="4">
+		<table>
 		<tr>
-			<td><a href="'.$this->file.'?a=add">Agregar Registro</a></td>
-			<td><a href="'.$this->file.'?a=edit&recid='.$this->recid.'">Editar Registro</a></td>
-			<td><a href="'.$this->file.'?a=del&recid='.$this->recid.'">Eliminar Registro</a></td>
+			<td>&nbsp;<a href="'.$this->file.'?a=add">Agregar Registro</a&nbsp;</td>
+			<td>&nbsp;<a href="'.$this->file.'?a=edit&recid='.$this->recid.'">Editar Registro</a>&nbsp;</td>
+			<td>&nbsp;<a href="'.$this->file.'?a=del&recid='.$this->recid.'">Eliminar Registro</a>&nbsp;</td>
 		</tr>
 		</table>';
 		$res->close();
@@ -182,32 +184,32 @@ class VisualNovedades{
 	{
 		$this->a = $a;
 		$this->recid = $recid;
-		echo '<table class="bd" border="0" cellspacing="1" cellpadding="4"><tr><td><a href="'.$this->file.'">Pagina principal</a></td>';
+		echo '<table><tr><td>&nbsp;<a href="'.$this->file.'">Pagina principal</a>&nbsp;</td>';
 		if ($this->recid > 0) {
-			echo '<td><a href="'.$this->file.'?a='.$this->a.'&recid='. ($this->recid - 1) .'">Registro Anterior</a></td>';
+			echo '<td>&nbsp;<a href="'.$this->file.'?a='.$this->a.'&recid='. ($this->recid - 1) .'">Registro Anterior</a>&nbsp;</td>';
 		} if ($this->recid < $count - 1) {
-			echo '<td><a href="'.$this->file.'?a='.$this->a.'&recid='. ($this->recid + 1) .'">Registro Siguiente</a></td>';
+			echo '<td>&nbsp;<a href="'.$this->file.'?a='.$this->a.'&recid='. ($this->recid + 1) .'">Registro Siguiente</a>&nbsp;</td>';
 		}
-		echo '</tr></table><hr size="1" noshade>';
+		echo '</tr></table>'; //<hr size="1" noshade>';
 	}
 
 	public function showrow($row, $recid)
 	{
-		echo '<table class="tbl" border="0" cellspacing="1" cellpadding="5"width="50%"><tr>
-		<td class="hr">'.htmlspecialchars("Titulo de la Noticia:").'&nbsp;</td>
-		<td class="dr">'.htmlspecialchars($row["titulo"]).'</td></tr><tr>
-		<td class="hr">'.htmlspecialchars("Vinculo a la Noticia:").'</td>
-		<td class="dr">'.htmlspecialchars($row["vinculo"]).'</td></tr><tr>
-		<td class="hr">'.htmlspecialchars("Descripcion:").'</td>
-		<td class="dr">'.htmlspecialchars($row["descripcion"]).'</td></tr><tr>
-		<td class="hr">'.htmlspecialchars("Fecha:").'</td>
-		<td class="dr">'.htmlspecialchars($row["fecha"]).'</td></tr></table>';
+		echo '<table><tr>
+		<td>'.htmlspecialchars("Titulo de la Noticia:").'&nbsp;</td>
+		<td>'.htmlspecialchars($row["titulo"]).'</td></tr><tr>
+		<td>'.htmlspecialchars("Vinculo a la Noticia:").'</td>
+		<td>'.htmlspecialchars($row["vinculo"]).'</td></tr><tr>
+		<td>'.htmlspecialchars("Descripcion:").'</td>
+		<td>'.htmlspecialchars($row["descripcion"]).'</td></tr><tr>
+		<td>'.htmlspecialchars("Fecha:").'</td>
+		<td>'.htmlspecialchars($row["fecha"]).'</td></tr>';
+		echo '</table>';
 	}
 
 	public function showpagenav($page, $pagecount)
 	{
-		echo '<table class="bd" border="0" cellspacing="1" cellpadding="4">
-		<tr><td><a href="'.$this->file.'?a=add">Agregar Registro</a>&nbsp;</td>';
+		echo '<table><tr><td><a href="'.$this->file.'?a=add">Agregar Registro</a>&nbsp;</td>';
 		if ($page > 1) {
 			echo '<td><a href="'.$this->file.'?page='. $page - 1 .'">&lt;&lt;&nbsp;Anterior</a>&nbsp;</td>';
 		}
@@ -247,9 +249,9 @@ class VisualNovedades{
 
 	public function addrec()
 	{
-		echo '<table class="bd" border="0" cellspacing="1" cellpadding="4"><tr><td>
+		echo '<table><tr><td>
 			<a href="'.$this->file.'">Pagina principal</a></td>
-			</tr></table><hr size="1" noshade>
+			</tr></table>
 			<form enctype="multipart/form-data" action="'.$this->file.'" method="post">
 			<p><input type="hidden" name="sql" value="insert"></p>';
 		$row = array("id" => "","titulo" => "","vinculo" => "","descripcion" => "","fecha" => "");
@@ -271,18 +273,18 @@ class VisualNovedades{
 	
 	public function showroweditor()
 	{
-		echo '<table class="tbl" border="0" cellspacing="1" cellpadding="5"width="50%">
-			<tr><td class="hr">'.htmlspecialchars("Titulo de la Noticia:").'&nbsp;</td>
-			<td class="dr"><input type="text" name="titulo" value="'.$this->nov->titulo.'"></td>
+		echo '<table>
+			<tr><td>'.htmlspecialchars("Titulo de la Noticia:").'&nbsp;</td>
+			<td><input type="text" name="titulo" value="'.$this->nov->titulo.'"></td>
 			</tr>
-			<tr><td class="hr">'.htmlspecialchars("Vinculo a la Noticia:").'&nbsp;</td>
-			<td class="dr"><textarea cols="35" rows="4" name="vinculo" maxlength="50">'.$this->nov->vinculo.'</textarea></td>
+			<tr><td>'.htmlspecialchars("Vinculo a la Noticia:").'&nbsp;</td>
+			<td><textarea cols="35" rows="4" name="vinculo" maxlength="50">'.$this->nov->vinculo.'</textarea></td>
 			</tr>
-			<tr><td class="hr">'.htmlspecialchars("Descripcion:").'&nbsp;</td>
-			<td class="dr"><textarea cols="35" rows="4" name="descripcion" maxlength="100">'.$this->nov->descripcion.'</textarea></td>
+			<tr><td>'.htmlspecialchars("Descripcion:").'&nbsp;</td>
+			<td><textarea cols="35" rows="4" name="descripcion" maxlength="100">'.$this->nov->descripcion.'</textarea></td>
 			</tr>
-			<tr><td class="hr">'.htmlspecialchars("Fecha:").'&nbsp;</td>
-			<td class="dr"><input type="text" name="fecha" maxlength="65535" value="'.$this->nov->fecha.'"></td>
+			<tr><td>'.htmlspecialchars("Fecha:").'&nbsp;</td>
+			<td><input type="text" name="fecha" maxlength="65535" value="'.$this->nov->fecha.'"></td>
 			</tr></table>';
 	}
 
@@ -299,9 +301,40 @@ class VisualNovedades{
 		$res->close();
 	}
 	
-	/*public function GetPosts()
+	public function CommitSQL()
 	{
-		global $_POST;
-	}*/
+		switch ($this->sql) {
+		case "insert":
+			$this->sql_insert();
+			break;
+		case "update":
+			$this->sql_update();
+			break;
+		case "delete":
+			$this->sql_delete();
+			break;
+		}
+	}
+
+	public function ShowAction()
+	{
+		switch ($this->a) {
+			case "add":
+				$this->addrec();
+			break;
+			case "view":
+				$this->viewrec();
+			break;
+			case "edit":
+				$this->editrec();
+			break;
+			case "del":
+				$this->deleterec();
+			break;
+			default:
+				$this->select();
+			break;
+		}
+	}
 }
 ?>
