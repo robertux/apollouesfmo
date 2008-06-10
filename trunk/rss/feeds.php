@@ -4,6 +4,7 @@ require_once("cfeed.php");
 //require_once("../clases/cconexion.php");
 define("RUTA", realpath("../"));
 require_once(RUTA."clases/cnovedades.php");
+require_once(RUTA."clases/cforo.php");
 
 /**
  * Ultimas Novedades		novedades
@@ -123,29 +124,35 @@ class GenerarFeedsPostGrado
 		$this->rss->link = URL."foro/index.php";
 		$this->rss->syndicationURL = URL."rss/feeds.php?genera=foro";
 		
-		//$this->novedades = new cNovedades();
-		/*
-		$listanovedades = $this->novedades->GetUltimos();
-		if ($listanovedades)
-		{			
-			while($row = $listanovedades->fetch_array())
+		$forum = new cForo();
+		
+		$query = $forum->GetListaPosts();
+		if ($query)
+		{	
+			while ($disc_actual = $query->fetch_assoc())
 			{
-    			$item = new FeedItem();
-    			$item->title = $row[1];
-    			$item->link = $row[2];
-    			$item->description = $row[3];
-    			$item->date = $row[4];
+				$item = new FeedItem();
+				$item->title = $disc_actual['forum_name'];
+    			$item->link = "";
+    			$item->description = $disc_actual['subject'];
+    			$item->date = $disc_actual['last_post'];
     			$item->source = URL;
-    			$item->author = UNIDAD;
-    			
-    			$this->rss->addItem($item);
-			}
-			$listanovedades->close();
+    			$item->author = $disc_actual['poster'];
+				/*$this->subject = ;
+				$this->id = $disc_actual['id'];
+				$this->fid = $disc_actual['fid'];
+				$this->forum_name = ;
+				$this->poster = 
+				$this->posted = $disc_actual['posted'];
+				$this->last_post = ;*/
+				$this->rss->addItem($item);
+			}			
+			$query->close();
 		}
 		else 
-		{*/
+		{
 			$this->FeedError();
-		//}
+		}
 		$this->rss->saveFeed("RSS2.0", "postgrado-foros.xml"); 
 	}
 	
@@ -166,6 +173,6 @@ class GenerarFeedsPostGrado
 
 $gfpg = new GenerarFeedsPostGrado();
 //$gfpg->generare = $_GET[genera]; 
-$gfpg->generare = "novedades";
+$gfpg->generare = "foro";
 $gfpg->Genero();
 ?>
