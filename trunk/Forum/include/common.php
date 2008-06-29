@@ -131,12 +131,12 @@ if ($pun_config['o_maintenance'] && $pun_user['g_id'] > PUN_ADMIN && !defined('P
 
 
 // Load cached bans
-@include PUN_ROOT.'cache/cache_bans.php';
+//@include PUN_ROOT.'cache/cache_bans.php';
 if (!defined('PUN_BANS_LOADED'))
 {
 	require_once PUN_ROOT.'include/cache.php';
 	generate_bans_cache();
-	require PUN_ROOT.'cache/cache_bans.php';
+	//require PUN_ROOT.'cache/cache_bans.php';
 }
 
 // Check if current user is banned

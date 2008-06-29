@@ -480,7 +480,7 @@ function get_title($user)
 {
 	global $db, $pun_config, $pun_bans, $lang_common;
 	static $ban_list, $pun_ranks;
-
+/*
 	// If not already built in a previous call, build an array of lowercase banned usernames
 	if (empty($ban_list))
 	{
@@ -493,15 +493,15 @@ function get_title($user)
 	// If not already loaded in a previous call, load the cached ranks
 	if ($pun_config['o_ranks'] == '1' && empty($pun_ranks))
 	{
-		@include PUN_ROOT.'cache/cache_ranks.php';
+		//@include PUN_ROOT.'cache/cache_ranks.php';
 		if (!defined('PUN_RANKS_LOADED'))
 		{
 			require_once PUN_ROOT.'include/cache.php';
 			generate_ranks_cache();
-			require PUN_ROOT.'cache/cache_ranks.php';
+			//require PUN_ROOT.'cache/cache_ranks.php';
 		}
 	}
-
+*/
 	// If the user has a custom title
 	if ($user['title'] != '')
 		$user_title = pun_htmlspecialchars($user['title']);

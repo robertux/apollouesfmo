@@ -75,12 +75,12 @@ else if ($footer_style == 'viewforum' || $footer_style == 'viewtopic')
 	if ($pun_config['o_quickjump'] == '1')
 	{
 		// Load cached quickjump
-		@include PUN_ROOT.'cache/cache_quickjump_'.$pun_user['g_id'].'.php';
+		//@include PUN_ROOT.'cache/cache_quickjump_'.$pun_user['g_id'].'.php';
 		if (!defined('PUN_QJ_LOADED'))
 		{
 			require_once PUN_ROOT.'include/cache.php';
 			generate_quickjump_cache($pun_user['g_id']);
-			require PUN_ROOT.'cache/cache_quickjump_'.$pun_user['g_id'].'.php';
+			//require PUN_ROOT.'cache/cache_quickjump_'.$pun_user['g_id'].'.php';
 		}
 	}
 
@@ -106,9 +106,10 @@ else if ($footer_style == 'viewforum' || $footer_style == 'viewtopic')
 }
 
 ?>
-			<p class="conr">Powered by <a href="http://www.punbb.org/">PunBB</a><?php if ($pun_config['o_show_version'] == '1') echo ' '.$pun_config['o_cur_version']; ?><br />&copy; Copyright 2002&#8211;2005 Rickard Andersson</p>
+			<!--<p class="conr">Powered by <a href="http://www.punbb.org/">PunBB</a>
+			<?php /*if ($pun_config['o_show_version'] == '1') echo ' '.$pun_config['o_cur_version']; */ ?>
+			<br />&copy; Copyright 2002&#8211;2005 Rickard Andersson</p>-->
 <?php
-
 // Display debug info (if enabled/defined)
 if (defined('PUN_DEBUG'))
 {
