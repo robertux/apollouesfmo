@@ -54,21 +54,20 @@ CREATE TABLE `alumno` (
 DROP TABLE IF EXISTS `asignacion`;
 CREATE TABLE `asignacion` (
   `id` int(11) NOT NULL auto_increment,
-  `usuario` int(10) unsigned NOT NULL default '0',
+  `usuario` int(11) NOT NULL,
   `privilegio` int(11) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `fk_usuario_id_asignacion` (`usuario`),
   KEY `fk_privilegio_id_asignacion` (`privilegio`),
-  CONSTRAINT `fk_privilegio_id_asignacion` FOREIGN KEY (`privilegio`) REFERENCES `privilegio` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+  CONSTRAINT `fk_privilegio_id_asignacion` FOREIGN KEY (`privilegio`) REFERENCES `privilegio` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_usuario_id_asignacion` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `asignacion`
 --
 
 /*!40000 ALTER TABLE `asignacion` DISABLE KEYS */;
-INSERT INTO `asignacion` (`id`,`usuario`,`privilegio`) VALUES 
- (1,3,4);
 /*!40000 ALTER TABLE `asignacion` ENABLE KEYS */;
 
 
@@ -205,11 +204,6 @@ CREATE TABLE `foro_categories` (
 --
 
 /*!40000 ALTER TABLE `foro_categories` DISABLE KEYS */;
-INSERT INTO `foro_categories` (`id`,`cat_name`,`disp_position`) VALUES 
- (1,'Maestria Administracion Financiera',2),
- (3,'Maestria en Metodos y Tecnicas de Investigacion Social',1),
- (4,'Ayuda del Foro',99),
- (5,'Bienvenidos',0);
 /*!40000 ALTER TABLE `foro_categories` ENABLE KEYS */;
 
 
@@ -275,38 +269,38 @@ INSERT INTO `foro_config` (`conf_name`,`conf_value`) VALUES
  ('o_disp_topics_default','30'),
  ('o_disp_posts_default','25'),
  ('o_indent_num_spaces','4'),
- ('o_quickpost','1'),
+ ('o_quickpost','0'),
  ('o_users_online','1'),
  ('o_censoring','0'),
  ('o_ranks','1'),
  ('o_show_dot','0'),
- ('o_quickjump','1'),
+ ('o_quickjump','0'),
  ('o_gzip','0'),
  ('o_additional_navlinks',''),
  ('o_report_method','0'),
  ('o_regs_report','0'),
- ('o_mailing_list','ramayac@gmail.com'),
- ('o_avatars','1'),
- ('o_avatars_dir','img/avatars'),
- ('o_avatars_width','60'),
- ('o_avatars_height','60'),
- ('o_avatars_size','10240'),
+ ('o_mailing_list','lista@email.com'),
+ ('o_avatars','0'),
+ ('o_avatars_dir',''),
+ ('o_avatars_width','0'),
+ ('o_avatars_height','0'),
+ ('o_avatars_size','0'),
  ('o_search_all_forums','1'),
- ('o_base_url','./'),
- ('o_admin_email','ramayac@gmail.com'),
- ('o_webmaster_email','ramayac@gmail.com'),
- ('o_subscriptions','1'),
+ ('o_base_url','http://localhost/apollo'),
+ ('o_admin_email','admin@email.com'),
+ ('o_webmaster_email','webmaster@email.com'),
+ ('o_subscriptions','0'),
  ('o_smtp_host',NULL),
  ('o_smtp_user',NULL),
  ('o_smtp_pass',NULL),
  ('o_regs_allow','1'),
  ('o_regs_verify','0'),
- ('o_announcement','1'),
+ ('o_announcement','0'),
  ('o_announcement_message','Se han terminado las pruebas con el foro.\nFalta afinar algunos detalles.'),
  ('o_rules','0'),
- ('o_rules_message','Enter your rules here.'),
+ ('o_rules_message','Entra tus reglas aqui...'),
  ('o_maintenance','0'),
- ('o_maintenance_message','The forums are temporarily down for maintenance. Please try again in a few minutes.<br />\n<br />\n/Administrator'),
+ ('o_maintenance_message','El foro esta temporalmente de baja por motivos de mantenimiento, por favor intente de nuevo en algunos minutos<br />\n<br />\n/Administrator'),
  ('p_mod_edit_users','1'),
  ('p_mod_rename_users','0'),
  ('p_mod_change_passwords','0'),
@@ -345,10 +339,6 @@ CREATE TABLE `foro_forum_perms` (
 --
 
 /*!40000 ALTER TABLE `foro_forum_perms` DISABLE KEYS */;
-INSERT INTO `foro_forum_perms` (`group_id`,`forum_id`,`read_forum`,`post_replies`,`post_topics`) VALUES 
- (3,1,0,0,0),
- (3,2,0,0,0),
- (3,4,0,0,0);
 /*!40000 ALTER TABLE `foro_forum_perms` ENABLE KEYS */;
 
 
@@ -379,11 +369,6 @@ CREATE TABLE `foro_forums` (
 --
 
 /*!40000 ALTER TABLE `foro_forums` DISABLE KEYS */;
-INSERT INTO `foro_forums` (`id`,`forum_name`,`forum_desc`,`redirect_url`,`moderators`,`num_topics`,`num_posts`,`last_post`,`last_post_id`,`last_poster`,`sort_by`,`disp_position`,`cat_id`) VALUES 
- (1,'Metodos de Investigacion y Teoria del Conocimiento',NULL,NULL,NULL,1,1,1211988301,1,'foro',0,1,1),
- (2,'Metodologia Hipotetica Deductiva',NULL,NULL,NULL,0,0,NULL,NULL,NULL,0,1,3),
- (3,'Bienvenida',NULL,NULL,NULL,0,0,NULL,NULL,NULL,0,0,5),
- (4,'Reglas de Uso',NULL,NULL,NULL,0,0,NULL,NULL,NULL,0,1,5);
 /*!40000 ALTER TABLE `foro_forums` ENABLE KEYS */;
 
 
@@ -445,7 +430,7 @@ CREATE TABLE `foro_online` (
 
 /*!40000 ALTER TABLE `foro_online` DISABLE KEYS */;
 INSERT INTO `foro_online` (`user_id`,`ident`,`logged`,`idle`) VALUES 
- (1,'127.0.0.1',1212648062,0);
+ (2,'ramayac',1214863743,0);
 /*!40000 ALTER TABLE `foro_online` ENABLE KEYS */;
 
 
@@ -469,15 +454,13 @@ CREATE TABLE `foro_posts` (
   PRIMARY KEY  (`id`),
   KEY `foro_posts_topic_id_idx` (`topic_id`),
   KEY `foro_posts_multi_idx` (`poster_id`,`topic_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `foro_posts`
 --
 
 /*!40000 ALTER TABLE `foro_posts` DISABLE KEYS */;
-INSERT INTO `foro_posts` (`id`,`poster`,`poster_id`,`poster_ip`,`poster_email`,`message`,`hide_smilies`,`posted`,`edited`,`edited_by`,`topic_id`) VALUES 
- (1,'foro',2,'127.0.0.1',NULL,'If you are looking at this (which I guess you are), the install of PunBB appears to have worked! Now log in and head over to the administration control panel to configure your forum.',0,1211988301,NULL,NULL,1);
 /*!40000 ALTER TABLE `foro_posts` ENABLE KEYS */;
 
 
@@ -584,13 +567,15 @@ CREATE TABLE `foro_search_words` (
   `word` varchar(20) character set utf8 collate utf8_bin NOT NULL default '',
   PRIMARY KEY  (`word`),
   KEY `foro_search_words_id_idx` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `foro_search_words`
 --
 
 /*!40000 ALTER TABLE `foro_search_words` DISABLE KEYS */;
+INSERT INTO `foro_search_words` (`id`,`word`) VALUES 
+ (2,0x707275656261);
 /*!40000 ALTER TABLE `foro_search_words` ENABLE KEYS */;
 
 
@@ -635,15 +620,13 @@ CREATE TABLE `foro_topics` (
   PRIMARY KEY  (`id`),
   KEY `foro_topics_forum_id_idx` (`forum_id`),
   KEY `foro_topics_moved_to_idx` (`moved_to`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `foro_topics`
 --
 
 /*!40000 ALTER TABLE `foro_topics` DISABLE KEYS */;
-INSERT INTO `foro_topics` (`id`,`poster`,`subject`,`posted`,`last_post`,`last_post_id`,`last_poster`,`num_views`,`num_replies`,`closed`,`sticky`,`moved_to`,`forum_id`) VALUES 
- (1,'foro','Test post',1211988301,1211988301,1,'foro',0,0,0,0,NULL,1);
 /*!40000 ALTER TABLE `foro_topics` ENABLE KEYS */;
 
 
@@ -693,7 +676,7 @@ CREATE TABLE `foro_users` (
   PRIMARY KEY  (`id`),
   KEY `foro_users_registered_idx` (`registered`),
   KEY `foro_users_username_idx` (`username`(8))
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `foro_users`
@@ -702,9 +685,7 @@ CREATE TABLE `foro_users` (
 /*!40000 ALTER TABLE `foro_users` DISABLE KEYS */;
 INSERT INTO `foro_users` (`id`,`group_id`,`username`,`password`,`email`,`title`,`realname`,`url`,`jabber`,`icq`,`msn`,`aim`,`yahoo`,`location`,`use_avatar`,`signature`,`disp_topics`,`disp_posts`,`email_setting`,`save_pass`,`notify_with_post`,`show_smilies`,`show_img`,`show_img_sig`,`show_avatars`,`show_sig`,`timezone`,`language`,`style`,`num_posts`,`last_post`,`registered`,`registration_ip`,`last_visit`,`admin_note`,`activate_string`,`activate_key`) VALUES 
  (1,3,'Guest','Guest','Guest',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'English','Oxygen',0,NULL,0,'0.0.0.0',0,NULL,NULL,NULL),
- (2,1,'foro','d033e22ae348aeb5660fc2140aec35850c4da997','ramayac@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'English','Sulfur',1,1211988301,1211988301,'127.0.0.1',1212555026,NULL,NULL,NULL),
- (3,4,'robertux','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8','blendboy@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'Spanish','Minerva',0,NULL,1212555571,'190.87.147.129',1212644512,NULL,NULL,NULL),
- (4,4,'estudiante','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8','foobar@foobar.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'Spanish','Minerva',0,NULL,1212647868,'127.0.0.1',1212647869,NULL,NULL,NULL);
+ (2,1,'ramayac','d033e22ae348aeb5660fc2140aec35850c4da997','ramayac@gmail.com','Br.','Rodrigo Amaya','http://SrByte.blogspot.com',NULL,NULL,NULL,NULL,NULL,'Santa Ana',0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'English','Sulfur',3,1214767309,1211988301,'127.0.0.1',1214860451,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `foro_users` ENABLE KEYS */;
 
 
@@ -825,12 +806,12 @@ DROP TABLE IF EXISTS `novedades`;
 CREATE TABLE `novedades` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `titulo` varchar(50) NOT NULL,
-  `vinculo` varchar(100) default NULL,
+  `vinculo` varchar(100) NOT NULL,
   `descripcion` text NOT NULL,
   `fecha` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `FECHA` (`fecha`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `novedades`
@@ -838,13 +819,10 @@ CREATE TABLE `novedades` (
 
 /*!40000 ALTER TABLE `novedades` DISABLE KEYS */;
 INSERT INTO `novedades` (`id`,`titulo`,`vinculo`,`descripcion`,`fecha`) VALUES 
- (1,'Atencion Estudiantes de Ingenieria de Sistemas','http://localhost/apollo/Unidad/index.php?opt=news&newid=1','Atencion estudiantes de Ingenieria de Sistemas, se necesitan cuatro estudiantes para construir el sitio web de la Unidad de PostGrados.','2008-02-02 00:00:00'),
- (2,'Estudiantes asignados al servicio social','http://localhost/apollo/Unidad/index.php?opt=news&newid=2','Los estudiantes de Ingenieria de Sistemas: Rodrigo S. Amaya y Roberto C. Linares, son ahora los encargados de la realizacion del sitio web de la Unidad de PostGrados.\r\nEsperamos que terminen el proyecto en el mejor de los terminos, procurando tomar en cuenta las necesidades de los usuarios y de la problacion estudiantil que use el sitio.\r\n\r\nGracias a estos jovenes, pronto la Unidad de PostGrados tendra su propio sitio web de trabajo.\r\n\r\n¡Esten pendientes!','2008-03-03 00:00:00'),
- (3,'Sitio Web de Prueba','http://localhost/apollo/Unidad/index.php?opt=news&newid=3','Se acaba de publicar el primer diseño de prueba del sitio web de la Unidad de PostGrados.','2008-04-04 00:00:00'),
- (4,'Generador de Noticias','http://localhost/apollo/Unidad/index.php?opt=news&newid=4','Ya esta listo el nuevo generador de noticias de la Unidad de PostGrados, gracias a este, podremos mantener informados a todos nuestros visitantes de las ultimas novedades que ocurren en la Unidad. ¡No olviden suscribirse!','2008-04-28 00:00:00'),
- (5,'Noticia de prueba 1','http://localhost/apollo/index.php','Esta es una noticia de prueba','2008-04-29 00:00:00'),
- (6,'Noticia de prueba 2','http://localhost/apollo/index.php','Otra noticia de prueba','2008-05-01 00:00:00'),
- (7,'Noticia de prueba 3','http://localhost/apollo/index.php','Y otra noticia de prueba más...','2008-05-02 00:00:00');
+ (0,'Bienvenido Unidad de PostGrados','http://apollo-uesfmo.blogspot.com','<p>Este es el gestor de noticias de la Unidad de PostGrados de la Universidad de El Salvador, Facultad Multidisciplinaria de Occidente. Mediante la suscripcion a este gestor, usted estar informado de las noticias mas recientes de la Unidad de PostGrados. Gracias por suscribirse!</p>','2008-03-01 00:00:00'),
+ (1,'prueba','prueba','<p>prueba</p>','2008-01-01 00:00:00'),
+ (4,'Sr. Byte Blog','http://srbyte.blogspot.com','<p>El mejor blog del mundo!</p>','2008-06-29 00:00:00'),
+ (5,'GOOGLE!','http://www.google.com','<p>es google</p>','2008-06-29 00:00:00');
 /*!40000 ALTER TABLE `novedades` ENABLE KEYS */;
 
 
@@ -894,7 +872,7 @@ CREATE TABLE `privilegio` (
 INSERT INTO `privilegio` (`id`,`nombre`) VALUES 
  (1,'general'),
  (2,'estudiante'),
- (3,'docente'),
+ (3,'maestro'),
  (4,'admin');
 /*!40000 ALTER TABLE `privilegio` ENABLE KEYS */;
 
@@ -931,7 +909,7 @@ CREATE TABLE `usuario` (
   `clave` varchar(10) default NULL,
   `nombre` varchar(15) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usuario`
@@ -939,10 +917,8 @@ CREATE TABLE `usuario` (
 
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`id`,`clave`,`nombre`) VALUES 
- (0,'ninguno','ninguna'),
- (1,'password','robertux'),
- (2,'password','estudiante'),
- (3,'password','docente');
+ (1,'ninguno','ninguna'),
+ (2,'password','robertux');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 
