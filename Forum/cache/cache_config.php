@@ -1,5 +1,5 @@
 <?php
-//Es mejor usar este archivo, que la consulta SQL hacia la tabla "config" del foro... con esto se acelera un poco el proceso.
+
 define('PUN_CONFIG_LOADED', 1);
 
 $pun_config = array (
@@ -25,12 +25,12 @@ $pun_config = array (
   'o_disp_topics_default' => '30',
   'o_disp_posts_default' => '25',
   'o_indent_num_spaces' => '4',
-  'o_quickpost' => '1',
+  'o_quickpost' => '0',
   'o_users_online' => '1',
   'o_censoring' => '0',
   'o_ranks' => '1',
   'o_show_dot' => '0',
-  'o_quickjump' => '1',
+  'o_quickjump' => '0',
   'o_gzip' => '0',
   'o_additional_navlinks' => '',
   'o_report_method' => '0',
@@ -42,16 +42,16 @@ $pun_config = array (
   'o_avatars_height' => '0',
   'o_avatars_size' => '0',
   'o_search_all_forums' => '1',
-  'o_base_url' => './',
+  'o_base_url' => 'http://localhost/apollo',
   'o_admin_email' => 'admin@email.com',
   'o_webmaster_email' => 'webmaster@email.com',
-  'o_subscriptions' => '1',
+  'o_subscriptions' => '0',
   'o_smtp_host' => NULL,
   'o_smtp_user' => NULL,
   'o_smtp_pass' => NULL,
   'o_regs_allow' => '1',
   'o_regs_verify' => '0',
-  'o_announcement' => '1',
+  'o_announcement' => '0',
   'o_announcement_message' => 'Se han terminado las pruebas con el foro.
 Falta afinar algunos detalles.',
   'o_rules' => '0',

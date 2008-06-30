@@ -100,12 +100,12 @@ class VisualNovedades{
 			$row = $res->fetch_array();
 			/*$style = "dr";
 			if ($i % 2 != 0) {
-				$style = "sr";
+				$style = "sr";  //$row['id']
 			}*/
 		echo '<tr>
-	  	<td><a href="'.$this->file.'?a=view&recid='.$i.'">Ver</a></td>
-	  	<td><a href="'.$this->file.'?a=edit&recid='.$i.'">Modificar</a></td>
-	  	<td><a href="'.$this->file.'?a=del&recid='.$i.'">Eliminar</a></td>
+	  	<td><a href="'.$this->file.'?a=view&recid='.$row['id'].'">Ver</a></td>
+	  	<td><a href="'.$this->file.'?a=edit&recid='.$row['id'].'">Modificar</a></td>
+	  	<td><a href="'.$this->file.'?a=del&recid='.$row['id'].'">Eliminar</a></td>
 	  	<td>'.htmlspecialchars($row["titulo"]).'</td>
 	  	<td>'.htmlspecialchars($row["vinculo"]).'</td>
 	  	<td>'.htmlspecialchars($row["descripcion"]).'</td>
@@ -118,6 +118,9 @@ class VisualNovedades{
 	public function sql_insert()
 	{
 		global $_POST;
+		$vin = @$_POST["vinculo"];
+		$vincomp = "<a href=\"".$vin."\">".$vin."</a>";
+		//$sql = "insert into `novedades` (`titulo`, `vinculo`, `descripcion`, `fecha`) values (" .$this->sqlvalue(@$_POST["titulo"], true).", '" .$vincomp."', " .$this->sqlvalue(@$_POST["descripcion"], true).", " .$this->sqlvalue(@$_POST["fecha"], true).")";
 		$sql = "insert into `novedades` (`titulo`, `vinculo`, `descripcion`, `fecha`) values (" .$this->sqlvalue(@$_POST["titulo"], true).", " .$this->sqlvalue(@$_POST["vinculo"], true).", " .$this->sqlvalue(@$_POST["descripcion"], true).", " .$this->sqlvalue(@$_POST["fecha"], true).")";
 		$this->ConsultaEscalar($sql);
 	}
@@ -278,7 +281,10 @@ class VisualNovedades{
 			<td><input type="text" name="titulo" value="'.$this->nov->titulo.'"></td>
 			</tr>
 			<tr><td>'.htmlspecialchars("Vinculo a la Noticia:").'&nbsp;</td>
-			<td><textarea cols="35" rows="4" name="vinculo" maxlength="50">'.$this->nov->vinculo.'</textarea></td>
+			<td>
+			<!--<textarea cols="35" rows="4" name="vinculo" maxlength="50">-->
+			<input type="text" name="vinculo" value="'
+		    .$this->nov->vinculo.'"><!--</textarea>--></td>
 			</tr>
 			<tr><td>'.htmlspecialchars("Descripcion:").'&nbsp;</td>
 			<td><textarea cols="35" rows="4" name="descripcion" maxlength="100">'.$this->nov->descripcion.'</textarea></td>

@@ -66,10 +66,8 @@ $pag->cuerpo();
 	</ul>
   </div>-->
     <!-- /content -->
-
   <!--<div class="clearfix"></div>-->
-  <div id="footer">
-    
+  <div id="footer">  
   </div>
   <!-- /footer -->
 </div>

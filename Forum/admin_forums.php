@@ -50,7 +50,7 @@ if (isset($_POST['add_forum']))
 	require_once PUN_ROOT.'include/cache.php';
 	generate_quickjump_cache();
 
-	redirect('admin_forums.php', 'Forum added. Redirecting &hellip;');
+	redirect('admin_forums.php', 'Foro Agregado. Redirigiendo &hellip;');
 }
 
 
@@ -58,10 +58,12 @@ if (isset($_POST['add_forum']))
 else if (isset($_GET['del_forum']))
 {
 	confirm_referrer('admin_forums.php');
-
 	$forum_id = intval($_GET['del_forum']);
+	//echo "<h1>MIRA MIRA!</h1>".$forum_id;
 	if ($forum_id < 1)
+	{
 		message($lang_common['Bad request']);
+	}	
 
 	if (isset($_POST['del_forum_comply']))	// Delete a forum with all posts
 	{
@@ -105,19 +107,19 @@ else if (isset($_GET['del_forum']))
 
 ?>
 	<div class="blockform">
-		<h2><span>Confirm delete forum</span></h2>
+		<h2><span>Confirmar Borrar Tema de Foro</span></h2>
 		<div class="box">
 			<form method="post" action="admin_forums.php?del_forum=<?php echo $forum_id ?>">
 				<div class="inform">
 					<fieldset>
-						<legend>Important! Read before deleting</legend>
+						<legend>Importante! Lea antes de continuar</legend>
 						<div class="infldset">
-							<p>Are you sure that you want to delete the forum "<?php echo $forum_name ?>"?</p>
-							<p>WARNING! Deleting a forum will delete all posts (if any) in that forum!</p>
+							<p>Esta seguro que desea eliminar el tema de foro "<?php echo $forum_name ?>"?</p>
+							<p>ADVERTENCIA! Al borrar ese tema de foro, se borraran todas las discuciones que este contenga.</p>
 						</div>
 					</fieldset>
 				</div>
-				<p><input type="submit" name="del_forum_comply" value="Delete" /><a href="javascript:history.go(-1)">Go back</a></p>
+				<p><input type="submit" name="del_forum_comply" value="Borrar Tema" /><a href="javascript:history.go(-1)">Regresar</a></p>
 			</form>
 		</div>
 	</div>
