@@ -172,7 +172,7 @@ class GenerarFeedsPostGrado
 }
 
 $gfpg = new GenerarFeedsPostGrado();
-//$gfpg->generare = $_GET[genera]; 
-$gfpg->generare = "foro";
+$gfpg->generare = $_GET[genera]; 
+//$gfpg->generare = "foro";
 $gfpg->Genero();
 ?>
