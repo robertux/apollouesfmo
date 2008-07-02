@@ -15,7 +15,6 @@ class cRequisito
     public function __construct() 
     {
     	$this->con = new cConexion();
-		//$this->con->Conectar();
     }
     
     // destructor

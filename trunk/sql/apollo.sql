@@ -717,6 +717,29 @@ CREATE TABLE `horario` (
 
 
 --
+-- Definition of table `informacion`
+--
+
+DROP TABLE IF EXISTS `informacion`;
+CREATE TABLE `informacion` (
+  `nombre` varchar(100) NOT NULL,
+  `telefono` varchar(9) default NULL,
+  `fax` varchar(9) default NULL,
+  `email` varchar(45) NOT NULL,
+  PRIMARY KEY  (`nombre`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 MAX_ROWS=1 COMMENT='Informacion de Contacto la Unidad';
+
+--
+-- Dumping data for table `informacion`
+--
+
+/*!40000 ALTER TABLE `informacion` DISABLE KEYS */;
+INSERT INTO `informacion` (`nombre`,`telefono`,`fax`,`email`) VALUES 
+ ('Verónica de González','2484-0821',NULL,'veronica.jazmin@gmail.com');
+/*!40000 ALTER TABLE `informacion` ENABLE KEYS */;
+
+
+--
 -- Definition of table `inscripcion`
 --
 
@@ -851,7 +874,7 @@ CREATE TABLE `postgrado` (
 
 /*!40000 ALTER TABLE `postgrado` DISABLE KEYS */;
 INSERT INTO `postgrado` (`id`,`nombre`,`notaminima`,`totaluvs`,`cumminimo`,`abreviatura`,`maxalum`,`presentacion`,`descripcion`) VALUES 
- (1,'Maestría y Técnicas de Investigación Social',7,999,7.5,'MTIS',999,'La Maestría en Métodos y Técnicas de Investigación Social, es un esfuerzo de carácter academico que las actuales autoridades impulsan par contribuir a elevar la calidad cientifica academica en la formacion permanente de  profesionales especializados en el dominio de las principales corrientes metodologicas y en el manejo de herramientas tecnicas y procedimentales para la obtencion, procesamiento, analisis y presentacion de datos. Que contribuyan al desarrollo del conocimiento cientifico en El Salvador y puedan proponer soluciones concretas a los diversos problemas de la realidad social.','Objetivos:\r\nFormar teórica y metodológicamente recurso humano especializado en investigación cuantitativa y cualitativa que contribuya al desarrollo del conocimiento cientifico a nivel regional y nacional.\r\nDesarrollar competencias en la planificacion, ejecucion y presentacion de informes de investigacion.\r\nObjetivos: Generar sensibilidad por el estudio de aquellas problematicas sociales de interés nacional, que permitan la reflexión, el análisis y la propuesta de alternativas de solución.'),
+ (1,'Maestría y Técnicas de Investigación Social',7,999,7.5,'MTIS',999,'La Maestría en Métodos y Técnicas de Investigación Social, es un esfuerzo de carácter academico que las actuales autoridades impulsan par contribuir a elevar la calidad cientifica academica en la formacion permanente de  profesionales especializados en el dominio de las principales corrientes metodologicas y en el manejo de herramientas tecnicas y procedimentales para la obtencion, procesamiento, analisis y presentacion de datos. Que contribuyan al desarrollo del conocimiento cientifico en El Salvador y puedan proponer soluciones concretas a los diversos problemas de la realidad social.','Objetivos:\r\nFormar teórica y metodológicamente recurso humano especializado en investigación cuantitativa y cualitativa que contribuya al desarrollo del conocimiento cientifico a nivel regional y nacional.\r\nDesarrollar competencias en la planificacion, ejecucion y presentacion de informes de investigacion.\r\nGenerar sensibilidad por el estudio de aquellas problematicas sociales de interés nacional, que permitan la reflexión, el análisis y la propuesta de alternativas de solución.\r\n\r\nPoblación a la que se dirige el programa:\r\nLicenciados, Ingenieros, Máster o Doctores graduados de la Universidad debidamente autorizados por el Ministerio de Educación.'),
  (2,'Maestría en Consultoría Empresarial',7,999,7.5,'MAECE',999,'El programa de Maestría en consultoría Empresarial se desarrollará desde la perspectiva de integración del directivo o empresario en el rol de los negocios, en forma amplia abordando situaciones de la realidad de consultoría empresarial con un enfoque teórico y práctico.\r\nPara adquirir estas destrezas se define el programa con la intención de formar profesionales que asuman responsabilidades, que sepan cooperar entre organizaciones y con las personas, desde el conocimiento eficaz de las diferentes áreas de la empresa, entendiéndola de mejor manera y adquiriendo las competencias particulares del área relacionadas con la cooperación, la especialización, las innovaciones tecnológicas y la globalización de los mercados.\r\nLa MAECE es la formación profesional orientada a la excelencia académica donde se fortalecen los conocimientos, particularmente los especializados en técnicas de gestión; fomenta las capacidades personales y directivas, conceptuales y analíticas de cada participante, necesarias en la empresa actual.','Vision:\r\nSer lideres en la formación de profesionales a nivel de maestría, mejorando continuamente la calidad académica e incorporando en los planes de estudio contenidos programáticos que faciliten la efectiva ejecución de la gestión y consultoría empresarial.\r\nMision:\r\nFormar profesionales con iniciativa par organizar unidades especificas de negocios, con elevada formación teórico-practica para enfrentar los retos que demande el actual desarrollo empresarial y social.');
 /*!40000 ALTER TABLE `postgrado` ENABLE KEYS */;
 
