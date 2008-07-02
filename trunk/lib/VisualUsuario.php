@@ -5,7 +5,7 @@
 	require_once(RUTA."/clases/cusuario.php");
 
     class VisualUsuario{
-    	var $usr;
+    	public $usr;
 		
 		function VisualUsuario(){
 			$usr = new cUsuario();

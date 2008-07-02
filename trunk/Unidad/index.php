@@ -3,6 +3,7 @@
 	define("RUTA", realpath("../"));
 	require_once("../incluye.php");
 	require_once("UnidadContentManager.php");
+	require_once("../clases/cnovedades.php");
 	
 	$pag = new paginaSecundaria();
 	$pag->encabezado();
