@@ -77,6 +77,11 @@
 <body>
 <table class="bd" width="100%"><tr><td class="hr"><h2>Administrar informacion de la Unidad de PostGrados</h2></td></tr></table>
 <?php
+  if (!login()) exit;
+?>
+<div style="float: right"><a href="requisito.php?a=logout">[ Salir ]</a></div>
+<br>
+<?php
   $conn = connect();
   $showrecs = 10;
   $pagerange = 10;
@@ -181,6 +186,49 @@
 </table>
 <br>
 <?php } ?>
+
+<?php function login()
+{
+  global $_POST;
+  global $_SESSION;
+
+  global $_GET;
+  if (isset($_GET["a"]) && ($_GET["a"] == 'logout')) $_SESSION["logged_in"] = false;
+  if (!isset($_SESSION["logged_in"])) $_SESSION["logged_in"] = false;
+  if (!$_SESSION["logged_in"]) {
+    $login = "";
+    $password = "";
+    if (isset($_POST["login"])) $login = @$_POST["login"];
+    if (isset($_POST["password"])) $password = @$_POST["password"];
+
+    if (($login != "") && ($password != "")) {
+      if (($login == "apollouser") && ($password == "apollopwd")) {
+        $_SESSION["logged_in"] = true;
+    }
+    else {
+?>
+<p><b><font color="-1">Lo siento, la información ingresada NO es válida.</font></b></p>
+<?php } } }if (isset($_SESSION["logged_in"]) && (!$_SESSION["logged_in"])) { ?>
+<form action="requisito.php" method="post">
+<table class="bd" border="0" cellspacing="1" cellpadding="4">
+<tr>
+<td>Usuario</td>
+<td><input type="text" name="login" value="<?php echo $login ?>"></td>
+</tr>
+<tr>
+<td>Contraseña</td>
+<td><input type="password" name="password" value="<?php echo $password ?>"></td>
+</tr>
+<tr>
+<td><input type="submit" name="action" value="Ingresar"></td>
+</tr>
+</table>
+</form>
+<?php
+  }
+  if (!isset($_SESSION["logged_in"])) $_SESSION["logged_in"] = false;
+  return $_SESSION["logged_in"];
+} ?>
 
 <?php function showrow($row, $recid)
   {
