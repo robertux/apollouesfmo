@@ -857,6 +857,33 @@ INSERT INTO `postgrado` (`id`,`nombre`,`notaminima`,`totaluvs`,`cumminimo`,`abre
 
 
 --
+-- Definition of table `presentadoc`
+--
+
+DROP TABLE IF EXISTS `presentadoc`;
+CREATE TABLE `presentadoc` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `descripcion` varchar(100) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='documentos a presentar';
+
+--
+-- Dumping data for table `presentadoc`
+--
+
+/*!40000 ALTER TABLE `presentadoc` DISABLE KEYS */;
+INSERT INTO `presentadoc` (`id`,`descripcion`) VALUES 
+ (1,'Fotografía tamaño cédula a color.'),
+ (2,'Certificado de Partida de Nacimiento.'),
+ (3,'DUI y NIT.'),
+ (4,'Certificcion del Titulo Universitario autenticado por la Universidad y el MINED.'),
+ (5,'Titulo Universitario autenticado por el Ministerio de Educacion.'),
+ (6,'Certificado de salud.'),
+ (7,'Titulo de Bachiller.');
+/*!40000 ALTER TABLE `presentadoc` ENABLE KEYS */;
+
+
+--
 -- Definition of table `privilegio`
 --
 

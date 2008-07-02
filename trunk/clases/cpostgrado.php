@@ -43,20 +43,32 @@ class cPostGrado
     	$this->Consultar("SELECT * FROM postgrado WHERE id = $pId;", false);
     }
     
-    /*public function Insert()
+    //id,nombre,notaminima,totaluvs,cumminimo,abreviatura,maxalum,presentacion,descripcion
+	public function Insert()
     {
-    	//...
+    	$this->Consultar("INSERT INTO 
+    	postgrado(nombre,notaminima,totaluvs,cumminimo,abreviatura,maxalum,presentacion,descripcion)
+    	VALUES ('$this->nombre',$this->notaminima,$this->totaluvs,$this->cumminimo,'$this->abreviatura', $this->maxalum, '$this->presentacion','$this->descripcion');", false);
     }
     
     public function Update()
     {
-    	//...
+    	$this->Consultar("UPDATE postgrado SET 
+    	nombre = '$this->nombre', 
+    	notaminima = $this->notaminima,
+    	totaluvs = $this->totaluvs,
+    	cumminimo= $this->cumminimo,
+    	abreviatura = '$this->abreviatura',
+    	maxalum = $this->maxalum,
+    	presentacion = '$this->presentacion',    	
+    	descripcion = '$this->descripcion' 
+    	WHERE id = $this->id;", false);
     }
 	
 	public function Delete()
     {
-    	//...
-    }*/
+    	$this->Consultar("DELETE FROM postgrado WHERE id = $this->id;", false);
+    }
     
     function Consultar($Consulta, $GetLista)
     {
@@ -76,7 +88,7 @@ class cPostGrado
     			{
         			while($row = $resultado->fetch_array()) 
         			{
-	        			//id, nombre, notaminima, totaluvs, cumminimo, abreviatura, maxalum
+	        			//id,nombre,notaminima,totaluvs,cumminimo,abreviatura,maxalum,presentacion,descripcion
     	        		$this->id = $row[0];
         	    		$this->nombre = $row[1];
             			$this->notaminima = $row[2];
