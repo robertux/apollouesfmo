@@ -77,11 +77,6 @@
 <body>
 <table class="bd" width="100%"><tr><td class="hr"><h2>Administrar informacion de la Unidad de PostGrados</h2></td></tr></table>
 <?php
-  if (!login()) exit;
-?>
-<div style="float: right"><a href="postgrado.php?a=logout">[ Salir ]</a></div>
-<br>
-<?php
   $conn = connect();
   $showrecs = 10;
   $pagerange = 10;
@@ -160,12 +155,13 @@
 <td class="hr">&nbsp;</td>
 <td class="hr">&nbsp;</td>
 <td class="hr">&nbsp;</td>
-<td class="hr"><?php echo "Nombre" ?></td>
-<td class="hr"><?php echo "Nota Minima" ?></td>
-<td class="hr"><?php echo "Total UVS" ?></td>
-<td class="hr"><?php echo "CUM Minimo" ?></td>
-<td class="hr"><?php echo "Abreviatura" ?></td>
-<td class="hr"><?php echo "Maximo Alumnos" ?></td>
+<td class="hr"><?php echo "id" ?></td>
+<td class="hr"><?php echo "nombre" ?></td>
+<td class="hr"><?php echo "notaminima" ?></td>
+<td class="hr"><?php echo "totaluvs" ?></td>
+<td class="hr"><?php echo "cumminimo" ?></td>
+<td class="hr"><?php echo "abreviatura" ?></td>
+<td class="hr"><?php echo "maxalum" ?></td>
 </tr>
 <?php
   for ($i = $startrec; $i < $reccount; $i++)
@@ -180,6 +176,7 @@
 <td class="<?php echo $style ?>"><a href="postgrado.php?a=view&recid=<?php echo $i ?>">Ver</a></td>
 <td class="<?php echo $style ?>"><a href="postgrado.php?a=edit&recid=<?php echo $i ?>">Modificar</a></td>
 <td class="<?php echo $style ?>"><a href="postgrado.php?a=del&recid=<?php echo $i ?>">Eliminar</a></td>
+<td class="<?php echo $style ?>"><?php echo htmlspecialchars($row["id"]) ?></td>
 <td class="<?php echo $style ?>"><?php echo htmlspecialchars($row["nombre"]) ?></td>
 <td class="<?php echo $style ?>"><?php echo htmlspecialchars($row["notaminima"]) ?></td>
 <td class="<?php echo $style ?>"><?php echo htmlspecialchars($row["totaluvs"]) ?></td>
@@ -195,75 +192,36 @@
 <br>
 <?php } ?>
 
-<?php function login()
-{
-  global $_POST;
-  global $_SESSION;
-
-  global $_GET;
-  if (isset($_GET["a"]) && ($_GET["a"] == 'logout')) $_SESSION["logged_in"] = false;
-  if (!isset($_SESSION["logged_in"])) $_SESSION["logged_in"] = false;
-  if (!$_SESSION["logged_in"]) {
-    $login = "";
-    $password = "";
-    if (isset($_POST["login"])) $login = @$_POST["login"];
-    if (isset($_POST["password"])) $password = @$_POST["password"];
-
-    if (($login != "") && ($password != "")) {
-      if (($login == "apollouser") && ($password == "apollopwd")) {
-        $_SESSION["logged_in"] = true;
-    }
-    else {
-?>
-<p><b><font color="-1">Lo siento, la información ingresada NO es válida.</font></b></p>
-<?php } } }if (isset($_SESSION["logged_in"]) && (!$_SESSION["logged_in"])) { ?>
-<form action="postgrado.php" method="post">
-<table class="bd" border="0" cellspacing="1" cellpadding="4">
-<tr>
-<td>Usuario</td>
-<td><input type="text" name="login" value="<?php echo $login ?>"></td>
-</tr>
-<tr>
-<td>Contraseña</td>
-<td><input type="password" name="password" value="<?php echo $password ?>"></td>
-</tr>
-<tr>
-<td><input type="submit" name="action" value="Ingresar"></td>
-</tr>
-</table>
-</form>
-<?php
-  }
-  if (!isset($_SESSION["logged_in"])) $_SESSION["logged_in"] = false;
-  return $_SESSION["logged_in"];
-} ?>
-
 <?php function showrow($row, $recid)
   {
 ?>
 <table class="tbl" border="0" cellspacing="1" cellpadding="5"width="50%">
 <tr>
-<td class="hr"><?php echo htmlspecialchars("Nombre")."&nbsp;" ?></td>
+<td class="hr"><?php echo htmlspecialchars("id")."&nbsp;" ?></td>
+<td class="dr"><?php echo htmlspecialchars($row["id"]) ?></td>
+</tr>
+<tr>
+<td class="hr"><?php echo htmlspecialchars("nombre")."&nbsp;" ?></td>
 <td class="dr"><?php echo htmlspecialchars($row["nombre"]) ?></td>
 </tr>
 <tr>
-<td class="hr"><?php echo htmlspecialchars("Nota Minima")."&nbsp;" ?></td>
+<td class="hr"><?php echo htmlspecialchars("notaminima")."&nbsp;" ?></td>
 <td class="dr"><?php echo htmlspecialchars($row["notaminima"]) ?></td>
 </tr>
 <tr>
-<td class="hr"><?php echo htmlspecialchars("Total UVS")."&nbsp;" ?></td>
+<td class="hr"><?php echo htmlspecialchars("totaluvs")."&nbsp;" ?></td>
 <td class="dr"><?php echo htmlspecialchars($row["totaluvs"]) ?></td>
 </tr>
 <tr>
-<td class="hr"><?php echo htmlspecialchars("CUM Minimo")."&nbsp;" ?></td>
+<td class="hr"><?php echo htmlspecialchars("cumminimo")."&nbsp;" ?></td>
 <td class="dr"><?php echo htmlspecialchars($row["cumminimo"]) ?></td>
 </tr>
 <tr>
-<td class="hr"><?php echo htmlspecialchars("Abreviatura")."&nbsp;" ?></td>
+<td class="hr"><?php echo htmlspecialchars("abreviatura")."&nbsp;" ?></td>
 <td class="dr"><?php echo htmlspecialchars($row["abreviatura"]) ?></td>
 </tr>
 <tr>
-<td class="hr"><?php echo htmlspecialchars("Maximo Alumnos")."&nbsp;" ?></td>
+<td class="hr"><?php echo htmlspecialchars("maxalum")."&nbsp;" ?></td>
 <td class="dr"><?php echo htmlspecialchars($row["maxalum"]) ?></td>
 </tr>
 </table>
@@ -275,28 +233,32 @@
 ?>
 <table class="tbl" border="0" cellspacing="1" cellpadding="5"width="50%">
 <tr>
-<td class="hr"><?php echo htmlspecialchars("Nombre")."&nbsp;" ?></td>
-<td class="dr"><textarea cols="35" rows="4" name="nombre"><?php echo str_replace('"', '&quot;', trim($row["nombre"])) ?></textarea></td>
+<td class="hr"><?php echo htmlspecialchars("id")."&nbsp;" ?></td>
+<td class="dr"><input type="text" name="id" value="<?php echo str_replace('"', '&quot;', trim($row["id"])) ?>"></td>
 </tr>
 <tr>
-<td class="hr"><?php echo htmlspecialchars("Nota Minima")."&nbsp;" ?></td>
-<td class="dr"><input type="text" name="notaminima" maxlength="200" value="<?php echo str_replace('"', '&quot;', trim($row["notaminima"])) ?>"></td>
+<td class="hr"><?php echo htmlspecialchars("nombre")."&nbsp;" ?></td>
+<td class="dr"><textarea cols="35" rows="4" name="nombre" maxlength="200"><?php echo str_replace('"', '&quot;', trim($row["nombre"])) ?></textarea></td>
 </tr>
 <tr>
-<td class="hr"><?php echo htmlspecialchars("Total UVS")."&nbsp;" ?></td>
+<td class="hr"><?php echo htmlspecialchars("notaminima")."&nbsp;" ?></td>
+<td class="dr"><input type="text" name="notaminima" value="<?php echo str_replace('"', '&quot;', trim($row["notaminima"])) ?>"></td>
+</tr>
+<tr>
+<td class="hr"><?php echo htmlspecialchars("totaluvs")."&nbsp;" ?></td>
 <td class="dr"><input type="text" name="totaluvs" value="<?php echo str_replace('"', '&quot;', trim($row["totaluvs"])) ?>"></td>
 </tr>
 <tr>
-<td class="hr"><?php echo htmlspecialchars("CUM Minimo")."&nbsp;" ?></td>
+<td class="hr"><?php echo htmlspecialchars("cumminimo")."&nbsp;" ?></td>
 <td class="dr"><input type="text" name="cumminimo" value="<?php echo str_replace('"', '&quot;', trim($row["cumminimo"])) ?>"></td>
 </tr>
 <tr>
-<td class="hr"><?php echo htmlspecialchars("Abreviatura")."&nbsp;" ?></td>
-<td class="dr"><input type="text" name="abreviatura" value="<?php echo str_replace('"', '&quot;', trim($row["abreviatura"])) ?>"></td>
+<td class="hr"><?php echo htmlspecialchars("abreviatura")."&nbsp;" ?></td>
+<td class="dr"><input type="text" name="abreviatura" maxlength="8" value="<?php echo str_replace('"', '&quot;', trim($row["abreviatura"])) ?>"></td>
 </tr>
 <tr>
-<td class="hr"><?php echo htmlspecialchars("Maximo Alumnos")."&nbsp;" ?></td>
-<td class="dr"><input type="text" name="maxalum" maxlength="8" value="<?php echo str_replace('"', '&quot;', trim($row["maxalum"])) ?>"></td>
+<td class="hr"><?php echo htmlspecialchars("maxalum")."&nbsp;" ?></td>
+<td class="dr"><input type="text" name="maxalum" value="<?php echo str_replace('"', '&quot;', trim($row["maxalum"])) ?>"></td>
 </tr>
 </table>
 <?php } ?>
@@ -447,7 +409,7 @@ showroweditor($row, false);
 
 <?php function connect()
 {
-  $conn = mysql_connect("localhost", "root", "toor");
+  $conn = mysql_connect("localhost", "apollouser", "apollopwd");
   mysql_select_db("apollo");
   return $conn;
 }
@@ -493,7 +455,7 @@ function sql_insert()
   global $conn;
   global $_POST;
 
-  $sql = "insert into `postgrado` (`nombre`, `notaminima`, `totaluvs`, `cumminimo`, `abreviatura`, `maxalum`) values (" .sqlvalue(@$_POST["nombre"], true).", " .sqlvalue(@$_POST["notaminima"], true).", " .sqlvalue(@$_POST["totaluvs"], false).", " .sqlvalue(@$_POST["cumminimo"], true).", " .sqlvalue(@$_POST["abreviatura"], true).", " .sqlvalue(@$_POST["maxalum"], false).")";
+  $sql = "insert into `postgrado` (`id`, `nombre`, `notaminima`, `totaluvs`, `cumminimo`, `abreviatura`, `maxalum`) values (" .sqlvalue(@$_POST["id"], false).", " .sqlvalue(@$_POST["nombre"], true).", " .sqlvalue(@$_POST["notaminima"], true).", " .sqlvalue(@$_POST["totaluvs"], false).", " .sqlvalue(@$_POST["cumminimo"], true).", " .sqlvalue(@$_POST["abreviatura"], true).", " .sqlvalue(@$_POST["maxalum"], false).")";
   mysql_query($sql, $conn) or die(mysql_error());
 }
 
@@ -502,7 +464,7 @@ function sql_update()
   global $conn;
   global $_POST;
 
-  $sql = "update `postgrado` set `nombre`=" .sqlvalue(@$_POST["nombre"], true).", `notaminima`=" .sqlvalue(@$_POST["notaminima"], true).", `totaluvs`=" .sqlvalue(@$_POST["totaluvs"], false).", `cumminimo`=" .sqlvalue(@$_POST["cumminimo"], true).", `abreviatura`=" .sqlvalue(@$_POST["abreviatura"], true).", `maxalum`=" .sqlvalue(@$_POST["maxalum"], false) ." where " .primarykeycondition();
+  $sql = "update `postgrado` set `id`=" .sqlvalue(@$_POST["id"], false).", `nombre`=" .sqlvalue(@$_POST["nombre"], true).", `notaminima`=" .sqlvalue(@$_POST["notaminima"], true).", `totaluvs`=" .sqlvalue(@$_POST["totaluvs"], false).", `cumminimo`=" .sqlvalue(@$_POST["cumminimo"], true).", `abreviatura`=" .sqlvalue(@$_POST["abreviatura"], true).", `maxalum`=" .sqlvalue(@$_POST["maxalum"], false) ." where " .primarykeycondition();
   mysql_query($sql, $conn) or die(mysql_error());
 }
 
