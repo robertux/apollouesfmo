@@ -1,14 +1,12 @@
 <?php 
 include("cconexion.php");
 
-class cInformacion
+class cGeneral
 {
 	private $con;
 	
-	public $nombre;
-	public $telefono
-	public $fax;
-	public $email;
+	public $titulo;
+	public $contenido;
 	
 	public $error;
 	
@@ -23,29 +21,31 @@ class cInformacion
     {
     }
     
-    //En este caso, como max row = 1 en la tabla, solo UN registro podemos ingresar.
-    public function GetInfo()
+    public function GetLista()
     {
-    	return($this->Consultar("SELECT * FROM informacion;", true));
+    	return($this->Consultar("SELECT titulo, contenido FROM general;", true));
+    }
+	
+	public function GetPorTitulo($pTitulo)
+    {
+    	$this->Consultar("SELECT * FROM general WHERE titulo = $pTitulo;", false);
     }
     
 	//No podemos insertar nada en esta tabla, solo modificar
-    /*public function Insert()
+    public function Insert()
     {
-    	//$this->Consultar("INSERT INTO costo(nombre,valor,postgrado) VALUES ('$this->nombre',$this->valor,$this->postgrado);", false);
-    }*/
+    	$this->Consultar("INSERT INTO general(titulo,contenido) VALUES ('$this->titulo','$this->contenido');", false);
+    }
     
     public function Update()
     {
-    	$this->Consultar("UPDATE informacion SET nombre = '$this->nombre', telefono = $this->telefono, fax = $this->fax, email = $this->email;", false);// WHERE id = $this->id;
+    	$this->Consultar("UPDATE general SET contenido = '$this->contenido' WHERE titulo = '$this->titulo';"), false);
     }
-	
-	//Tampoco podemos borrar informacion
-	/*
+
 	public function Delete()
     {
-    	//$this->Consultar("DELETE FROM costo WHERE id = $this->id;", false);
-    }*/
+    	$this->Consultar("DELETE FROM general WHERE titulo = '$this->titulo';", false);
+    }
     
     function Consultar($Consulta, $GetLista)
     {
@@ -65,10 +65,8 @@ class cInformacion
     			{
         			while($row = $resultado->fetch_array()) 
         			{
-            			$this->nombre= $row[0];
-            			$this->telefono = $row[1];
-            			$this->fax = $row[2];
-            			$this->email = $row[3];
+            			$this->titulo= $row[0];
+            			$this->contenido = $row[1];
         			}
         			// liberar la memoria
     				$resultado->close();

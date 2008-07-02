@@ -691,6 +691,32 @@ INSERT INTO `foro_users` (`id`,`group_id`,`username`,`password`,`email`,`title`,
 
 
 --
+-- Definition of table `general`
+--
+
+DROP TABLE IF EXISTS `general`;
+CREATE TABLE `general` (
+  `titulo` varchar(50) NOT NULL,
+  `contenido` varchar(150) NOT NULL,
+  PRIMARY KEY  USING BTREE (`titulo`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='Tabla de contenido general de la Unidad de PostGrados';
+
+--
+-- Dumping data for table `general`
+--
+
+/*!40000 ALTER TABLE `general` DISABLE KEYS */;
+INSERT INTO `general` (`titulo`,`contenido`) VALUES 
+ ('secretaria','Verónica de Gonzáles'),
+ ('telsecre1','2484-0821'),
+ ('telsecre2','2484-0866'),
+ ('emailsecre1','veronica.jazmin@gmail.com'),
+ ('devel','Roberto C. Linares M., Rodrigo S. Amaya C.'),
+ ('ad','2008');
+/*!40000 ALTER TABLE `general` ENABLE KEYS */;
+
+
+--
 -- Definition of table `horario`
 --
 
@@ -714,29 +740,6 @@ CREATE TABLE `horario` (
 
 /*!40000 ALTER TABLE `horario` DISABLE KEYS */;
 /*!40000 ALTER TABLE `horario` ENABLE KEYS */;
-
-
---
--- Definition of table `informacion`
---
-
-DROP TABLE IF EXISTS `informacion`;
-CREATE TABLE `informacion` (
-  `nombre` varchar(100) NOT NULL,
-  `telefono` varchar(9) default NULL,
-  `fax` varchar(9) default NULL,
-  `email` varchar(45) NOT NULL,
-  PRIMARY KEY  (`nombre`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 MAX_ROWS=1 COMMENT='Informacion de Contacto la Unidad';
-
---
--- Dumping data for table `informacion`
---
-
-/*!40000 ALTER TABLE `informacion` DISABLE KEYS */;
-INSERT INTO `informacion` (`nombre`,`telefono`,`fax`,`email`) VALUES 
- ('Verónica de González','2484-0821',NULL,'veronica.jazmin@gmail.com');
-/*!40000 ALTER TABLE `informacion` ENABLE KEYS */;
 
 
 --
@@ -866,7 +869,7 @@ CREATE TABLE `postgrado` (
   `presentacion` text,
   `descripcion` text,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `postgrado`
@@ -875,7 +878,8 @@ CREATE TABLE `postgrado` (
 /*!40000 ALTER TABLE `postgrado` DISABLE KEYS */;
 INSERT INTO `postgrado` (`id`,`nombre`,`notaminima`,`totaluvs`,`cumminimo`,`abreviatura`,`maxalum`,`presentacion`,`descripcion`) VALUES 
  (1,'Maestría y Técnicas de Investigación Social',7,999,7.5,'MTIS',999,'La Maestría en Métodos y Técnicas de Investigación Social, es un esfuerzo de carácter academico que las actuales autoridades impulsan par contribuir a elevar la calidad cientifica academica en la formacion permanente de  profesionales especializados en el dominio de las principales corrientes metodologicas y en el manejo de herramientas tecnicas y procedimentales para la obtencion, procesamiento, analisis y presentacion de datos. Que contribuyan al desarrollo del conocimiento cientifico en El Salvador y puedan proponer soluciones concretas a los diversos problemas de la realidad social.','Objetivos:\r\nFormar teórica y metodológicamente recurso humano especializado en investigación cuantitativa y cualitativa que contribuya al desarrollo del conocimiento cientifico a nivel regional y nacional.\r\nDesarrollar competencias en la planificacion, ejecucion y presentacion de informes de investigacion.\r\nGenerar sensibilidad por el estudio de aquellas problematicas sociales de interés nacional, que permitan la reflexión, el análisis y la propuesta de alternativas de solución.\r\n\r\nPoblación a la que se dirige el programa:\r\nLicenciados, Ingenieros, Máster o Doctores graduados de la Universidad debidamente autorizados por el Ministerio de Educación.'),
- (2,'Maestría en Consultoría Empresarial',7,999,7.5,'MAECE',999,'El programa de Maestría en consultoría Empresarial se desarrollará desde la perspectiva de integración del directivo o empresario en el rol de los negocios, en forma amplia abordando situaciones de la realidad de consultoría empresarial con un enfoque teórico y práctico.\r\nPara adquirir estas destrezas se define el programa con la intención de formar profesionales que asuman responsabilidades, que sepan cooperar entre organizaciones y con las personas, desde el conocimiento eficaz de las diferentes áreas de la empresa, entendiéndola de mejor manera y adquiriendo las competencias particulares del área relacionadas con la cooperación, la especialización, las innovaciones tecnológicas y la globalización de los mercados.\r\nLa MAECE es la formación profesional orientada a la excelencia académica donde se fortalecen los conocimientos, particularmente los especializados en técnicas de gestión; fomenta las capacidades personales y directivas, conceptuales y analíticas de cada participante, necesarias en la empresa actual.','Vision:\r\nSer lideres en la formación de profesionales a nivel de maestría, mejorando continuamente la calidad académica e incorporando en los planes de estudio contenidos programáticos que faciliten la efectiva ejecución de la gestión y consultoría empresarial.\r\nMision:\r\nFormar profesionales con iniciativa par organizar unidades especificas de negocios, con elevada formación teórico-practica para enfrentar los retos que demande el actual desarrollo empresarial y social.');
+ (2,'Maestría en Consultoría Empresarial',7,999,7.5,'MAECE',999,'El programa de Maestría en consultoría Empresarial se desarrollará desde la perspectiva de integración del directivo o empresario en el rol de los negocios, en forma amplia abordando situaciones de la realidad de consultoría empresarial con un enfoque teórico y práctico.\r\nPara adquirir estas destrezas se define el programa con la intención de formar profesionales que asuman responsabilidades, que sepan cooperar entre organizaciones y con las personas, desde el conocimiento eficaz de las diferentes áreas de la empresa, entendiéndola de mejor manera y adquiriendo las competencias particulares del área relacionadas con la cooperación, la especialización, las innovaciones tecnológicas y la globalización de los mercados.\r\nLa MAECE es la formación profesional orientada a la excelencia académica donde se fortalecen los conocimientos, particularmente los especializados en técnicas de gestión; fomenta las capacidades personales y directivas, conceptuales y analíticas de cada participante, necesarias en la empresa actual.','Vision:\r\nSer lideres en la formación de profesionales a nivel de maestría, mejorando continuamente la calidad académica e incorporando en los planes de estudio contenidos programáticos que faciliten la efectiva ejecución de la gestión y consultoría empresarial.\r\nMision:\r\nFormar profesionales con iniciativa par organizar unidades especificas de negocios, con elevada formación teórico-practica para enfrentar los retos que demande el actual desarrollo empresarial y social.'),
+ (3,'Maestría en Profesionalización de la Docencia Superior',7,999,7.5,'MPDC',999,'La Maestría en Profesionalización de la Docencia Superior, cuenta ya con una generación de graduados en la Facultad Multidisciplinaria de Occidente y con una segund ageneración en proceso de formación.\r\nLas metas y finalidades de este pograma de Maestría se orientan a la construcción de la educación superior como objeto de estudio. En tal sentido, el programa es una maestría académica que busca por una parte la profesionalización, entendida como el dominio pertinente de las competencias técnico-pedagógicas para el ejercicio docente a nivel superior, y por otra, la generación de conocimientos mediante la investigación académica sobre los distintos niveles del sistema educativo nacional (Parvularia, Básica, Media, Superior, no universitaria y Universitaria); así como de aquellas experiencias de gestión, promoción, innovación y evaluación en los diversos ámbitos de la educación salvadoreña.','El programa de maestria en profesionalizacion de la docencia superior nacio en un convenio entre la Universidad de El Salvador (UES) y la facultad de estudios superiores cuautitlán de la Universidad Autónoma de México (UNAM) en 1994. Se han graduado ya de este programa, diversos profesionales que laboran en instituciones publicas y privadas de todo el país.\r\nVisión:\r\nLa alta formación de cuadros académicos y profesionales, así como la generación de conocimientos mediante la investigación del que hacer educativo de la zona occidental del país; con el objeto de fortalecer los procesos de enseñanza-aprendizaje en los distintos niveles del sistema educativo nacional y la producción académica en función de la cualificación de la educación en general y la universitaria en particular.\r\nMisión:\r\nLa construcción de la educación y de una docencia universitaria de la zona occidental del país, como objeto de estudio, y su visualización como fenómeno socio-cultural asequible desde una prespectiva teórica transdisciplinar y una práctica íntimamente ligada a los campos social, económico y político; tomando como base la enseñanza integral desd ela perspectiva teórica práctica en el enfoque metodológico del trabajo analítico.');
 /*!40000 ALTER TABLE `postgrado` ENABLE KEYS */;
 
 
@@ -942,7 +946,7 @@ CREATE TABLE `requisito` (
   PRIMARY KEY  (`id`),
   KEY `fk_postgrado_id_requisito` (`postgrado`),
   CONSTRAINT `fk_postgrado_id_requisito` FOREIGN KEY (`postgrado`) REFERENCES `postgrado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC COMMENT='tabla de requisitos de graduacion';
 
 --
 -- Dumping data for table `requisito`
@@ -964,7 +968,11 @@ INSERT INTO `requisito` (`id`,`nombre`,`postgrado`) VALUES
  (12,'Certificación global de notas y del titulo universitario, debidamente autenticado por el MINED.',2),
  (13,'Presentar hoja de vida actualizada con sus respectivos atestados.',2),
  (14,'Realizarse exámenes médicos de: heces, orina, hemograma, baciloscopía o radiografía de tórax, VDLR o serologia, con los cuales deberá tramitar una certificación de salud de bienestar universitario.',2),
- (15,'Los profesionales graduados en el exterior presentar original y copia del titulo universitario y certificación global de notas autenticados por el MRE y aprobados por la UES.',2);
+ (15,'Los profesionales graduados en el exterior presentar original y copia del titulo universitario y certificación global de notas autenticados por el MRE y aprobados por la UES.',2),
+ (16,'Aprobar las asignaturas y seminario del plan de estudios.',3),
+ (17,'Presentación del trabajo de graduación.',3),
+ (18,'Cumplimiento del servicio social (300 horas).',3),
+ (19,'Requisitos y trámites de graduación según los reglamentos de Administración Académica de la UES.',3);
 /*!40000 ALTER TABLE `requisito` ENABLE KEYS */;
 
 
