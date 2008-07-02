@@ -13,6 +13,9 @@ class cPostGrado
 	public $abreviatura;
 	public $maxalum;
 	
+	public $presentacion;
+	public $descripcion;
+	
 	public $error;
 	
 	// constructor
@@ -81,6 +84,8 @@ class cPostGrado
             			$this->comminimo = $row[4];
             			$this->abreviatura = $row[5];
             			$this->maxalum = $row[6];
+						$this->presentacion = $row[7];
+						$this->descripcion = $row[8];
         			}
         			// liberar la memoria
     				$resultado->close();
