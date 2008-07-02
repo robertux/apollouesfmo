@@ -5,15 +5,34 @@
 		var $contenido;
 		var $ancho;
 		var $tbox;
+		var $showAddWhenAdmin;
+		var $showEditWhenAdmin;
+		var $showDelWhenAdmin;
 		
-		public function Post($pTitulo="Titulo", $pContenido="Contenido", $pAncho=550){
+		public function Post($pTitulo="Titulo", $pContenido="Contenido", $pAncho=550, $pShowAddWhenAdmin=false, $pShowEditWhenAdmin=false, $pShowDelWhenAdmin=false){
 			$this->titulo = $pTitulo;
 			$this->contenido = $pContenido;
 			$this->ancho = $pAncho;
 			$this->tbox = new ToolBox();
+		 	$this->showAddWhenAdmin = $pShowAddWhenAdmin;			
+		 	$this->showEditWhenAdmin = $pShowEditWhenAdmin;
+			$this->showDelWhenAdmin = $pShowDelWhenAdmin;
+						
 		}
 		
 		public function ToString(){
+
+				$myUser = new cusuario();
+				$myUser->GetPorId($_SESSION["CurrentUser"]);
+				if($myUser->privilegio == "admin"){
+					if($this->showAddWhenAdmin)
+						$this->tbox->btnAdd->enabled = true;
+					if($this->showEditWhenAdmin)
+						$this->tbox->btnEdit->enabled = true;
+					if($this->showDelWhenAdmin)
+						$this->tbox->btnDel->enabled = true;
+				}
+
 			return "
 			<div id='Post' style='width: " . $this->ancho . "px;'>
     		<div id='PostTitle' style='width: " . ($this->ancho - 12) . "px;'>
@@ -39,6 +58,18 @@
 	class InnerPost extends Post{
 		
 		public function ToString(){
+			
+			$myUser = new cusuario();
+				$myUser->GetPorId($_SESSION["CurrentUser"]);
+				if($myUser->privilegio == "admin"){
+					if($this->showAddWhenAdmin)
+						$this->tbox->btnAdd->enabled = true;
+					if($this->showEditWhenAdmin)
+						$this->tbox->btnEdit->enabled = true;
+					if($this->showDelWhenAdmin)
+						$this->tbox->btnDel->enabled = true;
+				}
+			
 			return "
 			<div id='innerPost' style='width: " . $this->ancho . "px;'>
     		<div id='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>

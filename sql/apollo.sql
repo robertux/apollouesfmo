@@ -53,14 +53,12 @@ CREATE TABLE `alumno` (
 
 DROP TABLE IF EXISTS `asignacion`;
 CREATE TABLE `asignacion` (
-  `id` int(11) NOT NULL auto_increment,
-  `usuario` int(11) NOT NULL,
-  `privilegio` int(11) NOT NULL,
+  `id` int(10) unsigned NOT NULL,
+  `usuario` int(11) NOT NULL default '0',
+  `privilegio` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id`),
-  KEY `fk_usuario_id_asignacion` (`usuario`),
-  KEY `fk_privilegio_id_asignacion` (`privilegio`),
-  CONSTRAINT `fk_privilegio_id_asignacion` FOREIGN KEY (`privilegio`) REFERENCES `privilegio` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_usuario_id_asignacion` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `FK_asignacion_id_privilegio` (`privilegio`),
+  CONSTRAINT `FK_asignacion_id_privilegio` FOREIGN KEY (`privilegio`) REFERENCES `privilegio` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -68,6 +66,8 @@ CREATE TABLE `asignacion` (
 --
 
 /*!40000 ALTER TABLE `asignacion` DISABLE KEYS */;
+INSERT INTO `asignacion` (`id`,`usuario`,`privilegio`) VALUES 
+ (1,4,4);
 /*!40000 ALTER TABLE `asignacion` ENABLE KEYS */;
 
 
@@ -430,7 +430,7 @@ CREATE TABLE `foro_online` (
 
 /*!40000 ALTER TABLE `foro_online` DISABLE KEYS */;
 INSERT INTO `foro_online` (`user_id`,`ident`,`logged`,`idle`) VALUES 
- (2,'ramayac',1214863743,0);
+ (4,'robertux',1214967051,0);
 /*!40000 ALTER TABLE `foro_online` ENABLE KEYS */;
 
 
@@ -676,7 +676,7 @@ CREATE TABLE `foro_users` (
   PRIMARY KEY  (`id`),
   KEY `foro_users_registered_idx` (`registered`),
   KEY `foro_users_username_idx` (`username`(8))
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `foro_users`
@@ -685,7 +685,8 @@ CREATE TABLE `foro_users` (
 /*!40000 ALTER TABLE `foro_users` DISABLE KEYS */;
 INSERT INTO `foro_users` (`id`,`group_id`,`username`,`password`,`email`,`title`,`realname`,`url`,`jabber`,`icq`,`msn`,`aim`,`yahoo`,`location`,`use_avatar`,`signature`,`disp_topics`,`disp_posts`,`email_setting`,`save_pass`,`notify_with_post`,`show_smilies`,`show_img`,`show_img_sig`,`show_avatars`,`show_sig`,`timezone`,`language`,`style`,`num_posts`,`last_post`,`registered`,`registration_ip`,`last_visit`,`admin_note`,`activate_string`,`activate_key`) VALUES 
  (1,3,'Guest','Guest','Guest',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'English','Oxygen',0,NULL,0,'0.0.0.0',0,NULL,NULL,NULL),
- (2,1,'ramayac','d033e22ae348aeb5660fc2140aec35850c4da997','ramayac@gmail.com','Br.','Rodrigo Amaya','http://SrByte.blogspot.com',NULL,NULL,NULL,NULL,NULL,'Santa Ana',0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'English','Sulfur',3,1214767309,1211988301,'127.0.0.1',1214860451,NULL,NULL,NULL);
+ (2,1,'ramayac','d033e22ae348aeb5660fc2140aec35850c4da997','ramayac@gmail.com','Br.','Rodrigo Amaya','http://SrByte.blogspot.com',NULL,NULL,NULL,NULL,NULL,'Santa Ana',0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'English','Sulfur',3,1214767309,1211988301,'127.0.0.1',1214863743,NULL,NULL,NULL),
+ (4,4,'robertux','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8','foo@bar.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,-6,'Spanish','Minerva',0,NULL,1214966189,'127.0.0.1',1214966189,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `foro_users` ENABLE KEYS */;
 
 
@@ -916,9 +917,6 @@ CREATE TABLE `usuario` (
 --
 
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` (`id`,`clave`,`nombre`) VALUES 
- (1,'ninguno','ninguna'),
- (2,'password','robertux');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 

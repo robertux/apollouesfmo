@@ -34,8 +34,13 @@
 			<p id='PostInnerContent'>
 				<textarea name='content' cols='50' rows='15'></textarea>
 			</p>
-			");
-			$pst->tbox->btnEdit->enabled = true;
+			",550, false, true, false);
+			/*$myUser = new cusuario();
+			if($myUser->GetPorId($_SESSION["CurrentUser"])){
+				if($myUser->privilegio == "admin"){
+					$pst->tbox->btnEdit->enabled = true;
+				}
+			}*/
 			$pst->Show();
 		}
 		
@@ -82,7 +87,28 @@
 		}
 		
 		public function ShowNews(){
-			$pst = new Post("Noticias de la Unidad", "");
+			$postList = "";
+			
+			/*$tempNov = new cNovedades();
+			$tempNov->GetPorId(0);
+			$pstPst = new InnerPost($tempNov->titulo, substr($tempNov->descripcion,3, strlen($tempNov->descripcion) - 4), 530);
+			$postList .= $pstPst->ToString();*/
+			
+			$lastNovs = new cNovedades();
+			$novResult = $lastNovs->GetUltimos(10);
+			if($novResult->num_rows > 0){
+				while($arreglo = $novResult->fetch_array()){
+					$tempPost = new InnerPost("", "", 530, false, true, true);
+					$tempPost->titulo = substr($arreglo["fecha"],0,10) . " | " . $arreglo["titulo"];
+					$tempPost->contenido = substr($arreglo["descripcion"],3,strlen($arreglo["descripcion"])-4);
+					$postList .= $tempPost->ToString();
+				}				
+			}
+			else{
+				$tempPost = new InnerPost("No hay resultados", "No hay noticias que mostrar", 530);
+				$postList .= $tempPost->ToString();
+			}
+			$pst = new Post("Noticias de la Unidad", $postList);
 			$pst->Show();
 		}
 		
