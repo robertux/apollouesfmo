@@ -1,7 +1,7 @@
 <?php 
 include("cconexion.php");
 
-class cNovedades
+class cUtileria
 {
 	//que pena... poner publico esto :$
 	public $con;
@@ -10,7 +10,6 @@ class cNovedades
 	public $titulo;
 	public $vinculo; 
 	public $descripcion;
-	public $fecha;
 	
 	public $error;
 	
@@ -29,46 +28,40 @@ class cNovedades
     
     public function GetPorId($pId)
     {
-    	return($this->Consultar("SELECT id, titulo, vinculo, descripcion, fecha FROM novedades WHERE id = $pId;", false));
+    	return($this->Consultar("SELECT id, titulo, vinculo, descripcion FROM utileria WHERE id = $pId;", false));
     }
     
     //Obtenemos una lista (un resultset) de este objeto
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
     public function GetLista()
     {
-    	return($this->Consultar("SELECT id, titulo, vinculo, descripcion, fecha FROM novedades;", true));
+    	return($this->Consultar("SELECT id, titulo, vinculo, descripcion FROM utileria;", true));
     }
     
     public function GetUltimos($pNumero = 10)
     {
-    	return($this->Consultar("SELECT id, titulo, vinculo, descripcion, fecha FROM novedades ORDER BY fecha DESC LIMIT $pNumero;", true));
-    }
-    
-    public function GetParaWidget($pNumero = 5)
-    {
-    	return($this->Consultar("SELECT titulo, vinculo FROM novedades ORDER BY fecha DESC LIMIT $pNumero;", true));
+    	return($this->Consultar("SELECT id, titulo, vinculo, descripcion FROM utileria DESC LIMIT $pNumero;", true));
     }
     
     public function Insert()
     {
     	$this->Consultar("INSERT INTO 
-    	novedades(titulo, vinculo, descripcion, fecha)
-    	VALUES ('$this->titulo','$this->vinculo','$this->descripcion','$this->fecha');", false);
+    	utileria(titulo, vinculo, descripcion, fecha)
+    	VALUES ('$this->titulo','$this->vinculo','$this->descripcion');", false);
     }
     
     public function Update()
     {
-    	$this->Consultar("UPDATE novedades SET 
+    	$this->Consultar("UPDATE utileria SET 
     	titulo = '$this->titulo', 
     	vinculo = '$this->vinculo',
-    	descripcion = '$this->descripcion',
-    	fecha= '$this->fecha'  	
+    	descripcion = '$this->descripcion'   	
     	WHERE id = $this->id;", false);
     }
 	
 	public function Delete()
     {
-    	$this->Consultar("DELETE FROM novedades WHERE id = $this->id;", false);
+    	$this->Consultar("DELETE FROM utileria WHERE id = $this->id;", false);
     }
     
     //en este caso es necesario hacer publica esta funcion.
@@ -90,12 +83,11 @@ class cNovedades
     			{
         			while($row = $resultado->fetch_array()) 
         			{
-        				//id, titulo, vinculo, descripcion, fecha
+        				//id, titulo, vinculo, descripcion
 	            		$this->id = $row[0];
     	        		$this->titulo = $row[1];
         	    		$this->vinculo = $row[2];
         	    		$this->descripcion = $row[3];
-						$this->fecha = $row[4];
         			}
         			// liberar la memoria
     				$resultado->close();
