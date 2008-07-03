@@ -53,7 +53,7 @@
 					<a href='$this->targetURL'><img src='$this->imgURL' alt='$this->alt' /></a>
 				";*/
 				return"
-					<input type='button' title='$this->title' id='$this->id' onClick='$this->onClick' />
+					<input type='button' title='$this->title' id='$this->id' onClick=\"$this->onClick\" />
 				";
 			else
 				return "";
