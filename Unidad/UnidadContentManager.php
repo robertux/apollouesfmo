@@ -31,9 +31,7 @@
 			<p id='PostInnerContent'>Vivamus quis tellus id enim tempor semper. Nullam mi. Quisque ante augue, feugiat at, malesuada at, fringilla quis, risus. Suspendisse lectus. Sed luctus arcu in elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus rutrum lacinia neque. Nunc a orci. Curabitur dignissim, ipsum at sodales pretium, arcu sem ultricies erat, egestas molestie tortor tellus id justo. Proin mollis imperdiet elit. Quisque leo. Vivamus gravida leo quis erat. Fusce purus. Donec mauris dui, facilisis in, consectetuer et, cursus vitae, ante. Mauris urna. Ut id tellus. Cras dolor nisi, blandit eget, interdum quis, congue vel, nunc.</p>
 
 			<p id='PostInnerContent'>Vivamus vitae massa. Maecenas tortor. Cras rhoncus urna et metus. Nulla commodo, risus eget tristique blandit, augue tellus vulputate pede, nec porttitor nibh augue a nibh. Nam sagittis nulla in elit dignissim scelerisque. Aliquam erat volutpat. Curabitur feugiat bibendum augue. Mauris ultrices, massa ut viverra euismod, nunc est lacinia urna, eget eleifend turpis enim id nisi. Proin semper nunc ut sapien. Nullam sagittis vestibulum lacus. Praesent in turpis eu ligula convallis fringilla. Aliquam erat volutpat. In adipiscing ante et odio. Integer enim enim, sollicitudin sit amet, posuere in, ultrices vel, tortor. In fringilla, augue congue blandit rhoncus, lectus ipsum vehicula mauris, et pharetra sapien est vitae diam. Cras convallis ipsum nec velit. Vestibulum rhoncus feugiat tellus. </p>
-			<p id='PostInnerContent'>
-				<textarea name='content' cols='50' rows='15'></textarea>
-			</p>
+			
 			",550, false, true, false);
 			/*$myUser = new cusuario();
 			if($myUser->GetPorId($_SESSION["CurrentUser"])){
@@ -108,7 +106,7 @@
 				$tempPost = new InnerPost("No hay resultados", "No hay noticias que mostrar", 530);
 				$postList .= $tempPost->ToString();
 			}
-			$pst = new Post("Noticias de la Unidad", $postList);
+			$pst = new Post("Noticias de la Unidad", $postList, 550, true, false, false);
 			$pst->Show();
 		}
 		

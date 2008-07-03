@@ -21,24 +21,47 @@
 	float: left;
 }
 
-#innerTitle{
+.innerTitle{
 	position: relative;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	text-align: left;
 	font-size: 14px;
 	color: #aa2222;
-/*	border-style: solid;
+	border-style: solid;
+	/*border-color: black;*/
+	border-width: 0px;
+	width: 80%;
+	/*make me look like a label */
+	cursor: default;
+	background-color: transparent;
+}
+
+.innerTitleEdit{
+	position: relative;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-align: left;
+	font-size: 14px;
+	color: #aa2222;
+	border-style: solid;
 	border-color: black;
-	border-width: 1px;*/
+	border-width: 1px;
 	width: 80%;
 }
 
-#innerContent {
+.PostContent{
+	/*border-style: solid;
+	border-color: black;
+	border-width: 1px;*/
 	color: black;
-	position: relative;	
+	position: relative;
 	padding-top: 35px;
 	margin: 10px 10px  10px 10px;
+}
+
+.innerContent {
+	
 	/*border-style: solid;
 	border-color: black;
 	border-width: 1px;*/

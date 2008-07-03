@@ -32,16 +32,18 @@
 					if($this->showDelWhenAdmin)
 						$this->tbox->btnDel->enabled = true;
 				}
+				
+				//$this->tbox->btnEdit->onClick="tinyMCE.execCommand('mceRemoveControl', false, 'foobar');";
 
 			return "
-			<div id='Post' style='width: " . $this->ancho . "px;'>
+			<div id='Post' style='width: " . $this->ancho . "px;' >
     		<div id='PostTitle' style='width: " . ($this->ancho - 12) . "px;'>
-				" . $this->tbox->ToString() . "<p id='innerTitle'>$this->titulo</p>
+				" . $this->tbox->ToString() . "<input type='text' class='innerTitle' value='$this->titulo' />
 			</div>
-			<div id='PostContent'>
-			    <p id='innerContent'>
+			<div class='PostContent'>
+			    <div id='foobar' class='innerContent' disabled='true' cols='80' rows='0' visible='false'>
 					$this->contenido
-				</p>
+				</div>
 			</div>
    		</div>
 			
