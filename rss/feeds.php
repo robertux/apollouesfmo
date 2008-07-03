@@ -16,6 +16,7 @@ class GenerarFeedsPostGrado
 {
 	public $generare;
 	private $rss;
+	public $salida;
 	
 	// constructor
     public function __construct() 
@@ -81,9 +82,11 @@ class GenerarFeedsPostGrado
 		{
 			$this->FeedError();
 		}
-		$this->rss->saveFeed("RSS2.0", "postgrado-novedades.xml"); 
+		//$this->rss->saveFeed("RSS2.0", "postgrado-novedades.xml"); 
+		$this->salida = $this->rss->createFeed();
 	}
 	
+	//Cursos o PostGrados???
 	private function Cursos()
 	{
 		$this->rss->title = "Cursos";
@@ -114,7 +117,8 @@ class GenerarFeedsPostGrado
 		{*/
 			$this->FeedError();
 		//}
-		$this->rss->saveFeed("RSS2.0", "postgrado-cursos.xml"); 
+		//$this->rss->saveFeed("RSS2.0", "postgrado-cursos.xml"); 
+		//$this->salida = $this->rss->createFeed();
 	}
 	
 	private function Foros()
@@ -153,7 +157,9 @@ class GenerarFeedsPostGrado
 		{
 			$this->FeedError();
 		}
-		$this->rss->saveFeed("RSS2.0", "postgrado-foros.xml"); 
+		//$this->rss->saveFeed("RSS2.0", "postgrado-foros.xml"); 
+		
+		$this->salida = $this->rss->createFeed();
 	}
 	
 	private function FeedError()
@@ -166,13 +172,17 @@ class GenerarFeedsPostGrado
     	$item->date = $now->rfc822();
     	$item->source = URL;
     	$item->author = UNIDAD;
-    	$this->rss->addItem($item);	
+    	$this->rss->addItem($item);
+    		
+    	$this->salida = $this->rss->createFeed();
 	}
 	
 }
 
 $gfpg = new GenerarFeedsPostGrado();
 $gfpg->generare = $_GET[genera]; 
-//$gfpg->generare = "foro";
 $gfpg->Genero();
+
+header('Content-type: application/xml');
+echo $gfpg->salida;
 ?>
