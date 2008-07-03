@@ -417,8 +417,8 @@ class FeedCreator extends HtmlDescribable {
      * @access private
      */
     function _generateFilename() {
-        $fileInfo = pathinfo($_SERVER["PHP_SELF"]);
-        return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".xml";
+        //$fileInfo = pathinfo($_SERVER["PHP_SELF"]);
+        //return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".xml";
     }
     
     function _redirect($filename) {
@@ -468,19 +468,21 @@ class FeedCreator extends HtmlDescribable {
      * @param redirect    boolean    optional    send an HTTP redirect header or not. If true, the user will be automatically redirected to the created file.
      */
     function saveFeed($filename="", $displayContents=true) {
-        if ($filename=="") {
-            $filename = $this->_generateFilename();
-        }
-        $feedFile = fopen($filename, "w+");
-        if ($feedFile) {
-            fputs($feedFile,$this->createFeed());
-            fclose($feedFile);
-            if ($displayContents) {
-                $this->_redirect($filename);
-            }
-        } else {
+        //if ($filename=="") {
+            //$filename = $this->_generateFilename();
+            //$filename = $fileInfo["basename"] . ".xml";
+        //}
+        //$feedFile = fopen($filename, "w+");
+        //if ($feedFile) {
+            //fputs($feedFile,$this->createFeed());
+            //fclose($feedFile);
+            //if ($displayContents) {
+                //$this->_redirect($filename);
+                //$this->_redirect($this->createFeed());
+            //}
+        /*} else {
             echo "<br /><b>Error creating feed file, please check write permissions.</b><br />";
-        }
+        }*/
     }
     
 }
@@ -754,8 +756,8 @@ class HTMLCreator extends FeedCreator {
      * @access private
      */
     function _generateFilename() {
-        $fileInfo = pathinfo($_SERVER["PHP_SELF"]);
-        return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".html";
+        //$fileInfo = pathinfo($_SERVER["PHP_SELF"]);
+        //return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".html";
     }
 }
 ?>
