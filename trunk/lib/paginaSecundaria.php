@@ -28,9 +28,11 @@
 			echo "<link rel=\"stylesheet\" href=\"../css/tables.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
 			echo "<link rel=\"stylesheet\" href=\"../css/toolbox.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";			
 			//Y ahora...... tatatatannnnn. LOS JAVASCRIPT! efectos efectos efectos!
+			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/prototype.js\"></script>";
+			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/EditInPlace.js\"></script>";
 			
 			//TinyMCE:
-			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/tiny_mce/tiny_mce.js\"></script>";
+			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/tiny_mce/tiny_mce.js\"></script>";			
 			echo "
 				<script language=\"javascript\" type=\"text/javascript\">
 					tinyMCE.init({

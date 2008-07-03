@@ -1,4 +1,4 @@
-#toolbox{
+.toolbox{
 	/*position: absolute;*/
 	float: right;
 	/*background-color: none;
@@ -8,17 +8,20 @@
 	height: 20px;*/
 }
 
-#add, #edit, #del{	
+.add, .edit, .del, .sav, .can{	
 	border: 0px solid #FF0000;
 	background-color: transparent;
 	cursor: pointer;
 	height: 16px;
-	width: 16px;
-	
+	width: 16px;	
 }
 
-#add{ background-image: url('../Media/page_white_add.png'); }
+.add{ background-image: url('../Media/page_white_add.png'); }
 
-#edit{ background-image: url('../Media/page_white_edit.png'); }
+.edit{ background-image: url('../Media/page_white_edit.png'); }
 
-#del{ background-image: url('../Media/page_white_delete.png'); }
+.del{ background-image: url('../Media/page_white_delete.png'); }
+
+.sav{ background-image: url('../Media/accept.png'); display: none }
+
+.can{ background-image: url('../Media/cancel.png'); display: none; }
