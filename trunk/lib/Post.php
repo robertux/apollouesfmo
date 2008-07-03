@@ -36,8 +36,8 @@
 				//$this->tbox->btnEdit->onClick="tinyMCE.execCommand('mceRemoveControl', false, 'foobar');";
 
 			return "
-			<div id='Post' style='width: " . $this->ancho . "px;' >
-    		<div id='PostTitle' style='width: " . ($this->ancho - 12) . "px;'>
+			<div class='Post' style='width: " . $this->ancho . "px;' >
+    		<div class='PostTitle' style='width: " . ($this->ancho - 12) . "px;'>
 				" . $this->tbox->ToString() . "<input type='text' class='innerTitle' value='$this->titulo' />
 			</div>
 			<div class='PostContent'>
@@ -73,14 +73,14 @@
 				}
 			
 			return "
-			<div id='innerPost' style='width: " . $this->ancho . "px;'>
-    		<div id='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
-				"  . $this->tbox->ToString() . "<p id='innerTitle'>$this->titulo</p>
+			<div class='innerPost' style='width: " . $this->ancho . "px;'>
+    		<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
+				"  . $this->tbox->ToString() . "<p class='innerTitle'>$this->titulo</p>
 			</div>
-			<div id='PostContent'>
-			    <p id='innerContent'>
+			<div class='PostContent'>
+			    <div class='innerContent'>
 					$this->contenido
-				</p>
+				</div>
 			</div>
    		</div>
 			
@@ -93,14 +93,14 @@
 		
 		public function ToString(){
 			return "
-			<div id='innerInnerPost' style='width: " . $this->ancho . "px;'>
-    		<div id='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
-				" . $this->tbox->ToString() . "<p id='innerTitle'>$this->titulo</p>
+			<div class='innerInnerPost' style='width: " . $this->ancho . "px;'>
+    		<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
+				" . $this->tbox->ToString() . "<p class='innerTitle'>$this->titulo</p>
 			</div>
-			<div id='PostContent'>
-			    <p id='innerContent'>
+			<div class='PostContent'>
+			    <div class='innerContent'>
 					$this->contenido
-				</p>
+				</div>
 			</div>
    		</div>
 			
