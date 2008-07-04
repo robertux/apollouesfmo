@@ -2,7 +2,7 @@
  * @author Robertux
  */
 
-function EditText(idTxt){
+function EditPost(idTxt){
 	
 	//Cambiamos la clase CSS del control Texto, para que permita modificar su texto
 	document.getElementById("txt-" + idTxt).disabled = false;
@@ -24,7 +24,7 @@ function EditText(idTxt){
 	tinyMCE.execCommand('mceAddControl', false, ("area-" + idTxt));
 }
 
-function SaveText(idTxt){
+function SavePost(idTxt){
 	
 	//Cambiamos la clase CSS del control Texto, para que ya no permita modificar su texto	
 	document.getElementById("txt-" + idTxt).disabled = true;	
@@ -45,6 +45,36 @@ function SaveText(idTxt){
 	tinyMCE.execCommand('mceRemoveControl', false, "area-" + idTxt);
 }
 
-function CancelText(idTxt){
-	SaveText(idTxt);
+function CancelPost(idTxt){
+	SavePost(idTxt);
+}
+
+function AddPost(idPost){
+	
+	var newPost =
+	" <div id='pst-NuevoPost' class='innerPost' style='width: 530px;'> " +
+	" 	<div class='PostTitle' style='width: 526px;'> " +
+	"			<div class='toolbox'>			   " +
+	"				<input type='button' id='edit-NuevoPost' title='editar' class='edit' onClick=\"EditPost('NuevoPost')\" /> " +
+	"				<input type='button' id='del-NuevoPost' title='eliminar' class='del' onClick=\"DelPost('NuevoPost')\" /> " +
+	"				<input type='button' id='sav-NuevoPost' title='guardar' class='sav' onClick=\"SavePost('NuevoPost')\" /> " +
+	"				<input type='button' id='can-NuevoPost' title='cancelar' class='can' onClick=\"CancelPost('NuevoPost')\" /> " +
+	"			</div> " +
+	"		<input type='text' id='txt-NuevoPost' class='innerTitle' value='Nuevo Post' disabled='true' /> " +
+	"		</div> " +
+	"		<div id='cont-NuevoPost' class='PostContent'> " +
+	"		    <div id='area-NuevoPost' class='innerContent'> " +
+	"				Contenido del nuevo post " +
+	"			</div> " +
+	"		</div> " +
+   	"	</div> "
+   	" </div> "	
+		
+	document.getElementById("area-" + idPost).innerHTML = newPost + document.getElementById("area-" + idPost).innerHTML;
+}
+
+function DelPost(idPost){
+	
+	document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
+	
 }
