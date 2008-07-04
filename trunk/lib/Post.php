@@ -32,17 +32,19 @@
 						$this->tbox->btnDel->enabled = true;
 				}
 				
-				$this->tbox->btnEdit->onClick = "EditText('$this->titulo')";
+				$this->tbox->btnEdit->onClick = "EditPost('$this->titulo')";
 				$this->tbox->btnAdd->id = "add-$this->titulo";
+				$this->tbox->btnAdd->onClick = "AddPost('$this->titulo')";
 				$this->tbox->btnEdit->id = "edit-$this->titulo";
-				$this->tbox->btnDel->id = "del-$this->titulo";				
+				$this->tbox->btnDel->id = "del-$this->titulo";
+				$this->tbox->btnDel->onClick = "DelPost('$this->titulo')";
 				$this->tbox->btnSave->id = "sav-$this->titulo";
-				$this->tbox->btnSave->onClick = "SaveText('$this->titulo')";
+				$this->tbox->btnSave->onClick = "SavePost('$this->titulo')";
 				$this->tbox->btnCancel->id = "can-$this->titulo";
-				$this->tbox->btnCancel->onClick = "CancelText('$this->titulo')";
+				$this->tbox->btnCancel->onClick = "CancelPost('$this->titulo')";
 
 			return "
-			<div class='Post' style='width: " . $this->ancho . "px;' >
+			<div id='pst-$this->titulo' class='Post' style='width: " . $this->ancho . "px;' >
     		<div class='PostTitle' style='width: " . ($this->ancho - 12) . "px;'>
 				" . $this->tbox->ToString() . "<input type='text' id='txt-$this->titulo' class='innerTitle' value='$this->titulo' disabled='true' />
 			</div>
@@ -79,17 +81,17 @@
 					$this->tbox->btnDel->enabled = true;
 			}						
 			
-				$this->tbox->btnEdit->onClick = "EditText('$this->titulo')";
+				$this->tbox->btnEdit->onClick = "EditPost('$this->titulo')";
 				$this->tbox->btnAdd->id = "add-$this->titulo";
 				$this->tbox->btnEdit->id = "edit-$this->titulo";
 				$this->tbox->btnDel->id = "del-$this->titulo";				
 				$this->tbox->btnSave->id = "sav-$this->titulo";
-				$this->tbox->btnSave->onClick = "SaveText('$this->titulo')";
+				$this->tbox->btnSave->onClick = "SavePost('$this->titulo')";
 				$this->tbox->btnCancel->id = "can-$this->titulo";
-				$this->tbox->btnCancel->onClick = "CancelText('$this->titulo')";
+				$this->tbox->btnCancel->onClick = "CancelPost('$this->titulo')";
 			
 			return "
-			<div class='innerPost' style='width: " . $this->ancho . "px;'>
+			<div id='pst-$this->titulo' class='innerPost' style='width: " . $this->ancho . "px;'>
     		<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
 				"  . $this->tbox->ToString() . "<input type='text' id='txt-$this->titulo' class='innerTitle' value='$this->titulo' disabled='true' />
 			</div>
@@ -120,17 +122,17 @@
 					$this->tbox->btnDel->enabled = true;
 			}
 			
-				$this->tbox->btnEdit->onClick = "EditText('$this->titulo')";
+				$this->tbox->btnEdit->onClick = "EditPost('$this->titulo')";
 				$this->tbox->btnAdd->id = "add-$this->titulo";
 				$this->tbox->btnEdit->id = "edit-$this->titulo";
 				$this->tbox->btnDel->id = "del-$this->titulo";				
 				$this->tbox->btnSave->id = "sav-$this->titulo";
-				$this->tbox->btnSave->onClick = "SaveText('$this->titulo')";
+				$this->tbox->btnSave->onClick = "SavePost('$this->titulo')";
 				$this->tbox->btnCancel->id = "can-$this->titulo";
-				$this->tbox->btnCancel->onClick = "CancelText('$this->titulo')";
+				$this->tbox->btnCancel->onClick = "CancelPost('$this->titulo')";
 			
 			return "
-			<div class='innerInnerPost' style='width: " . $this->ancho . "px;'>
+			<div id='pst-$this->titulo' class='innerInnerPost' style='width: " . $this->ancho . "px;'>
     		<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
 				" . $this->tbox->ToString() . "<input type='text' id='txt-$this->titulo' class='innerTitle' value='$this->titulo' disabled='true' />
 			</div>
