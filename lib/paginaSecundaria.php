@@ -37,7 +37,7 @@
 				<script language=\"javascript\" type=\"text/javascript\">
 					tinyMCE.init({
 					mode : \"textareas\",
-					width: \"540\",
+					
 					
 					theme : \"advanced\",
 					plugins : \"iespell,advimage\",
@@ -51,6 +51,10 @@
 					theme_advanced_toolbar_align : \"left\",
 					theme_advanced_statusbar_location : \"bottom\",
 					theme_advanced_resizing : true,
+					
+					
+
+					
 					});										
 					
 				</script>
