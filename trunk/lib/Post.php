@@ -52,7 +52,7 @@
 			    <div id='area-$this->titulo' class='innerContent'>
 					$this->contenido
 				</div>
-				
+				<input type='hidden' id='tmp-$this->titulo' value=''/>
 			</div>
    		</div>
 			
@@ -84,7 +84,8 @@
 				$this->tbox->btnEdit->onClick = "EditPost('$this->titulo')";
 				$this->tbox->btnAdd->id = "add-$this->titulo";
 				$this->tbox->btnEdit->id = "edit-$this->titulo";
-				$this->tbox->btnDel->id = "del-$this->titulo";				
+				$this->tbox->btnDel->id = "del-$this->titulo";
+				$this->tbox->btnDel->onClick = "DelPost('$this->titulo')";		
 				$this->tbox->btnSave->id = "sav-$this->titulo";
 				$this->tbox->btnSave->onClick = "SavePost('$this->titulo')";
 				$this->tbox->btnCancel->id = "can-$this->titulo";
@@ -99,6 +100,7 @@
 			    <div id='area-$this->titulo' class='innerContent'>
 					$this->contenido
 				</div>
+				<input type='hidden' id='tmp-$this->titulo' value=''/>
 			</div>
    		</div>
 			
@@ -125,7 +127,8 @@
 				$this->tbox->btnEdit->onClick = "EditPost('$this->titulo')";
 				$this->tbox->btnAdd->id = "add-$this->titulo";
 				$this->tbox->btnEdit->id = "edit-$this->titulo";
-				$this->tbox->btnDel->id = "del-$this->titulo";				
+				$this->tbox->btnDel->id = "del-$this->titulo";
+				$this->tbox->btnDel->onClick = "DelPost('$this->titulo')";		
 				$this->tbox->btnSave->id = "sav-$this->titulo";
 				$this->tbox->btnSave->onClick = "SavePost('$this->titulo')";
 				$this->tbox->btnCancel->id = "can-$this->titulo";
@@ -140,6 +143,7 @@
 			    <div id='area-$this->titulo' class='innerContent'>
 					$this->contenido
 				</div>
+				<input type='hidden' id='tmp-$this->titulo' value=''/>
 			</div>
    		</div>
 			
