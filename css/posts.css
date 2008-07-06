@@ -56,7 +56,9 @@
 	border-width: 1px;*/
 	color: black;
 	position: relative;
-	padding-top: 35px;
+	padding-top: 18px;
+	padding-bottom: 10px;
+	top: 15px;
 	margin: 10px 10px  10px 10px;
 }
 
@@ -99,4 +101,9 @@
 	text-align: left;
 	font-size: 14px;
 	color: #686C7A;
+}
+
+table {
+	position: relative;
+	left: 0px;
 }
