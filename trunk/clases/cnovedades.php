@@ -31,6 +31,11 @@ class cNovedades
     {
     	return($this->Consultar("SELECT id, titulo, vinculo, descripcion, fecha FROM novedades WHERE id = $pId;", false));
     }
+	
+	public function GetPorTitulo($pTitulo)
+    {
+    	return($this->Consultar("SELECT id, titulo, vinculo, descripcion, fecha FROM novedades WHERE titulo = '$pTitulo';", true));
+    }
     
     //Obtenemos una lista (un resultset) de este objeto
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
