@@ -37,9 +37,9 @@
 			$cmpds = new CursoMPDS();
 
 			$pstCursoMAF = new InnerPost($cmaf->GetTitulo(), $cmaf->GetDescripcionActual(), 530);
-			$pstCursoMAF->tbox->btnEdit->enabled = true;
+			$pstCursoMAF->tbox->btnEdit->visible = true;
 			$pstCursoMPDS = new InnerPost($cmpds->GetTitulo(), $cmpds->GetDescripcionActual(), 530);
-			$pstCursoMPDS->tbox->btnEdit->enabled = true;
+			$pstCursoMPDS->tbox->btnEdit->visible = true;
 			
 			$pst = new Post("Maestrias Actuales", $pstCursoMAF->ToString() . $pstCursoMPDS->ToString());			
 			$pst->Show();
@@ -50,9 +50,9 @@
 			$cmpds = new CursoMPDS();
 
 			$pstCursoMAF = new InnerPost($cmaf->GetTitulo(), $cmaf->GetDescripcionProximo(), 530);
-			$pstCursoMAF->tbox->btnEdit->enabled = true;
+			$pstCursoMAF->tbox->btnEdit->visible = true;
 			$pstCursoMPDS = new InnerPost($cmpds->GetTitulo(), $cmpds->GetDescripcionProximo(), 530);
-			$pstCursoMPDS->tbox->btnEdit->enabled = true;
+			$pstCursoMPDS->tbox->btnEdit->visible = true;
 			
 			$pst = new Post("Maestrias Proximas", $pstCursoMAF->ToString() . $pstCursoMPDS->ToString());
 			$pst->Show();
@@ -84,12 +84,12 @@
 				</table>
 			",500);
 			
-			$pstEv1->tbox->btnEdit->enabled = true;
-			$pstEv1->tbox->btnDel->enabled = true;
-			$pstEv2->tbox->btnEdit->enabled = true;
-			$pstEv2->tbox->btnDel->enabled = true;
-			$pstEv3->tbox->btnEdit->enabled = true;
-			$pstEv3->tbox->btnDel->enabled = true;
+			$pstEv1->tbox->btnEdit->visible = true;
+			$pstEv1->tbox->btnDel->visible = true;
+			$pstEv2->tbox->btnEdit->visible = true;
+			$pstEv2->tbox->btnDel->visible = true;
+			$pstEv3->tbox->btnEdit->visible = true;
+			$pstEv3->tbox->btnDel->visible = true;
 			
 			$pst = new Post("Eventos de las Maestrias", $pstEv1->ToString() . $pstEv2->ToString() . $pstEv3->ToString());
 			$pst->Show();

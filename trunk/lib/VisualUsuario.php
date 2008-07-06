@@ -3,12 +3,15 @@
 	//include_once("Usuario.php");
 	define("RUTA", realpath("../"));
 	require_once(RUTA."/clases/cusuario.php");
+	require_once(RUTA."/lib/SearchBox.php");
 
     class VisualUsuario{
     	public $usr;
+		var $sBox;
 		
 		function VisualUsuario(){
-			$usr = new cUsuario();
+			$this->usr = new cUsuario();
+			$this->sBox = new SearchBox();
 		}
 		
 		//Muestra el loginBox, en base a una accion (login/logout) y a las variables de sesion
@@ -63,32 +66,35 @@
 		//Muestra un mensaje de bienvenida con el nombre del usuario logueado mas el boton para desloguearse
 		function ShowUserInfo(){
 			echo("
-			<form id='frmLogout' action='index.php?action=logout' method='POST' accept-charset='utf-8'>				
-				<p>
+			<form id='frmLogout' action='index.php?action=logout' method='POST' accept-charset='utf-8'>					
+
 					<div class='LoginBoxFrame'>
 						<div class='LoginBoxInnerFrame'>
 							<label for='btnSubmit' class='lblInput'>Bienvenido <b>" . $this->usr->nombre . " [" . $this->usr->privilegio . "]</b></label>
 							<input type='submit' id='btnSubmit' value='Cerrar Sesion' class='btnSubmit'/>
+							" . $this->sBox->ToString() . "
 						</div>
 					</div>
-				</p>
+
 			</form>
 			");
 		}
 		
 		//Muestra el cuadro de login con sus textbox y boton submit. Alternativamente puede mostrar un mensaje de error
 		function ShowLoginBox($errorMsg){
+			$action = "";
 			echo("
-			<form id='frmLogin' action='index.php?action=login' method='POST' accept-charset='utf-8'>
-						<p>
-							<div class='LoginBoxFrame'>
-								<div class='LoginBoxInnerFrame'>
-									<label for='txtNombre' class='lblInput'>usuario: </label>
-									<input type='text' id='txtNombre' name='txtNombre' class='txtInput'/>
-									<label for='txtClave' class='lblInput'>clave: </label>
-									<input type='password' id='txtClave' name='txtClave' class='txtInput' />
-									<input type='submit' id='btnSubmit' value='Iniciar Sesion' class='btnSubmit'/>
-						");
+				<form id='frmLogin' action='index.php?action=login' method='POST' accept-charset='utf-8'>
+					<p>
+						<div class='LoginBoxFrame'>
+							<div class='LoginBoxInnerFrame'>
+								<label for='txtNombre' class='lblInput'>usuario: </label>
+								<input type='text' id='txtNombre' name='txtNombre' class='txtInput'/>
+								<label for='txtClave' class='lblInput'>clave: </label>
+								<input type='password' id='txtClave' name='txtClave' class='txtInput' />
+								<input type='submit' id='btnSubmit' value='Iniciar Sesion' class='btnSubmit'/>
+								" . $this->sBox->ToString() . "
+				");
             if($errorMsg != "")
                 echo("<input type='label' class='errorMsg' value='$errorMsg' />");                    
              echo("</div></div></p></form>");
