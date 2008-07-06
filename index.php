@@ -9,10 +9,14 @@
 	$mcm = new MainContentManager();
 ?>
    		<div id="loginBox">
-			<?php
-				$vuser = new VisualUsuario();
-				$vuser->Show();
-			?>
+
+				<div class='LoginBoxFrame'>
+				<?php
+					$vuser = new VisualUsuario();
+					$vuser->Show();
+				?>				
+				</div>
+
 		</div>
     	<div id="fondoPrincipal">
     		<div id="contenidoPrincipal">

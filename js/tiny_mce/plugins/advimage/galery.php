@@ -20,7 +20,7 @@ global $GDok,$IMGFOLDER,$IMGURL,$AUDIOICON,$VIDEOICON;
 $GDok = TRUE;
 // ------------ config section --------------------
 $IMGFOLDER = '../../../../Media/uploads/';
-$IMGURL = 'http://localhost/Media/uploads/';
+$IMGURL = 'http://localhost/apollo/Media/uploads';
 $VIDEOICON = 'video.jpg';
 $AUDIOICON = 'audio.jpg';
 // language setting   en

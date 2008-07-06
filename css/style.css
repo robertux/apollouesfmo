@@ -22,7 +22,7 @@ a:hover {
 	cursor: pointer;
 }
 #wrap {
-	width:900px;
+	width:920px;
 	text-align:left;
 	margin:0 auto;
 }
@@ -33,9 +33,9 @@ a:hover {
 
 
 /* header */
-#header { position:relative; height:111px;  background:url(../Media/style/hd2.png); left: 6px; }
+#header { position:relative; height:111px;  background:url(../Media/style/hd2.png); /*left: 6px;*/ margin-left: 6px; }
 
-#logo {position:relative; top:30px; left:80px}
+#logo {position:relative; top:30px; /*left:80px*/ padding-left: 80px; }
 #logo h1 {
 	font-size:34px;
 	color: #9B3535
