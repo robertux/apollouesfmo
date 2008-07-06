@@ -2,51 +2,69 @@
  * @author Robertux
  */
 
-function EditPost(idTxt){
-	
+function EnablePost(idPost){
 	//Cambiamos la clase CSS del control Texto, para que permita modificar su texto
-	document.getElementById("txt-" + idTxt).disabled = false;
-	document.getElementById("txt-" + idTxt).className = "innerTitleEdit";
-	document.getElementById("txt-" + idTxt).focus();
+	document.getElementById("txt-" + idPost).disabled = false;
+	document.getElementById("txt-" + idPost).className = "innerTitleEdit";
+	document.getElementById("txt-" + idPost).focus();
 	
 	//Ocultamos los botones de agregar/editar/eliminar
-	if(document.getElementById("add-" + idTxt) != null)
-		document.getElementById("add-" + idTxt).style.display = "none";
-	if(document.getElementById("edit-" + idTxt) != null)		
-		document.getElementById("edit-" + idTxt).style.display = "none";
-	if(document.getElementById("del-" + idTxt) != null)
-		document.getElementById("del-" + idTxt).style.display = "none";
+	if(document.getElementById("add-" + idPost) != null)
+		document.getElementById("add-" + idPost).style.display = "none";
+	if(document.getElementById("edit-" + idPost) != null)		
+		document.getElementById("edit-" + idPost).style.display = "none";
+	if(document.getElementById("del-" + idPost) != null)
+		document.getElementById("del-" + idPost).style.display = "none";
 	//mostramos los botones de guardar/cancelar
-	document.getElementById("sav-" + idTxt).style.display = "inline";
-	document.getElementById("can-" + idTxt).style.display = "inline";
+	document.getElementById("sav-" + idPost).style.display = "inline";
+	document.getElementById("can-" + idPost).style.display = "inline";
 	
 	//activamos el TinyMCE para que se aplique al <div class='innerContent'>
-	tinyMCE.execCommand('mceAddControl', false, ("area-" + idTxt));
+	tinyMCE.execCommand('mceAddControl', false, ("area-" + idPost));
 }
 
-function SavePost(idTxt){
-	
+function DisablePost(idPost){
 	//Cambiamos la clase CSS del control Texto, para que ya no permita modificar su texto	
-	document.getElementById("txt-" + idTxt).disabled = true;	
-	document.getElementById("txt-" + idTxt).className = "innerTitle";
+	document.getElementById("txt-" + idPost).disabled = true;	
+	document.getElementById("txt-" + idPost).className = "innerTitle";
 	
 	//Mostramos los botones de agregar/editar/eliminar
-	if(document.getElementById("add-" + idTxt) != null)
-		document.getElementById("add-" + idTxt).style.display = "inline";
-	if(document.getElementById("edit-" + idTxt) != null)		
-		document.getElementById("edit-" + idTxt).style.display = "inline";
-	if(document.getElementById("del-" + idTxt) != null)
-		document.getElementById("del-" + idTxt).style.display = "inline";
+	if(document.getElementById("add-" + idPost) != null)
+		document.getElementById("add-" + idPost).style.display = "inline";
+	if(document.getElementById("edit-" + idPost) != null)		
+		document.getElementById("edit-" + idPost).style.display = "inline";
+	if(document.getElementById("del-" + idPost) != null)
+		document.getElementById("del-" + idPost).style.display = "inline";
 	//ocultamos los botones de guardar/cancelar		
-	document.getElementById("sav-" + idTxt).style.display = "none";
-	document.getElementById("can-" + idTxt).style.display = "none";
+	document.getElementById("sav-" + idPost).style.display = "none";
+	document.getElementById("can-" + idPost).style.display = "none";
 	
 	//desactivamos el TinyMCE
-	tinyMCE.execCommand('mceRemoveControl', false, "area-" + idTxt);
+	tinyMCE.execCommand('mceRemoveControl', false, "area-" + idPost);
 }
 
-function CancelPost(idTxt){
-	SavePost(idTxt);
+function EditPost(idPost){
+	EnablePost(idPost);
+	//guardamos el contenido del post en un elemento temporal
+	document.getElementById("tmp-" + idPost).value = document.getElementById("area-" + idPost).innerHTML;
+	//alert("area guardada: " + document.getElementById("tmp-" + idPost).value);
+}
+
+function SavePost(idPost){
+	DisablePost(idPost);
+}
+
+function CancelPost(idPost){
+	//Si estamos agregando un nuevo post y cancelamos la operacion, borramos el post
+	if (idPost == "NuevoPost") {
+			DelPost(idPost);
+	}	
+	//Si es un post existente, mostramos la informacion que tenia en un principio
+	else{
+		DisablePost(idPost);
+		document.getElementById("area-" + idPost).innerHTML = document.getElementById("tmp-" + idPost).value;
+	}		
+	
 }
 
 function AddPost(idPost){
@@ -71,10 +89,11 @@ function AddPost(idPost){
    	" </div> "	
 		
 	document.getElementById("area-" + idPost).innerHTML = newPost + document.getElementById("area-" + idPost).innerHTML;
+	EditPost("NuevoPost");
 }
 
 function DelPost(idPost){
-	
-	document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
+	if(document.getElementById("pst-" + idPost) != null)
+		document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
 	
 }
