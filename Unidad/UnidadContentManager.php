@@ -113,6 +113,7 @@
 				$postList .= $tempPost->ToString();
 			}
 			$pst = new Post("Noticias de la Unidad", $postList, 550, true, false, false);
+			$pst->tabla = "novedades";
 			$pst->Show();
 		}
 		

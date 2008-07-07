@@ -1,39 +1,91 @@
 <?php
 
-include_once("../clases/cconexion.php");
+define("RUTA", realpath("../"));
+include_once(RUTA . "/clases/cconexion.php");
+require_once(RUTA . "/clases/cgeneral.php");
 $conn = new cConexion();
-$arch = fopen("serverlog.txt","w");
-fwrite($arch, "entramos");
+
+echo "entramos";
 	if(isset($_GET["action"])){
 		switch($_GET["action"]){
 
+			case "add":
+				echo "\naccion agregar";
+				switch($_GET["table"]){
+
+					case "novedades":				
+						echo "\ntabla novedades";
+						
+						$id = -1;
+						echo "\nmaxid: $id";
+						$conn->Conectar();
+						echo "\nmaxid: $id";
+						$resQuery = $conn->mysqli->query("select (max(id)+1) as newid from novedades;");
+						echo "\nquery: select (max(id)+1) as newid from novedades;";
+						//echo "error: $conn->mysqli->error";
+						echo "\nmaxid: $id";
+						$resArray = $resQuery->fetch_array();
+						$id = $resArray["newid"];
+						
+						//$id++;
+						echo "\nnuevo id: $id";
+						$conn->mysqli->close();
+						
+						$titulo = $_GET["title"];
+						$contenido = $_GET["content"];
+						$fecha = $_GET["date"];
+						$conn->Conectar();
+						$conn->mysqli->query("insert into novedades values($id, '$titulo', '', '$contenido', '$fecha');");
+						$conn->mysqli->close();
+						echo "Consulta: insert into novedades values($id, '$titulo', '', '$contenido', '$fecha');";
+						break;
+				}
+				break;
+			
 			case "editabout":
-				fwrite($arch, "\naccion editar about");
+				echo "\naccion: editar about";				
 				$newContent = $_GET["value"];
+				echo "\nnew content: $newContent";
+				
+				//$aboutPost = new cGeneral();
+				//echo "contenido anterior: $aboutPost";
+				//$aboutPost->GetPorTitulo("about");
+				
+				//$aboutPost->contenido = $newContent;
+				//$aboutPost->Update();
+				//echo "actualizado";
+				
 				$conn->Conectar();
 				$conn->mysqli->query("update general set contenido = '$newContent' where titulo = 'about'");
 				$conn->mysqli->close();
 				break;
 				
 			case "edit":
-				fwrite($arch, "\naccion editar");
 				switch($_GET["table"]){
 
 					case "novedades":
-						fwrite($arch, "\ntabla novedades");
 						$id = $_GET["id"];
 						$titulo = $_GET["title"];
 						$contenido = $_GET["content"];
 						$fecha = $_GET["date"];
 						$conn->Conectar();
 						$conn->mysqli->query("update novedades set titulo='$titulo', descripcion='$contenido', fecha='$fecha' where id=$id;");
-						fwrite($arch, "error: " . $conn->mysqli->error);
 						$conn->mysqli->close();
-						fwrite($arch, "consulta: update novedades set titulo='$titulo', descripcion='$contenido', fecha='$fecha' where id=$id");
+						break;
+				}
+				break;
+				
+			case "del":
+				switch($_GET["table"]){
+
+					case "novedades":
+						$id = $_GET["id"];
+						$conn->Conectar();
+						$conn->mysqli->query("delete from novedades where id=$id;");
+						$conn->mysqli->close();
 						break;
 				}
 				break;
 		}
 	}
-fclose($arch);
 ?>
