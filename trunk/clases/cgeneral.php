@@ -28,7 +28,7 @@ class cGeneral
 	
 	public function GetPorTitulo($pTitulo)
     {
-    	$this->Consultar("SELECT * FROM general WHERE titulo = $pTitulo;", false);
+    	$this->Consultar("SELECT * FROM general WHERE titulo = '$pTitulo';", false);
     }
     
 	//No podemos insertar nada en esta tabla, solo modificar
