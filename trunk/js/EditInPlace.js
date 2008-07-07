@@ -52,23 +52,30 @@ function EditPost(idPost){
 
 function SavePost(idPost){
 	DisablePost(idPost);
+	actionPost = "edit";
+	if(idPost == "NuevoPost"){
+		actionPost = "add";
+	}
+	
 	if(idPost == "Acerca de la Unidad"){
 		AjaxSendAbout(document.getElementById("area-" + idPost).innerHTML);
 	}
 	tablaPost = document.getElementById("tbl-" + idPost).value;
+	//alert("tablapost: " + tablaPost);
 	if(tablaPost == "novedades"){
 		indexPost = document.getElementById("id-" + idPost).value;
-		tituloPost = document.getElementById("txt-" + idPost).value.substr(13);
-		fechaPost = document.getElementById("txt-" + idPost).value.substr(0, 11) + "00:00:00";
+		tituloPost = document.getElementById("txt-" + idPost).value;
+		alert("titulo: " + tituloPost);
+		fechaPost = "1900-01-01 00:00:00";
 		contenidoPost = document.getElementById("area-" + idPost).innerHTML;
-		AjaxSend("action=edit&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&date=" + fechaPost + "&id=" + indexPost);
+		AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&date=" + fechaPost + "&id=" + indexPost);
 	}
 	else{
 		indexPost = document.getElementById("id-" + idPost).value;
 		tituloPost = document.getElementById("txt-" + idPost).value;
 		contenidoPost = document.getElementById("area-" + idPost).innerHTML;
-		AjaxSend("action=edit&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&id=" + indexPost);
-	}		
+		AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&id=" + indexPost);
+	}
 }
 
 function CancelPost(idPost){
@@ -84,8 +91,9 @@ function CancelPost(idPost){
 	
 }
 
-function AddPost(idPost){
+function AddPost(idPost, idTabla){
 	
+	//alert("idtabla: " + idTabla);
 	var newPost =
 	" <div id='pst-NuevoPost' class='innerPost' style='width: 530px;'> " +
 	" 	<div class='PostTitle' style='width: 526px;'> " +
@@ -101,6 +109,9 @@ function AddPost(idPost){
 	"		    <div id='area-NuevoPost' class='innerContent'> " +
 	"				Contenido del nuevo post " +
 	"			</div> " +
+	"			<input type='hidden' id='tmp-NuevoPost' value=''/> " +
+	"			<input type='hidden' id='id-NuevoPost' value='-1'/> " +
+	"			<input type='hidden' id='tbl-NuevoPost' value='" + idTabla + "'/> " +
 	"		</div> " +
    	"	</div> "
    	" </div> "	
@@ -110,7 +121,9 @@ function AddPost(idPost){
 }
 
 function DelPost(idPost){
+	indexPost = document.getElementById("id-" + idPost).value;
+	tablaPost = document.getElementById("tbl-" + idPost).value;
 	if(document.getElementById("pst-" + idPost) != null)
 		document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
-	
+	AjaxSend("action=del&table=" + tablaPost +  "&id=" + indexPost);
 }

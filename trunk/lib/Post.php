@@ -37,7 +37,7 @@
 				
 				$this->tbox->btnEdit->onClick = "EditPost('$this->titulo')";
 				$this->tbox->btnAdd->id = "add-$this->titulo";
-				$this->tbox->btnAdd->onClick = "AddPost('$this->titulo')";
+				$this->tbox->btnAdd->onClick = "AddPost('$this->titulo', '$this->tabla')";
 				$this->tbox->btnEdit->id = "edit-$this->titulo";
 				$this->tbox->btnDel->id = "del-$this->titulo";
 				$this->tbox->btnDel->onClick = "DelPost('$this->titulo')";
@@ -88,6 +88,7 @@
 			
 				$this->tbox->btnEdit->onClick = "EditPost('$this->titulo')";
 				$this->tbox->btnAdd->id = "add-$this->titulo";
+				$this->tbox->btnAdd->onClick = "AddPost('$this->titulo', '$this->tabla')";
 				$this->tbox->btnEdit->id = "edit-$this->titulo";
 				$this->tbox->btnDel->id = "del-$this->titulo";
 				$this->tbox->btnDel->onClick = "DelPost('$this->titulo')";		
