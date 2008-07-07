@@ -1,5 +1,5 @@
 <?php 
-include("cconexion.php");
+include_once("cconexion.php");
 
 class cGeneral
 {

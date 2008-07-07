@@ -25,15 +25,17 @@
 		
 		public function ShowAbout(){
 			
-			$aboutContent = "Acerca de la unidad. <br>. <br>. <br>.";
-			$aboutNews = new cNovedades();
-			$aboutResult = $aboutNews->GetPorTitulo("about");
-			if($aboutResult->num_rows > 0){
-				$aboutArray = $aboutResult->fetch_array();
-				$aboutContent = $aboutArray["descripcion"];
-			}
+			//$aboutContent = "Acerca de la unidad. <br>. <br>. <br>.";
+			//$aboutId = -1;
+			$about = new cGeneral();
+			$aboutResult = $about->GetPorTitulo("about");
+			//if($aboutResult->num_rows > 0){
+				//$aboutArray = $aboutResult->fetch_array();
+				//$aboutContent = $aboutArray["contenido"];
+			//}
+			//$aboutContent = $about->contenido;
 			
-			$pst = new Post("Acerca de la Unidad", $aboutContent,550, false, true, false);
+			$pst = new Post("Acerca de la Unidad", $about->contenido,550, false, true, false);
 			/*$myUser = new cusuario();
 			if($myUser->GetPorId($_SESSION["CurrentUser"])){
 				if($myUser->privilegio == "admin"){
@@ -98,10 +100,11 @@
 			if($novResult->num_rows > 0){
 				while($arreglo = $novResult->fetch_array()){
 					$tempPost = new InnerPost("", "", 530, false, true, true);
+					$tempPost->id = $arreglo["id"];
 					$tempPost->titulo = substr($arreglo["fecha"],0,10) . " | " . $arreglo["titulo"];
 					$tempPost->contenido = substr($arreglo["descripcion"],3,strlen($arreglo["descripcion"])-4);
 					$postList .= $tempPost->ToString();
-				}				
+				}	
 			}
 			else{
 				$tempPost = new InnerPost("No hay resultados", "No hay noticias que mostrar...", 530);
