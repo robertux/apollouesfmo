@@ -55,6 +55,20 @@ function SavePost(idPost){
 	if(idPost == "Acerca de la Unidad"){
 		AjaxSendAbout(document.getElementById("area-" + idPost).innerHTML);
 	}
+	tablaPost = document.getElementById("tbl-" + idPost).value;
+	if(tablaPost == "novedades"){
+		indexPost = document.getElementById("id-" + idPost).value;
+		tituloPost = document.getElementById("txt-" + idPost).value.substr(13);
+		fechaPost = document.getElementById("txt-" + idPost).value.substr(0, 11) + "00:00:00";
+		contenidoPost = document.getElementById("area-" + idPost).innerHTML;
+		AjaxSend("action=edit&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&date=" + fechaPost + "&id=" + indexPost);
+	}
+	else{
+		indexPost = document.getElementById("id-" + idPost).value;
+		tituloPost = document.getElementById("txt-" + idPost).value;
+		contenidoPost = document.getElementById("area-" + idPost).innerHTML;
+		AjaxSend("action=edit&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&id=" + indexPost);
+	}		
 }
 
 function CancelPost(idPost){

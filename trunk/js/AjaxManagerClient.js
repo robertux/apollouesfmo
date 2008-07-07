@@ -29,6 +29,7 @@ function AjaxInit(){
 
 function AjaxSend(content){
 	var xmlHttp = AjaxInit();
+	alert("enviando contenido: " + content);
 	//TODO: cambiar por la URL oficial del sitio
     xmlHttp.open("GET", "http://localhost/apollo/lib/AjaxManagerServer.php?" + content, true);
 	xmlHttp.send(null);

@@ -2,6 +2,7 @@
     class Post{
     	
 		var $id;
+		var $tabla;
 		var $titulo;
 		var $contenido;
 		var $ancho;
@@ -55,6 +56,8 @@
 					$this->contenido
 				</div>
 				<input type='hidden' id='tmp-$this->titulo' value=''/>
+				<input type='hidden' id='id-$this->titulo' value='$this->id'/>
+				<input type='hidden' id='tbl-$this->titulo' value='$this->tabla'/>
 			</div>
    		</div>
 			
@@ -103,6 +106,8 @@
 					$this->contenido
 				</div>
 				<input type='hidden' id='tmp-$this->titulo' value=''/>
+				<input type='hidden' id='id-$this->titulo' value='$this->id'/>
+				<input type='hidden' id='tbl-$this->titulo' value='$this->tabla'/>
 			</div>
    		</div>
 			
@@ -146,6 +151,8 @@
 					$this->contenido
 				</div>
 				<input type='hidden' id='tmp-$this->titulo' value=''/>
+				<input type='hidden' id='id-$this->titulo' value='$this->id'/>
+				<input type='hidden' id='tbl-$this->titulo' value='$this->tabla'/>
 			</div>
    		</div>
 			
