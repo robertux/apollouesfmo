@@ -39,7 +39,7 @@ class cGeneral
     
     public function Update()
     {
-    	$this->Consultar("UPDATE general SET contenido = '$this->contenido' WHERE titulo = '$this->titulo';"), false);
+    	$this->Consultar("UPDATE general SET contenido = '$this->contenido' WHERE titulo = '$this->titulo';", false);
     }
 
 	public function Delete()
