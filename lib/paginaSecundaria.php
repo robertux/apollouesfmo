@@ -30,6 +30,7 @@
 			//Y ahora...... tatatatannnnn. LOS JAVASCRIPT! efectos efectos efectos!
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/prototype.js\"></script>";
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/EditInPlace.js\"></script>";
+			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/AjaxManagerClient.js\"></script>";
 			
 			//TinyMCE:
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/tiny_mce/tiny_mce.js\"></script>";			

@@ -1,6 +1,7 @@
 <?php
     class Post{
     	
+		var $id;
 		var $titulo;
 		var $contenido;
 		var $ancho;
@@ -10,6 +11,7 @@
 		var $showDelWhenAdmin;
 		
 		public function Post($pTitulo="Titulo", $pContenido="Contenido", $pAncho=550, $pShowAddWhenAdmin=false, $pShowEditWhenAdmin=false, $pShowDelWhenAdmin=false){
+			$this->id = $pId;
 			$this->titulo = $pTitulo;
 			$this->contenido = $pContenido;
 			$this->ancho = $pAncho;

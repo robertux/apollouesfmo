@@ -52,6 +52,9 @@ function EditPost(idPost){
 
 function SavePost(idPost){
 	DisablePost(idPost);
+	if(idPost == "Acerca de la Unidad"){
+		AjaxSendAbout(document.getElementById("area-" + idPost).innerHTML);
+	}
 }
 
 function CancelPost(idPost){
