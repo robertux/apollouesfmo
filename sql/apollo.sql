@@ -429,8 +429,6 @@ CREATE TABLE `foro_online` (
 --
 
 /*!40000 ALTER TABLE `foro_online` DISABLE KEYS */;
-INSERT INTO `foro_online` (`user_id`,`ident`,`logged`,`idle`) VALUES 
- (1,'127.0.0.1',1215066011,0);
 /*!40000 ALTER TABLE `foro_online` ENABLE KEYS */;
 
 
@@ -691,32 +689,6 @@ INSERT INTO `foro_users` (`id`,`group_id`,`username`,`password`,`email`,`title`,
 
 
 --
--- Definition of table `general`
---
-
-DROP TABLE IF EXISTS `general`;
-CREATE TABLE `general` (
-  `titulo` varchar(50) NOT NULL,
-  `contenido` varchar(150) NOT NULL,
-  PRIMARY KEY  USING BTREE (`titulo`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='Tabla de contenido general de la Unidad de PostGrados';
-
---
--- Dumping data for table `general`
---
-
-/*!40000 ALTER TABLE `general` DISABLE KEYS */;
-INSERT INTO `general` (`titulo`,`contenido`) VALUES 
- ('secretaria','Verónica de Gonzáles'),
- ('telsecre1','2484-0821'),
- ('telsecre2','2484-0866'),
- ('emailsecre1','veronica.jazmin@gmail.com'),
- ('devel','Roberto C. Linares M., Rodrigo S. Amaya C.'),
- ('ad','2008');
-/*!40000 ALTER TABLE `general` ENABLE KEYS */;
-
-
---
 -- Definition of table `horario`
 --
 
@@ -838,7 +810,7 @@ CREATE TABLE `novedades` (
   `fecha` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `FECHA` (`fecha`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `novedades`
@@ -848,8 +820,12 @@ CREATE TABLE `novedades` (
 INSERT INTO `novedades` (`id`,`titulo`,`vinculo`,`descripcion`,`fecha`) VALUES 
  (0,'Bienvenido Unidad de PostGrados','http://apollo-uesfmo.blogspot.com','<p>Este es el gestor de noticias de la Unidad de PostGrados de la Universidad de El Salvador, Facultad Multidisciplinaria de Occidente. Mediante la suscripcion a este gestor, usted estar informado de las noticias mas recientes de la Unidad de PostGrados. Gracias por suscribirse!</p>','2008-03-01 00:00:00'),
  (1,'prueba','prueba','<p>prueba</p>','2008-01-01 00:00:00'),
- (4,'Sr. Byte Blog','http://srbyte.blogspot.com','<p>El mejor blog del mundo!</p>','2008-06-29 00:00:00'),
- (5,'GOOGLE!','http://www.google.com','<p>es google</p>','2008-06-29 00:00:00');
+ (4,'Sr. Byte Blog!','http://srbyte.blogspot.com','<p>El mejor blog del mundo!</p><p>','2008-06-29 00:00:00'),
+ (5,'GOOGLE!','http://www.google.com','<p>es google</p>','2008-06-29 00:00:00'),
+ (7,'Nuevo Post','','\r\n\r\nContenido del nuevo post\r\n','1900-01-01 00:00:00'),
+ (8,'Nuevo Post','','<p>Contenido del nuevo post</p>','1900-01-01 00:00:00'),
+ (9,'Nuevo Post','','<p>Contenido del nuevo post</p>','1900-01-01 00:00:00'),
+ (10,'Nuevo Post','','<p>Contenido del nuevo post</p>','1900-01-01 00:00:00');
 /*!40000 ALTER TABLE `novedades` ENABLE KEYS */;
 
 
@@ -881,33 +857,6 @@ INSERT INTO `postgrado` (`id`,`nombre`,`notaminima`,`totaluvs`,`cumminimo`,`abre
  (2,'Maestría en Consultoría Empresarial',7,999,7.5,'MAECE',999,'El programa de Maestría en consultoría Empresarial se desarrollará desde la perspectiva de integración del directivo o empresario en el rol de los negocios, en forma amplia abordando situaciones de la realidad de consultoría empresarial con un enfoque teórico y práctico.\r\nPara adquirir estas destrezas se define el programa con la intención de formar profesionales que asuman responsabilidades, que sepan cooperar entre organizaciones y con las personas, desde el conocimiento eficaz de las diferentes áreas de la empresa, entendiéndola de mejor manera y adquiriendo las competencias particulares del área relacionadas con la cooperación, la especialización, las innovaciones tecnológicas y la globalización de los mercados.\r\nLa MAECE es la formación profesional orientada a la excelencia académica donde se fortalecen los conocimientos, particularmente los especializados en técnicas de gestión; fomenta las capacidades personales y directivas, conceptuales y analíticas de cada participante, necesarias en la empresa actual.','Vision:\r\nSer lideres en la formación de profesionales a nivel de maestría, mejorando continuamente la calidad académica e incorporando en los planes de estudio contenidos programáticos que faciliten la efectiva ejecución de la gestión y consultoría empresarial.\r\nMision:\r\nFormar profesionales con iniciativa par organizar unidades especificas de negocios, con elevada formación teórico-practica para enfrentar los retos que demande el actual desarrollo empresarial y social.'),
  (3,'Maestría en Profesionalización de la Docencia Superior',7,999,7.5,'MPDC',999,'La Maestría en Profesionalización de la Docencia Superior, cuenta ya con una generación de graduados en la Facultad Multidisciplinaria de Occidente y con una segund ageneración en proceso de formación.\r\nLas metas y finalidades de este pograma de Maestría se orientan a la construcción de la educación superior como objeto de estudio. En tal sentido, el programa es una maestría académica que busca por una parte la profesionalización, entendida como el dominio pertinente de las competencias técnico-pedagógicas para el ejercicio docente a nivel superior, y por otra, la generación de conocimientos mediante la investigación académica sobre los distintos niveles del sistema educativo nacional (Parvularia, Básica, Media, Superior, no universitaria y Universitaria); así como de aquellas experiencias de gestión, promoción, innovación y evaluación en los diversos ámbitos de la educación salvadoreña.','El programa de maestria en profesionalizacion de la docencia superior nacio en un convenio entre la Universidad de El Salvador (UES) y la facultad de estudios superiores cuautitlán de la Universidad Autónoma de México (UNAM) en 1994. Se han graduado ya de este programa, diversos profesionales que laboran en instituciones publicas y privadas de todo el país.\r\nVisión:\r\nLa alta formación de cuadros académicos y profesionales, así como la generación de conocimientos mediante la investigación del que hacer educativo de la zona occidental del país; con el objeto de fortalecer los procesos de enseñanza-aprendizaje en los distintos niveles del sistema educativo nacional y la producción académica en función de la cualificación de la educación en general y la universitaria en particular.\r\nMisión:\r\nLa construcción de la educación y de una docencia universitaria de la zona occidental del país, como objeto de estudio, y su visualización como fenómeno socio-cultural asequible desde una prespectiva teórica transdisciplinar y una práctica íntimamente ligada a los campos social, económico y político; tomando como base la enseñanza integral desd ela perspectiva teórica práctica en el enfoque metodológico del trabajo analítico.');
 /*!40000 ALTER TABLE `postgrado` ENABLE KEYS */;
-
-
---
--- Definition of table `presentadoc`
---
-
-DROP TABLE IF EXISTS `presentadoc`;
-CREATE TABLE `presentadoc` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `descripcion` varchar(100) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='documentos a presentar';
-
---
--- Dumping data for table `presentadoc`
---
-
-/*!40000 ALTER TABLE `presentadoc` DISABLE KEYS */;
-INSERT INTO `presentadoc` (`id`,`descripcion`) VALUES 
- (1,'Fotografía tamaño cédula a color.'),
- (2,'Certificado de Partida de Nacimiento.'),
- (3,'DUI y NIT.'),
- (4,'Certificcion del Titulo Universitario autenticado por la Universidad y el MINED.'),
- (5,'Titulo Universitario autenticado por el Ministerio de Educacion.'),
- (6,'Certificado de salud.'),
- (7,'Titulo de Bachiller.');
-/*!40000 ALTER TABLE `presentadoc` ENABLE KEYS */;
 
 
 --
@@ -994,27 +943,6 @@ CREATE TABLE `usuario` (
 
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-
-
---
--- Definition of table `utileria`
---
-
-DROP TABLE IF EXISTS `utileria`;
-CREATE TABLE `utileria` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `titulo` varchar(50) NOT NULL,
-  `vinculo` varchar(100) NOT NULL,
-  `descripcion` text NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `utileria`
---
-
-/*!40000 ALTER TABLE `utileria` DISABLE KEYS */;
-/*!40000 ALTER TABLE `utileria` ENABLE KEYS */;
 
 
 
