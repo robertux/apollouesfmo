@@ -4,6 +4,7 @@
 	require_once("../incluye.php");
 	require_once("UnidadContentManager.php");
 	require_once("../clases/cnovedades.php");
+	require_once("../clases/cutileria.php");
 	
 	$pag = new paginaSecundaria();
 	$pag->encabezado();

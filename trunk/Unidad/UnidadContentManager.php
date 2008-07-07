@@ -104,7 +104,7 @@
 				}				
 			}
 			else{
-				$tempPost = new InnerPost("No hay resultados", "No hay noticias que mostrar", 530);
+				$tempPost = new InnerPost("No hay resultados", "No hay noticias que mostrar...", 530);
 				$postList .= $tempPost->ToString();
 			}
 			$pst = new Post("Noticias de la Unidad", $postList, 550, true, false, false);
@@ -112,8 +112,27 @@
 		}
 		
 		public function ShowUtils(){
-			$pst = new Post("Programas de Utileria", "");
+			$postList = "";
+			
+			$lastUtil = new cUtileria();
+			$utiResult = $lastUtil->GetListaOrden();
+			if($utiResult->num_rows > 0){
+				while($arreglo = $utiResult->fetch_array()){
+					$tempPost = new InnerPost("", "", 530, false, true, true);
+					$tempPost->titulo = $arreglo["titulo"];
+					$tempPost->contenido = substr($arreglo["descripcion"],3,strlen($arreglo["descripcion"])-4);
+					$tempPost->contenido .= "<br/>Sigue este vinculo para descargar este programa: <a href='".$arreglo["vinculo"]."' >".$arreglo["vinculo"]."</a>";
+					$postList .= $tempPost->ToString();
+				}				
+			}
+			else{
+				$tempPost = new InnerPost("No hay resultados", "No hay utilidades que mostrar...", 530);
+				$postList .= $tempPost->ToString();
+			}
+			$pst = new Post("Programas de Utileria", $postList, 550, true, false, false);
 			$pst->Show();
+			//$pst = new Post("Programas de Utileria", "");
+			//$pst->Show();
 		}
 		
 		public function ShowContact(){

@@ -1,11 +1,11 @@
 <?php 
-include("cconexion.php");
+//include("cconexion.php");
 
 class cUtileria
 {
 	//que pena... poner publico esto :$
 	public $con;
-	//id, titulo, vinculo, descripcion, fecha
+	//id, titulo, vinculo, descripcion
 	public $id;
 	public $titulo;
 	public $vinculo; 
@@ -36,6 +36,11 @@ class cUtileria
     public function GetLista()
     {
     	return($this->Consultar("SELECT id, titulo, vinculo, descripcion FROM utileria;", true));
+    }
+	
+	public function GetListaOrden()
+    {
+    	return($this->Consultar("SELECT id, titulo, vinculo, descripcion FROM utileria GROUP BY id DESC;", true));
     }
     
     public function GetUltimos($pNumero = 10)
