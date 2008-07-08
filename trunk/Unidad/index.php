@@ -51,4 +51,3 @@
   <!-- /footer -->
 </div>
 <?php $pag->pie(); ?>
-

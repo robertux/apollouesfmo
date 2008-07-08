@@ -57,9 +57,21 @@ function SavePost(idPost){
 		actionPost = "add";
 	}
 	
+	if(idPost == "Informacion de Contacto"){
+		AjaxSendContacto(document.getElementById("area-" + idPost).innerHTML);
+		return null;
+	}
+	
 	if(idPost == "Acerca de la Unidad"){
 		AjaxSendAbout(document.getElementById("area-" + idPost).innerHTML);
+		return null;
 	}
+	
+	if(idPost == "Suscribete a esta pagina"){
+		AjaxSendSuscripcion(document.getElementById("area-" + idPost).innerHTML);
+		return null;
+	}
+	
 	tablaPost = document.getElementById("tbl-" + idPost).value;
 	//alert("tablapost: " + tablaPost);
 	if(tablaPost == "novedades"){
