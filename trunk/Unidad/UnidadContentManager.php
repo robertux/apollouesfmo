@@ -35,8 +35,8 @@
 			//}
 			//$aboutContent = $about->contenido;
 			
-			$pst = new Post("Acerca de la Unidad", $about->contenido,550, false, true, false);
-			$pst->tabla = "general";
+			$pst = new Post("Acerca de la Unidad", $about->contenido,530, false, true, false);
+			//$pst->tabla = "general";
 			/*$myUser = new cusuario();
 			if($myUser->GetPorId($_SESSION["CurrentUser"])){
 				if($myUser->privilegio == "admin"){
