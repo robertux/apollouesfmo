@@ -123,7 +123,9 @@ function AddPost(idPost, idTabla){
 function DelPost(idPost){
 	indexPost = document.getElementById("id-" + idPost).value;
 	tablaPost = document.getElementById("tbl-" + idPost).value;
-	if(document.getElementById("pst-" + idPost) != null)
-		document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
-	AjaxSend("action=del&table=" + tablaPost +  "&id=" + indexPost);
+	if (confirm("Esta seguro que desea eliminar este elemento?")) {
+		if (document.getElementById("pst-" + idPost) != null) 
+			document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
+		AjaxSend("action=del&table=" + tablaPost + "&id=" + indexPost);
+	}
 }
