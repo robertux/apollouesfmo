@@ -79,13 +79,13 @@ echo "entramos";
 				$newContent = $_GET["value"];
 				echo "\nnew content: $newContent";
 				
-				//$aboutPost = new cGeneral();
+				$aboutPost = new cGeneral();
 				//echo "contenido anterior: $aboutPost";
-				//$aboutPost->GetPorTitulo("about");
+				$aboutPost->GetPorTitulo("about");
 				
-				//$aboutPost->contenido = $newContent;
-				//$aboutPost->Update();
-				//echo "actualizado";
+				$aboutPost->contenido = $newContent;
+				$aboutPost->Update();
+				echo "actualizado";
 				
 				$conn->Conectar();
 				$conn->mysqli->query("update general set contenido = '$newContent' where titulo = 'about'");

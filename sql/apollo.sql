@@ -430,7 +430,7 @@ CREATE TABLE `foro_online` (
 
 /*!40000 ALTER TABLE `foro_online` DISABLE KEYS */;
 INSERT INTO `foro_online` (`user_id`,`ident`,`logged`,`idle`) VALUES 
- (1,'127.0.0.1',1215496977,0);
+ (1,'127.0.0.1',1215533606,0);
 /*!40000 ALTER TABLE `foro_online` ENABLE KEYS */;
 
 
@@ -707,6 +707,7 @@ CREATE TABLE `general` (
 
 /*!40000 ALTER TABLE `general` DISABLE KEYS */;
 INSERT INTO `general` (`titulo`,`contenido`) VALUES 
+ ('about','<p>La Unidad de PostGrado es de reciente creaciÃ³n y ha sido fundada para planificar, gestionar, coordinar, ejecutar y evaluar los programas de postgrado que se lleven a cabo en la UES-FMO. Esta unidad es estratÃ©gica en la formaciÃ³n de profesionales de alto nivel acadÃ©mico en sus distintas especializaciones, con incidencia en la identificaciÃ³n, discusiÃ³n y propuestas de alternativas de soluciÃ³n a los problemas mas sentidos por la poblaciÃ³n de la zona occidental del paÃ­s.</p><p>'),
  ('contacto','<p style=\"text-align: left;\">Para mayor informacion puede llamarnos a los telefonos:</p><p style=\"text-align: center;\"><strong> 2484-0821</strong> y <strong>2484-0866</strong></p><p style=\"text-align: left;\">con <strong>VerÃ³nica de GonzÃ¡les </strong>o al correo electronico:</p><p style=\"text-align: center;\"><strong>veronica.jazmin@gmail.com</strong></p>'),
  ('suscripcion','<p style=\"text-align: center;\">suscripcion aqui...</p>');
 /*!40000 ALTER TABLE `general` ENABLE KEYS */;
