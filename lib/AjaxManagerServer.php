@@ -42,6 +42,38 @@ echo "entramos";
 				}
 				break;
 			
+			case "editcontacto":
+				echo "\naccion: editar contacto";				
+				$newContent = $_GET["value"];
+				echo "\nnew content: $newContent";
+				
+				$Post = new cGeneral();
+				$Post->GetPorTitulo("contacto");
+				$Post->contenido = $newContent;
+				$Post->Update();
+				echo "actualizado";
+				
+				$conn->Conectar();
+				$conn->mysqli->query("update general set contenido = '$newContent' where titulo = 'contacto'");
+				$conn->mysqli->close();
+				break;
+				
+			case "editsuscripcion":
+				echo "\naccion: editar contacto";				
+				$newContent = $_GET["value"];
+				echo "\nnew content: $newContent";
+				
+				$Post = new cGeneral();
+				$Post->GetPorTitulo("suscripcion");
+				$Post->contenido = $newContent;
+				$Post->Update();
+				echo "actualizado";
+				
+				$conn->Conectar();
+				$conn->mysqli->query("update general set contenido = '$newContent' where titulo = 'suscripcion'");
+				$conn->mysqli->close();
+				break;
+				
 			case "editabout":
 				echo "\naccion: editar about";				
 				$newContent = $_GET["value"];

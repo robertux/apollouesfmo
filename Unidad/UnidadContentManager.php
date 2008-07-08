@@ -143,29 +143,24 @@
 			$postList = "";
 			$gen = new cGeneral();
 			
-			//Info de contacto con la secretaria
-				$tempPost = new InnerPost("", "", 530, false, true, true);
+			//Info de contacto con la secretaria, //add, edit, delete
+				$tempPost = new InnerPost("", "", 530, false, true, false);
 				$tempPost->titulo = "Informacion de Contacto";
-				$tempPost->contenido = "Puedes solicitar más informacion sobre los Postgrados a: ";
-				$gen->GetPorTitulo('secretaria');
-				$tempPost->contenido .= $gen->contenido . ", a los telefonos: ";
-				$gen->GetPorTitulo('telsecre1');
-				$tempPost->contenido .= $gen->contenido . " y ";
-				$gen->GetPorTitulo('telsecre2');
-				$tempPost->contenido .= $gen->contenido . ", o a su correo: ";
-				$gen->GetPorTitulo('emailsecre1');
-				$tempPost->contenido .=  $gen->contenido . ".";
+				$gen->GetPorTitulo('contacto');
+				$tempPost->contenido = $gen->contenido;
 				$postList .= $tempPost->ToString();			
 			
 			//Informacion de suscripcion FEED RSS
-				$tempPost = new InnerPost("", "", 530, false, true, true);
-				$tempPost->titulo = "Suscribete a esta página";
-				$tempPost->contenido = "Puedes suscribirte a nuestra pagina dando click en cualquiera de las imagenes que aparecen a continuacion: ";
-				$tempPost->contenido .= " <strong>colocar aqui imagenes de RSS FEED</strong>";
-				
+				$tempPost = new InnerPost("", "", 530, false, true, false);
+				$tempPost->titulo = "Suscribete a esta pagina";
+				$gen->GetPorTitulo('suscripcion');
+				$tempPost->contenido = $gen->contenido;
 				$postList .= $tempPost->ToString();
 			
-			$pst = new Post("Contacto y Suscripcion", $postList, 550, true, false, false);
+			$pst = new Post("Contacto y Suscripcion", $postList, 550, false, false, false);
+			//$pst->tbox->btnAdd->enabled = false;
+			//$pst->tbox->btnEdit->enabled = false;
+			//$pst->tbox->btnDel->enabled = false;
 			$pst->Show();
 		}
     }

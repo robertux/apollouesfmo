@@ -29,7 +29,7 @@ function AjaxInit(){
 
 function AjaxSend(content){
 	var xmlHttp = AjaxInit();
-	//alert("enviando contenido: " + content);
+	alert("enviando contenido: " + content);
 	//TODO: cambiar por la URL oficial del sitio
     xmlHttp.open("GET", "http://localhost/apollo/lib/AjaxManagerServer.php?" + content, true);
 	xmlHttp.send(null);
@@ -37,4 +37,12 @@ function AjaxSend(content){
 
 function AjaxSendAbout(content){	
 	AjaxSend("action=editabout&value=" + content);
+}
+
+function AjaxSendContacto(content){	
+	AjaxSend("action=editcontacto&value=" + content);
+}
+
+function AjaxSendSuscripcion(content){	
+	AjaxSend("action=editsuscripcion&value=" + content);
 }

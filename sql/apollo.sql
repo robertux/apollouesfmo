@@ -429,6 +429,8 @@ CREATE TABLE `foro_online` (
 --
 
 /*!40000 ALTER TABLE `foro_online` DISABLE KEYS */;
+INSERT INTO `foro_online` (`user_id`,`ident`,`logged`,`idle`) VALUES 
+ (1,'127.0.0.1',1215496977,0);
 /*!40000 ALTER TABLE `foro_online` ENABLE KEYS */;
 
 
@@ -689,6 +691,28 @@ INSERT INTO `foro_users` (`id`,`group_id`,`username`,`password`,`email`,`title`,
 
 
 --
+-- Definition of table `general`
+--
+
+DROP TABLE IF EXISTS `general`;
+CREATE TABLE `general` (
+  `titulo` varchar(80) NOT NULL,
+  `contenido` text NOT NULL,
+  PRIMARY KEY  (`titulo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `general`
+--
+
+/*!40000 ALTER TABLE `general` DISABLE KEYS */;
+INSERT INTO `general` (`titulo`,`contenido`) VALUES 
+ ('contacto','<p style=\"text-align: left;\">Para mayor informacion puede llamarnos a los telefonos:</p><p style=\"text-align: center;\"><strong> 2484-0821</strong> y <strong>2484-0866</strong></p><p style=\"text-align: left;\">con <strong>VerÃ³nica de GonzÃ¡les </strong>o al correo electronico:</p><p style=\"text-align: center;\"><strong>veronica.jazmin@gmail.com</strong></p>'),
+ ('suscripcion','<p style=\"text-align: center;\">suscripcion aqui...</p>');
+/*!40000 ALTER TABLE `general` ENABLE KEYS */;
+
+
+--
 -- Definition of table `horario`
 --
 
@@ -860,6 +884,33 @@ INSERT INTO `postgrado` (`id`,`nombre`,`notaminima`,`totaluvs`,`cumminimo`,`abre
 
 
 --
+-- Definition of table `presentadoc`
+--
+
+DROP TABLE IF EXISTS `presentadoc`;
+CREATE TABLE `presentadoc` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `descripcion` varchar(100) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='documentos a presentar';
+
+--
+-- Dumping data for table `presentadoc`
+--
+
+/*!40000 ALTER TABLE `presentadoc` DISABLE KEYS */;
+INSERT INTO `presentadoc` (`id`,`descripcion`) VALUES 
+ (1,'Fotografía tamaño cédula a color.'),
+ (2,'Certificado de Partida de Nacimiento.'),
+ (3,'DUI y NIT.'),
+ (4,'Certificcion del Titulo Universitario autenticado por la Universidad y el MINED.'),
+ (5,'Titulo Universitario autenticado por el Ministerio de Educacion.'),
+ (6,'Certificado de salud.'),
+ (7,'Titulo de Bachiller.');
+/*!40000 ALTER TABLE `presentadoc` ENABLE KEYS */;
+
+
+--
 -- Definition of table `privilegio`
 --
 
@@ -943,6 +994,27 @@ CREATE TABLE `usuario` (
 
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+
+
+--
+-- Definition of table `utileria`
+--
+
+DROP TABLE IF EXISTS `utileria`;
+CREATE TABLE `utileria` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `titulo` varchar(50) NOT NULL,
+  `vinculo` varchar(100) NOT NULL,
+  `descripcion` text NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `utileria`
+--
+
+/*!40000 ALTER TABLE `utileria` DISABLE KEYS */;
+/*!40000 ALTER TABLE `utileria` ENABLE KEYS */;
 
 
 
