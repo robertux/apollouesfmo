@@ -38,6 +38,7 @@ echo "entramos";
 						$conn->mysqli->query("insert into novedades values($id, '$titulo', '', '$contenido', '$fecha');");
 						$conn->mysqli->close();
 						echo "Consulta: insert into novedades values($id, '$titulo', '', '$contenido', '$fecha');";
+						echo "[id]" . $id . "[/id]";
 						break;
 				}
 				break;
@@ -56,6 +57,7 @@ echo "entramos";
 				$conn->Conectar();
 				$conn->mysqli->query("update general set contenido = '$newContent' where titulo = 'contacto'");
 				$conn->mysqli->close();
+				echo "[id]" . 0 . "[/id]";
 				break;
 				
 			case "editsuscripcion":
@@ -72,6 +74,7 @@ echo "entramos";
 				$conn->Conectar();
 				$conn->mysqli->query("update general set contenido = '$newContent' where titulo = 'suscripcion'");
 				$conn->mysqli->close();
+				echo "[id]" . 0 . "[/id]";
 				break;
 				
 			case "editabout":
@@ -90,6 +93,7 @@ echo "entramos";
 				$conn->Conectar();
 				$conn->mysqli->query("update general set contenido = '$newContent' where titulo = 'about'");
 				$conn->mysqli->close();
+				echo "[id]" . 0 . "[/id]";
 				break;
 				
 			case "edit":
@@ -103,6 +107,7 @@ echo "entramos";
 						$conn->Conectar();
 						$conn->mysqli->query("update novedades set titulo='$titulo', descripcion='$contenido', fecha='$fecha' where id=$id;");
 						$conn->mysqli->close();
+						echo "[id]" . $id . "[/id]";
 						break;
 				}
 				break;
@@ -115,6 +120,7 @@ echo "entramos";
 						$conn->Conectar();
 						$conn->mysqli->query("delete from novedades where id=$id;");
 						$conn->mysqli->close();
+						echo "[id]" . 0 . "[/id]";
 						break;
 				}
 				break;

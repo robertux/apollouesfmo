@@ -53,11 +53,9 @@ function EditPost(idPost){
 function SavePost(idPost){
 	DisablePost(idPost);
 	actionPost = "edit";
-	if(idPost == "NuevoPost"){
+	if(document.getElementById("id-" + idPost).value == "-1"){
 		actionPost = "add";
-		//alert("actual: " + document.getElementById("del-NuevoPost").onclick);
-		//document.getElementById("del-NuevoPost").onclick = function() { DelPost("NuevoPost"); } 
-		//alert("nueva: " + document.getElementById("del-NuevoPost").onclick);
+		//document.getElementById("id-" + idPost).value = "0";
 	}
 	
 	if(idPost == "Informacion de Contacto"){
@@ -85,7 +83,7 @@ function SavePost(idPost){
 		fechaPost = document.getElementById("fch-" + idPost).innerHTML;
 		//alert("fecha generada: " + fechaPost);
 		contenidoPost = document.getElementById("area-" + idPost).innerHTML;
-		AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&date=" + fechaPost + "&id=" + indexPost);
+		AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&date=" + fechaPost + "&id=" + indexPost);		
 	}
 	else{
 		indexPost = document.getElementById("id-" + idPost).value;
@@ -97,15 +95,14 @@ function SavePost(idPost){
 
 function CancelPost(idPost){
 	//Si estamos agregando un nuevo post y cancelamos la operacion, borramos el post
-	if (idPost == "NuevoPost") {
+	if (document.getElementById("id-" + idPost).value == "-1") {
 			document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
 	}	
 	//Si es un post existente, mostramos la informacion que tenia en un principio
 	else{
 		DisablePost(idPost);
 		document.getElementById("area-" + idPost).innerHTML = document.getElementById("tmp-" + idPost).value;
-	}		
-	
+	}	
 }
 
 function AddPost(idPost, idTabla){
@@ -150,5 +147,38 @@ function DelPost(idPost){
 		if (document.getElementById("pst-" + idPost) != null) 
 			document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
 		AjaxSend("action=del&table=" + tablaPost + "&id=" + indexPost);
+	}
+}
+
+function CatchResponse(responseText){
+	if(responseText == "") return;
+	
+	str = "";
+	str = responseText;
+
+	startId = str.indexOf("[id]") + 4;
+	endId = str.indexOf("[/id]");
+	newId = str.substring(startId, endId);
+	ChangePostId("-1", newId);
+}
+
+function ChangePostId(oldId, newId){
+	try{
+		elements = document.getElementsByTagName("input");	
+		for(i in elements){
+			if(elements[i].type == "hidden"){
+				if(elements[i].id.search("id-") != -1){
+					//alert("oldid: " +  oldId.toString() + " id: " + elements[i].value.toString());
+					if(elements[i].value.toString() == oldId.toString()){
+						//alert("ENTRANDO!!! id: " + elements[i].id + " value: " + elements[i].value);
+						elements[i].value = newId;
+						//alert("new value added: " + elements[i].value);
+						return;
+					}				
+				}
+			}		
+		}
+	} catch(ex){
+		return;
 	}
 }
