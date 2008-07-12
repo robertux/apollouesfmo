@@ -103,7 +103,8 @@
 					$tempPost = new InnerPost("", "", 530, false, true, true);
 					$tempPost->id = $arreglo["id"];
 					$tempPost->tabla = "novedades";
-					$tempPost->titulo = substr($arreglo["fecha"],0,10) . " | " . $arreglo["titulo"];
+					$tempPost->fecha = substr($arreglo["fecha"],0,10);
+					$tempPost->titulo = $arreglo["titulo"];
 					$tempPost->contenido = substr($arreglo["descripcion"],3,strlen($arreglo["descripcion"])-4);
 					$postList .= $tempPost->ToString();
 				}	

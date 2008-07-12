@@ -4,6 +4,7 @@
 		var $id;
 		var $tabla;
 		var $titulo;
+		var $fecha;
 		var $contenido;
 		var $ancho;
 		var $tbox;
@@ -48,18 +49,18 @@
 
 			return "
 			<div id='pst-$this->titulo' class='Post' style='width: " . $this->ancho . "px;' >
-    		<div class='PostTitle' style='width: " . ($this->ancho - 12) . "px;'>
-				" . $this->tbox->ToString() . "<input type='text' id='txt-$this->titulo' class='innerTitle' value='$this->titulo' disabled='true' />
-			</div>
-			<div id='cont-$this->titulo' class='PostContent'>
-			    <div id='area-$this->titulo' class='innerContent'>
-					$this->contenido
+	    		<div class='PostTitle' style='width: " . ($this->ancho - 12) . "px;'>
+					" . $this->tbox->ToString() . "<div id='fch-$this->titulo' class='PostDate'>$this->fecha</div><input type='text' id='txt-$this->titulo' class='innerTitle' value='$this->titulo' disabled='true' />
+				</div>
+				<div id='cont-$this->titulo' class='PostContent'>
+				    <div id='area-$this->titulo' class='innerContent'>
+						$this->contenido
+					</div>					
 				</div>
 				<input type='hidden' id='tmp-$this->titulo' value=''/>
 				<input type='hidden' id='id-$this->titulo' value='$this->id'/>
 				<input type='hidden' id='tbl-$this->titulo' value='$this->tabla'/>
-			</div>
-   		</div>
+   			</div>
 			
 			";
 		}
@@ -100,7 +101,7 @@
 			return "
 			<div id='pst-$this->titulo' class='innerPost' style='width: " . $this->ancho . "px;'>
     		<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
-				"  . $this->tbox->ToString() . "<input type='text' id='txt-$this->titulo' class='innerTitle' value='$this->titulo' disabled='true' />
+				"  . $this->tbox->ToString() . "<div id='fch-$this->titulo' class='PostDate'>$this->fecha</div><input type='text' id='txt-$this->titulo' class='innerTitle' value='$this->titulo' disabled='true' />
 			</div>
 			<div id='cont-$this->titulo' class='PostContent'>
 			    <div id='area-$this->titulo' class='innerContent'>
@@ -145,7 +146,7 @@
 			return "
 			<div id='pst-$this->titulo' class='innerInnerPost' style='width: " . $this->ancho . "px;'>
     		<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
-				" . $this->tbox->ToString() . "<input type='text' id='txt-$this->titulo' class='innerTitle' value='$this->titulo' disabled='true' />
+				" . $this->tbox->ToString() . "<div id='fch-$this->titulo' class='PostDate'>$this->fecha</div><input type='text' id='txt-$this->titulo' class='innerTitle' value='$this->titulo' disabled='true' />
 			</div>
 			<div id='cont-$this->titulo' class='PostContent'>
 			    <div id='area-$this->titulo' class='innerContent'>
