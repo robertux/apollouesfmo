@@ -33,6 +33,12 @@ function AjaxSend(content){
 	//TODO: cambiar por la URL oficial del sitio
     xmlHttp.open("GET", "http://localhost/apollo/lib/AjaxManagerServer.php?" + content, true);
 	xmlHttp.send(null);
+	xmlHttp.onreadystatechange = function(){
+		if (xmlHttp.readyState == 4) {
+			//alert("response received: " + xmlHttp.responseText);
+			CatchResponse(xmlHttp.responseText);
+		}
+	}
 }
 
 function AjaxSendAbout(content){	
