@@ -55,6 +55,9 @@ function SavePost(idPost){
 	actionPost = "edit";
 	if(idPost == "NuevoPost"){
 		actionPost = "add";
+		//alert("actual: " + document.getElementById("del-NuevoPost").onclick);
+		//document.getElementById("del-NuevoPost").onclick = function() { DelPost("NuevoPost"); } 
+		//alert("nueva: " + document.getElementById("del-NuevoPost").onclick);
 	}
 	
 	if(idPost == "Informacion de Contacto"){
@@ -77,8 +80,10 @@ function SavePost(idPost){
 	if(tablaPost == "novedades"){
 		indexPost = document.getElementById("id-" + idPost).value;
 		tituloPost = document.getElementById("txt-" + idPost).value;
-		alert("titulo: " + tituloPost);
-		fechaPost = "1900-01-01 00:00:00";
+		//alert("titulo: " + tituloPost);
+		//alert("la fecha contiene: " + document.getElementById("fch-" + idPost).innerHTML);
+		fechaPost = document.getElementById("fch-" + idPost).innerHTML;
+		//alert("fecha generada: " + fechaPost);
 		contenidoPost = document.getElementById("area-" + idPost).innerHTML;
 		AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&date=" + fechaPost + "&id=" + indexPost);
 	}
@@ -93,7 +98,7 @@ function SavePost(idPost){
 function CancelPost(idPost){
 	//Si estamos agregando un nuevo post y cancelamos la operacion, borramos el post
 	if (idPost == "NuevoPost") {
-			DelPost(idPost);
+			document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
 	}	
 	//Si es un post existente, mostramos la informacion que tenia en un principio
 	else{
@@ -106,6 +111,7 @@ function CancelPost(idPost){
 function AddPost(idPost, idTabla){
 	
 	//alert("idtabla: " + idTabla);
+	dt = new Date();
 	var newPost =
 	" <div id='pst-NuevoPost' class='innerPost' style='width: 530px;'> " +
 	" 	<div class='PostTitle' style='width: 526px;'> " +
@@ -115,16 +121,21 @@ function AddPost(idPost, idTabla){
 	"				<input type='button' id='sav-NuevoPost' title='guardar' class='sav' onClick=\"SavePost('NuevoPost')\" /> " +
 	"				<input type='button' id='can-NuevoPost' title='cancelar' class='can' onClick=\"CancelPost('NuevoPost')\" /> " +
 	"			</div> " +
+	"			<div id='fch-NuevoPost' class='PostDate'>" +
+		
+	(dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate()) +
+	
+	"			</div>" +
 	"		<input type='text' id='txt-NuevoPost' class='innerTitle' value='Nuevo Post' disabled='true' /> " +
 	"		</div> " +
 	"		<div id='cont-NuevoPost' class='PostContent'> " +
 	"		    <div id='area-NuevoPost' class='innerContent'> " +
 	"				Contenido del nuevo post " +
 	"			</div> " +
-	"			<input type='hidden' id='tmp-NuevoPost' value=''/> " +
-	"			<input type='hidden' id='id-NuevoPost' value='-1'/> " +
-	"			<input type='hidden' id='tbl-NuevoPost' value='" + idTabla + "'/> " +
 	"		</div> " +
+	"		<input type='hidden' id='tmp-NuevoPost' value=''/> " +
+	"		<input type='hidden' id='id-NuevoPost' value='-1'/> " +
+	"		<input type='hidden' id='tbl-NuevoPost' value='" + idTabla + "'/> " +		
    	"	</div> "
    	" </div> "	
 		

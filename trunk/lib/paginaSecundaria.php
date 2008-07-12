@@ -32,6 +32,9 @@
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/EditInPlace.js\"></script>";
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/AjaxManagerClient.js\"></script>";
 			
+			//El DatePicker:
+			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/Bs_DatePicker.class.js\"></script>";
+			
 			//TinyMCE:
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/tiny_mce/tiny_mce.js\"></script>";			
 			echo "
