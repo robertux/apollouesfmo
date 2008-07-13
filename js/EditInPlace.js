@@ -8,6 +8,17 @@ function EnablePost(idPost){
 	document.getElementById("txt-" + idPost).className = "innerTitleEdit";
 	document.getElementById("txt-" + idPost).focus();
 	
+	document.getElementById("fch-" + idPost).className = "PostDateEdit";
+	document.getElementById("fch-" + idPost).disabled = false;
+	
+	Calendar.setup({
+        inputField     :    ("fch-" + idPost),     // id of the input field
+        ifFormat       :    "%Y-%m-%d",      // format of the input field
+        align          :    "Tl",           // alignment (defaults to "Bl")
+        displayArea    :    ("fch-" + idPost), // ID of the span where the date is to be shown
+        singleClick    :    true
+    });
+	
 	//Ocultamos los botones de agregar/editar/eliminar
 	if(document.getElementById("add-" + idPost) != null)
 		document.getElementById("add-" + idPost).style.display = "none";
@@ -18,6 +29,7 @@ function EnablePost(idPost){
 	//mostramos los botones de guardar/cancelar
 	document.getElementById("sav-" + idPost).style.display = "inline";
 	document.getElementById("can-" + idPost).style.display = "inline";
+		
 	
 	//activamos el TinyMCE para que se aplique al <div class='innerContent'>
 	tinyMCE.execCommand('mceAddControl', false, ("area-" + idPost));
@@ -27,6 +39,9 @@ function DisablePost(idPost){
 	//Cambiamos la clase CSS del control Texto, para que ya no permita modificar su texto	
 	document.getElementById("txt-" + idPost).disabled = true;	
 	document.getElementById("txt-" + idPost).className = "innerTitle";
+	
+	document.getElementById("fch-" + idPost).className = "PostDate";
+	document.getElementById("fch-" + idPost).disabled = true;
 	
 	//Mostramos los botones de agregar/editar/eliminar
 	if(document.getElementById("add-" + idPost) != null)
@@ -46,7 +61,9 @@ function DisablePost(idPost){
 function EditPost(idPost){
 	EnablePost(idPost);
 	//guardamos el contenido del post en un elemento temporal
-	document.getElementById("tmp-" + idPost).value = document.getElementById("area-" + idPost).innerHTML;
+	document.getElementById("tmpcnt-" + idPost).value = document.getElementById("area-" + idPost).innerHTML;
+	document.getElementById("tmptit-" + idPost).value = document.getElementById("txt-" + idPost).value;
+	document.getElementById("tmpfch-" + idPost).value = document.getElementById("fch-" + idPost).value;
 	//alert("area guardada: " + document.getElementById("tmp-" + idPost).value);
 }
 
@@ -79,8 +96,8 @@ function SavePost(idPost){
 		indexPost = document.getElementById("id-" + idPost).value;
 		tituloPost = document.getElementById("txt-" + idPost).value;
 		//alert("titulo: " + tituloPost);
-		//alert("la fecha contiene: " + document.getElementById("fch-" + idPost).innerHTML);
-		fechaPost = document.getElementById("fch-" + idPost).innerHTML;
+		//alert("la fecha contiene: " + document.getElementById("fch-" + idPost).value);
+		fechaPost = document.getElementById("fch-" + idPost).value;
 		//alert("fecha generada: " + fechaPost);
 		contenidoPost = document.getElementById("area-" + idPost).innerHTML;
 		AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&date=" + fechaPost + "&id=" + indexPost);		
@@ -101,7 +118,9 @@ function CancelPost(idPost){
 	//Si es un post existente, mostramos la informacion que tenia en un principio
 	else{
 		DisablePost(idPost);
-		document.getElementById("area-" + idPost).innerHTML = document.getElementById("tmp-" + idPost).value;
+		document.getElementById("area-" + idPost).innerHTML = document.getElementById("tmpcnt-" + idPost).value;
+		document.getElementById("txt-" + idPost).value = document.getElementById("tmptit-" + idPost).value;
+		document.getElementById("fch-" + idPost).value = document.getElementById("tmpfch-" + idPost).value;
 	}	
 }
 
@@ -118,11 +137,11 @@ function AddPost(idPost, idTabla){
 	"				<input type='button' id='sav-NuevoPost' title='guardar' class='sav' onClick=\"SavePost('NuevoPost')\" /> " +
 	"				<input type='button' id='can-NuevoPost' title='cancelar' class='can' onClick=\"CancelPost('NuevoPost')\" /> " +
 	"			</div> " +
-	"			<div id='fch-NuevoPost' class='PostDate'>" +
+	"			<input type='text' id='fch-NuevoPost' class='PostDate' value='" +
 		
 	(dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate()) +
 	
-	"			</div>" +
+	"			' disabled='true'/>" +
 	"		<input type='text' id='txt-NuevoPost' class='innerTitle' value='Nuevo Post' disabled='true' /> " +
 	"		</div> " +
 	"		<div id='cont-NuevoPost' class='PostContent'> " +
