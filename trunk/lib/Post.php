@@ -46,18 +46,25 @@
 				$this->tbox->btnSave->onClick = "SavePost('$this->titulo')";
 				$this->tbox->btnCancel->id = "can-$this->titulo";
 				$this->tbox->btnCancel->onClick = "CancelPost('$this->titulo')";
+				$fechaField = "";
+				if($this->fecha != ""){
+					$fechaField = "<input type='text' id='fch-$this->titulo' class='PostDate' value='$this->fecha' disabled='true' />";
+				}
 
 			return "
 			<div id='pst-$this->titulo' class='Post' style='width: " . $this->ancho . "px;' >
 	    		<div class='PostTitle' style='width: " . ($this->ancho - 12) . "px;'>
-					" . $this->tbox->ToString() . "<div id='fch-$this->titulo' class='PostDate'>$this->fecha</div><input type='text' id='txt-$this->titulo' class='innerTitle' value='$this->titulo' disabled='true' />
+					" . $this->tbox->ToString() . $fechaField .
+					"<input type='text' id='txt-$this->titulo' class='innerTitle' value='$this->titulo' disabled='true' />
 				</div>
 				<div id='cont-$this->titulo' class='PostContent'>
 				    <div id='area-$this->titulo' class='innerContent'>
 						$this->contenido
 					</div>					
 				</div>
-				<input type='hidden' id='tmp-$this->titulo' value=''/>
+				<input type='hidden' id='tmpcnt-$this->titulo' value=''/>
+				<input type='hidden' id='tmptit-$this->titulo' value=''/>
+				<input type='hidden' id='tmpfch-$this->titulo' value=''/>
 				<input type='hidden' id='id-$this->titulo' value='$this->id'/>
 				<input type='hidden' id='tbl-$this->titulo' value='$this->tabla'/>
    			</div>
@@ -97,17 +104,24 @@
 				$this->tbox->btnSave->onClick = "SavePost('$this->titulo')";
 				$this->tbox->btnCancel->id = "can-$this->titulo";
 				$this->tbox->btnCancel->onClick = "CancelPost('$this->titulo')";
+				$fechaField = "";
+				if($this->fecha != ""){
+					$fechaField = "<input type='text' id='fch-$this->titulo' class='PostDate' value='$this->fecha' disabled='true' />";
+				}
 			
 			return "
 			<div id='pst-$this->titulo' class='innerPost' style='width: " . $this->ancho . "px;'>
     		<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
-				"  . $this->tbox->ToString() . "<div id='fch-$this->titulo' class='PostDate'>$this->fecha</div><input type='text' id='txt-$this->titulo' class='innerTitle' value='$this->titulo' disabled='true' />
+				"  . $this->tbox->ToString() . $fechaField .
+				"<input type='text' id='txt-$this->titulo' class='innerTitle' value='$this->titulo' disabled='true' />
 			</div>
 			<div id='cont-$this->titulo' class='PostContent'>
 			    <div id='area-$this->titulo' class='innerContent'>
 					$this->contenido
 				</div>
-				<input type='hidden' id='tmp-$this->titulo' value=''/>
+				<input type='hidden' id='tmpcnt-$this->titulo' value=''/>
+				<input type='hidden' id='tmptit-$this->titulo' value=''/>
+				<input type='hidden' id='tmpfch-$this->titulo' value=''/>
 				<input type='hidden' id='id-$this->titulo' value='$this->id'/>
 				<input type='hidden' id='tbl-$this->titulo' value='$this->tabla'/>
 			</div>
@@ -142,17 +156,24 @@
 				$this->tbox->btnSave->onClick = "SavePost('$this->titulo')";
 				$this->tbox->btnCancel->id = "can-$this->titulo";
 				$this->tbox->btnCancel->onClick = "CancelPost('$this->titulo')";
+				$fechaField = "";
+				if($this->fecha != ""){
+					$fechaField = "<input type='text' id='fch-$this->titulo' class='PostDate' value='$this->fecha' disabled='true' />";
+				}
 			
 			return "
 			<div id='pst-$this->titulo' class='innerInnerPost' style='width: " . $this->ancho . "px;'>
     		<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
-				" . $this->tbox->ToString() . "<div id='fch-$this->titulo' class='PostDate'>$this->fecha</div><input type='text' id='txt-$this->titulo' class='innerTitle' value='$this->titulo' disabled='true' />
+				" . $this->tbox->ToString() . $fechaField .
+				"<input type='text' id='txt-$this->titulo' class='innerTitle' value='$this->titulo' disabled='true' />
 			</div>
 			<div id='cont-$this->titulo' class='PostContent'>
 			    <div id='area-$this->titulo' class='innerContent'>
 					$this->contenido
 				</div>
-				<input type='hidden' id='tmp-$this->titulo' value=''/>
+				<input type='hidden' id='tmpcnt-$this->titulo' value=''/>
+				<input type='hidden' id='tmptit-$this->titulo' value=''/>
+				<input type='hidden' id='tmpfch-$this->titulo' value=''/>
 				<input type='hidden' id='id-$this->titulo' value='$this->id'/>
 				<input type='hidden' id='tbl-$this->titulo' value='$this->tabla'/>
 			</div>
