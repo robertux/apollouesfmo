@@ -16,21 +16,8 @@ echo "entramos";
 					case "novedades":				
 						echo "\ntabla novedades";
 						
-						$id = -1;
-						echo "\nmaxid: $id";
-						$conn->Conectar();
-						echo "\nmaxid: $id";
-						$resQuery = $conn->mysqli->query("select (max(id)+1) as newid from novedades;");
-						echo "\nquery: select (max(id)+1) as newid from novedades;";
-						//echo "error: $conn->mysqli->error";
-						echo "\nmaxid: $id";
-						$resArray = $resQuery->fetch_array();
-						$id = $resArray["newid"];
-						
-						//$id++;
-						echo "\nnuevo id: $id";
-						$conn->mysqli->close();
-						
+						$id = 0;
+						$id = $_GET["id"];
 						$titulo = $_GET["title"];
 						$contenido = $_GET["content"];
 						$fecha = $_GET["date"];
