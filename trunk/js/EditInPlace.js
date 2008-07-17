@@ -43,6 +43,8 @@ function DisablePost(idPost){
 	document.getElementById("fch-" + idPost).className = "PostDate";
 	document.getElementById("fch-" + idPost).disabled = true;
 	
+	
+	
 	//Mostramos los botones de agregar/editar/eliminar
 	if(document.getElementById("add-" + idPost) != null)
 		document.getElementById("add-" + idPost).style.display = "inline";
@@ -61,6 +63,7 @@ function DisablePost(idPost){
 function EditPost(idPost){
 	EnablePost(idPost);
 	//guardamos el contenido del post en un elemento temporal
+	//alert("editando post: " + idPost);
 	document.getElementById("tmpcnt-" + idPost).value = document.getElementById("area-" + idPost).innerHTML;
 	document.getElementById("tmptit-" + idPost).value = document.getElementById("txt-" + idPost).value;
 	document.getElementById("tmpfch-" + idPost).value = document.getElementById("fch-" + idPost).value;
@@ -70,11 +73,14 @@ function EditPost(idPost){
 function SavePost(idPost){
 	DisablePost(idPost);
 	actionPost = "edit";
+	alert("idpost: " + parseInt(document.getElementById("id-" + idPost).value));
 	if(document.getElementById("id-" + idPost).value == "-1"){
 		actionPost = "add";
-		//document.getElementById("id-" + idPost).value = "0";
+		document.getElementById("id-" + idPost).value = GetMaxId() + 1;
+		alert("idpost: " + parseInt(document.getElementById("id-" + idPost).value));
+		
 	}
-	
+	alert("actionpost: " + actionPost);
 	if(idPost == "Informacion de Contacto"){
 		AjaxSendContacto(document.getElementById("area-" + idPost).innerHTML);
 		return null;
@@ -104,6 +110,7 @@ function SavePost(idPost){
 	}
 	else{
 		indexPost = document.getElementById("id-" + idPost).value;
+		alert("indexpost: " + indexPost);
 		tituloPost = document.getElementById("txt-" + idPost).value;
 		contenidoPost = document.getElementById("area-" + idPost).innerHTML;
 		AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&id=" + indexPost);
@@ -128,35 +135,39 @@ function AddPost(idPost, idTabla){
 	
 	//alert("idtabla: " + idTabla);
 	dt = new Date();
-	var newPost =
-	" <div id='pst-NuevoPost' class='innerPost' style='width: 530px;'> " +
+	newId = GetMaxId() + 1;
+	//alert("newid: " + newId);
+	var newPost = 
+	" <div id='pst-" + newId + "' class='innerPost' style='width: 530px;'> " +
 	" 	<div class='PostTitle' style='width: 526px;'> " +
 	"			<div class='toolbox'>			   " +
-	"				<input type='button' id='edit-NuevoPost' title='editar' class='edit' onClick=\"EditPost('NuevoPost')\" /> " +
-	"				<input type='button' id='del-NuevoPost' title='eliminar' class='del' onClick=\"DelPost('NuevoPost')\" /> " +
-	"				<input type='button' id='sav-NuevoPost' title='guardar' class='sav' onClick=\"SavePost('NuevoPost')\" /> " +
-	"				<input type='button' id='can-NuevoPost' title='cancelar' class='can' onClick=\"CancelPost('NuevoPost')\" /> " +
+	"				<input type='button' id='edit-" + newId + "' title='editar' class='edit' onClick=\"EditPost('" + newId + "')\" /> " +
+	"				<input type='button' id='del-" + newId + "' title='eliminar' class='del' onClick=\"DelPost('" + newId + "')\" /> " +
+	"				<input type='button' id='sav-" + newId + "' title='guardar' class='sav' onClick=\"SavePost('" + newId + "')\" /> " +
+	"				<input type='button' id='can-" + newId + "' title='cancelar' class='can' onClick=\"CancelPost('" + newId + "')\" /> " +
 	"			</div> " +
-	"			<input type='text' id='fch-NuevoPost' class='PostDate' value='" +
+	"			<input type='text' id='fch-" + newId + "' class='PostDate' value='" +
 		
 	(dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate()) +
 	
 	"			' disabled='true'/>" +
-	"		<input type='text' id='txt-NuevoPost' class='innerTitle' value='Nuevo Post' disabled='true' /> " +
+	"		<input type='text' id='txt-" + newId + "' class='innerTitle' value='Nuevo Post' disabled='true' /> " +
 	"		</div> " +
-	"		<div id='cont-NuevoPost' class='PostContent'> " +
-	"		    <div id='area-NuevoPost' class='innerContent'> " +
+	"		<div id='cont-" + newId + "' class='PostContent'> " +
+	"		    <div id='area-" + newId + "' class='innerContent'> " +
 	"				Contenido del nuevo post " +
 	"			</div> " +
 	"		</div> " +
-	"		<input type='hidden' id='tmp-NuevoPost' value=''/> " +
-	"		<input type='hidden' id='id-NuevoPost' value='-1'/> " +
-	"		<input type='hidden' id='tbl-NuevoPost' value='" + idTabla + "'/> " +		
+	"		<input type='hidden' id='tmpcnt-" + newId + "' value=''/> " +
+	"		<input type='hidden' id='tmptit-" + newId + "' value=''/> " +	
+	"		<input type='hidden' id='tmpfch-" + newId + "' value=''/> " +	
+	"		<input type='hidden' id='id-" + newId + "' value='-1'/> " +
+	"		<input type='hidden' id='tbl-" + newId + "' value='" + idTabla + "'/> " +		
    	"	</div> "
    	" </div> "	
 		
 	document.getElementById("area-" + idPost).innerHTML = newPost + document.getElementById("area-" + idPost).innerHTML;
-	EditPost("NuevoPost");
+	EnablePost(newId);
 }
 
 function DelPost(idPost){
@@ -169,35 +180,20 @@ function DelPost(idPost){
 	}
 }
 
-function CatchResponse(responseText){
-	if(responseText == "") return;
-	
-	str = "";
-	str = responseText;
-
-	startId = str.indexOf("[id]") + 4;
-	endId = str.indexOf("[/id]");
-	newId = str.substring(startId, endId);
-	ChangePostId("-1", newId);
-}
-
-function ChangePostId(oldId, newId){
-	try{
-		elements = document.getElementsByTagName("input");	
-		for(i in elements){
-			if(elements[i].type == "hidden"){
-				if(elements[i].id.search("id-") != -1){
-					//alert("oldid: " +  oldId.toString() + " id: " + elements[i].value.toString());
-					if(elements[i].value.toString() == oldId.toString()){
-						//alert("ENTRANDO!!! id: " + elements[i].id + " value: " + elements[i].value);
-						elements[i].value = newId;
-						//alert("new value added: " + elements[i].value);
-						return;
-					}				
+function GetMaxId(){
+	elements = document.getElementsByTagName("input");
+	maxId = 0;
+	for (i in elements) {
+		try{
+			if (elements[i].id.search("id-") != -1) {
+				id = parseInt(elements[i].value);
+				if(id > maxId){
+					maxId = id;
 				}
-			}		
-		}
-	} catch(ex){
-		return;
+			}
+		}catch(ex){
+			//pass
+		}		
 	}
+	return maxId;	
 }
