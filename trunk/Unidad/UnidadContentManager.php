@@ -96,8 +96,10 @@
 			$pstPst = new InnerPost($tempNov->titulo, substr($tempNov->descripcion,3, strlen($tempNov->descripcion) - 4), 530);
 			$postList .= $pstPst->ToString();*/
 			
-			$lastNovs = new cNovedades();
-			$novResult = $lastNovs->GetUltimos(10);
+			//$lastNovs = new cNovedades();
+			//$novResult = $lastNovs->GetUltimos(10);
+			$pPager = new PostPager();
+			$novResult = $pPager->GetPosts();
 			if($novResult->num_rows > 0){
 				while($arreglo = $novResult->fetch_array()){
 					$tempPost = new InnerPost("", "", 530, false, true, true);
@@ -112,9 +114,10 @@
 			else{
 				$tempPost = new InnerPost("No hay resultados", "No hay noticias que mostrar...", 530);
 				$postList .= $tempPost->ToString();
-			}
+			}			
 			$pst = new Post("Noticias de la Unidad", $postList, 550, true, false, false);
 			$pst->tabla = "novedades";
+			$pst->pie = $pPager->ToString();
 			$pst->Show();
 		}
 		

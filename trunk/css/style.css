@@ -16,11 +16,11 @@ a {
 	color:#9b3535;
 	cursor: pointer;
 }
-a:hover {
+/*a:hover {
 	font-weight: bold;
 	text-decoration: underline;
 	cursor: pointer;
-}
+}*/
 #wrap {
 	width:920px;
 	text-align:left;

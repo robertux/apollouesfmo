@@ -31,12 +31,12 @@
 	color: #000000;
 }
 
-#vdividermenu ul li a:hover, #vdividermenu ul li #current{
+/*#vdividermenu ul li a:hover, #vdividermenu ul li #current{
 	color: #000000;
-	/*background: transparent url(../Media/blockactive.gif) center center repeat-x;*/
+	/*background: transparent url(../Media/blockactive.gif) center center repeat-x;
 	background-color: #bd0d0d;
 	font-weight: bold;
-}
+}*/
 
 #vdividermenu ul li #current{
 	border-left: 0px none #000000;

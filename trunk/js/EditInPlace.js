@@ -36,12 +36,15 @@ function EnablePost(idPost){
 }
 
 function DisablePost(idPost){
-	//Cambiamos la clase CSS del control Texto, para que ya no permita modificar su texto	
+	//Cambiamos la clase CSS del control Texto, para que ya no permita modificar su texto
+	//alert("id del post a desactivar: " + idPost);
 	document.getElementById("txt-" + idPost).disabled = true;	
 	document.getElementById("txt-" + idPost).className = "innerTitle";
 	
 	document.getElementById("fch-" + idPost).className = "PostDate";
 	document.getElementById("fch-" + idPost).disabled = true;
+	document.getElementById("fch-" + idPost).innerHTML = "";
+	//alert("next: " + document.getElementById("fch-" + idPost).nextSibling.type);
 	
 	
 	
@@ -120,7 +123,8 @@ function SavePost(idPost){
 function CancelPost(idPost){
 	//Si estamos agregando un nuevo post y cancelamos la operacion, borramos el post
 	if (document.getElementById("id-" + idPost).value == "-1") {
-			document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
+		DisablePost(idPost);
+		document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
 	}	
 	//Si es un post existente, mostramos la informacion que tenia en un principio
 	else{
@@ -150,7 +154,7 @@ function AddPost(idPost, idTabla){
 		
 	(dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate()) +
 	
-	"			' disabled='true'/>" +
+	"			' disabled='true'></input>" +
 	"		<input type='text' id='txt-" + newId + "' class='innerTitle' value='Nuevo Post' disabled='true' /> " +
 	"		</div> " +
 	"		<div id='cont-" + newId + "' class='PostContent'> " +

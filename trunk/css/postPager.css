@@ -1,0 +1,63 @@
+.TextPager{
+	float: left;
+	position: relative;
+	margin: 2px 5px 2px 6px;
+	padding-top: 4px;
+}
+
+.ButtonPagerList{
+	float: right;
+	position: relative;
+	padding: 1px 3px 1px 3px;
+}
+
+.btn-PgrNext, .btn-PgrPrev{
+	position: relative;
+	border-style: solid;
+	border-color: #ddd;
+	border-width: 1px;
+	cursor: pointer;
+	padding: 2px 3px 2px 3px;
+	margin: 1px 2px 1px 2px;
+	color: #000000;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+.btn-PgrNext{
+	float: right;
+	background-color: #f4f4f4;
+}
+
+a:hover{
+	background-color: #ddd;
+}
+
+.btn-PgrPrev{
+	float: left;
+	background-color: #f4f4f4;
+}
+
+.txt-PgrNext{
+	float: left;
+	padding-top: 1px;
+}
+
+.txt-PgrPrev{
+	float: right;
+	padding-top: 1px;
+}
+
+.img-PgrNext{
+	float: right;
+	background-image: url("../Media/resultset_next.png");
+	height: 16px;
+	width: 16px;
+}
+
+.img-PgrPrev{
+	float: left;
+	background-image: url("../Media/resultset_previous.png");
+	height: 16px;
+	width: 16px;
+}
