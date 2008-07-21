@@ -21,6 +21,13 @@
 	float: left;
 }
 
+.PostFooter{
+	background-color: #f4f4f4;
+	color: #000000;
+	font-size: smaller;
+	position: absolute;
+}
+
 .innerTitle{
 	position: relative;
 	font-family: Arial, Helvetica, sans-serif;

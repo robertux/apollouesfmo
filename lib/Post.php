@@ -11,6 +11,7 @@
 		var $showAddWhenAdmin;
 		var $showEditWhenAdmin;
 		var $showDelWhenAdmin;
+		var $pie;
 		
 		public function Post($pTitulo="Titulo", $pContenido="Contenido", $pAncho=550, $pShowAddWhenAdmin=false, $pShowEditWhenAdmin=false, $pShowDelWhenAdmin=false){
 			$this->id = $pId;
@@ -21,6 +22,7 @@
 		 	$this->showAddWhenAdmin = $pShowAddWhenAdmin;			
 		 	$this->showEditWhenAdmin = $pShowEditWhenAdmin;
 			$this->showDelWhenAdmin = $pShowDelWhenAdmin;
+			$this->pie = "";
 		}
 		
 		public function ToString(){
@@ -48,8 +50,12 @@
 				$this->tbox->btnCancel->onClick = "CancelPost('$this->id')";
 				$fechaField = "";
 				if($this->fecha != ""){
-					$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' />";
+					$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' ></inpurt>";
 				}
+				
+				$footer = "";
+				if($this->pie != "")
+					$footer = "<div class='PostFooter' style='width: " . $this->ancho . "px;'>$this->pie</div>";
 
 			return "
 			<div id='pst-$this->id' class='Post' style='width: " . $this->ancho . "px;' >
@@ -67,6 +73,7 @@
 				<input type='hidden' id='tmpfch-$this->id' value=''/>
 				<input type='hidden' id='id-$this->id' value='$this->id'/>
 				<input type='hidden' id='tbl-$this->id' value='$this->tabla'/>
+				$footer
    			</div>
 			
 			";
@@ -106,26 +113,31 @@
 				$this->tbox->btnCancel->onClick = "CancelPost('$this->id')";
 				$fechaField = "";
 				if($this->fecha != ""){
-					$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' />";
+					$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' ></input>";
 				}
+				
+				$footer = "";
+				if($this->pie != "")
+					$footer = "<div class='PostFooter'>$this->pie</div>";
 			
 			return "
 			<div id='pst-$this->id' class='innerPost' style='width: " . $this->ancho . "px;'>
-    		<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
-				"  . $this->tbox->ToString() . $fechaField .
-				"<input type='text' id='txt-$this->id' class='innerTitle' value='$this->titulo' disabled='true' />
-			</div>
-			<div id='cont-$this->id' class='PostContent'>
-			    <div id='area-$this->id' class='innerContent'>
-					$this->contenido
+    			<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
+					"  . $this->tbox->ToString() . $fechaField .
+					"<input type='text' id='txt-$this->id' class='innerTitle' value='$this->titulo' disabled='true' />
 				</div>
-				<input type='hidden' id='tmpcnt-$this->id' value=''/>
+				<div id='cont-$this->id' class='PostContent'>
+				    <div id='area-$this->id' class='innerContent'>
+						$this->contenido
+					</div>					
+				</div>
+				<input type='hidden' id='tmpcnt-$this->id' value=''/>	
 				<input type='hidden' id='tmptit-$this->id' value=''/>
 				<input type='hidden' id='tmpfch-$this->id' value=''/>
 				<input type='hidden' id='id-$this->id' value='$this->id'/>
 				<input type='hidden' id='tbl-$this->id' value='$this->tabla'/>
-			</div>
-   		</div>
+				$footer
+   			</div>
 			
 			";
 		}
@@ -147,37 +159,42 @@
 					$this->tbox->btnDel->enabled = true;
 			}
 			
-				$this->tbox->btnEdit->onClick = "EditPost('$this->id')";
-				$this->tbox->btnAdd->id = "add-$this->id";
-				$this->tbox->btnEdit->id = "edit-$this->id";
-				$this->tbox->btnDel->id = "del-$this->id";
-				$this->tbox->btnDel->onClick = "DelPost('$this->id')";		
-				$this->tbox->btnSave->id = "sav-$this->id";
-				$this->tbox->btnSave->onClick = "SavePost('$this->id')";
-				$this->tbox->btnCancel->id = "can-$this->id";
-				$this->tbox->btnCancel->onClick = "CancelPost('$this->id')";
-				$fechaField = "";
-				if($this->fecha != ""){
-					$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' />";
-				}
+			$this->tbox->btnEdit->onClick = "EditPost('$this->id')";
+			$this->tbox->btnAdd->id = "add-$this->id";
+			$this->tbox->btnEdit->id = "edit-$this->id";
+			$this->tbox->btnDel->id = "del-$this->id";
+			$this->tbox->btnDel->onClick = "DelPost('$this->id')";		
+			$this->tbox->btnSave->id = "sav-$this->id";
+			$this->tbox->btnSave->onClick = "SavePost('$this->id')";
+			$this->tbox->btnCancel->id = "can-$this->id";
+			$this->tbox->btnCancel->onClick = "CancelPost('$this->id')";
+			$fechaField = "";
+			if($this->fecha != ""){
+				$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' ></input>";
+			}
+			
+			$footer = "";
+			if($this->pie != "")
+				$footer = "<div class='PostFooter'>$this->pie</div>";
 			
 			return "
 			<div id='pst-$this->id' class='innerInnerPost' style='width: " . $this->ancho . "px;'>
-    		<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
-				" . $this->tbox->ToString() . $fechaField .
-				"<input type='text' id='txt-$this->id' class='innerTitle' value='$this->titulo' disabled='true' />
-			</div>
-			<div id='cont-$this->id' class='PostContent'>
-			    <div id='area-$this->id' class='innerContent'>
-					$this->contenido
+	    		<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
+					" . $this->tbox->ToString() . $fechaField .
+					"<input type='text' id='txt-$this->id' class='innerTitle' value='$this->titulo' disabled='true' />
 				</div>
-				<input type='hidden' id='tmpcnt-$this->id' value=''/>
-				<input type='hidden' id='tmptit-$this->id' value=''/>
-				<input type='hidden' id='tmpfch-$this->id' value=''/>
-				<input type='hidden' id='id-$this->id' value='$this->id'/>
-				<input type='hidden' id='tbl-$this->id' value='$this->tabla'/>
-			</div>
-   		</div>
+				<div id='cont-$this->id' class='PostContent'>
+				    <div id='area-$this->id' class='innerContent'>
+						$this->contenido
+					</div>
+					<input type='hidden' id='tmpcnt-$this->id' value=''/>
+					<input type='hidden' id='tmptit-$this->id' value=''/>
+					<input type='hidden' id='tmpfch-$this->id' value=''/>
+					<input type='hidden' id='id-$this->id' value='$this->id'/>
+					<input type='hidden' id='tbl-$this->id' value='$this->tabla'/>
+				</div>
+				$footer
+	   		</div>
 			
 			";
 		}

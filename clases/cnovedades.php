@@ -41,8 +41,13 @@ class cNovedades
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
     public function GetLista()
     {
-    	return($this->Consultar("SELECT id, titulo, vinculo, descripcion, fecha FROM novedades;", true));
+    	return($this->Consultar("SELECT id, titulo, vinculo, descripcion, fecha FROM novedades ORDER BY fecha DESC;", true));
     }
+	
+	public function GetListaFiltrada($ini=0, $len=10)
+	{
+		return($this->Consultar("SELECT id, titulo, vinculo, descripcion, fecha FROM novedades ORDER BY fecha DESC limit $ini, $len;", true));
+	}
     
     public function GetUltimos($pNumero = 10)
     {

@@ -27,6 +27,7 @@
 			echo "<link rel=\"stylesheet\" href=\"../css/posts.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
 			echo "<link rel=\"stylesheet\" href=\"../css/tables.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
 			echo "<link rel=\"stylesheet\" href=\"../css/toolbox.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";			
+			echo "<link rel=\"stylesheet\" href=\"../css/postPager.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";			
 
 			//el estilo del jscalendar			
 			echo "<link rel=\"stylesheet\" href=\"../js/jscalendar/calendar-system.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";			
