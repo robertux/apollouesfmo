@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.0.51a-community-nt
+-- Server version	5.0.51-3
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -22,11 +22,11 @@ CREATE DATABASE IF NOT EXISTS apollo;
 USE apollo;
 
 --
--- Definition of table `alumno`
+-- Definition of table `apollo`.`alumno`
 --
 
-DROP TABLE IF EXISTS `alumno`;
-CREATE TABLE `alumno` (
+DROP TABLE IF EXISTS `apollo`.`alumno`;
+CREATE TABLE  `apollo`.`alumno` (
   `id` int(11) NOT NULL auto_increment,
   `apellidos` varchar(200) NOT NULL,
   `nombres` varchar(200) NOT NULL,
@@ -40,19 +40,21 @@ CREATE TABLE `alumno` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `alumno`
+-- Dumping data for table `apollo`.`alumno`
 --
 
 /*!40000 ALTER TABLE `alumno` DISABLE KEYS */;
+LOCK TABLES `alumno` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `alumno` ENABLE KEYS */;
 
 
 --
--- Definition of table `asignacion`
+-- Definition of table `apollo`.`asignacion`
 --
 
-DROP TABLE IF EXISTS `asignacion`;
-CREATE TABLE `asignacion` (
+DROP TABLE IF EXISTS `apollo`.`asignacion`;
+CREATE TABLE  `apollo`.`asignacion` (
   `id` int(10) unsigned NOT NULL,
   `usuario` int(11) NOT NULL default '0',
   `privilegio` int(11) NOT NULL default '0',
@@ -62,21 +64,22 @@ CREATE TABLE `asignacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `asignacion`
+-- Dumping data for table `apollo`.`asignacion`
 --
 
 /*!40000 ALTER TABLE `asignacion` DISABLE KEYS */;
-INSERT INTO `asignacion` (`id`,`usuario`,`privilegio`) VALUES 
- (1,4,4);
+LOCK TABLES `asignacion` WRITE;
+INSERT INTO `apollo`.`asignacion` VALUES  (1,4,4);
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `asignacion` ENABLE KEYS */;
 
 
 --
--- Definition of table `costo`
+-- Definition of table `apollo`.`costo`
 --
 
-DROP TABLE IF EXISTS `costo`;
-CREATE TABLE `costo` (
+DROP TABLE IF EXISTS `apollo`.`costo`;
+CREATE TABLE  `apollo`.`costo` (
   `id` int(11) NOT NULL auto_increment,
   `nombre` varchar(50) NOT NULL,
   `valor` double NOT NULL,
@@ -87,19 +90,21 @@ CREATE TABLE `costo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `costo`
+-- Dumping data for table `apollo`.`costo`
 --
 
 /*!40000 ALTER TABLE `costo` DISABLE KEYS */;
+LOCK TABLES `costo` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `costo` ENABLE KEYS */;
 
 
 --
--- Definition of table `curso`
+-- Definition of table `apollo`.`curso`
 --
 
-DROP TABLE IF EXISTS `curso`;
-CREATE TABLE `curso` (
+DROP TABLE IF EXISTS `apollo`.`curso`;
+CREATE TABLE  `apollo`.`curso` (
   `id` int(11) NOT NULL auto_increment,
   `fechainicio` date NOT NULL,
   `postgrado` int(11) NOT NULL,
@@ -109,19 +114,21 @@ CREATE TABLE `curso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `curso`
+-- Dumping data for table `apollo`.`curso`
 --
 
 /*!40000 ALTER TABLE `curso` DISABLE KEYS */;
+LOCK TABLES `curso` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `curso` ENABLE KEYS */;
 
 
 --
--- Definition of table `docente`
+-- Definition of table `apollo`.`docente`
 --
 
-DROP TABLE IF EXISTS `docente`;
-CREATE TABLE `docente` (
+DROP TABLE IF EXISTS `apollo`.`docente`;
+CREATE TABLE  `apollo`.`docente` (
   `id` int(11) NOT NULL auto_increment,
   `apellidos` varchar(200) NOT NULL,
   `nombres` varchar(200) NOT NULL,
@@ -133,19 +140,21 @@ CREATE TABLE `docente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `docente`
+-- Dumping data for table `apollo`.`docente`
 --
 
 /*!40000 ALTER TABLE `docente` DISABLE KEYS */;
+LOCK TABLES `docente` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `docente` ENABLE KEYS */;
 
 
 --
--- Definition of table `evaluacion`
+-- Definition of table `apollo`.`evaluacion`
 --
 
-DROP TABLE IF EXISTS `evaluacion`;
-CREATE TABLE `evaluacion` (
+DROP TABLE IF EXISTS `apollo`.`evaluacion`;
+CREATE TABLE  `apollo`.`evaluacion` (
   `id` int(11) NOT NULL auto_increment,
   `fecha` date NOT NULL,
   `porcentaje` double NOT NULL,
@@ -157,19 +166,21 @@ CREATE TABLE `evaluacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `evaluacion`
+-- Dumping data for table `apollo`.`evaluacion`
 --
 
 /*!40000 ALTER TABLE `evaluacion` DISABLE KEYS */;
+LOCK TABLES `evaluacion` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `evaluacion` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_bans`
+-- Definition of table `apollo`.`foro_bans`
 --
 
-DROP TABLE IF EXISTS `foro_bans`;
-CREATE TABLE `foro_bans` (
+DROP TABLE IF EXISTS `apollo`.`foro_bans`;
+CREATE TABLE  `apollo`.`foro_bans` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `username` varchar(200) default NULL,
   `ip` varchar(255) default NULL,
@@ -180,19 +191,21 @@ CREATE TABLE `foro_bans` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_bans`
+-- Dumping data for table `apollo`.`foro_bans`
 --
 
 /*!40000 ALTER TABLE `foro_bans` DISABLE KEYS */;
+LOCK TABLES `foro_bans` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_bans` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_categories`
+-- Definition of table `apollo`.`foro_categories`
 --
 
-DROP TABLE IF EXISTS `foro_categories`;
-CREATE TABLE `foro_categories` (
+DROP TABLE IF EXISTS `apollo`.`foro_categories`;
+CREATE TABLE  `apollo`.`foro_categories` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `cat_name` varchar(80) NOT NULL default 'New Category',
   `disp_position` int(10) NOT NULL default '0',
@@ -200,19 +213,21 @@ CREATE TABLE `foro_categories` (
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_categories`
+-- Dumping data for table `apollo`.`foro_categories`
 --
 
 /*!40000 ALTER TABLE `foro_categories` DISABLE KEYS */;
+LOCK TABLES `foro_categories` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_categories` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_censoring`
+-- Definition of table `apollo`.`foro_censoring`
 --
 
-DROP TABLE IF EXISTS `foro_censoring`;
-CREATE TABLE `foro_censoring` (
+DROP TABLE IF EXISTS `apollo`.`foro_censoring`;
+CREATE TABLE  `apollo`.`foro_censoring` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `search_for` varchar(60) NOT NULL default '',
   `replace_with` varchar(60) NOT NULL default '',
@@ -220,34 +235,35 @@ CREATE TABLE `foro_censoring` (
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_censoring`
+-- Dumping data for table `apollo`.`foro_censoring`
 --
 
 /*!40000 ALTER TABLE `foro_censoring` DISABLE KEYS */;
-INSERT INTO `foro_censoring` (`id`,`search_for`,`replace_with`) VALUES 
- (1,'puta','****'),
+LOCK TABLES `foro_censoring` WRITE;
+INSERT INTO `apollo`.`foro_censoring` VALUES  (1,'puta','****'),
  (2,'cerote','******');
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_censoring` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_config`
+-- Definition of table `apollo`.`foro_config`
 --
 
-DROP TABLE IF EXISTS `foro_config`;
-CREATE TABLE `foro_config` (
+DROP TABLE IF EXISTS `apollo`.`foro_config`;
+CREATE TABLE  `apollo`.`foro_config` (
   `conf_name` varchar(255) NOT NULL default '',
   `conf_value` text,
   PRIMARY KEY  (`conf_name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_config`
+-- Dumping data for table `apollo`.`foro_config`
 --
 
 /*!40000 ALTER TABLE `foro_config` DISABLE KEYS */;
-INSERT INTO `foro_config` (`conf_name`,`conf_value`) VALUES 
- ('o_cur_version','1.2.17'),
+LOCK TABLES `foro_config` WRITE;
+INSERT INTO `apollo`.`foro_config` VALUES  ('o_cur_version','1.2.17'),
  ('o_board_title','Unidad de PostGrados, UES-FMOcc'),
  ('o_board_desc','¡Hacia la libertad, por la Cultura!'),
  ('o_server_timezone','0'),
@@ -281,8 +297,8 @@ INSERT INTO `foro_config` (`conf_name`,`conf_value`) VALUES
  ('o_regs_report','0'),
  ('o_mailing_list','lista@email.com'),
  ('o_avatars','0'),
- ('o_avatars_dir',''),
- ('o_avatars_width','0'),
+ ('o_avatars_dir','');
+INSERT INTO `apollo`.`foro_config` VALUES  ('o_avatars_width','0'),
  ('o_avatars_height','0'),
  ('o_avatars_size','0'),
  ('o_search_all_forums','1'),
@@ -308,8 +324,8 @@ INSERT INTO `foro_config` (`conf_name`,`conf_value`) VALUES
  ('p_message_bbcode','1'),
  ('p_message_img_tag','1'),
  ('p_message_all_caps','1'),
- ('p_subject_all_caps','1'),
- ('p_sig_all_caps','1'),
+ ('p_subject_all_caps','1');
+INSERT INTO `apollo`.`foro_config` VALUES  ('p_sig_all_caps','1'),
  ('p_sig_bbcode','1'),
  ('p_sig_img_tag','0'),
  ('p_sig_length','400'),
@@ -317,15 +333,16 @@ INSERT INTO `foro_config` (`conf_name`,`conf_value`) VALUES
  ('p_allow_banned_email','1'),
  ('p_allow_dupe_email','0'),
  ('p_force_guest_email','1');
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_config` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_forum_perms`
+-- Definition of table `apollo`.`foro_forum_perms`
 --
 
-DROP TABLE IF EXISTS `foro_forum_perms`;
-CREATE TABLE `foro_forum_perms` (
+DROP TABLE IF EXISTS `apollo`.`foro_forum_perms`;
+CREATE TABLE  `apollo`.`foro_forum_perms` (
   `group_id` int(10) NOT NULL default '0',
   `forum_id` int(10) NOT NULL default '0',
   `read_forum` tinyint(1) NOT NULL default '1',
@@ -335,19 +352,21 @@ CREATE TABLE `foro_forum_perms` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_forum_perms`
+-- Dumping data for table `apollo`.`foro_forum_perms`
 --
 
 /*!40000 ALTER TABLE `foro_forum_perms` DISABLE KEYS */;
+LOCK TABLES `foro_forum_perms` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_forum_perms` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_forums`
+-- Definition of table `apollo`.`foro_forums`
 --
 
-DROP TABLE IF EXISTS `foro_forums`;
-CREATE TABLE `foro_forums` (
+DROP TABLE IF EXISTS `apollo`.`foro_forums`;
+CREATE TABLE  `apollo`.`foro_forums` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `forum_name` varchar(80) NOT NULL default 'New forum',
   `forum_desc` text,
@@ -365,19 +384,21 @@ CREATE TABLE `foro_forums` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_forums`
+-- Dumping data for table `apollo`.`foro_forums`
 --
 
 /*!40000 ALTER TABLE `foro_forums` DISABLE KEYS */;
+LOCK TABLES `foro_forums` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_forums` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_groups`
+-- Definition of table `apollo`.`foro_groups`
 --
 
-DROP TABLE IF EXISTS `foro_groups`;
-CREATE TABLE `foro_groups` (
+DROP TABLE IF EXISTS `apollo`.`foro_groups`;
+CREATE TABLE  `apollo`.`foro_groups` (
   `g_id` int(10) unsigned NOT NULL auto_increment,
   `g_title` varchar(50) NOT NULL default '',
   `g_user_title` varchar(50) default NULL,
@@ -398,24 +419,25 @@ CREATE TABLE `foro_groups` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_groups`
+-- Dumping data for table `apollo`.`foro_groups`
 --
 
 /*!40000 ALTER TABLE `foro_groups` DISABLE KEYS */;
-INSERT INTO `foro_groups` (`g_id`,`g_title`,`g_user_title`,`g_read_board`,`g_post_replies`,`g_post_topics`,`g_post_polls`,`g_edit_posts`,`g_delete_posts`,`g_delete_topics`,`g_set_title`,`g_search`,`g_search_users`,`g_edit_subjects_interval`,`g_post_flood`,`g_search_flood`) VALUES 
- (1,'Administrators','Administrator',1,1,1,1,1,1,1,1,1,1,0,0,0),
+LOCK TABLES `foro_groups` WRITE;
+INSERT INTO `apollo`.`foro_groups` VALUES  (1,'Administrators','Administrator',1,1,1,1,1,1,1,1,1,1,0,0,0),
  (2,'Moderators','Moderator',1,1,1,1,1,1,1,1,1,1,0,0,0),
  (3,'Guest',NULL,1,0,0,0,0,0,0,0,1,1,0,0,0),
  (4,'Members',NULL,1,1,1,1,1,1,1,0,1,1,300,60,30);
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_groups` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_online`
+-- Definition of table `apollo`.`foro_online`
 --
 
-DROP TABLE IF EXISTS `foro_online`;
-CREATE TABLE `foro_online` (
+DROP TABLE IF EXISTS `apollo`.`foro_online`;
+CREATE TABLE  `apollo`.`foro_online` (
   `user_id` int(10) unsigned NOT NULL default '1',
   `ident` varchar(200) NOT NULL default '',
   `logged` int(10) unsigned NOT NULL default '0',
@@ -425,21 +447,21 @@ CREATE TABLE `foro_online` (
 ) ENGINE=MEMORY DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_online`
+-- Dumping data for table `apollo`.`foro_online`
 --
 
 /*!40000 ALTER TABLE `foro_online` DISABLE KEYS */;
-INSERT INTO `foro_online` (`user_id`,`ident`,`logged`,`idle`) VALUES 
- (1,'127.0.0.1',1215533606,0);
+LOCK TABLES `foro_online` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_online` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_posts`
+-- Definition of table `apollo`.`foro_posts`
 --
 
-DROP TABLE IF EXISTS `foro_posts`;
-CREATE TABLE `foro_posts` (
+DROP TABLE IF EXISTS `apollo`.`foro_posts`;
+CREATE TABLE  `apollo`.`foro_posts` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `poster` varchar(200) NOT NULL default '',
   `poster_id` int(10) unsigned NOT NULL default '1',
@@ -457,19 +479,21 @@ CREATE TABLE `foro_posts` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_posts`
+-- Dumping data for table `apollo`.`foro_posts`
 --
 
 /*!40000 ALTER TABLE `foro_posts` DISABLE KEYS */;
+LOCK TABLES `foro_posts` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_posts` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_ranks`
+-- Definition of table `apollo`.`foro_ranks`
 --
 
-DROP TABLE IF EXISTS `foro_ranks`;
-CREATE TABLE `foro_ranks` (
+DROP TABLE IF EXISTS `apollo`.`foro_ranks`;
+CREATE TABLE  `apollo`.`foro_ranks` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `rank` varchar(50) NOT NULL default '',
   `min_posts` mediumint(8) unsigned NOT NULL default '0',
@@ -477,23 +501,24 @@ CREATE TABLE `foro_ranks` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_ranks`
+-- Dumping data for table `apollo`.`foro_ranks`
 --
 
 /*!40000 ALTER TABLE `foro_ranks` DISABLE KEYS */;
-INSERT INTO `foro_ranks` (`id`,`rank`,`min_posts`) VALUES 
- (1,'Nuevo Miembro',0),
+LOCK TABLES `foro_ranks` WRITE;
+INSERT INTO `apollo`.`foro_ranks` VALUES  (1,'Nuevo Miembro',0),
  (2,'Miembro',20),
  (3,'Miembro Activo',40);
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_ranks` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_reports`
+-- Definition of table `apollo`.`foro_reports`
 --
 
-DROP TABLE IF EXISTS `foro_reports`;
-CREATE TABLE `foro_reports` (
+DROP TABLE IF EXISTS `apollo`.`foro_reports`;
+CREATE TABLE  `apollo`.`foro_reports` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `post_id` int(10) unsigned NOT NULL default '0',
   `topic_id` int(10) unsigned NOT NULL default '0',
@@ -508,19 +533,21 @@ CREATE TABLE `foro_reports` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_reports`
+-- Dumping data for table `apollo`.`foro_reports`
 --
 
 /*!40000 ALTER TABLE `foro_reports` DISABLE KEYS */;
+LOCK TABLES `foro_reports` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_reports` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_search_cache`
+-- Definition of table `apollo`.`foro_search_cache`
 --
 
-DROP TABLE IF EXISTS `foro_search_cache`;
-CREATE TABLE `foro_search_cache` (
+DROP TABLE IF EXISTS `apollo`.`foro_search_cache`;
+CREATE TABLE  `apollo`.`foro_search_cache` (
   `id` int(10) unsigned NOT NULL default '0',
   `ident` varchar(200) NOT NULL default '',
   `search_data` text,
@@ -529,19 +556,21 @@ CREATE TABLE `foro_search_cache` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_search_cache`
+-- Dumping data for table `apollo`.`foro_search_cache`
 --
 
 /*!40000 ALTER TABLE `foro_search_cache` DISABLE KEYS */;
+LOCK TABLES `foro_search_cache` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_search_cache` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_search_matches`
+-- Definition of table `apollo`.`foro_search_matches`
 --
 
-DROP TABLE IF EXISTS `foro_search_matches`;
-CREATE TABLE `foro_search_matches` (
+DROP TABLE IF EXISTS `apollo`.`foro_search_matches`;
+CREATE TABLE  `apollo`.`foro_search_matches` (
   `post_id` int(10) unsigned NOT NULL default '0',
   `word_id` mediumint(8) unsigned NOT NULL default '0',
   `subject_match` tinyint(1) NOT NULL default '0',
@@ -550,19 +579,21 @@ CREATE TABLE `foro_search_matches` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_search_matches`
+-- Dumping data for table `apollo`.`foro_search_matches`
 --
 
 /*!40000 ALTER TABLE `foro_search_matches` DISABLE KEYS */;
+LOCK TABLES `foro_search_matches` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_search_matches` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_search_words`
+-- Definition of table `apollo`.`foro_search_words`
 --
 
-DROP TABLE IF EXISTS `foro_search_words`;
-CREATE TABLE `foro_search_words` (
+DROP TABLE IF EXISTS `apollo`.`foro_search_words`;
+CREATE TABLE  `apollo`.`foro_search_words` (
   `id` mediumint(8) unsigned NOT NULL auto_increment,
   `word` varchar(20) character set utf8 collate utf8_bin NOT NULL default '',
   PRIMARY KEY  (`word`),
@@ -570,40 +601,43 @@ CREATE TABLE `foro_search_words` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_search_words`
+-- Dumping data for table `apollo`.`foro_search_words`
 --
 
 /*!40000 ALTER TABLE `foro_search_words` DISABLE KEYS */;
-INSERT INTO `foro_search_words` (`id`,`word`) VALUES 
- (2,0x707275656261);
+LOCK TABLES `foro_search_words` WRITE;
+INSERT INTO `apollo`.`foro_search_words` VALUES  (2,0x707275656261);
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_search_words` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_subscriptions`
+-- Definition of table `apollo`.`foro_subscriptions`
 --
 
-DROP TABLE IF EXISTS `foro_subscriptions`;
-CREATE TABLE `foro_subscriptions` (
+DROP TABLE IF EXISTS `apollo`.`foro_subscriptions`;
+CREATE TABLE  `apollo`.`foro_subscriptions` (
   `user_id` int(10) unsigned NOT NULL default '0',
   `topic_id` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`user_id`,`topic_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_subscriptions`
+-- Dumping data for table `apollo`.`foro_subscriptions`
 --
 
 /*!40000 ALTER TABLE `foro_subscriptions` DISABLE KEYS */;
+LOCK TABLES `foro_subscriptions` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_subscriptions` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_topics`
+-- Definition of table `apollo`.`foro_topics`
 --
 
-DROP TABLE IF EXISTS `foro_topics`;
-CREATE TABLE `foro_topics` (
+DROP TABLE IF EXISTS `apollo`.`foro_topics`;
+CREATE TABLE  `apollo`.`foro_topics` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `poster` varchar(200) NOT NULL default '',
   `subject` varchar(255) NOT NULL default '',
@@ -623,19 +657,21 @@ CREATE TABLE `foro_topics` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_topics`
+-- Dumping data for table `apollo`.`foro_topics`
 --
 
 /*!40000 ALTER TABLE `foro_topics` DISABLE KEYS */;
+LOCK TABLES `foro_topics` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_topics` ENABLE KEYS */;
 
 
 --
--- Definition of table `foro_users`
+-- Definition of table `apollo`.`foro_users`
 --
 
-DROP TABLE IF EXISTS `foro_users`;
-CREATE TABLE `foro_users` (
+DROP TABLE IF EXISTS `apollo`.`foro_users`;
+CREATE TABLE  `apollo`.`foro_users` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `group_id` int(10) unsigned NOT NULL default '4',
   `username` varchar(200) NOT NULL default '',
@@ -679,46 +715,24 @@ CREATE TABLE `foro_users` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `foro_users`
+-- Dumping data for table `apollo`.`foro_users`
 --
 
 /*!40000 ALTER TABLE `foro_users` DISABLE KEYS */;
-INSERT INTO `foro_users` (`id`,`group_id`,`username`,`password`,`email`,`title`,`realname`,`url`,`jabber`,`icq`,`msn`,`aim`,`yahoo`,`location`,`use_avatar`,`signature`,`disp_topics`,`disp_posts`,`email_setting`,`save_pass`,`notify_with_post`,`show_smilies`,`show_img`,`show_img_sig`,`show_avatars`,`show_sig`,`timezone`,`language`,`style`,`num_posts`,`last_post`,`registered`,`registration_ip`,`last_visit`,`admin_note`,`activate_string`,`activate_key`) VALUES 
- (1,3,'Guest','Guest','Guest',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'English','Oxygen',0,NULL,0,'0.0.0.0',0,NULL,NULL,NULL),
+LOCK TABLES `foro_users` WRITE;
+INSERT INTO `apollo`.`foro_users` VALUES  (1,3,'Guest','Guest','Guest',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'English','Oxygen',0,NULL,0,'0.0.0.0',0,NULL,NULL,NULL),
  (2,1,'ramayac','d033e22ae348aeb5660fc2140aec35850c4da997','ramayac@gmail.com','Br.','Rodrigo Amaya','http://SrByte.blogspot.com',NULL,NULL,NULL,NULL,NULL,'Santa Ana',0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'English','Sulfur',3,1214767309,1211988301,'127.0.0.1',1215065425,NULL,NULL,NULL),
  (4,4,'robertux','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8','foo@bar.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,-6,'Spanish','Minerva',0,NULL,1214966189,'127.0.0.1',1214967051,NULL,NULL,NULL);
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `foro_users` ENABLE KEYS */;
 
 
 --
--- Definition of table `general`
+-- Definition of table `apollo`.`horario`
 --
 
-DROP TABLE IF EXISTS `general`;
-CREATE TABLE `general` (
-  `titulo` varchar(80) NOT NULL,
-  `contenido` text NOT NULL,
-  PRIMARY KEY  (`titulo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `general`
---
-
-/*!40000 ALTER TABLE `general` DISABLE KEYS */;
-INSERT INTO `general` (`titulo`,`contenido`) VALUES 
- ('about','<p>La Unidad de PostGrado es de reciente creaciÃ³n y ha sido fundada para planificar, gestionar, coordinar, ejecutar y evaluar los programas de postgrado que se lleven a cabo en la UES-FMO. Esta unidad es estratÃ©gica en la formaciÃ³n de profesionales de alto nivel acadÃ©mico en sus distintas especializaciones, con incidencia en la identificaciÃ³n, discusiÃ³n y propuestas de alternativas de soluciÃ³n a los problemas mas sentidos por la poblaciÃ³n de la zona occidental del paÃ­s.</p><p>'),
- ('contacto','<p style=\"text-align: left;\">Para mayor informacion puede llamarnos a los telefonos:</p><p style=\"text-align: center;\"><strong> 2484-0821</strong> y <strong>2484-0866</strong></p><p style=\"text-align: left;\">con <strong>VerÃ³nica de GonzÃ¡les </strong>o al correo electronico:</p><p style=\"text-align: center;\"><strong>veronica.jazmin@gmail.com</strong></p>'),
- ('suscripcion','<p style=\"text-align: center;\">suscripcion aqui...</p>');
-/*!40000 ALTER TABLE `general` ENABLE KEYS */;
-
-
---
--- Definition of table `horario`
---
-
-DROP TABLE IF EXISTS `horario`;
-CREATE TABLE `horario` (
+DROP TABLE IF EXISTS `apollo`.`horario`;
+CREATE TABLE  `apollo`.`horario` (
   `id` int(11) NOT NULL auto_increment,
   `dia` int(11) NOT NULL,
   `horainicio` time NOT NULL,
@@ -732,19 +746,21 @@ CREATE TABLE `horario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `horario`
+-- Dumping data for table `apollo`.`horario`
 --
 
 /*!40000 ALTER TABLE `horario` DISABLE KEYS */;
+LOCK TABLES `horario` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `horario` ENABLE KEYS */;
 
 
 --
--- Definition of table `inscripcion`
+-- Definition of table `apollo`.`inscripcion`
 --
 
-DROP TABLE IF EXISTS `inscripcion`;
-CREATE TABLE `inscripcion` (
+DROP TABLE IF EXISTS `apollo`.`inscripcion`;
+CREATE TABLE  `apollo`.`inscripcion` (
   `id` int(11) NOT NULL auto_increment,
   `alumno` int(11) NOT NULL,
   `curso` int(11) NOT NULL,
@@ -759,19 +775,21 @@ CREATE TABLE `inscripcion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `inscripcion`
+-- Dumping data for table `apollo`.`inscripcion`
 --
 
 /*!40000 ALTER TABLE `inscripcion` DISABLE KEYS */;
+LOCK TABLES `inscripcion` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `inscripcion` ENABLE KEYS */;
 
 
 --
--- Definition of table `materia`
+-- Definition of table `apollo`.`materia`
 --
 
-DROP TABLE IF EXISTS `materia`;
-CREATE TABLE `materia` (
+DROP TABLE IF EXISTS `apollo`.`materia`;
+CREATE TABLE  `apollo`.`materia` (
   `id` int(11) NOT NULL auto_increment,
   `nombre` varchar(50) NOT NULL,
   `uvs` int(11) NOT NULL,
@@ -784,19 +802,21 @@ CREATE TABLE `materia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `materia`
+-- Dumping data for table `apollo`.`materia`
 --
 
 /*!40000 ALTER TABLE `materia` DISABLE KEYS */;
+LOCK TABLES `materia` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `materia` ENABLE KEYS */;
 
 
 --
--- Definition of table `modulo`
+-- Definition of table `apollo`.`modulo`
 --
 
-DROP TABLE IF EXISTS `modulo`;
-CREATE TABLE `modulo` (
+DROP TABLE IF EXISTS `apollo`.`modulo`;
+CREATE TABLE  `apollo`.`modulo` (
   `id` int(11) NOT NULL auto_increment,
   `correlativo` int(11) NOT NULL,
   `docente` int(11) NOT NULL,
@@ -815,19 +835,21 @@ CREATE TABLE `modulo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `modulo`
+-- Dumping data for table `apollo`.`modulo`
 --
 
 /*!40000 ALTER TABLE `modulo` DISABLE KEYS */;
+LOCK TABLES `modulo` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `modulo` ENABLE KEYS */;
 
 
 --
--- Definition of table `novedades`
+-- Definition of table `apollo`.`novedades`
 --
 
-DROP TABLE IF EXISTS `novedades`;
-CREATE TABLE `novedades` (
+DROP TABLE IF EXISTS `apollo`.`novedades`;
+CREATE TABLE  `apollo`.`novedades` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `titulo` varchar(50) NOT NULL,
   `vinculo` varchar(100) NOT NULL,
@@ -835,31 +857,35 @@ CREATE TABLE `novedades` (
   `fecha` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `FECHA` (`fecha`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `novedades`
+-- Dumping data for table `apollo`.`novedades`
 --
 
 /*!40000 ALTER TABLE `novedades` DISABLE KEYS */;
-INSERT INTO `novedades` (`id`,`titulo`,`vinculo`,`descripcion`,`fecha`) VALUES 
- (0,'Bienvenido Unidad de PostGrados','http://apollo-uesfmo.blogspot.com','<p>Este es el gestor de noticias de la Unidad de PostGrados de la Universidad de El Salvador, Facultad Multidisciplinaria de Occidente. Mediante la suscripcion a este gestor, usted estar informado de las noticias mas recientes de la Unidad de PostGrados. Gracias por suscribirse!</p>','2008-03-01 00:00:00'),
- (1,'prueba','prueba','<p>prueba</p>','2008-01-01 00:00:00'),
- (4,'Sr. Byte Blog!','http://srbyte.blogspot.com','<p>El mejor blog del mundo!</p><p>','2008-06-29 00:00:00'),
- (5,'GOOGLE!','http://www.google.com','<p>es google</p>','2008-06-29 00:00:00'),
- (7,'Nuevo Post','','\r\n\r\nContenido del nuevo post\r\n','1900-01-01 00:00:00'),
- (8,'Nuevo Post','','<p>Contenido del nuevo post</p>','1900-01-01 00:00:00'),
- (9,'Nuevo Post','','<p>Contenido del nuevo post</p>','1900-01-01 00:00:00'),
- (10,'Nuevo Post','','<p>Contenido del nuevo post</p>','1900-01-01 00:00:00');
+LOCK TABLES `novedades` WRITE;
+INSERT INTO `apollo`.`novedades` VALUES  (1,'prueba','prueba','<p>prueba</p>','2008-01-01 00:00:00'),
+ (10,'Nuevo Post','','<p>Contenido del nuevo post</p>','2008-07-20 00:00:00'),
+ (11,'Este post no va a aparecer en la lista','','<p>Ya que segun la paginacion, solo se muestran diez. Este seria el onceavo.</p>','2008-07-20 00:00:00'),
+ (9,'Nuevo Post','','<p>Contenido del nuevo post</p>','2008-07-17 00:00:00'),
+ (8,'Nuevo Post7','','<p>Contenido del nuevo post7</p>','2008-07-23 00:00:00'),
+ (2,'Nuevo Post1','','<p>Contenido del nuevo post1</p>','2008-07-17 00:00:00'),
+ (3,'Nuevo Post222','','<p>Contenido del nuevo post222</p><p>','2008-07-18 00:00:00'),
+ (4,'Nuevo Post3','','<p>Contenido del nuevo post3</p>','2008-07-19 00:00:00'),
+ (5,'Nuevo Post4','','<p>Contenido del nuevo post4</p>','2008-07-20 00:00:00'),
+ (6,'Nuevo Post5','','<p>Contenido del nuevo post5</p>','2008-07-21 00:00:00'),
+ (7,'Nuevo Post6','','<p>Contenido del nuevo post6</p>','2008-07-22 00:00:00');
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `novedades` ENABLE KEYS */;
 
 
 --
--- Definition of table `postgrado`
+-- Definition of table `apollo`.`postgrado`
 --
 
-DROP TABLE IF EXISTS `postgrado`;
-CREATE TABLE `postgrado` (
+DROP TABLE IF EXISTS `apollo`.`postgrado`;
+CREATE TABLE  `apollo`.`postgrado` (
   `id` int(11) NOT NULL auto_increment,
   `nombre` varchar(200) NOT NULL,
   `notaminima` double unsigned NOT NULL default '7',
@@ -873,74 +899,49 @@ CREATE TABLE `postgrado` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `postgrado`
+-- Dumping data for table `apollo`.`postgrado`
 --
 
 /*!40000 ALTER TABLE `postgrado` DISABLE KEYS */;
-INSERT INTO `postgrado` (`id`,`nombre`,`notaminima`,`totaluvs`,`cumminimo`,`abreviatura`,`maxalum`,`presentacion`,`descripcion`) VALUES 
- (1,'Maestría y Técnicas de Investigación Social',7,999,7.5,'MTIS',999,'La Maestría en Métodos y Técnicas de Investigación Social, es un esfuerzo de carácter academico que las actuales autoridades impulsan par contribuir a elevar la calidad cientifica academica en la formacion permanente de  profesionales especializados en el dominio de las principales corrientes metodologicas y en el manejo de herramientas tecnicas y procedimentales para la obtencion, procesamiento, analisis y presentacion de datos. Que contribuyan al desarrollo del conocimiento cientifico en El Salvador y puedan proponer soluciones concretas a los diversos problemas de la realidad social.','Objetivos:\r\nFormar teórica y metodológicamente recurso humano especializado en investigación cuantitativa y cualitativa que contribuya al desarrollo del conocimiento cientifico a nivel regional y nacional.\r\nDesarrollar competencias en la planificacion, ejecucion y presentacion de informes de investigacion.\r\nGenerar sensibilidad por el estudio de aquellas problematicas sociales de interés nacional, que permitan la reflexión, el análisis y la propuesta de alternativas de solución.\r\n\r\nPoblación a la que se dirige el programa:\r\nLicenciados, Ingenieros, Máster o Doctores graduados de la Universidad debidamente autorizados por el Ministerio de Educación.'),
- (2,'Maestría en Consultoría Empresarial',7,999,7.5,'MAECE',999,'El programa de Maestría en consultoría Empresarial se desarrollará desde la perspectiva de integración del directivo o empresario en el rol de los negocios, en forma amplia abordando situaciones de la realidad de consultoría empresarial con un enfoque teórico y práctico.\r\nPara adquirir estas destrezas se define el programa con la intención de formar profesionales que asuman responsabilidades, que sepan cooperar entre organizaciones y con las personas, desde el conocimiento eficaz de las diferentes áreas de la empresa, entendiéndola de mejor manera y adquiriendo las competencias particulares del área relacionadas con la cooperación, la especialización, las innovaciones tecnológicas y la globalización de los mercados.\r\nLa MAECE es la formación profesional orientada a la excelencia académica donde se fortalecen los conocimientos, particularmente los especializados en técnicas de gestión; fomenta las capacidades personales y directivas, conceptuales y analíticas de cada participante, necesarias en la empresa actual.','Vision:\r\nSer lideres en la formación de profesionales a nivel de maestría, mejorando continuamente la calidad académica e incorporando en los planes de estudio contenidos programáticos que faciliten la efectiva ejecución de la gestión y consultoría empresarial.\r\nMision:\r\nFormar profesionales con iniciativa par organizar unidades especificas de negocios, con elevada formación teórico-practica para enfrentar los retos que demande el actual desarrollo empresarial y social.'),
- (3,'Maestría en Profesionalización de la Docencia Superior',7,999,7.5,'MPDC',999,'La Maestría en Profesionalización de la Docencia Superior, cuenta ya con una generación de graduados en la Facultad Multidisciplinaria de Occidente y con una segund ageneración en proceso de formación.\r\nLas metas y finalidades de este pograma de Maestría se orientan a la construcción de la educación superior como objeto de estudio. En tal sentido, el programa es una maestría académica que busca por una parte la profesionalización, entendida como el dominio pertinente de las competencias técnico-pedagógicas para el ejercicio docente a nivel superior, y por otra, la generación de conocimientos mediante la investigación académica sobre los distintos niveles del sistema educativo nacional (Parvularia, Básica, Media, Superior, no universitaria y Universitaria); así como de aquellas experiencias de gestión, promoción, innovación y evaluación en los diversos ámbitos de la educación salvadoreña.','El programa de maestria en profesionalizacion de la docencia superior nacio en un convenio entre la Universidad de El Salvador (UES) y la facultad de estudios superiores cuautitlán de la Universidad Autónoma de México (UNAM) en 1994. Se han graduado ya de este programa, diversos profesionales que laboran en instituciones publicas y privadas de todo el país.\r\nVisión:\r\nLa alta formación de cuadros académicos y profesionales, así como la generación de conocimientos mediante la investigación del que hacer educativo de la zona occidental del país; con el objeto de fortalecer los procesos de enseñanza-aprendizaje en los distintos niveles del sistema educativo nacional y la producción académica en función de la cualificación de la educación en general y la universitaria en particular.\r\nMisión:\r\nLa construcción de la educación y de una docencia universitaria de la zona occidental del país, como objeto de estudio, y su visualización como fenómeno socio-cultural asequible desde una prespectiva teórica transdisciplinar y una práctica íntimamente ligada a los campos social, económico y político; tomando como base la enseñanza integral desd ela perspectiva teórica práctica en el enfoque metodológico del trabajo analítico.');
+LOCK TABLES `postgrado` WRITE;
+INSERT INTO `apollo`.`postgrado` VALUES  (1,'Maestría y Técnicas de Investigación Social',7,999,7.5,'MTIS',999,'La Maestría en Métodos y Técnicas de Investigación Social, es un esfuerzo de carácter academico que las actuales autoridades impulsan par contribuir a elevar la calidad cientifica academica en la formacion permanente de  profesionales especializados en el dominio de las principales corrientes metodologicas y en el manejo de herramientas tecnicas y procedimentales para la obtencion, procesamiento, analisis y presentacion de datos. Que contribuyan al desarrollo del conocimiento cientifico en El Salvador y puedan proponer soluciones concretas a los diversos problemas de la realidad social.','Objetivos:\r\nFormar teórica y metodológicamente recurso humano especializado en investigación cuantitativa y cualitativa que contribuya al desarrollo del conocimiento cientifico a nivel regional y nacional.\r\nDesarrollar competencias en la planificacion, ejecucion y presentacion de informes de investigacion.\r\nGenerar sensibilidad por el estudio de aquellas problematicas sociales de interés nacional, que permitan la reflexión, el análisis y la propuesta de alternativas de solución.\r\n\r\nPoblación a la que se dirige el programa:\r\nLicenciados, Ingenieros, Máster o Doctores graduados de la Universidad debidamente autorizados por el Ministerio de Educación.'),
+ (2,'Maestría en Consultoría Empresarial',7,999,7.5,'MAECE',999,'El programa de Maestría en consultoría Empresarial se desarrollará desde la perspectiva de integración del directivo o empresario en el rol de los negocios, en forma amplia abordando situaciones de la realidad de consultoría empresarial con un enfoque teórico y práctico.\r\nPara adquirir estas destrezas se define el programa con la intención de formar profesionales que asuman responsabilidades, que sepan cooperar entre organizaciones y con las personas, desde el conocimiento eficaz de las diferentes áreas de la empresa, entendiéndola de mejor manera y adquiriendo las competencias particulares del área relacionadas con la cooperación, la especialización, las innovaciones tecnológicas y la globalización de los mercados.\r\nLa MAECE es la formación profesional orientada a la excelencia académica donde se fortalecen los conocimientos, particularmente los especializados en técnicas de gestión; fomenta las capacidades personales y directivas, conceptuales y analíticas de cada participante, necesarias en la empresa actual.','Vision:\r\nSer lideres en la formación de profesionales a nivel de maestría, mejorando continuamente la calidad académica e incorporando en los planes de estudio contenidos programáticos que faciliten la efectiva ejecución de la gestión y consultoría empresarial.\r\nMision:\r\nFormar profesionales con iniciativa par organizar unidades especificas de negocios, con elevada formación teórico-practica para enfrentar los retos que demande el actual desarrollo empresarial y social.');
+INSERT INTO `apollo`.`postgrado` VALUES  (3,'Maestría en Profesionalización de la Docencia Superior',7,999,7.5,'MPDC',999,'La Maestría en Profesionalización de la Docencia Superior, cuenta ya con una generación de graduados en la Facultad Multidisciplinaria de Occidente y con una segund ageneración en proceso de formación.\r\nLas metas y finalidades de este pograma de Maestría se orientan a la construcción de la educación superior como objeto de estudio. En tal sentido, el programa es una maestría académica que busca por una parte la profesionalización, entendida como el dominio pertinente de las competencias técnico-pedagógicas para el ejercicio docente a nivel superior, y por otra, la generación de conocimientos mediante la investigación académica sobre los distintos niveles del sistema educativo nacional (Parvularia, Básica, Media, Superior, no universitaria y Universitaria); así como de aquellas experiencias de gestión, promoción, innovación y evaluación en los diversos ámbitos de la educación salvadoreña.','El programa de maestria en profesionalizacion de la docencia superior nacio en un convenio entre la Universidad de El Salvador (UES) y la facultad de estudios superiores cuautitlán de la Universidad Autónoma de México (UNAM) en 1994. Se han graduado ya de este programa, diversos profesionales que laboran en instituciones publicas y privadas de todo el país.\r\nVisión:\r\nLa alta formación de cuadros académicos y profesionales, así como la generación de conocimientos mediante la investigación del que hacer educativo de la zona occidental del país; con el objeto de fortalecer los procesos de enseñanza-aprendizaje en los distintos niveles del sistema educativo nacional y la producción académica en función de la cualificación de la educación en general y la universitaria en particular.\r\nMisión:\r\nLa construcción de la educación y de una docencia universitaria de la zona occidental del país, como objeto de estudio, y su visualización como fenómeno socio-cultural asequible desde una prespectiva teórica transdisciplinar y una práctica íntimamente ligada a los campos social, económico y político; tomando como base la enseñanza integral desd ela perspectiva teórica práctica en el enfoque metodológico del trabajo analítico.');
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `postgrado` ENABLE KEYS */;
 
 
 --
--- Definition of table `presentadoc`
+-- Definition of table `apollo`.`privilegio`
 --
 
-DROP TABLE IF EXISTS `presentadoc`;
-CREATE TABLE `presentadoc` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `descripcion` varchar(100) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='documentos a presentar';
-
---
--- Dumping data for table `presentadoc`
---
-
-/*!40000 ALTER TABLE `presentadoc` DISABLE KEYS */;
-INSERT INTO `presentadoc` (`id`,`descripcion`) VALUES 
- (1,'Fotografía tamaño cédula a color.'),
- (2,'Certificado de Partida de Nacimiento.'),
- (3,'DUI y NIT.'),
- (4,'Certificcion del Titulo Universitario autenticado por la Universidad y el MINED.'),
- (5,'Titulo Universitario autenticado por el Ministerio de Educacion.'),
- (6,'Certificado de salud.'),
- (7,'Titulo de Bachiller.');
-/*!40000 ALTER TABLE `presentadoc` ENABLE KEYS */;
-
-
---
--- Definition of table `privilegio`
---
-
-DROP TABLE IF EXISTS `privilegio`;
-CREATE TABLE `privilegio` (
+DROP TABLE IF EXISTS `apollo`.`privilegio`;
+CREATE TABLE  `apollo`.`privilegio` (
   `id` int(11) NOT NULL auto_increment,
   `nombre` varchar(50) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `privilegio`
+-- Dumping data for table `apollo`.`privilegio`
 --
 
 /*!40000 ALTER TABLE `privilegio` DISABLE KEYS */;
-INSERT INTO `privilegio` (`id`,`nombre`) VALUES 
- (1,'general'),
+LOCK TABLES `privilegio` WRITE;
+INSERT INTO `apollo`.`privilegio` VALUES  (1,'general'),
  (2,'estudiante'),
  (3,'maestro'),
  (4,'admin');
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `privilegio` ENABLE KEYS */;
 
 
 --
--- Definition of table `requisito`
+-- Definition of table `apollo`.`requisito`
 --
 
-DROP TABLE IF EXISTS `requisito`;
-CREATE TABLE `requisito` (
+DROP TABLE IF EXISTS `apollo`.`requisito`;
+CREATE TABLE  `apollo`.`requisito` (
   `id` int(11) NOT NULL auto_increment,
   `nombre` varchar(200) NOT NULL,
   `postgrado` int(11) NOT NULL,
@@ -950,12 +951,12 @@ CREATE TABLE `requisito` (
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC COMMENT='tabla de requisitos de graduacion';
 
 --
--- Dumping data for table `requisito`
+-- Dumping data for table `apollo`.`requisito`
 --
 
 /*!40000 ALTER TABLE `requisito` DISABLE KEYS */;
-INSERT INTO `requisito` (`id`,`nombre`,`postgrado`) VALUES 
- (1,'Titulo de Licenciado, Ingeniero, Máster o Doctor, extendido por una Universidad Debidamente Autorizada.',1),
+LOCK TABLES `requisito` WRITE;
+INSERT INTO `apollo`.`requisito` VALUES  (1,'Titulo de Licenciado, Ingeniero, Máster o Doctor, extendido por una Universidad Debidamente Autorizada.',1),
  (2,'Presentar solicitud de admisión y documentación exigida por Administración Académica.',1),
  (3,'Someterse a entrevista con el coordinador de la maestría.',1),
  (4,'Conocimiento básico de Internet, Word, Excel y Power Point.',1),
@@ -968,21 +969,22 @@ INSERT INTO `requisito` (`id`,`nombre`,`postgrado`) VALUES
  (11,'Original y copia del titulo de bachiller, firmado por el sustentante.',2),
  (12,'Certificación global de notas y del titulo universitario, debidamente autenticado por el MINED.',2),
  (13,'Presentar hoja de vida actualizada con sus respectivos atestados.',2),
- (14,'Realizarse exámenes médicos de: heces, orina, hemograma, baciloscopía o radiografía de tórax, VDLR o serologia, con los cuales deberá tramitar una certificación de salud de bienestar universitario.',2),
- (15,'Los profesionales graduados en el exterior presentar original y copia del titulo universitario y certificación global de notas autenticados por el MRE y aprobados por la UES.',2),
+ (14,'Realizarse exámenes médicos de: heces, orina, hemograma, baciloscopía o radiografía de tórax, VDLR o serologia, con los cuales deberá tramitar una certificación de salud de bienestar universitario.',2);
+INSERT INTO `apollo`.`requisito` VALUES  (15,'Los profesionales graduados en el exterior presentar original y copia del titulo universitario y certificación global de notas autenticados por el MRE y aprobados por la UES.',2),
  (16,'Aprobar las asignaturas y seminario del plan de estudios.',3),
  (17,'Presentación del trabajo de graduación.',3),
  (18,'Cumplimiento del servicio social (300 horas).',3),
  (19,'Requisitos y trámites de graduación según los reglamentos de Administración Académica de la UES.',3);
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `requisito` ENABLE KEYS */;
 
 
 --
--- Definition of table `usuario`
+-- Definition of table `apollo`.`usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
-CREATE TABLE `usuario` (
+DROP TABLE IF EXISTS `apollo`.`usuario`;
+CREATE TABLE  `apollo`.`usuario` (
   `id` int(11) NOT NULL auto_increment,
   `clave` varchar(10) default NULL,
   `nombre` varchar(15) default NULL,
@@ -990,32 +992,13 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `usuario`
+-- Dumping data for table `apollo`.`usuario`
 --
 
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+LOCK TABLES `usuario` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-
-
---
--- Definition of table `utileria`
---
-
-DROP TABLE IF EXISTS `utileria`;
-CREATE TABLE `utileria` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `titulo` varchar(50) NOT NULL,
-  `vinculo` varchar(100) NOT NULL,
-  `descripcion` text NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `utileria`
---
-
-/*!40000 ALTER TABLE `utileria` DISABLE KEYS */;
-/*!40000 ALTER TABLE `utileria` ENABLE KEYS */;
 
 
 

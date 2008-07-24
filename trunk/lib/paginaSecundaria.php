@@ -27,7 +27,7 @@
 			echo "<link rel=\"stylesheet\" href=\"../css/posts.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
 			echo "<link rel=\"stylesheet\" href=\"../css/tables.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
 			echo "<link rel=\"stylesheet\" href=\"../css/toolbox.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";			
-			echo "<link rel=\"stylesheet\" href=\"../css/postPager.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";			
+			echo "<link rel=\"stylesheet\" href=\"../css/postPager.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";						
 
 			//el estilo del jscalendar			
 			echo "<link rel=\"stylesheet\" href=\"../js/jscalendar/calendar-system.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";			
@@ -36,6 +36,7 @@
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/prototype.js\"></script>";
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/EditInPlace.js\"></script>";
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/AjaxManagerClient.js\"></script>";
+			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/PostPager.js\"></script>";
 			
 			//El jsCalendar y sus dependencias:
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/jscalendar/calendar.js\"></script>";

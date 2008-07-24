@@ -85,7 +85,6 @@
 			$action = "";
 			echo("
 				<form id='frmLogin' action='index.php?action=login' method='POST' accept-charset='utf-8'>
-					<p>
 						<div class='LoginBoxFrame'>
 							<div class='LoginBoxInnerFrame'>
 								<label for='txtNombre' class='lblInput'>usuario: </label>
@@ -97,7 +96,7 @@
 				");
             if($errorMsg != "")
                 echo("<input type='label' class='errorMsg' value='$errorMsg' />");                    
-             echo("</div></div></p></form>");
+             echo("</div></div></form>");
 		}
     }		
 ?>

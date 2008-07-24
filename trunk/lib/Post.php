@@ -27,7 +27,14 @@
 		
 		public function ToString(){
 
-				$myUser = new cusuario();
+				return "<div id='pst-$this->id' class='Post' style='width: " . $this->ancho . "px;' >" .
+					$this->toContentString() .
+	   			"</div>";
+		}
+		
+		public function ToContentString(){
+			
+			$myUser = new cusuario();
 				$myUser->GetPorId($_SESSION["CurrentUser"]);
 				if($myUser->privilegio == "admin"){
 					if($this->showAddWhenAdmin)
@@ -57,8 +64,7 @@
 				if($this->pie != "")
 					$footer = "<div class='PostFooter' style='width: " . $this->ancho . "px;'>$this->pie</div>";
 
-			return "
-			<div id='pst-$this->id' class='Post' style='width: " . $this->ancho . "px;' >
+			return "			
 	    		<div class='PostTitle' style='width: " . ($this->ancho - 12) . "px;'>
 					" . $this->tbox->ToString() . $fechaField .
 					"<input type='text' id='txt-$this->id' class='innerTitle' value='$this->titulo' disabled='true' />
@@ -74,9 +80,9 @@
 				<input type='hidden' id='id-$this->id' value='$this->id'/>
 				<input type='hidden' id='tbl-$this->id' value='$this->tabla'/>
 				$footer
-   			</div>
 			
 			";
+			
 		}
 		
 		public function Show(){
@@ -89,6 +95,12 @@
 	class InnerPost extends Post{
 		
 		public function ToString(){
+			return "<div id='pst-$this->id' class='innerPost' style='width: " . $this->ancho . "px;'>" .
+			$this->ToContentString() .
+			"</div>";
+		}
+		
+		public function ToContentString(){
 			
 			$myUser = new cusuario();
 			$myUser->GetPorId($_SESSION["CurrentUser"]);
@@ -120,8 +132,7 @@
 				if($this->pie != "")
 					$footer = "<div class='PostFooter'>$this->pie</div>";
 			
-			return "
-			<div id='pst-$this->id' class='innerPost' style='width: " . $this->ancho . "px;'>
+			return "			
     			<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
 					"  . $this->tbox->ToString() . $fechaField .
 					"<input type='text' id='txt-$this->id' class='innerTitle' value='$this->titulo' disabled='true' />
@@ -137,7 +148,6 @@
 				<input type='hidden' id='id-$this->id' value='$this->id'/>
 				<input type='hidden' id='tbl-$this->id' value='$this->tabla'/>
 				$footer
-   			</div>
 			
 			";
 		}
@@ -146,7 +156,14 @@
 	
 	class InnerInnerPost extends InnerPost{
 		
-		public function ToString(){
+		public function ToString(){			
+			return "<div id='pst-$this->id' class='innerInnerPost' style='width: " . $this->ancho . "px;'>" . 
+			$this->ToContentString() . 
+			"</div>";
+			
+		}
+		
+		public function ToContentString(){
 			
 			$myUser = new cusuario();
 			$myUser->GetPorId($_SESSION["CurrentUser"]);
@@ -177,8 +194,7 @@
 			if($this->pie != "")
 				$footer = "<div class='PostFooter'>$this->pie</div>";
 			
-			return "
-			<div id='pst-$this->id' class='innerInnerPost' style='width: " . $this->ancho . "px;'>
+			return "			
 	    		<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
 					" . $this->tbox->ToString() . $fechaField .
 					"<input type='text' id='txt-$this->id' class='innerTitle' value='$this->titulo' disabled='true' />
@@ -193,8 +209,7 @@
 					<input type='hidden' id='id-$this->id' value='$this->id'/>
 					<input type='hidden' id='tbl-$this->id' value='$this->tabla'/>
 				</div>
-				$footer
-	   		</div>
+				$footer	   		
 			
 			";
 		}

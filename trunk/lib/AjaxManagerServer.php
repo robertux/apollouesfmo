@@ -1,16 +1,21 @@
 <?php
 
 define("RUTA", realpath("../"));
-include_once(RUTA . "/clases/cconexion.php");
+require_once(RUTA . "/clases/cconexion.php");
 require_once(RUTA . "/clases/cgeneral.php");
+require_once(RUTA . "/lib/PostPager.php");
+require_once(RUTA . "/lib/Post.php");
+require_once(RUTA . "/lib/ToolBox.php");
+require_once(RUTA . "/clases/cusuario.php");
+
 $conn = new cConexion();
 
-echo "entramos";
+//echo "entramos";
 	if(isset($_GET["action"])){
 		switch($_GET["action"]){
 
 			case "add":
-				echo "\naccion agregar";
+				//echo "\naccion agregar";
 				switch($_GET["table"]){
 
 					case "novedades":				
@@ -110,6 +115,49 @@ echo "entramos";
 						echo "[id]" . 0 . "[/id]";
 						break;
 				}
+				break;
+				
+			case "getpage":
+			
+				$currentPg = 0;
+				$currentPg = $_GET["current"];
+				//echo "Current: $currentPg<br/>";
+				$direction = $_GET["new"];
+				//echo "Direction: $direction<br/>";
+				
+				if($direction == "next"){
+					//echo("entered in next<br/>");
+					$currentPg++;
+					//echo "New: $currentPg";
+				}					
+				else if ($direction == "prev"){
+					$currentPg--;
+					//echo("entered in prev<br/>");
+					//echo "New: $currentPg";
+				}									
+
+				$pPager = new PostPager();
+				$novResult = $pPager->GetPosts($currentPg);
+				if($novResult->num_rows > 0){
+					while($arreglo = $novResult->fetch_array()){
+						$tempPost = new InnerPost("", "", 530, false, true, true);
+						$tempPost->id = $arreglo["id"];
+						$tempPost->tabla = "novedades";
+						$tempPost->fecha = substr($arreglo["fecha"],0,10);
+						$tempPost->titulo = $arreglo["titulo"];
+						$tempPost->contenido = substr($arreglo["descripcion"],3,strlen($arreglo["descripcion"])-4);
+						$postList .= $tempPost->ToString();
+					}	
+				}
+				else{
+					$tempPost = new InnerPost("No hay resultados", "No hay noticias que mostrar...", 530);
+					$postList .= $tempPost->ToString();
+				}			
+				$pst = new Post("Noticias de la Unidad", $postList, 550, true, false, false);
+				$pst->tabla = "novedades";
+				$pst->pie = $pPager->ToString();
+				
+				echo $pst->ToContentString();
 				break;
 		}
 	}

@@ -1,5 +1,5 @@
 <?php 
-include("cconexion.php");
+require_once("cconexion.php");
 
 class cNovedades
 {
