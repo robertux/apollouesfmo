@@ -8,16 +8,18 @@ function EnablePost(idPost){
 	document.getElementById("txt-" + idPost).className = "innerTitleEdit";
 	document.getElementById("txt-" + idPost).focus();
 	
-	document.getElementById("fch-" + idPost).className = "PostDateEdit";
-	document.getElementById("fch-" + idPost).disabled = false;
-	
-	Calendar.setup({
-        inputField     :    ("fch-" + idPost),     // id of the input field
-        ifFormat       :    "%Y-%m-%d",      // format of the input field
-        align          :    "Tl",           // alignment (defaults to "Bl")
-        displayArea    :    ("fch-" + idPost), // ID of the span where the date is to be shown
-        singleClick    :    true
-    });
+	if (document.getElementById("fch-" + idPost) != null) {
+		document.getElementById("fch-" + idPost).className = "PostDateEdit";
+		document.getElementById("fch-" + idPost).disabled = false;
+		
+		Calendar.setup({
+			inputField: ("fch-" + idPost), // id of the input field
+			ifFormat: "%Y-%m-%d", // format of the input field
+			align: "Tl", // alignment (defaults to "Bl")
+			displayArea: ("fch-" + idPost), // ID of the span where the date is to be shown
+			singleClick: true
+		});
+	}
 	
 	//Ocultamos los botones de agregar/editar/eliminar
 	if(document.getElementById("add-" + idPost) != null)
@@ -41,10 +43,11 @@ function DisablePost(idPost){
 	document.getElementById("txt-" + idPost).disabled = true;	
 	document.getElementById("txt-" + idPost).className = "innerTitle";
 	
-	document.getElementById("fch-" + idPost).className = "PostDate";
-	document.getElementById("fch-" + idPost).disabled = true;
-	document.getElementById("fch-" + idPost).innerHTML = "";
-	//alert("next: " + document.getElementById("fch-" + idPost).nextSibling.type);
+	if (document.getElementById("fch-" + idPost) != null) {
+		document.getElementById("fch-" + idPost).className = "PostDate";
+		document.getElementById("fch-" + idPost).disabled = true;
+		document.getElementById("fch-" + idPost).innerHTML = "";
+	}
 	
 	
 	
@@ -69,7 +72,9 @@ function EditPost(idPost){
 	//alert("editando post: " + idPost);
 	document.getElementById("tmpcnt-" + idPost).value = document.getElementById("area-" + idPost).innerHTML;
 	document.getElementById("tmptit-" + idPost).value = document.getElementById("txt-" + idPost).value;
-	document.getElementById("tmpfch-" + idPost).value = document.getElementById("fch-" + idPost).value;
+	if (document.getElementById("fch-" + idPost) != null) {
+		document.getElementById("tmpfch-" + idPost).value = document.getElementById("fch-" + idPost).value;
+	}
 	//alert("area guardada: " + document.getElementById("tmp-" + idPost).value);
 }
 
@@ -131,7 +136,8 @@ function CancelPost(idPost){
 		DisablePost(idPost);
 		document.getElementById("area-" + idPost).innerHTML = document.getElementById("tmpcnt-" + idPost).value;
 		document.getElementById("txt-" + idPost).value = document.getElementById("tmptit-" + idPost).value;
-		document.getElementById("fch-" + idPost).value = document.getElementById("tmpfch-" + idPost).value;
+		if(document.getElementById("fch-" + idPost) != null)
+			document.getElementById("fch-" + idPost).value = document.getElementById("tmpfch-" + idPost).value;
 	}	
 }
 

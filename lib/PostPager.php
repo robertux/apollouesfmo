@@ -21,13 +21,11 @@ require_once(RUTA."/clases/cnovedades.php");
 			$this->btnPrev = new PostPagerButton("Pagina Anterior", "pgrPrev");
 		}
 		
-		function GetPosts(){
-			if(isset($_GET["page"]))
-				$this->currentPage = $_GET["page"];
+		function GetPosts($page = -1){
 			$lastNovs = new cNovedades();
-			$this->CalcRegs();
+			$this->CalcRegs($page);
 			return $lastNovs->GetListaFiltrada($this->iniReg-1, $this->pageLen);
-		}
+		}		
 		
 		function ToString(){
 									
@@ -37,19 +35,28 @@ require_once(RUTA."/clases/cnovedades.php");
 			if($this->finReg == $this->totRegs)
 				$this->btnNext->enabled = false;
 			
-			$path = $_SERVER['SCRIPT_NAME'];
+			//$path = $_SERVER['SCRIPT_NAME'];
 			
-			$this->btnNext->url = $path . "?opt=news&page=" . ($this->currentPage + 1);
-			$this->btnPrev->url = $path . "?opt=news&page=" . ($this->currentPage - 1) ;
+			//$this->btnNext->url = $path . "?opt=news&page=" . ($this->currentPage + 1);
+			//$this->btnPrev->url = $path . "?opt=news&page=" . ($this->currentPage - 1) ;
+			$this->btnNext->onClick = "nextPage()";
+			$this->btnPrev->onClick = "prevPage()";
 				
 			return "
-				<div class='TextPager'>Mostrando registros del <b>$this->iniReg</b> al <b>$this->finReg</b> de los <b>$this->totRegs</b> totales</div>
+				<div class='TextPager'>Mostrando registros del <div id='iniReg' class='bold'>$this->iniReg</div> al <div id='finReg' class='bold'>$this->finReg</div> de los <div id='totRegs' class='bold'>$this->totRegs</div> totales</div>
+				<input id='currentPage' type='hidden' value='$this->currentPage' />
+				<input id='totRegs' type='hidden' value='$this->totRegs' />
+				<input id='pageLen' type='hidden' value='$this->pageLen' />
 				<div class='ButtonPagerList'>" . $this->btnPrev->ToString() . $this->btnNext->ToString() . "</div>";
 		}
 		
-		function CalcRegs(){
-			if(isset($_GET["page"]))
-				$this->currentPage = $_GET["page"];
+		function CalcRegs($page = -1){
+			if($page == -1){
+				if(isset($_GET["page"]))
+					$this->currentPage = $_GET["page"];
+			}
+			else
+				$this->currentPage = $page;
 				
 			$this->totRegs = $this->GetTotalPosts();
 			
@@ -58,7 +65,7 @@ require_once(RUTA."/clases/cnovedades.php");
 			if($this->finReg > $this->totRegs) 
 				$this->finReg = $this->totRegs;
 		}
-		
+				
 		function GetTotalPosts(){
 			$lastNovs = new cNovedades();
 			$res = $lastNovs->GetLista();
@@ -73,7 +80,8 @@ require_once(RUTA."/clases/cnovedades.php");
 		
 		var $title;
 		var $class;
-		var $url;
+		//var $url;
+		var $onClick;
 		var $enabled;
 		
 		function PostPagerButton($pTitle, $pClass){
@@ -83,19 +91,19 @@ require_once(RUTA."/clases/cnovedades.php");
 		}
 		
 		function ToString(){
-			if($this->enabled){
-				return "
-					<a class='btn-$this->class' href='$this->url'>
-						<div class='txt-$this->class'>
-							$this->title
-						</div>
-						<div class='img-$this->class'>
-						</div>
-					</a>
+			$display = "none";
+			if($this->enabled)
+				$display = "inline";
+				
+			return "
+				<a class='btn-$this->class' onClick='$this->onClick' style='display: $display'>
+					<div class='txt-$this->class'>
+						$this->title
+					</div>
+					<div class='img-$this->class'>
+					</div>
+				</a>
 				";
-			}
-			else
-				return "";
 		}
 	}
 ?>

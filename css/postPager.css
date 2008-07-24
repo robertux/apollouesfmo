@@ -61,3 +61,9 @@ a:hover{
 	height: 16px;
 	width: 16px;
 }
+
+.bold{
+	font-weight: bold;
+	position: relative;
+	display: inline;
+}
