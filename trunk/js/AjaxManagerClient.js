@@ -48,8 +48,8 @@ function AjaxSendSuscripcion(content){
 	AjaxSend("action=editsuscripcion&value=" + content);
 }
 
-function AjaxSendRequestPage(currentPage, newPage){
-	var xmlHttp = AjaxSend("action=getpage&current=" + currentPage + "&new=" + newPage);
+function AjaxSendRequestPage(currentPage, newPage, uid){
+	var xmlHttp = AjaxSend("action=getpage&current=" + currentPage + "&new=" + newPage + "&uid=" + uid);
 	
 	xmlHttp.onreadystatechange = function(){
 		if (xmlHttp.readyState == 4) {

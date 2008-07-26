@@ -39,8 +39,8 @@ require_once(RUTA."/clases/cnovedades.php");
 			
 			//$this->btnNext->url = $path . "?opt=news&page=" . ($this->currentPage + 1);
 			//$this->btnPrev->url = $path . "?opt=news&page=" . ($this->currentPage - 1) ;
-			$this->btnNext->onClick = "nextPage()";
-			$this->btnPrev->onClick = "prevPage()";
+			$this->btnNext->onClick = "nextPage(" . $_SESSION["CurrentUser"] . ")";
+			$this->btnPrev->onClick = "prevPage(" . $_SESSION["CurrentUser"] . ")";
 				
 			return "
 				<div class='TextPager'>Mostrando registros del <div id='iniReg' class='bold'>$this->iniReg</div> al <div id='finReg' class='bold'>$this->finReg</div> de los <div id='totRegs' class='bold'>$this->totRegs</div> totales</div>
