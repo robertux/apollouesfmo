@@ -32,6 +32,18 @@ $conn = new cConexion();
 						echo "Consulta: insert into novedades values($id, '$titulo', '', '$contenido', '$fecha');";
 						echo "[id]" . $id . "[/id]";
 						break;
+						
+					case "utileria":
+						$id = 0;
+						$id = $_GET["id"];
+						$titulo = $_GET["title"];
+						$contenido = $_GET["content"];
+						$conn->Conectar();
+						$conn->mysqli->query("insert into utileria values($id, '$titulo', '', '$contenido');");
+						$conn->mysqli->close();
+						echo "insert into utileria values($id, '$titulo', '', '$contenido');";
+						echo "[id]" . $id . "[/id]";
+						break;
 				}
 				break;
 			
@@ -101,6 +113,17 @@ $conn = new cConexion();
 						$conn->mysqli->close();
 						echo "[id]" . $id . "[/id]";
 						break;
+						
+					case "utileria":
+						$id = $_GET["id"];
+						$titulo = $_GET["title"];
+						$contenido = $_GET["content"];
+						$conn->Conectar();
+						$conn->mysqli->query("update utileria set titulo='$titulo', descripcion='$contenido' where id=$id;");
+						$conn->mysqli->close();
+						echo "[id]" . $id . "[/id]";
+						
+						break;
 				}
 				break;
 				
@@ -113,6 +136,14 @@ $conn = new cConexion();
 						$conn->mysqli->query("delete from novedades where id=$id;");
 						$conn->mysqli->close();
 						echo "[id]" . 0 . "[/id]";
+						break;
+						
+					case "utileria":
+						$id = $_GET["id"];
+						$conn->Conectar();
+						$conn->mysqli->query("delete from utileria where id=$id;");
+						$conn->mysqli->close();
+						echo "[id]" . 0 . "[/id]";						
 						break;
 				}
 				break;
@@ -155,6 +186,7 @@ $conn = new cConexion();
 				else{
 					if($currentPg == 0){
 						$tempPost = new InnerPost("No hay resultados", "No hay noticias que mostrar...", 530);
+						$tempPost->id = "noresults";
 						$postList .= $tempPost->ToString();
 					}
 					else{
