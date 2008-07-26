@@ -78,17 +78,18 @@ function EditPost(idPost){
 	//alert("area guardada: " + document.getElementById("tmp-" + idPost).value);
 }
 
-function SavePost(idPost){
+function SavePost(idPost, uid){
 	DisablePost(idPost);
+	//alert("SavePost. uid= " + uid );
 	actionPost = "edit";
-	alert("idpost: " + parseInt(document.getElementById("id-" + idPost).value));
+	//alert("idpost: " + parseInt(document.getElementById("id-" + idPost).value));
 	if(document.getElementById("id-" + idPost).value == "-1"){
 		actionPost = "add";
 		document.getElementById("id-" + idPost).value = GetMaxId() + 1;
-		alert("idpost: " + parseInt(document.getElementById("id-" + idPost).value));
+		//alert("idpost: " + parseInt(document.getElementById("id-" + idPost).value));
 		
 	}
-	alert("actionpost: " + actionPost);
+	//alert("actionpost: " + actionPost);
 	if(idPost == "Informacion de Contacto"){
 		AjaxSendContacto(document.getElementById("area-" + idPost).innerHTML);
 		return null;
@@ -114,7 +115,16 @@ function SavePost(idPost){
 		fechaPost = document.getElementById("fch-" + idPost).value;
 		//alert("fecha generada: " + fechaPost);
 		contenidoPost = document.getElementById("area-" + idPost).innerHTML;
-		AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&date=" + fechaPost + "&id=" + indexPost);		
+		xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&date=" + fechaPost + "&id=" + indexPost);		
+		if(actionPost == "add"){
+			xmlHttp.onreadystatechange = function(){
+				if (xmlHttp.readyState == 4) {
+					//alert("response received: " + xmlHttp.responseText);	
+					CatchNewPost(uid);
+				}
+			}
+		}
+			
 	}
 	else{
 		indexPost = document.getElementById("id-" + idPost).value;
@@ -141,7 +151,7 @@ function CancelPost(idPost){
 	}	
 }
 
-function AddPost(idPost, idTabla){
+function AddPost(idPost, idTabla, uid){
 	
 	//alert("idtabla: " + idTabla);
 	dt = new Date();
@@ -152,8 +162,8 @@ function AddPost(idPost, idTabla){
 	" 	<div class='PostTitle' style='width: 526px;'> " +
 	"			<div class='toolbox'>			   " +
 	"				<input type='button' id='edit-" + newId + "' title='editar' class='edit' onClick=\"EditPost('" + newId + "')\" /> " +
-	"				<input type='button' id='del-" + newId + "' title='eliminar' class='del' onClick=\"DelPost('" + newId + "')\" /> " +
-	"				<input type='button' id='sav-" + newId + "' title='guardar' class='sav' onClick=\"SavePost('" + newId + "')\" /> " +
+	"				<input type='button' id='del-" + newId + "' title='eliminar' class='del' onClick=\"DelPost('" + newId + "', " + uid + ")\" /> " +
+	"				<input type='button' id='sav-" + newId + "' title='guardar' class='sav' onClick=\"SavePost('" + newId + "', " + uid + ")\" /> " +
 	"				<input type='button' id='can-" + newId + "' title='cancelar' class='can' onClick=\"CancelPost('" + newId + "')\" /> " +
 	"			</div> " +
 	"			<input type='text' id='fch-" + newId + "' class='PostDate' value='" +
@@ -177,16 +187,18 @@ function AddPost(idPost, idTabla){
    	" </div> "	
 		
 	document.getElementById("area-" + idPost).innerHTML = newPost + document.getElementById("area-" + idPost).innerHTML;
-	EnablePost(newId);
+	EnablePost(newId);		
 }
 
-function DelPost(idPost){
+function DelPost(idPost, uid){
+	//alert("DelPost. uid= " + uid);
 	indexPost = document.getElementById("id-" + idPost).value;
 	tablaPost = document.getElementById("tbl-" + idPost).value;
 	if (confirm("Esta seguro que desea eliminar este elemento?")) {
 		if (document.getElementById("pst-" + idPost) != null) 
 			document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
 		AjaxSend("action=del&table=" + tablaPost + "&id=" + indexPost);
+		refreshPage(uid);
 	}
 }
 
@@ -206,4 +218,9 @@ function GetMaxId(){
 		}		
 	}
 	return maxId;	
+}
+
+
+function CatchNewPost(uid){
+	refreshPage(uid);
 }

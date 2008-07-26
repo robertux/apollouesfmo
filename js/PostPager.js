@@ -2,19 +2,25 @@
  * @author Robertux
  */
 
- function nextPage(){
+ function nextPage(uid){
  	currentPage = 0;
  	currentPage = document.getElementById("currentPage").value;
-	AjaxSendRequestPage(currentPage, "next");
+	AjaxSendRequestPage(currentPage, "next", uid);
  	//alert("siguiente pagina");
  }
 
- function prevPage(){
+ function prevPage(uid){
  	currentPage = 0;
  	currentPage = document.getElementById("currentPage").value;
-	AjaxSendRequestPage(currentPage, "prev");
+	AjaxSendRequestPage(currentPage, "prev", uid);
  	//alert("pagina anterior");
  }
+
+function refreshPage(uid){
+	currentPage = 0;
+ 	currentPage = document.getElementById("currentPage").value;
+	AjaxSendRequestPage(currentPage, "current", uid);
+}
 
  function CatchNewPage(ajaxResponse){
  	//alert("respuesta recibida: " + ajaxResponse);

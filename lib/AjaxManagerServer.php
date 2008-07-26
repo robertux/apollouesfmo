@@ -121,6 +121,9 @@ $conn = new cConexion();
 			
 				$currentPg = 0;
 				$currentPg = $_GET["current"];
+				$uid = $_GET["uid"];
+				//echo "uid: " . $uid;
+				$_SESSION["CurrentUser"] = $uid;
 				//echo "Current: $currentPg<br/>";
 				$direction = $_GET["new"];
 				//echo "Direction: $direction<br/>";
@@ -150,8 +153,13 @@ $conn = new cConexion();
 					}	
 				}
 				else{
-					$tempPost = new InnerPost("No hay resultados", "No hay noticias que mostrar...", 530);
-					$postList .= $tempPost->ToString();
+					if($currentPg == 0){
+						$tempPost = new InnerPost("No hay resultados", "No hay noticias que mostrar...", 530);
+						$postList .= $tempPost->ToString();
+					}
+					else{
+						//mostrar la pagina anterior, ya que en la actual ya no hay posts.
+					}
 				}			
 				$pst = new Post("Noticias de la Unidad", $postList, 550, true, false, false);
 				$pst->tabla = "novedades";
