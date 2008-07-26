@@ -857,7 +857,7 @@ CREATE TABLE  `apollo`.`novedades` (
   `fecha` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `FECHA` (`fecha`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `apollo`.`novedades`
@@ -865,17 +865,21 @@ CREATE TABLE  `apollo`.`novedades` (
 
 /*!40000 ALTER TABLE `novedades` DISABLE KEYS */;
 LOCK TABLES `novedades` WRITE;
-INSERT INTO `apollo`.`novedades` VALUES  (1,'prueba','prueba','<p>prueba</p>','2008-01-01 00:00:00'),
- (10,'Nuevo Post','','<p>Contenido del nuevo post</p>','2008-07-20 00:00:00'),
+INSERT INTO `apollo`.`novedades` VALUES  (10,'Primer Post','','<p>Contenido del primer post</p><p>','2008-07-20 00:00:00'),
  (11,'Este post no va a aparecer en la lista','','<p>Ya que segun la paginacion, solo se muestran diez. Este seria el onceavo.</p>','2008-07-20 00:00:00'),
- (9,'Nuevo Post','','<p>Contenido del nuevo post</p>','2008-07-17 00:00:00'),
- (8,'Nuevo Post7','','<p>Contenido del nuevo post7</p>','2008-07-23 00:00:00'),
- (2,'Nuevo Post1','','<p>Contenido del nuevo post1</p>','2008-07-17 00:00:00'),
+ (8,'Nuevo Post777','','<p>Contenido del nuevo post777</p><p>','2008-07-23 00:00:00'),
  (3,'Nuevo Post222','','<p>Contenido del nuevo post222</p><p>','2008-07-18 00:00:00'),
  (4,'Nuevo Post3','','<p>Contenido del nuevo post3</p>','2008-07-19 00:00:00'),
  (5,'Nuevo Post4','','<p>Contenido del nuevo post4</p>','2008-07-20 00:00:00'),
  (6,'Nuevo Post5','','<p>Contenido del nuevo post5</p>','2008-07-21 00:00:00'),
- (7,'Nuevo Post6','','<p>Contenido del nuevo post6</p>','2008-07-22 00:00:00');
+ (7,'Nuevo Post6','','<p>Contenido del nuevo post6</p>','2008-07-22 00:00:00'),
+ (12,'Nuevisimo Post','','<p>Contenido del nuevo post.</p><p>Calientito.</p><p>Acabado de salir del horno.</p>','2008-07-24 00:00:00'),
+ (13,'Nuevo Post desde Host Remoto','','<p>Contenido del nuevo post creado desde un host remoto.</p>','2008-07-24 00:00:00'),
+ (14,'Probando Agregar un Nuevo Post','','<p>Contenido del nuevo post</p><p>Esperemos que funcione</p><p>Yo digo que si funcionara.</p><p>Si funciona, me voy en este mismo instante a preparame una taza de cafe.</p><p>Sino, no me movere de aca hasta armar un progreso commiteable.</p>','2008-07-25 00:00:00');
+INSERT INTO `apollo`.`novedades` VALUES  (17,'Nuevo Post de Pruebas','','<p>Contenido del nuevo post</p>','2008-07-25 00:00:00'),
+ (16,'Otro Post de Pruebas','','<p>Este es otro post para ver porque no funciona la autopaginacion al agregar/borrar posts.</p>','2008-07-25 00:00:00'),
+ (18,'Nuevo Post de Prueba de Fuego','','<p>Contenido del nuevo post.</p><p>Con esto confirmo que en realidad funciona el hack que le acabo de hacer.</p>','2008-07-25 00:00:00'),
+ (19,'Nuevo Post - Prueba de Fuego Definitiva','','<p>Contenido del nuevo post.</p><p>Ahora si, supuestamente elimine todos los bugs.</p><p>A ver si en realidad funciona...</p>','2008-07-25 00:00:00');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `novedades` ENABLE KEYS */;
 

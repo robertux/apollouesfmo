@@ -149,6 +149,7 @@
 			
 			//Info de contacto con la secretaria, //add, edit, delete
 				$tempPost = new InnerPost("", "", 530, false, true, false);
+				$tempPost->id = "contacto";
 				$tempPost->titulo = "Informacion de Contacto";
 				$gen->GetPorTitulo('contacto');
 				$tempPost->contenido = $gen->contenido;
@@ -156,6 +157,7 @@
 			
 			//Informacion de suscripcion FEED RSS
 				$tempPost = new InnerPost("", "", 530, false, true, false);
+				$tempPost->id = "suscripcion";
 				$tempPost->titulo = "Suscribete a esta pagina";
 				$gen->GetPorTitulo('suscripcion');
 				$tempPost->contenido = $gen->contenido;

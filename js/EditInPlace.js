@@ -90,7 +90,7 @@ function SavePost(idPost, uid){
 		
 	}
 	//alert("actionpost: " + actionPost);
-	if(idPost == "Informacion de Contacto"){
+	if(idPost == "contacto"){
 		AjaxSendContacto(document.getElementById("area-" + idPost).innerHTML);
 		return null;
 	}
@@ -100,7 +100,7 @@ function SavePost(idPost, uid){
 		return null;
 	}
 	
-	if(idPost == "Suscribete a esta pagina"){
+	if(idPost == "suscripcion"){
 		AjaxSendSuscripcion(document.getElementById("area-" + idPost).innerHTML);
 		return null;
 	}
