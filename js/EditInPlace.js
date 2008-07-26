@@ -82,11 +82,12 @@ function SavePost(idPost, uid){
 	DisablePost(idPost);
 	//alert("SavePost. uid= " + uid );
 	actionPost = "edit";
-	//alert("idpost: " + parseInt(document.getElementById("id-" + idPost).value));
+	//alert("idpost: " + document.getElementById("id-" + idPost).value);
 	if(document.getElementById("id-" + idPost).value == "-1"){
 		actionPost = "add";
 		document.getElementById("id-" + idPost).value = GetMaxId() + 1;
-		//alert("idpost: " + parseInt(document.getElementById("id-" + idPost).value));
+		DelPostNoConfirm("noresults");
+		//alert("idpost: " + document.getElementById("id-" + idPost).value);
 		
 	}
 	//alert("actionpost: " + actionPost);
@@ -128,7 +129,7 @@ function SavePost(idPost, uid){
 	}
 	else{
 		indexPost = document.getElementById("id-" + idPost).value;
-		alert("indexpost: " + indexPost);
+		//alert("indexpost: " + indexPost);
 		tituloPost = document.getElementById("txt-" + idPost).value;
 		contenidoPost = document.getElementById("area-" + idPost).innerHTML;
 		AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&id=" + indexPost);
@@ -200,6 +201,11 @@ function DelPost(idPost, uid){
 		AjaxSend("action=del&table=" + tablaPost + "&id=" + indexPost);
 		refreshPage(uid);
 	}
+}
+
+function DelPostNoConfirm(idPost){
+	if(document.getElementById("pst-" + idPost) != null)
+		document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
 }
 
 function GetMaxId(){
