@@ -857,7 +857,7 @@ CREATE TABLE  `apollo`.`novedades` (
   `fecha` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `FECHA` (`fecha`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `apollo`.`novedades`
@@ -865,7 +865,8 @@ CREATE TABLE  `apollo`.`novedades` (
 
 /*!40000 ALTER TABLE `novedades` DISABLE KEYS */;
 LOCK TABLES `novedades` WRITE;
-INSERT INTO `apollo`.`novedades` VALUES  (10,'Primer Post','','<p>Contenido del primer post</p><p>','2008-07-20 00:00:00'),
+INSERT INTO `apollo`.`novedades` VALUES  (21,'Nuevo Post','','<p>Contenido del nuevo post</p>','2008-08-02 00:00:00'),
+ (10,'Primer Post','','<p>Contenido del primer post</p><p>','2008-07-20 00:00:00'),
  (11,'Este post no va a aparecer en la lista','','<p>Ya que segun la paginacion, solo se muestran diez. Este seria el onceavo.</p>','2008-07-20 00:00:00'),
  (8,'Nuevo Post777','','<p>Contenido del nuevo post777</p><p>','2008-07-23 00:00:00'),
  (3,'Nuevo Post222','','<p>Contenido del nuevo post222</p><p>','2008-07-18 00:00:00'),
@@ -879,7 +880,8 @@ INSERT INTO `apollo`.`novedades` VALUES  (10,'Primer Post','','<p>Contenido del 
 INSERT INTO `apollo`.`novedades` VALUES  (17,'Nuevo Post de Pruebas','','<p>Contenido del nuevo post</p>','2008-07-25 00:00:00'),
  (16,'Otro Post de Pruebas','','<p>Este es otro post para ver porque no funciona la autopaginacion al agregar/borrar posts.</p>','2008-07-25 00:00:00'),
  (18,'Nuevo Post de Prueba de Fuego','','<p>Contenido del nuevo post.</p><p>Con esto confirmo que en realidad funciona el hack que le acabo de hacer.</p>','2008-07-25 00:00:00'),
- (19,'Nuevo Post - Prueba de Fuego Definitiva','','<p>Contenido del nuevo post.</p><p>Ahora si, supuestamente elimine todos los bugs.</p><p>A ver si en realidad funciona...</p>','2008-07-25 00:00:00');
+ (19,'Nuevo Post - Prueba de Fuego Definitiva','','<p>Contenido del nuevo post.</p><p>','2008-07-26 00:00:00'),
+ (20,'Nuevo Post','','<p>Contenido del nuevo post</p>','2008-08-01 00:00:00');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `novedades` ENABLE KEYS */;
 
