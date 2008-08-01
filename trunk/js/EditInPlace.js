@@ -35,6 +35,8 @@ function EnablePost(idPost){
 	
 	//activamos el TinyMCE para que se aplique al <div class='innerContent'>
 	tinyMCE.execCommand('mceAddControl', false, ("area-" + idPost));
+	
+	ToggleEditButtons(idPost, false);	
 }
 
 function DisablePost(idPost){
@@ -45,11 +47,9 @@ function DisablePost(idPost){
 	
 	if (document.getElementById("fch-" + idPost) != null) {
 		document.getElementById("fch-" + idPost).className = "PostDate";
-		document.getElementById("fch-" + idPost).disabled = true;
+		document.getElementById("fch-" + idPost).disabled = true;		
 		document.getElementById("fch-" + idPost).innerHTML = "";
-	}
-	
-	
+	}	
 	
 	//Mostramos los botones de agregar/editar/eliminar
 	if(document.getElementById("add-" + idPost) != null)
@@ -64,6 +64,27 @@ function DisablePost(idPost){
 	
 	//desactivamos el TinyMCE
 	tinyMCE.execCommand('mceRemoveControl', false, "area-" + idPost);
+	
+	ToggleEditButtons(idPost, true);
+}
+
+function ToggleEditButtons(idPost, state){
+	//seleccionar todos los elementos <div>
+	array = document.getElementsByTagName("input");
+	
+	//esto debido a que en los botones la propiedad es "disabled" en lugar de "enabled" y aca se esta usando un valor true para activarlos y un valor false para desactivarlos (es mas logico)
+	state = !state;
+	
+	//recorrer todos los elementos <div>
+	for(var i=0; i<array.length; i++){
+		
+		//si el id del elemento contiene 'add-', 'edit-' o 'del-'...
+		if((array[i].id.search(/add-/) != -1) || (array[i].id.search(/edit-/) != -1) || (array[i].id.search(/del-/) != -1)){
+		
+			//si es diferente que el post actual...
+			array[i].disabled = state;
+		}
+	}
 }
 
 function EditPost(idPost){
@@ -196,10 +217,11 @@ function DelPost(idPost, uid){
 	indexPost = document.getElementById("id-" + idPost).value;
 	tablaPost = document.getElementById("tbl-" + idPost).value;
 	if (confirm("Esta seguro que desea eliminar este elemento?")) {
-		if (document.getElementById("pst-" + idPost) != null) 
+		if (document.getElementById("pst-" + idPost) != null)		
 			document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
 		AjaxSend("action=del&table=" + tablaPost + "&id=" + indexPost);
 		refreshPage(uid);
+		
 	}
 }
 

@@ -3,8 +3,8 @@
 require_once("cfeed.php");
 //require_once("../clases/cconexion.php");
 define("RUTA", realpath("../"));
-require_once(RUTA."clases/cnovedades.php");
-require_once(RUTA."clases/cforo.php");
+require_once(RUTA."/clases/cnovedades.php");
+require_once(RUTA."/clases/cforo.php");
 
 /**
  * Ultimas Novedades		novedades
