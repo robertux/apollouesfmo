@@ -9,6 +9,7 @@ class cCosto
 	public $nombre;
 	public $valor;
 	public $postgrado;
+	public $tabla;
 	
 	public $error;
 	
@@ -16,6 +17,7 @@ class cCosto
     public function __construct() 
     {
     	$this->con = new cConexion();
+		$this->tabla = "costo";
     }
     
     // destructor

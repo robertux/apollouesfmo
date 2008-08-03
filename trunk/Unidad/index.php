@@ -2,9 +2,11 @@
 	define("URL", "http://localhost/apollo/");//"http://ramayac.no-ip.biz/apollo/"); //"http://www.uesocc.edu.sv/postgrados/" 
 	define("RUTA", realpath("../"));
 	require_once("../incluye.php");
-	require_once("UnidadContentManager.php");
+	require_once("UnidadContentManager.php");	
 	require_once("../clases/cgeneral.php");
-	require_once("../clases/cutileria.php");
+	require_once("../clases/cnovedades.php");
+	require_once("../clases/cutileria.php");	
+	require_once("../clases/cdocente.php");
 	
 	$pag = new paginaSecundaria();
 	$pag->encabezado();
@@ -37,6 +39,7 @@
 	<ul>
 	<li><a href="index.php?opt=about">Acerca de la Unidad</a></li>
 	<li><a href="index.php?opt=proc">Procesos Academicos</a></li>
+	<li><a href="index.php?opt=profs">Docentes</a></li>
 	<li><a href="index.php?opt=news">Noticias</a></li>
 	<li><a href="index.php?opt=util">Programas de Utileria</a></li>
 	<li><a href="index.php?opt=contact">Contacto/Suscripcion</a></li>

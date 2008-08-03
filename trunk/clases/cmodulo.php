@@ -13,6 +13,7 @@ class cModulo
 	public $notafinal;
 	public $curso;
 	public $materia;
+	public $tabla;
 	
 	public $error;
 	
@@ -20,6 +21,7 @@ class cModulo
     public function __construct() 
     {
     	$this->con = new cConexion();
+		$this->tabla = "modulo";
 		//$this->con->Conectar();
     }
     

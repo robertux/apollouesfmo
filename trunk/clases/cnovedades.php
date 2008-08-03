@@ -11,6 +11,7 @@ class cNovedades
 	public $vinculo; 
 	public $descripcion;
 	public $fecha;
+	public $tabla;
 	
 	public $error;
 	
@@ -18,6 +19,7 @@ class cNovedades
     public function __construct() 
     {
     	$this->con = new cConexion();
+		$this->tabla = "novedades";
 		//$this->con->Conectar();
     }
     

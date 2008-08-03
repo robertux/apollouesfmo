@@ -8,6 +8,7 @@ class cRequisito
 	public $id;
 	public $nombre;
 	public $postgrado;
+	public $tabla;
 	
 	public $error;
 	
@@ -15,6 +16,7 @@ class cRequisito
     public function __construct() 
     {
     	$this->con = new cConexion();
+		$this->tabla = "requisito";
     }
     
     // destructor

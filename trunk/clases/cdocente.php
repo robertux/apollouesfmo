@@ -1,5 +1,5 @@
 <?php 
-include("cconexion.php");
+include_once("cconexion.php");
 
 class cDocente
 {
@@ -10,6 +10,7 @@ class cDocente
 	public $nombres;
 	public $gradoacademico;
 	public $usuario;
+	public $tabla;
 	
 	public $error;
 	
@@ -17,6 +18,7 @@ class cDocente
     public function __construct() 
     {
     	$this->con = new cConexion();
+		$this->tabla = "docente";
 		//$this->con->Conectar();
     }
     
@@ -32,6 +34,11 @@ class cDocente
     {
     	return($this->Consultar("SELECT * FROM docente;", true));
     }
+	
+	public function GetListaFiltrada($ini=0, $len=10)
+	{
+		return($this->Consultar("SELECT * FROM docente ORDER BY id limit $ini, $len;", true));
+	}
     
     public function GetPorId($pId)
     {
