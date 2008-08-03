@@ -12,6 +12,7 @@ class cAlumno
 	public $telefono;
 	public $fechanacimiento;
 	public $usuario;
+	public $tabla;
 	
 	public $error;
 	
@@ -19,6 +20,7 @@ class cAlumno
     public function __construct() 
     {
     	$this->con = new cConexion();
+		$this->tabla = "alumno";
 		//$this->con->Conectar();
     }
     

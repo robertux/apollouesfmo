@@ -11,10 +11,11 @@ class cPostGrado
 	public $totaluvs;
 	public $cumminimo;
 	public $abreviatura;
-	public $maxalum;
+	public $maxalum;	
 	
 	public $presentacion;
 	public $descripcion;
+	public $tabla;
 	
 	public $error;
 	
@@ -22,6 +23,7 @@ class cPostGrado
     public function __construct() 
     {
     	$this->con = new cConexion();
+		$this->tabla = "postgrado";
     }
     
     // destructor

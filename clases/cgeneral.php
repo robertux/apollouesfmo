@@ -7,6 +7,7 @@ class cGeneral
 	
 	public $titulo;
 	public $contenido;
+	public $tabla;
 	
 	public $error;
 	
@@ -14,6 +15,7 @@ class cGeneral
     public function __construct() 
     {
     	$this->con = new cConexion();
+		$this->tabla = "general";
     }
     
     // destructor

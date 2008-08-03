@@ -10,6 +10,7 @@ class cUtileria
 	public $titulo;
 	public $vinculo; 
 	public $descripcion;
+	public $tabla;
 	
 	public $error;
 	
@@ -17,6 +18,7 @@ class cUtileria
     public function __construct() 
     {
     	$this->con = new cConexion();
+		$this->tabla = "utileria";
 		//$this->con->Conectar();
     }
     
@@ -37,6 +39,11 @@ class cUtileria
     {
     	return($this->Consultar("SELECT id, titulo, vinculo, descripcion FROM utileria;", true));
     }
+	
+	public function GetListaFiltrada($ini=0, $len=10)
+	{
+		return($this->Consultar("SELECT * FROM utileria ORDER BY id limit $ini, $len;", true));
+	}
 	
 	public function GetListaOrden()
     {

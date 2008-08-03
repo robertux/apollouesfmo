@@ -11,6 +11,7 @@ class cInscripcion
 	public $fecha;
 	public $notafinal;
 	public $estado;
+	public $tabla;
 	
 	public $error;
 	
@@ -18,6 +19,7 @@ class cInscripcion
     public function __construct() 
     {
     	$this->con = new cConexion();
+		$this->tabla = "inscripcion";
 		//$this->con->Conectar();
     }
     

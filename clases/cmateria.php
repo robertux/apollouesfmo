@@ -11,6 +11,7 @@ class cMateria
 	public $tipo;
 	public $requisitopara;
 	public $postgrado;
+	public $tabla;
 	
 	public $error;
 	
@@ -18,6 +19,7 @@ class cMateria
     public function __construct() 
     {
     	$this->con = new cConexion();
+		$this->tabla = "materia";
 		//$this->con->Conectar();
     }
     

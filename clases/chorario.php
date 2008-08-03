@@ -12,6 +12,7 @@ class cHorario
 	public $aula;
 	public $frecuencia;
 	public $modulo;
+	public $tabla;
 	
 	public $error;
 	
@@ -19,6 +20,7 @@ class cHorario
     public function __construct() 
     {
     	$this->con = new cConexion();
+		$this->tabla = "horario";
 		//$this->con->Conectar();
     }
     

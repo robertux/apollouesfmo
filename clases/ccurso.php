@@ -8,6 +8,7 @@ class cCurso
 	public $id;
 	public $fechainicio;
 	public $postgrado;
+	public $tabla;
 	
 	public $error;
 	
@@ -15,6 +16,7 @@ class cCurso
     public function __construct() 
     {
     	$this->con = new cConexion();
+		$this->tabla = "curso";
 		//$this->con->Conectar();
     }
     

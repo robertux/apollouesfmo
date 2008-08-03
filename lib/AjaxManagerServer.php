@@ -7,6 +7,10 @@ require_once(RUTA . "/lib/PostPager.php");
 require_once(RUTA . "/lib/Post.php");
 require_once(RUTA . "/lib/ToolBox.php");
 require_once(RUTA . "/clases/cusuario.php");
+require_once(RUTA . "/clases/cnovedades.php");
+require_once(RUTA . "/clases/cdocente.php");
+require_once(RUTA . "/clases/cutileria.php");
+require_once(RUTA . "/Unidad/UnidadContentManager.php");
 
 $conn = new cConexion();
 
@@ -176,36 +180,26 @@ $conn = new cConexion();
 					$currentPg--;
 					//echo("entered in prev<br/>");
 					//echo "New: $currentPg";
-				}									
-
-				$pPager = new PostPager();
-				$novResult = $pPager->GetPosts($currentPg);
-				if($novResult->num_rows > 0){
-					while($arreglo = $novResult->fetch_array()){
-						$tempPost = new InnerPost("", "", 530, false, true, true);
-						$tempPost->id = $arreglo["id"];
-						$tempPost->tabla = "novedades";
-						$tempPost->fecha = substr($arreglo["fecha"],0,10);
-						$tempPost->titulo = $arreglo["titulo"];
-						$tempPost->contenido = substr($arreglo["descripcion"],3,strlen($arreglo["descripcion"])-4);
-						$postList .= $tempPost->ToString();
-					}	
-				}
-				else{
-					if($currentPg == 0){
-						$tempPost = new InnerPost("No hay resultados", "No hay noticias que mostrar...", 530);
-						$tempPost->id = "noresults";
-						$postList .= $tempPost->ToString();
-					}
-					else{
-						//mostrar la pagina anterior, ya que en la actual ya no hay posts.
-					}
-				}			
-				$pst = new Post("Noticias de la Unidad", $postList, 550, true, false, false);
-				$pst->tabla = "novedades";
-				$pst->pie = $pPager->ToString();
+				}				
 				
-				echo $pst->ToContentString();
+				//echo("tabla: " . $_GET["tabla"]);
+				$ucm = new UnidadContentManager();
+				
+				switch($_GET["tabla"]){
+					
+					case "novedades":												
+						$ucm->showNews($currentPg, true);					
+						break;
+						
+					case "docente":											
+						$ucm->ShowProfs($currentPg, true);
+						break;
+						
+					case "utileria":
+						$ucm->ShowUtils($currentPg, true);
+						break;
+				}
+				
 				break;
 		}
 	}

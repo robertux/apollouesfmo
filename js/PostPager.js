@@ -2,24 +2,24 @@
  * @author Robertux
  */
 
- function nextPage(uid){
+ function nextPage(tabla, uid){
  	currentPage = 0;
  	currentPage = document.getElementById("currentPage").value;
-	AjaxSendRequestPage(currentPage, "next", uid);
+	AjaxSendRequestPage(currentPage, "next", uid, tabla);
  	//alert("siguiente pagina");
  }
 
- function prevPage(uid){
+ function prevPage(tabla, uid){
  	currentPage = 0;
  	currentPage = document.getElementById("currentPage").value;
-	AjaxSendRequestPage(currentPage, "prev", uid);
+	AjaxSendRequestPage(currentPage, "prev", uid, tabla);
  	//alert("pagina anterior");
  }
 
-function refreshPage(uid){
+function refreshPage(tabla, uid){
 	currentPage = 0;
  	currentPage = document.getElementById("currentPage").value;
-	AjaxSendRequestPage(currentPage, "current", uid);
+	AjaxSendRequestPage(currentPage, "current", uid, tabla);
 }
 
  function CatchNewPage(ajaxResponse){

@@ -142,7 +142,7 @@ function SavePost(idPost, uid){
 			xmlHttp.onreadystatechange = function(){
 				if (xmlHttp.readyState == 4) {
 					//alert("response received: " + xmlHttp.responseText);	
-					CatchNewPost(uid);
+					CatchNewPost(tablaPost, uid);
 				}
 			}
 		//}
@@ -218,7 +218,7 @@ function DelPost(idPost, uid){
 		if (document.getElementById("pst-" + idPost) != null)		
 			document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
 		AjaxSend("action=del&table=" + tablaPost + "&id=" + indexPost);
-		refreshPage(uid);
+		refreshPage(tablaPost, uid);
 		
 	}
 }
@@ -229,6 +229,6 @@ function DelPostNoConfirm(idPost){
 }
 
 
-function CatchNewPost(uid){
-	refreshPage(uid);
+function CatchNewPost(uid, tablaPost){
+	refreshPage(tablaPost, uid);
 }

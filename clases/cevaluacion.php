@@ -10,6 +10,7 @@ class cEvaluacion
 	public $porcentaje;
 	public $nota;
 	public $modulo;
+	public $tabla;
 	
 	public $error;
 	
@@ -17,6 +18,7 @@ class cEvaluacion
     public function __construct() 
     {
     	$this->con = new cConexion();
+		$this->tabla = "evaluacion";
 		//$this->con->Conectar();
     }
     

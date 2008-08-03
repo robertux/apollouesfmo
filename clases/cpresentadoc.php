@@ -7,6 +7,7 @@ class cPresentaDoc
 	//id, nombre
 	public $id;
 	public $nombre;
+	public $tabla;
 	
 	public $error;
 	
@@ -14,6 +15,7 @@ class cPresentaDoc
     public function __construct() 
     {
     	$this->con = new cConexion();
+		$this->tabla = "presantadoc";
     }
     
     // destructor

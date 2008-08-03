@@ -1,4 +1,5 @@
 <?php
+
     class UnidadContentManager{
     	
 		var $opcion;
@@ -13,6 +14,8 @@
 					break;
 				case "proc": $this->ShowProcs();
 					break;
+				case "profs": $this->ShowProfs();
+					break;
 				case "news": $this->ShowNews();				
 					break;
 				case "util": $this->ShowUtils();
@@ -23,7 +26,7 @@
 			}
 		}
 		
-		public function ShowAbout(){
+		public function ShowAbout($pg=-1, $onlyContent=false){
 			
 			//$aboutContent = "Acerca de la unidad. <br>. <br>. <br>.";
 			//$aboutId = -1;
@@ -46,7 +49,7 @@
 			$pst->Show();
 		}
 		
-		public function ShowProcs(){
+		public function ShowProcs($pg=-1, $onlyContent=false){
 			$pstPreview = new InnerPost("Vista Previa", "
 			<table border='1'>
 				<tr>
@@ -88,7 +91,37 @@
 			$pst->Show();
 		}
 		
-		public function ShowNews(){
+		public function ShowProfs($pg=-1, $onlyContent=false){
+			
+			$postList = "";
+			$cprof = new cDocente();
+			$pPager = new PostPager($cprof, 2);
+			$profResult = $pPager->GetPosts($pg);
+			if($profResult->num_rows > 0){
+				while($arreglo = $profResult->fetch_array()){
+					$tempPost = new InnerPost("", "", 530, false, true, true);
+					$tempPost->id = $arreglo["id"];
+					$tempPost->tabla = "docentes";
+					$tempPost->titulo = $arreglo["apellidos"] . ", " . $arreglo["nombres"];
+					$tempPost->contenido = "grado academico: " . $arreglo["gradoacademico"] . "<br />" . $arreglo["descripcion"];
+					$postList .= $tempPost->ToString();
+				}
+			}
+			else{
+				$tempPost = new InnerPost("No hay resultados", "No hay noticias que mostrar...", 530);
+				$tempPost->id = "noresults";
+				$postList .= $tempPost->ToString();
+			}
+			
+			$pst = new Post("Docentes de la Unidad", $postList, 550, true, false, false);
+			$pst->pie = $pPager->ToString();
+			if($onlyContent)
+				echo $pst->ToContentString();
+			else
+				echo $pst->ToString();
+		}
+		
+		public function ShowNews($pg=-1, $onlyContent=false){
 			$postList = "";
 			
 			/*$tempNov = new cNovedades();
@@ -96,10 +129,10 @@
 			$pstPst = new InnerPost($tempNov->titulo, substr($tempNov->descripcion,3, strlen($tempNov->descripcion) - 4), 530);
 			$postList .= $pstPst->ToString();*/
 			
-			//$lastNovs = new cNovedades();
+			$lastNovs = new cNovedades();
 			//$novResult = $lastNovs->GetUltimos(10);
-			$pPager = new PostPager();
-			$novResult = $pPager->GetPosts();
+			$pPager = new PostPager($lastNovs);
+			$novResult = $pPager->GetPosts($pg);
 			if($novResult->num_rows > 0){
 				while($arreglo = $novResult->fetch_array()){
 					$tempPost = new InnerPost("", "", 530, false, true, true);
@@ -119,14 +152,18 @@
 			$pst = new Post("Noticias de la Unidad", $postList, 550, true, false, false);
 			$pst->tabla = "novedades";
 			$pst->pie = $pPager->ToString();
-			$pst->Show();
+			if($onlyContent)
+				echo $pst->ToContentString();
+			else
+				echo $pst->ToString();
 		}
 		
-		public function ShowUtils(){
+		public function ShowUtils($pg=-1, $onlyContent=false){
 			$postList = "";
 			
 			$lastUtil = new cUtileria();
-			$utiResult = $lastUtil->GetListaOrden();
+			$pPager = new PostPager($lastUtil);
+			$utiResult = $pPager->GetPosts($pg);
 			if($utiResult->num_rows > 0){
 				while($arreglo = $utiResult->fetch_array()){
 					$tempPost = new InnerPost("", "", 530, false, true, true);
@@ -145,7 +182,11 @@
 			}
 			$pst = new Post("Programas de Utileria", $postList, 550, true, false, false);
 			$pst->tabla = "utileria";
-			$pst->Show();
+			$pst->pie = $pPager->ToString();
+			if($onlyContent)
+				echo $pst->ToContentString();
+			else
+				echo $pst->ToString();
 		}
 		
 		public function ShowContact(){

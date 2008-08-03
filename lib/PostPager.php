@@ -1,8 +1,5 @@
 <?php
 
-define("RUTA", realpath("../"));
-require_once(RUTA."/clases/cnovedades.php");
-
     class PostPager{
     	
 		var $currentPage;
@@ -12,19 +9,20 @@ require_once(RUTA."/clases/cnovedades.php");
 		var $totRegs;
 		var $iniReg;
 		var $finReg;
+		var $entidad;
 		
-		function PostPager($pPageLen=5){
+		function PostPager($pEntidad, $pPageLen=5){
 			$this->pageLen = $pPageLen;
 			$this->currentPage = 0;
 			$this->totRegs = 0;
 			$this->btnNext = new PostPagerButton("Pagina Siguiente", "pgrNext");
 			$this->btnPrev = new PostPagerButton("Pagina Anterior", "pgrPrev");
+			$this->entidad = $pEntidad;
 		}
 		
 		function GetPosts($page = -1){
-			$lastNovs = new cNovedades();
 			$this->CalcRegs($page);
-			return $lastNovs->GetListaFiltrada($this->iniReg-1, $this->pageLen);
+			return $this->entidad->GetListaFiltrada($this->iniReg-1, $this->pageLen);
 		}		
 		
 		function ToString(){
@@ -39,8 +37,8 @@ require_once(RUTA."/clases/cnovedades.php");
 			
 			//$this->btnNext->url = $path . "?opt=news&page=" . ($this->currentPage + 1);
 			//$this->btnPrev->url = $path . "?opt=news&page=" . ($this->currentPage - 1) ;
-			$this->btnNext->onClick = "nextPage(" . $_SESSION["CurrentUser"] . ")";
-			$this->btnPrev->onClick = "prevPage(" . $_SESSION["CurrentUser"] . ")";
+			$this->btnNext->onClick = "nextPage(\"" . $this->entidad->tabla . "\", " . $_SESSION['CurrentUser'] . ")";
+			$this->btnPrev->onClick = "prevPage(\"" . $this->entidad->tabla . "\", " . $_SESSION['CurrentUser'] . ")";
 				
 			return "
 				<div class='TextPager'>Mostrando registros del <div id='iniReg' class='bold'>$this->iniReg</div> al <div id='finReg' class='bold'>$this->finReg</div> de los <div id='totRegs' class='bold'>$this->totRegs</div> totales</div>
@@ -67,8 +65,7 @@ require_once(RUTA."/clases/cnovedades.php");
 		}
 				
 		function GetTotalPosts(){
-			$lastNovs = new cNovedades();
-			$res = $lastNovs->GetLista();
+			$res = $this->entidad->GetLista();
 			return $res->num_rows;
 		}
     }

@@ -10,6 +10,7 @@ class cUsuario
 	public $nombre;
 	public $clave;
 	public $privilegio;
+	public $tabla;
 	
 	public $error;
 	
@@ -21,6 +22,7 @@ class cUsuario
 		$this->clave = "";
 		$this->privilegio = "";
     	$this->con = new cConexion();
+		$this->tabla = "usuario";
 		//$this->con->Conectar();
     }
     
