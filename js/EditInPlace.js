@@ -106,7 +106,7 @@ function SavePost(idPost, uid){
 	//alert("idpost: " + document.getElementById("id-" + idPost).value);
 	if(document.getElementById("id-" + idPost).value == "-1"){
 		actionPost = "add";
-		document.getElementById("id-" + idPost).value = GetMaxId() + 1;
+		document.getElementById("id-" + idPost).value = "0";
 		DelPostNoConfirm("noresults");
 		//alert("idpost: " + document.getElementById("id-" + idPost).value);
 		
@@ -138,14 +138,14 @@ function SavePost(idPost, uid){
 		//alert("fecha generada: " + fechaPost);
 		contenidoPost = document.getElementById("area-" + idPost).innerHTML;
 		xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&date=" + fechaPost + "&id=" + indexPost);		
-		if(actionPost == "add"){
+		//if(actionPost == "add"){
 			xmlHttp.onreadystatechange = function(){
 				if (xmlHttp.readyState == 4) {
 					//alert("response received: " + xmlHttp.responseText);	
 					CatchNewPost(uid);
 				}
 			}
-		}
+		//}
 			
 	}
 	else{
@@ -177,39 +177,37 @@ function AddPost(idPost, idTabla, uid){
 	
 	//alert("idtabla: " + idTabla);
 	dt = new Date();
-	newId = GetMaxId() + 1;
-	//alert("newid: " + newId);
 	var newPost = 
-	" <div id='pst-" + newId + "' class='innerPost' style='width: 530px;'> " +
+	" <div id='pst-0' class='innerPost' style='width: 530px;'> " +
 	" 	<div class='PostTitle' style='width: 526px;'> " +
 	"			<div class='toolbox'>			   " +
-	"				<input type='button' id='edit-" + newId + "' title='editar' class='edit' onClick=\"EditPost('" + newId + "')\" /> " +
-	"				<input type='button' id='del-" + newId + "' title='eliminar' class='del' onClick=\"DelPost('" + newId + "', " + uid + ")\" /> " +
-	"				<input type='button' id='sav-" + newId + "' title='guardar' class='sav' onClick=\"SavePost('" + newId + "', " + uid + ")\" /> " +
-	"				<input type='button' id='can-" + newId + "' title='cancelar' class='can' onClick=\"CancelPost('" + newId + "')\" /> " +
+	"				<input type='button' id='edit-0' title='editar' class='edit' onClick=\"EditPost('0')\" /> " +
+	"				<input type='button' id='del-0' title='eliminar' class='del' onClick=\"DelPost('0', " + uid + ")\" /> " +
+	"				<input type='button' id='sav-0' title='guardar' class='sav' onClick=\"SavePost('0', " + uid + ")\" /> " +
+	"				<input type='button' id='can-0' title='cancelar' class='can' onClick=\"CancelPost('0')\" /> " +
 	"			</div> " +
-	"			<input type='text' id='fch-" + newId + "' class='PostDate' value='" +
+	"			<input type='text' id='fch-0' class='PostDate' value='" +
 		
 	(dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate()) +
 	
 	"			' disabled='true'></input>" +
-	"		<input type='text' id='txt-" + newId + "' class='innerTitle' value='Nuevo Post' disabled='true' /> " +
+	"		<input type='text' id='txt-0' class='innerTitle' value='Nuevo Post' disabled='true' /> " +
 	"		</div> " +
-	"		<div id='cont-" + newId + "' class='PostContent'> " +
-	"		    <div id='area-" + newId + "' class='innerContent'> " +
+	"		<div id='cont-0' class='PostContent'> " +
+	"		    <div id='area-0' class='innerContent'> " +
 	"				Contenido del nuevo post " +
 	"			</div> " +
 	"		</div> " +
-	"		<input type='hidden' id='tmpcnt-" + newId + "' value=''/> " +
-	"		<input type='hidden' id='tmptit-" + newId + "' value=''/> " +	
-	"		<input type='hidden' id='tmpfch-" + newId + "' value=''/> " +	
-	"		<input type='hidden' id='id-" + newId + "' value='-1'/> " +
-	"		<input type='hidden' id='tbl-" + newId + "' value='" + idTabla + "'/> " +		
+	"		<input type='hidden' id='tmpcnt-0' value=''/> " +
+	"		<input type='hidden' id='tmptit-0' value=''/> " +	
+	"		<input type='hidden' id='tmpfch-0' value=''/> " +	
+	"		<input type='hidden' id='id-0' value='-1'/> " +
+	"		<input type='hidden' id='tbl-0' value='" + idTabla + "'/> " +		
    	"	</div> "
    	" </div> "	
 		
 	document.getElementById("area-" + idPost).innerHTML = newPost + document.getElementById("area-" + idPost).innerHTML;
-	EnablePost(newId);		
+	EnablePost("0");
 }
 
 function DelPost(idPost, uid){
@@ -228,24 +226,6 @@ function DelPost(idPost, uid){
 function DelPostNoConfirm(idPost){
 	if(document.getElementById("pst-" + idPost) != null)
 		document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
-}
-
-function GetMaxId(){
-	elements = document.getElementsByTagName("input");
-	maxId = 0;
-	for (i in elements) {
-		try{
-			if (elements[i].id.search("id-") != -1) {
-				id = parseInt(elements[i].value);
-				if(id > maxId){
-					maxId = id;
-				}
-			}
-		}catch(ex){
-			//pass
-		}		
-	}
-	return maxId;	
 }
 
 

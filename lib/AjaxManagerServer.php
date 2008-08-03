@@ -23,6 +23,14 @@ $conn = new cConexion();
 						
 						$id = 0;
 						$id = $_GET["id"];
+						if($id == 0){
+							$conn->Conectar();
+							$res = $conn->mysqli->query("select (max(id) + 1) as maxid from novedades;");
+							$arr = $res->fetch_array();
+							$id = $arr["maxid"];
+							$conn->mysqli->close();
+						}
+						
 						$titulo = $_GET["title"];
 						$contenido = $_GET["content"];
 						$fecha = $_GET["date"];
