@@ -153,7 +153,13 @@ function SavePost(idPost, uid){
 		//alert("indexpost: " + indexPost);
 		tituloPost = document.getElementById("txt-" + idPost).value;
 		contenidoPost = document.getElementById("area-" + idPost).innerHTML;
-		AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&id=" + indexPost);
+		xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&id=" + indexPost);
+		xmlHttp.onreadystatechange = function(){
+			if (xmlHttp.readyState == 4) {
+				//alert("response received: " + xmlHttp.responseText);	
+				CatchNewPost(tablaPost, uid);
+				}
+			}
 	}
 }
 
@@ -229,6 +235,6 @@ function DelPostNoConfirm(idPost){
 }
 
 
-function CatchNewPost(uid, tablaPost){
+function CatchNewPost(tablaPost, uid){
 	refreshPage(tablaPost, uid);
 }

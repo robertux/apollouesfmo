@@ -37,8 +37,12 @@
 			
 			//$this->btnNext->url = $path . "?opt=news&page=" . ($this->currentPage + 1);
 			//$this->btnPrev->url = $path . "?opt=news&page=" . ($this->currentPage - 1) ;
-			$this->btnNext->onClick = "nextPage(\"" . $this->entidad->tabla . "\", " . $_SESSION['CurrentUser'] . ")";
-			$this->btnPrev->onClick = "prevPage(\"" . $this->entidad->tabla . "\", " . $_SESSION['CurrentUser'] . ")";
+			$currentUser = "-1";
+			if($_SESSION['CurrentUser'] != "")
+				$currentUser = $_SESSION['CurrentUser'];
+							
+			$this->btnPrev->onClick = "prevPage(\"" . $this->entidad->tabla . "\", " . $currentUser . ")";
+			$this->btnNext->onClick = "nextPage(\"" . $this->entidad->tabla . "\", " . $currentUser . ")";
 				
 			return "
 				<div class='TextPager'>Mostrando registros del <div id='iniReg' class='bold'>$this->iniReg</div> al <div id='finReg' class='bold'>$this->finReg</div> de los <div id='totRegs' class='bold'>$this->totRegs</div> totales</div>
