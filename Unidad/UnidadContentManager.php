@@ -28,24 +28,11 @@
 		
 		public function ShowAbout($pg=-1, $onlyContent=false){
 			
-			//$aboutContent = "Acerca de la unidad. <br>. <br>. <br>.";
-			//$aboutId = -1;
 			$about = new cGeneral();
 			$aboutResult = $about->GetPorTitulo("about");
-			//if($aboutResult->num_rows > 0){
-				//$aboutArray = $aboutResult->fetch_array();
-				//$aboutContent = $aboutArray["contenido"];
-			//}
-			//$aboutContent = $about->contenido;
 			
 			$pst = new Post("Acerca de la Unidad", $about->contenido,530, false, true, false);
-			//$pst->tabla = "general";
-			/*$myUser = new cusuario();
-			if($myUser->GetPorId($_SESSION["CurrentUser"])){
-				if($myUser->privilegio == "admin"){
-					$pst->tbox->btnEdit->enabled = true;
-				}
-			}*/
+			$pst->editableTitle = false;
 			$pst->Show();
 		}
 		
@@ -100,15 +87,23 @@
 			if($profResult->num_rows > 0){
 				while($arreglo = $profResult->fetch_array()){
 					$tempPost = new InnerPost("", "", 530, false, true, true);
+					$tempPost->editableTitle = false;
 					$tempPost->id = $arreglo["id"];
 					$tempPost->tabla = "docentes";
 					$tempPost->titulo = $arreglo["apellidos"] . ", " . $arreglo["nombres"];
-					$tempPost->contenido = "grado academico: " . $arreglo["gradoacademico"] . "<br />" . $arreglo["descripcion"];
+					
+					$vTable = new VerticalTable();
+					$vTable->rows[] = new VerticalTableRow(array("Apellidos", $arreglo["apellidos"]));
+					$vTable->rows[] = new VerticalTableRow(array("Nombres", $arreglo["nombres"]));
+					$vTable->rows[] = new VerticalTableRow(array("Grado Academico", $arreglo["gradoacademico"]));
+					$vTable->rows[] = new VerticalTableRow(array("Descripcion", $arreglo["descripcion"]));
+					
+					$tempPost->contenido = $vTable->ToString();
 					$postList .= $tempPost->ToString();
 				}
 			}
 			else{
-				$tempPost = new InnerPost("No hay resultados", "No hay noticias que mostrar...", 530);
+				$tempPost = new InnerPost("No hay resultados", "No hay docentes que mostrar...", 530);
 				$tempPost->id = "noresults";
 				$postList .= $tempPost->ToString();
 			}
@@ -167,10 +162,18 @@
 			if($utiResult->num_rows > 0){
 				while($arreglo = $utiResult->fetch_array()){
 					$tempPost = new InnerPost("", "", 530, false, true, true);
+					$tempPost->editableTitle = false;
 					$tempPost->id = $arreglo["id"];
 					$tempPost->tabla = "utileria";
 					$tempPost->titulo = $arreglo["titulo"];
-					$tempPost->contenido = substr($arreglo["descripcion"],3,strlen($arreglo["descripcion"])-4);
+					
+					$vTable = new VerticalTable();
+					$vTable->rows[] = new VerticalTableRow(array("Titulo", $arreglo["titulo"]));
+					$vTable->rows[] = new VerticalTableRow(array("Vinculo", $arreglo["vinculo"]));
+					$vTable->rows[] = new VerticalTableRow(array("Descripcion", $arreglo["descripcion"]));
+					
+					$tempPost->contenido = $vTable->ToString();
+					//$tempPost->contenido = substr($arreglo["descripcion"],3,strlen($arreglo["descripcion"])-4);
 					//$tempPost->contenido .= "<br/>Sigue este vinculo para descargar este programa: <a href='".$arreglo["vinculo"]."' >".$arreglo["vinculo"]."</a>";
 					$postList .= $tempPost->ToString();
 				}

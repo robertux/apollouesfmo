@@ -12,6 +12,8 @@
 		var $showEditWhenAdmin;
 		var $showDelWhenAdmin;
 		var $pie;
+		var $editableTitle;
+		var $uid;
 		
 		public function Post($pTitulo="Titulo", $pContenido="Contenido", $pAncho=550, $pShowAddWhenAdmin=false, $pShowEditWhenAdmin=false, $pShowDelWhenAdmin=false){
 			$this->id = $pId;
@@ -23,48 +25,57 @@
 		 	$this->showEditWhenAdmin = $pShowEditWhenAdmin;
 			$this->showDelWhenAdmin = $pShowDelWhenAdmin;
 			$this->pie = "";
+			$this->editableTitle = true;
+		}
+		
+		public function SetTBox(){
+			
+			if($this->editableTitle)
+				$this->tbox->btnEdit->onClick = "EditPost('$this->id')";
+			else
+				$this->tbox->btnEdit->onClick = "EditPostContent('$this->id')";
+			$this->tbox->btnAdd->id = "add-$this->id";
+			$this->tbox->btnAdd->onClick = "AddPost('$this->id', '$this->tabla'," . $this->uid . ")";
+			$this->tbox->btnEdit->id = "edit-$this->id";
+			$this->tbox->btnDel->id = "del-$this->id";
+			$this->tbox->btnDel->onClick = "DelPost('$this->id'," . $this->uid . ")";
+			$this->tbox->btnSave->id = "sav-$this->id";
+			$this->tbox->btnSave->onClick = "SavePost('$this->id', " . $this->uid . ")";
+			$this->tbox->btnCancel->id = "can-$this->id";
+			$this->tbox->btnCancel->onClick = "CancelPost('$this->id')";
+		}
+		
+		public function CheckUser(){
+			$myUser = new cusuario();
+			$myUser->GetPorId($_SESSION["CurrentUser"]);
+			if($myUser->privilegio == "admin"){
+				if($this->showAddWhenAdmin)
+					$this->tbox->btnAdd->enabled = true;
+				if($this->showEditWhenAdmin)
+					$this->tbox->btnEdit->enabled = true;
+				if($this->showDelWhenAdmin)
+					$this->tbox->btnDel->enabled = true;
+			}			
+			$this->uid = $_SESSION["CurrentUser"];
 		}
 		
 		public function ToString(){
-
 				return "<div id='pst-$this->id' class='Post' style='width: " . $this->ancho . "px;' >" .
 					$this->toContentString() .
 	   			"</div>";
 		}
 		
-		public function ToContentString(){
+		public function ToContentString(){						
+			$this->CheckUser();
+			$this->SetTBox();
+			$fechaField = "";
+			if($this->fecha != ""){
+				$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' ></inpurt>";
+			}
 			
-			$myUser = new cusuario();
-				$myUser->GetPorId($_SESSION["CurrentUser"]);
-				if($myUser->privilegio == "admin"){
-					if($this->showAddWhenAdmin)
-						$this->tbox->btnAdd->enabled = true;
-					if($this->showEditWhenAdmin)
-						$this->tbox->btnEdit->enabled = true;
-					if($this->showDelWhenAdmin)
-						$this->tbox->btnDel->enabled = true;
-				}
-				
-				$uid = $_SESSION["CurrentUser"];
-				
-				$this->tbox->btnEdit->onClick = "EditPost('$this->id')";
-				$this->tbox->btnAdd->id = "add-$this->id";
-				$this->tbox->btnAdd->onClick = "AddPost('$this->id', '$this->tabla'," . $uid . ")";
-				$this->tbox->btnEdit->id = "edit-$this->id";
-				$this->tbox->btnDel->id = "del-$this->id";
-				$this->tbox->btnDel->onClick = "DelPost('$this->id'," . $uid . ")";
-				$this->tbox->btnSave->id = "sav-$this->id";
-				$this->tbox->btnSave->onClick = "SavePost('$this->id', " . $uid . ")";
-				$this->tbox->btnCancel->id = "can-$this->id";
-				$this->tbox->btnCancel->onClick = "CancelPost('$this->id')";
-				$fechaField = "";
-				if($this->fecha != ""){
-					$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' ></inpurt>";
-				}
-				
-				$footer = "";
-				if($this->pie != "")
-					$footer = "<div class='PostFooter' style='width: " . $this->ancho . "px;'>$this->pie</div>";
+			$footer = "";
+			if($this->pie != "")
+				$footer = "<div class='PostFooter' style='width: " . $this->ancho . "px;'>$this->pie</div>";
 
 			return "			
 	    		<div class='PostTitle' style='width: " . ($this->ancho - 12) . "px;'>
@@ -81,10 +92,8 @@
 				<input type='hidden' id='tmpfch-$this->id' value=''/>
 				<input type='hidden' id='id-$this->id' value='$this->id'/>
 				<input type='hidden' id='tbl-$this->id' value='$this->tabla'/>
-				$footer
-			
-			";
-			
+				$footer			
+			";			
 		}
 		
 		public function Show(){
@@ -102,39 +111,17 @@
 			"</div>";
 		}
 		
-		public function ToContentString(){
+		public function ToContentString(){			
+			$this->CheckUser();			
+			$this->SetTBox();
+			$fechaField = "";
+			if($this->fecha != ""){
+				$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' ></input>";
+			}
 			
-			$myUser = new cusuario();
-			$myUser->GetPorId($_SESSION["CurrentUser"]);
-			if($myUser->privilegio == "admin"){
-				if($this->showAddWhenAdmin)
-					$this->tbox->btnAdd->enabled = true;
-				if($this->showEditWhenAdmin)
-					$this->tbox->btnEdit->enabled = true;
-				if($this->showDelWhenAdmin)
-					$this->tbox->btnDel->enabled = true;
-			}						
-			
-				$uid = $_SESSION["CurrentUser"];
-				
-				$this->tbox->btnEdit->onClick = "EditPost('$this->id')";
-				$this->tbox->btnAdd->id = "add-$this->id";
-				$this->tbox->btnAdd->onClick = "AddPost('$this->id', '$this->tabla'," . $uid . ")";
-				$this->tbox->btnEdit->id = "edit-$this->id";
-				$this->tbox->btnDel->id = "del-$this->id";
-				$this->tbox->btnDel->onClick = "DelPost('$this->id'," . $uid . ")";
-				$this->tbox->btnSave->id = "sav-$this->id";
-				$this->tbox->btnSave->onClick = "SavePost('$this->id', " . $uid . ")";
-				$this->tbox->btnCancel->id = "can-$this->id";
-				$this->tbox->btnCancel->onClick = "CancelPost('$this->id')";
-				$fechaField = "";
-				if($this->fecha != ""){
-					$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' ></input>";
-				}
-				
-				$footer = "";
-				if($this->pie != "")
-					$footer = "<div class='PostFooter'>$this->pie</div>";
+			$footer = "";
+			if($this->pie != "")
+				$footer = "<div class='PostFooter'>$this->pie</div>";
 			
 			return "			
     			<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
@@ -151,11 +138,9 @@
 				<input type='hidden' id='tmpfch-$this->id' value=''/>
 				<input type='hidden' id='id-$this->id' value='$this->id'/>
 				<input type='hidden' id='tbl-$this->id' value='$this->tabla'/>
-				$footer
-			
+				$footer			
 			";
-		}
-		
+		}		
 	}
 	
 	class InnerInnerPost extends InnerPost{
@@ -163,34 +148,12 @@
 		public function ToString(){			
 			return "<div id='pst-$this->id' class='innerInnerPost' style='width: " . $this->ancho . "px;'>" . 
 			$this->ToContentString() . 
-			"</div>";
-			
+			"</div>";			
 		}
 		
-		public function ToContentString(){
-			
-			$myUser = new cusuario();
-			$myUser->GetPorId($_SESSION["CurrentUser"]);
-			if($myUser->privilegio == "admin"){
-				if($this->showAddWhenAdmin)
-					$this->tbox->btnAdd->enabled = true;
-				if($this->showEditWhenAdmin)
-					$this->tbox->btnEdit->enabled = true;
-				if($this->showDelWhenAdmin)
-					$this->tbox->btnDel->enabled = true;
-			}
-			
-			$uid = $_SESSION["CurrentUser"];
-			
-			$this->tbox->btnEdit->onClick = "EditPost('$this->id')";
-			$this->tbox->btnAdd->id = "add-$this->id";
-			$this->tbox->btnEdit->id = "edit-$this->id";
-			$this->tbox->btnDel->id = "del-$this->id";
-			$this->tbox->btnDel->onClick = "DelPost('$this->id'," . $uid . ")";
-			$this->tbox->btnSave->id = "sav-$this->id";
-			$this->tbox->btnSave->onClick = "SavePost('$this->id', " . $uid . ")";
-			$this->tbox->btnCancel->id = "can-$this->id";
-			$this->tbox->btnCancel->onClick = "CancelPost('$this->id')";
+		public function ToContentString(){			
+			$this->CheckUser();			
+			$this->SetTBox();
 			$fechaField = "";
 			if($this->fecha != ""){
 				$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' ></input>";
@@ -215,8 +178,7 @@
 					<input type='hidden' id='id-$this->id' value='$this->id'/>
 					<input type='hidden' id='tbl-$this->id' value='$this->tabla'/>
 				</div>
-				$footer	   		
-			
+				$footer			
 			";
 		}
 	}

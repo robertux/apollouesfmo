@@ -8,6 +8,7 @@ function EnablePost(idPost){
 	document.getElementById("txt-" + idPost).className = "innerTitleEdit";
 	document.getElementById("txt-" + idPost).focus();
 	
+	//Activamos el calendario
 	if (document.getElementById("fch-" + idPost) != null) {
 		document.getElementById("fch-" + idPost).className = "PostDateEdit";
 		document.getElementById("fch-" + idPost).disabled = false;
@@ -21,22 +22,15 @@ function EnablePost(idPost){
 		});
 	}
 	
-	//Ocultamos los botones de agregar/editar/eliminar
-	if(document.getElementById("add-" + idPost) != null)
-		document.getElementById("add-" + idPost).style.display = "none";
-	if(document.getElementById("edit-" + idPost) != null)		
-		document.getElementById("edit-" + idPost).style.display = "none";
-	if(document.getElementById("del-" + idPost) != null)
-		document.getElementById("del-" + idPost).style.display = "none";
-	//mostramos los botones de guardar/cancelar
-	document.getElementById("sav-" + idPost).style.display = "inline";
-	document.getElementById("can-" + idPost).style.display = "inline";
-		
-	
 	//activamos el TinyMCE para que se aplique al <div class='innerContent'>
+	EnablePostContent(idPost);			
+}
+
+function EnablePostContent(idPost){	
 	tinyMCE.execCommand('mceAddControl', false, ("area-" + idPost));
 	
-	ToggleEditButtons(idPost, false);	
+	//Ocultamos los botones de agregar/editar/eliminar y desactivamos los botones que no pertenecen a este post
+	ToggleEditButtons(idPost, false);
 }
 
 function DisablePost(idPost){
@@ -51,20 +45,15 @@ function DisablePost(idPost){
 		document.getElementById("fch-" + idPost).innerHTML = "";
 	}	
 	
-	//Mostramos los botones de agregar/editar/eliminar
-	if(document.getElementById("add-" + idPost) != null)
-		document.getElementById("add-" + idPost).style.display = "inline";
-	if(document.getElementById("edit-" + idPost) != null)		
-		document.getElementById("edit-" + idPost).style.display = "inline";
-	if(document.getElementById("del-" + idPost) != null)
-		document.getElementById("del-" + idPost).style.display = "inline";
-	//ocultamos los botones de guardar/cancelar		
-	document.getElementById("sav-" + idPost).style.display = "none";
-	document.getElementById("can-" + idPost).style.display = "none";
-	
 	//desactivamos el TinyMCE
+	DisablePostContent(idPost);
+		
+}
+
+function DisablePostContent(idPost){
 	tinyMCE.execCommand('mceRemoveControl', false, "area-" + idPost);
 	
+	//Mostramos los botones de agregar/editar/eliminar y activamos los botones que no pertenecen a este post
 	ToggleEditButtons(idPost, true);
 }
 
@@ -76,15 +65,39 @@ function ToggleEditButtons(idPost, state){
 	state = !state;
 	
 	//recorrer todos los elementos <div>
-	for(var i=0; i<array.length; i++){
-		
+	for (var i = 0; i < array.length; i++) {
+	
 		//si el id del elemento contiene 'add-', 'edit-' o 'del-'...
-		if((array[i].id.search(/add-/) != -1) || (array[i].id.search(/edit-/) != -1) || (array[i].id.search(/del-/) != -1)){
+		if ((array[i].id.search(/add-/) != -1) || (array[i].id.search(/edit-/) != -1) || (array[i].id.search(/del-/) != -1)) {
 		
 			//si es diferente que el post actual...
 			array[i].disabled = state;
 		}
 	}
+	
+	//mostramos/ocultamos los botones de agregar/editar/eliminar o los de guardar/cancelar. Dependiendo del estado.
+	displayEditStatus = "";
+	displaySaveStatus = "";
+	if (state) {
+		displayEditStatus = "none";
+		displaySaveStatus = "inline";
+	}
+	else {
+		displayEditStatus = "inline";
+		displaySaveStatus = "none";
+	}
+	
+	//Una vez definidas las variables, las aplicamos a los elementos.
+	if(document.getElementById("add-" + idPost) != null)
+		document.getElementById("add-" + idPost).style.display = displayEditStatus;
+	if(document.getElementById("edit-" + idPost) != null)		
+		document.getElementById("edit-" + idPost).style.display = displayEditStatus;
+	if(document.getElementById("del-" + idPost) != null)
+		document.getElementById("del-" + idPost).style.display = displayEditStatus;
+	//ocultamos los botones de guardar/cancelar		
+	document.getElementById("sav-" + idPost).style.display = displaySaveStatus;
+	document.getElementById("can-" + idPost).style.display = displaySaveStatus;
+	
 }
 
 function EditPost(idPost){
@@ -97,6 +110,18 @@ function EditPost(idPost){
 		document.getElementById("tmpfch-" + idPost).value = document.getElementById("fch-" + idPost).value;
 	}
 	//alert("area guardada: " + document.getElementById("tmp-" + idPost).value);
+}
+
+function EditPostContent(idPost){
+	EnablePostContent(idPost);
+	
+	//guardamos el contenido del post en un elemento temporal
+	//alert("editando post: " + idPost);
+	document.getElementById("tmpcnt-" + idPost).value = document.getElementById("area-" + idPost).innerHTML;
+	document.getElementById("tmptit-" + idPost).value = document.getElementById("txt-" + idPost).value;
+	if (document.getElementById("fch-" + idPost) != null) {
+		document.getElementById("tmpfch-" + idPost).value = document.getElementById("fch-" + idPost).value;
+	}
 }
 
 function SavePost(idPost, uid){
