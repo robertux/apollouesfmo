@@ -11,6 +11,7 @@ require_once(RUTA . "/clases/cnovedades.php");
 require_once(RUTA . "/clases/cdocente.php");
 require_once(RUTA . "/clases/cutileria.php");
 require_once(RUTA . "/Unidad/UnidadContentManager.php");
+require_once(RUTA . "/lib/VerticalTable.php");
 
 $conn = new cConexion();
 
