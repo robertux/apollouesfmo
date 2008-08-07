@@ -20,5 +20,24 @@ class cConexion
     		die($this->error);
 		}
     }
+	
+	public function Host()
+	{
+		return $this->host;
+	}
+	
+	public function User()
+	{
+		return $this->user;
+	}
     
+	public function Pass()
+	{
+		return $this->pass;
+	}
+	
+	public function Db()
+	{
+		return $this->db;
+	}
 }
