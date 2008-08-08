@@ -134,10 +134,11 @@ CREATE TABLE  `apollo`.`docente` (
   `nombres` varchar(200) NOT NULL,
   `gradoacademico` varchar(50) NOT NULL,
   `usuario` int(11) NOT NULL,
+  `descripcion` text,
   PRIMARY KEY  (`id`),
   KEY `fk_usuario_id_docente` (`usuario`),
   CONSTRAINT `fk_usuario_id_docente` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `apollo`.`docente`
@@ -145,6 +146,11 @@ CREATE TABLE  `apollo`.`docente` (
 
 /*!40000 ALTER TABLE `docente` DISABLE KEYS */;
 LOCK TABLES `docente` WRITE;
+INSERT INTO `apollo`.`docente` VALUES  (1,'Apellidos1','Nombres1','Licenciado en ...',1,'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin quis massa sed dolor sodales dapibus. Vestibulum congue, nisi rhoncus facilisis scelerisque, neque neque aliquam velit, eu laoreet nibh massa non turpis. Ut sed neque vehicula erat tincidunt dapibus. Curabitur a est. Nulla lectus metus, pretium et, porta non, rutrum sed, lectus. In vitae sapien a dui rhoncus auctor. Cras adipiscing, nibh a adipiscing consequat, tortor sapien convallis nisi, sit amet dapibus justo nisl nec massa. Etiam dolor nisi, convallis nec, fringilla sed, commodo a, dui. In condimentum eros eget leo. Morbi porta erat vitae nunc. Cras commodo dui quis justo. Fusce dignissim pretium ipsum. Vivamus a mi sed metus posuere consectetuer. Morbi lacinia magna ut enim. Aliquam erat volutpat. Suspendisse laoreet, nulla at blandit mollis, velit nunc pulvinar mauris, in pellentesque erat odio eu arcu. Donec commodo nisl ut dui. Phasellus lectus risus, interdum vel, aliquam eget, accumsan vel, purus. Donec scelerisque tincidunt dui. '),
+ (2,'Apellidos2','Nombres2','Licenciado en ...',1,'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin quis massa sed dolor sodales dapibus. Vestibulum congue, nisi rhoncus facilisis scelerisque, neque neque aliquam velit, eu laoreet nibh massa non turpis. Ut sed neque vehicula erat tincidunt dapibus. Curabitur a est. Nulla lectus metus, pretium et, porta non, rutrum sed, lectus. In vitae sapien a dui rhoncus auctor. Cras adipiscing, nibh a adipiscing consequat, tortor sapien convallis nisi, sit amet dapibus justo nisl nec massa. Etiam dolor nisi, convallis nec, fringilla sed, commodo a, dui. In condimentum eros eget leo. Morbi porta erat vitae nunc. Cras commodo dui quis justo. Fusce dignissim pretium ipsum. Vivamus a mi sed metus posuere consectetuer. Morbi lacinia magna ut enim. Aliquam erat volutpat. Suspendisse laoreet, nulla at blandit mollis, velit nunc pulvinar mauris, in pellentesque erat odio eu arcu. Donec commodo nisl ut dui. Phasellus lectus risus, interdum vel, aliquam eget, accumsan vel, purus. Donec scelerisque tincidunt dui. ');
+INSERT INTO `apollo`.`docente` VALUES  (3,'Apellidos3','Nombres3','Licenciado en ...',1,'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin quis massa sed dolor sodales dapibus. Vestibulum congue, nisi rhoncus facilisis scelerisque, neque neque aliquam velit, eu laoreet nibh massa non turpis. Ut sed neque vehicula erat tincidunt dapibus. Curabitur a est. Nulla lectus metus, pretium et, porta non, rutrum sed, lectus. In vitae sapien a dui rhoncus auctor. Cras adipiscing, nibh a adipiscing consequat, tortor sapien convallis nisi, sit amet dapibus justo nisl nec massa. Etiam dolor nisi, convallis nec, fringilla sed, commodo a, dui. In condimentum eros eget leo. Morbi porta erat vitae nunc. Cras commodo dui quis justo. Fusce dignissim pretium ipsum. Vivamus a mi sed metus posuere consectetuer. Morbi lacinia magna ut enim. Aliquam erat volutpat. Suspendisse laoreet, nulla at blandit mollis, velit nunc pulvinar mauris, in pellentesque erat odio eu arcu. Donec commodo nisl ut dui. Phasellus lectus risus, interdum vel, aliquam eget, accumsan vel, purus. Donec scelerisque tincidunt dui. '),
+ (4,'Apellidos4','Nombres4','Licenciado en ...',1,'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin quis massa sed dolor sodales dapibus. Vestibulum congue, nisi rhoncus facilisis scelerisque, neque neque aliquam velit, eu laoreet nibh massa non turpis. Ut sed neque vehicula erat tincidunt dapibus. Curabitur a est. Nulla lectus metus, pretium et, porta non, rutrum sed, lectus. In vitae sapien a dui rhoncus auctor. Cras adipiscing, nibh a adipiscing consequat, tortor sapien convallis nisi, sit amet dapibus justo nisl nec massa. Etiam dolor nisi, convallis nec, fringilla sed, commodo a, dui. In condimentum eros eget leo. Morbi porta erat vitae nunc. Cras commodo dui quis justo. Fusce dignissim pretium ipsum. Vivamus a mi sed metus posuere consectetuer. Morbi lacinia magna ut enim. Aliquam erat volutpat. Suspendisse laoreet, nulla at blandit mollis, velit nunc pulvinar mauris, in pellentesque erat odio eu arcu. Donec commodo nisl ut dui. Phasellus lectus risus, interdum vel, aliquam eget, accumsan vel, purus. Donec scelerisque tincidunt dui. ');
+INSERT INTO `apollo`.`docente` VALUES  (5,'Apellidos5','Nombres5','Licenciado en ...',1,'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin quis massa sed dolor sodales dapibus. Vestibulum congue, nisi rhoncus facilisis scelerisque, neque neque aliquam velit, eu laoreet nibh massa non turpis. Ut sed neque vehicula erat tincidunt dapibus. Curabitur a est. Nulla lectus metus, pretium et, porta non, rutrum sed, lectus. In vitae sapien a dui rhoncus auctor. Cras adipiscing, nibh a adipiscing consequat, tortor sapien convallis nisi, sit amet dapibus justo nisl nec massa. Etiam dolor nisi, convallis nec, fringilla sed, commodo a, dui. In condimentum eros eget leo. Morbi porta erat vitae nunc. Cras commodo dui quis justo. Fusce dignissim pretium ipsum. Vivamus a mi sed metus posuere consectetuer. Morbi lacinia magna ut enim. Aliquam erat volutpat. Suspendisse laoreet, nulla at blandit mollis, velit nunc pulvinar mauris, in pellentesque erat odio eu arcu. Donec commodo nisl ut dui. Phasellus lectus risus, interdum vel, aliquam eget, accumsan vel, purus. Donec scelerisque tincidunt dui. ');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `docente` ENABLE KEYS */;
 
@@ -728,6 +734,30 @@ UNLOCK TABLES;
 
 
 --
+-- Definition of table `apollo`.`general`
+--
+
+DROP TABLE IF EXISTS `apollo`.`general`;
+CREATE TABLE  `apollo`.`general` (
+  `titulo` varchar(80) NOT NULL,
+  `contenido` text NOT NULL,
+  PRIMARY KEY  (`titulo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `apollo`.`general`
+--
+
+/*!40000 ALTER TABLE `general` DISABLE KEYS */;
+LOCK TABLES `general` WRITE;
+INSERT INTO `apollo`.`general` VALUES  ('about','<p>La Unidad de PostGrado es de reciente creaciÃ³n y ha sido fundada para planificar, gestionar, coordinar, ejecutar y evaluar los programas de postgrado que se lleven a cabo en la UES-FMO. Esta unidad es estratÃ©gica en la formaciÃ³n de profesionales de alto nivel acadÃ©mico en sus distintas especializaciones, con incidencia en la identificaciÃ³n, discusiÃ³n y propuestas de alternativas de soluciÃ³n a los problemas mas sentidos por la poblaciÃ³n de la zona occidental del paÃ­s.</p>'),
+ ('contacto','<ul><li>Para mayor informacion puede llamarnos a los telefonos:</li></ul><p style=\"text-align: center;\"><strong>[2484-0821]</strong> y <strong>[2484-0866]</strong></p><ul><li>con <strong>VerÃ³nica de GonzÃ¡les </strong>o al correo electronico:</li></ul><p style=\"text-align: center;\"><strong>[veronica.jazmin@gmail.com]</strong></p>'),
+ ('suscripcion','<p style=\"text-align: center;\">[test]suscripcion aqui...[/test]</p>');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `general` ENABLE KEYS */;
+
+
+--
 -- Definition of table `apollo`.`horario`
 --
 
@@ -857,7 +887,7 @@ CREATE TABLE  `apollo`.`novedades` (
   `fecha` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `FECHA` (`fecha`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `apollo`.`novedades`
@@ -865,8 +895,7 @@ CREATE TABLE  `apollo`.`novedades` (
 
 /*!40000 ALTER TABLE `novedades` DISABLE KEYS */;
 LOCK TABLES `novedades` WRITE;
-INSERT INTO `apollo`.`novedades` VALUES  (21,'Nuevo Post','','<p>Contenido del nuevo post</p>','2008-08-02 00:00:00'),
- (10,'Primer Post','','<p>Contenido del primer post</p><p>','2008-07-20 00:00:00'),
+INSERT INTO `apollo`.`novedades` VALUES  (10,'Primer Post','','<p>Contenido del primer post</p><p>','2008-07-20 00:00:00'),
  (11,'Este post no va a aparecer en la lista','','<p>Ya que segun la paginacion, solo se muestran diez. Este seria el onceavo.</p>','2008-07-20 00:00:00'),
  (8,'Nuevo Post777','','<p>Contenido del nuevo post777</p><p>','2008-07-23 00:00:00'),
  (3,'Nuevo Post222','','<p>Contenido del nuevo post222</p><p>','2008-07-18 00:00:00'),
@@ -881,7 +910,10 @@ INSERT INTO `apollo`.`novedades` VALUES  (17,'Nuevo Post de Pruebas','','<p>Cont
  (16,'Otro Post de Pruebas','','<p>Este es otro post para ver porque no funciona la autopaginacion al agregar/borrar posts.</p>','2008-07-25 00:00:00'),
  (18,'Nuevo Post de Prueba de Fuego','','<p>Contenido del nuevo post.</p><p>Con esto confirmo que en realidad funciona el hack que le acabo de hacer.</p>','2008-07-25 00:00:00'),
  (19,'Nuevo Post - Prueba de Fuego Definitiva','','<p>Contenido del nuevo post.</p><p>','2008-07-26 00:00:00'),
- (20,'Nuevo Post','','<p>Contenido del nuevo post</p>','2008-08-01 00:00:00');
+ (25,'La noticia mas reciente!!!','','<p>Contenido del nuevo post</p><p>','2008-08-03 00:00:00'),
+ (22,'Prueba de Insercion1','','<p>Contenido del nuevo post</p><p>','2008-08-01 00:00:00'),
+ (23,'Prueba de Insercion 2','','<p>Contenido del nuevo post</p>','2008-07-24 00:00:00'),
+ (24,'Este debe ser el primer post de la lista.','','<p>Ya que le he puesto la fecha <strong>mas</strong> antigua.</p><p>','2005-08-01 00:00:00');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `novedades` ENABLE KEYS */;
 
@@ -915,6 +947,34 @@ INSERT INTO `apollo`.`postgrado` VALUES  (1,'Maestría y Técnicas de Investigac
 INSERT INTO `apollo`.`postgrado` VALUES  (3,'Maestría en Profesionalización de la Docencia Superior',7,999,7.5,'MPDC',999,'La Maestría en Profesionalización de la Docencia Superior, cuenta ya con una generación de graduados en la Facultad Multidisciplinaria de Occidente y con una segund ageneración en proceso de formación.\r\nLas metas y finalidades de este pograma de Maestría se orientan a la construcción de la educación superior como objeto de estudio. En tal sentido, el programa es una maestría académica que busca por una parte la profesionalización, entendida como el dominio pertinente de las competencias técnico-pedagógicas para el ejercicio docente a nivel superior, y por otra, la generación de conocimientos mediante la investigación académica sobre los distintos niveles del sistema educativo nacional (Parvularia, Básica, Media, Superior, no universitaria y Universitaria); así como de aquellas experiencias de gestión, promoción, innovación y evaluación en los diversos ámbitos de la educación salvadoreña.','El programa de maestria en profesionalizacion de la docencia superior nacio en un convenio entre la Universidad de El Salvador (UES) y la facultad de estudios superiores cuautitlán de la Universidad Autónoma de México (UNAM) en 1994. Se han graduado ya de este programa, diversos profesionales que laboran en instituciones publicas y privadas de todo el país.\r\nVisión:\r\nLa alta formación de cuadros académicos y profesionales, así como la generación de conocimientos mediante la investigación del que hacer educativo de la zona occidental del país; con el objeto de fortalecer los procesos de enseñanza-aprendizaje en los distintos niveles del sistema educativo nacional y la producción académica en función de la cualificación de la educación en general y la universitaria en particular.\r\nMisión:\r\nLa construcción de la educación y de una docencia universitaria de la zona occidental del país, como objeto de estudio, y su visualización como fenómeno socio-cultural asequible desde una prespectiva teórica transdisciplinar y una práctica íntimamente ligada a los campos social, económico y político; tomando como base la enseñanza integral desd ela perspectiva teórica práctica en el enfoque metodológico del trabajo analítico.');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `postgrado` ENABLE KEYS */;
+
+
+--
+-- Definition of table `apollo`.`presentadoc`
+--
+
+DROP TABLE IF EXISTS `apollo`.`presentadoc`;
+CREATE TABLE  `apollo`.`presentadoc` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `descripcion` varchar(100) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='documentos a presentar';
+
+--
+-- Dumping data for table `apollo`.`presentadoc`
+--
+
+/*!40000 ALTER TABLE `presentadoc` DISABLE KEYS */;
+LOCK TABLES `presentadoc` WRITE;
+INSERT INTO `apollo`.`presentadoc` VALUES  (1,'Fotografía tamaño cédula a color.'),
+ (2,'Certificado de Partida de Nacimiento.'),
+ (3,'DUI y NIT.'),
+ (4,'Certificcion del Titulo Universitario autenticado por la Universidad y el MINED.'),
+ (5,'Titulo Universitario autenticado por el Ministerio de Educacion.'),
+ (6,'Certificado de salud.'),
+ (7,'Titulo de Bachiller.');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `presentadoc` ENABLE KEYS */;
 
 
 --
@@ -995,7 +1055,7 @@ CREATE TABLE  `apollo`.`usuario` (
   `clave` varchar(10) default NULL,
   `nombre` varchar(15) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `apollo`.`usuario`
@@ -1003,8 +1063,35 @@ CREATE TABLE  `apollo`.`usuario` (
 
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 LOCK TABLES `usuario` WRITE;
+INSERT INTO `apollo`.`usuario` VALUES  (1,'password','docente'),
+ (2,'password','ninguno');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+
+
+--
+-- Definition of table `apollo`.`utileria`
+--
+
+DROP TABLE IF EXISTS `apollo`.`utileria`;
+CREATE TABLE  `apollo`.`utileria` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `titulo` varchar(50) NOT NULL,
+  `vinculo` varchar(100) NOT NULL,
+  `descripcion` text NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `apollo`.`utileria`
+--
+
+/*!40000 ALTER TABLE `utileria` DISABLE KEYS */;
+LOCK TABLES `utileria` WRITE;
+INSERT INTO `apollo`.`utileria` VALUES  (3,'Progama Utileria 1','','<p>Contenido del nuevo post</p>'),
+ (4,'Nuevo Post','','<p>Contenido del nuevo post</p>');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `utileria` ENABLE KEYS */;
 
 
 
