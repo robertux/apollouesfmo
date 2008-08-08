@@ -25,18 +25,21 @@ class VerticalTable{
 
 class VerticalTableRow{
 	
-	public $cells = array();
+	public $cells = array();	
 	
-	public function VerticalTableRow($pCells){
+	public function VerticalTableRow($pCells, $id=-1, $areaContent = false){
 		/*foreach($pCells as $pCell){
 			$this->cells[] = new VerticalTableCell($pCell);
-		}*/
+		}*/		
 		$this->cells[] = new VerticalTableCell($pCells[0], true);
-		$this->cells[] = new VerticalTableCell($pCells[1], false);
+		if($areaContent)
+			$this->cells[] = new VerticalTableCell("<div id='div-$id' class='PostInput'>" . $pCells[1]. "</div>", false);
+		else
+			$this->cells[] = new VerticalTableCell("<input id='input-$id' class='PostInput' type='text' value='" . $pCells[1] . "' disabled='true' />", false);
 	}
 	
 	public function ToString(){
-		$returnValue = "<tr>";
+		$returnValue = "<tr style='width: 100%'>";
 		foreach($this->cells as $cell){
 			$returnValue .= $cell->ToString();
 		}
@@ -64,7 +67,7 @@ class VerticalTableCell{
 		if($this->header)
 			return "<th>$this->value</th>";
 		else
-			return "<td>$this->value</td>";
+			return "<td  style='height: 100%'>$this->value</td>";
 	}
 	
 	public function Show(){

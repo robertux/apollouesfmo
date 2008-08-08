@@ -93,12 +93,13 @@
 					$tempPost->titulo = $arreglo["apellidos"] . ", " . $arreglo["nombres"];
 					
 					$vTable = new VerticalTable();
-					$vTable->rows[] = new VerticalTableRow(array("Apellidos", $arreglo["apellidos"]));
-					$vTable->rows[] = new VerticalTableRow(array("Nombres", $arreglo["nombres"]));
-					$vTable->rows[] = new VerticalTableRow(array("Grado Academico", $arreglo["gradoacademico"]));
-					$vTable->rows[] = new VerticalTableRow(array("Descripcion", $arreglo["descripcion"]));
+					$vTable->rows[] = new VerticalTableRow(array("Apellidos", $arreglo["apellidos"]), $tempPost->id);
+					$vTable->rows[] = new VerticalTableRow(array("Nombres", $arreglo["nombres"]), $tempPost->id);
+					$vTable->rows[] = new VerticalTableRow(array("Grado Academico", $arreglo["gradoacademico"]), $tempPost->id);
+					$vTable->rows[] = new VerticalTableRow(array("Descripcion", $arreglo["descripcion"]), $tempPost->id, true);
 					
 					$tempPost->contenido = $vTable->ToString();
+					$tempPost->plainTextContent = false;
 					$postList .= $tempPost->ToString();
 				}
 			}
@@ -168,11 +169,12 @@
 					$tempPost->titulo = $arreglo["titulo"];
 					
 					$vTable = new VerticalTable();
-					$vTable->rows[] = new VerticalTableRow(array("Titulo", $arreglo["titulo"]));
-					$vTable->rows[] = new VerticalTableRow(array("Vinculo", $arreglo["vinculo"]));
-					$vTable->rows[] = new VerticalTableRow(array("Descripcion", $arreglo["descripcion"]));
+					$vTable->rows[] = new VerticalTableRow(array("Titulo", $arreglo["titulo"]), $arreglo["id"]);
+					$vTable->rows[] = new VerticalTableRow(array("Vinculo", $arreglo["vinculo"]), $arreglo["id"]);
+					$vTable->rows[] = new VerticalTableRow(array("Descripcion", $arreglo["descripcion"]), $arreglo["id"], true);
 					
 					$tempPost->contenido = $vTable->ToString();
+					$tempPost->plainTextContent = false;
 					//$tempPost->contenido = substr($arreglo["descripcion"],3,strlen($arreglo["descripcion"])-4);
 					//$tempPost->contenido .= "<br/>Sigue este vinculo para descargar este programa: <a href='".$arreglo["vinculo"]."' >".$arreglo["vinculo"]."</a>";
 					$postList .= $tempPost->ToString();

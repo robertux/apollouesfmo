@@ -69,12 +69,6 @@
 	margin: 10px 10px  10px 10px;
 }
 
-.innerContent {
-	
-	/*border-style: solid;
-	border-color: black;
-	border-width: 1px;*/
-}
 
 .PostDate{
 	font-family: Arial, Helvetica, sans-serif;
@@ -102,6 +96,33 @@
 	border-color: black;
 	border-width: 1px;
 	width: 15%
+}
+
+.PostInput{
+	position: relative;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	text-align: left;
+	font-size: 14px;
+	color: black;
+	border-style: solid;
+	/*border-color: black;*/
+	border-width: 0px;
+	/*width: 75%;*/
+	/*make me look like a label */
+	cursor: default;
+	background-color: transparent;
+	text-align: left;
+	padding: 0 5px 0 5px;
+	width: 100%;
+	height: 100%;
+}
+
+.PostInputEdit{
+	border-style: solid;
+	border-color: black;
+	border-width: 1px;
+	width: 100%;
 }
 
 /*-------------------Posts internos---------------*/
