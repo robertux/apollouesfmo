@@ -47,9 +47,12 @@ function EnablePostContent(idPost, plainTextContent){
 		elements = document.getElementsByTagName("div");
 		for (var i = 0; i < elements.length; i++) {
 			if (elements[i].id == ("div-" + idPost)) {				
-				tinymceInitTwoRows();
-				tinyMCE.execCommand('mceAddControl', false, ("div-" + idPost));				
-			}
+				try{
+					tinymceInitTwoRows();
+					//alert("activando: div-" + idPost);
+					tinyMCE.execCommand('mceAddControl', false, ("div-" + idPost));				
+				}catch(e) { alert("error: " + e); }
+			}			
 		}
 	}		
 }
@@ -91,8 +94,9 @@ function DisablePostContent(idPost, plainTextContent){
 		for (var i = 0; i < elements.length; i++) {
 			if (elements[i].id == ("div-" + idPost)) {
 				try{
+					//alert("desactivando: div-" + idPost);
 					tinyMCE.execCommand('mceRemoveControl', true, ("div-" + idPost));
-				}catch(e){ /*alert("error: " + e)*/ }
+				}catch(e){ alert("error: " + e); }
 			}
 		}
 	}
@@ -142,8 +146,7 @@ function ToggleEditButtons(idPost, state){
 	
 }
 
-function EditPost(idPost, plainTextContent){
-	EnablePost(idPost, plainTextContent);
+function EditPost(idPost, plainTextContent){	
 	//guardamos el contenido del post en un elemento temporal
 	//alert("editando post: " + idPost);
 	document.getElementById("tmpcnt-" + idPost).value = document.getElementById("area-" + idPost).innerHTML;
@@ -151,11 +154,11 @@ function EditPost(idPost, plainTextContent){
 	if (document.getElementById("fch-" + idPost) != null) {
 		document.getElementById("tmpfch-" + idPost).value = document.getElementById("fch-" + idPost).value;
 	}
+	EnablePost(idPost, plainTextContent);
 	//alert("area guardada: " + document.getElementById("tmp-" + idPost).value);
 }
 
 function EditPostContent(idPost, plainTextContent){
-	EnablePostContent(idPost, plainTextContent);
 	
 	//guardamos el contenido del post en un elemento temporal
 	//alert("editando post: " + idPost);
@@ -164,6 +167,7 @@ function EditPostContent(idPost, plainTextContent){
 	if (document.getElementById("fch-" + idPost) != null) {
 		document.getElementById("tmpfch-" + idPost).value = document.getElementById("fch-" + idPost).value;
 	}
+	EnablePostContent(idPost, plainTextContent);
 }
 
 function SavePost(idPost, uid, plainTextContent){
@@ -237,10 +241,10 @@ function CancelPost(idPost, plainTextContent){
 		document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
 	}	
 	//Si es un post existente, mostramos la informacion que tenia en un principio
-	else{		
-		document.getElementById("area-" + idPost).innerHTML = document.getElementById("tmpcnt-" + idPost).value;
-		document.getElementById("txt-" + idPost).value = document.getElementById("tmptit-" + idPost).value;
+	else{
 		DisablePost(idPost, plainTextContent);
+		document.getElementById("area-" + idPost).innerHTML = document.getElementById("tmpcnt-" + idPost).value;
+		document.getElementById("txt-" + idPost).value = document.getElementById("tmptit-" + idPost).value;			
 		if(document.getElementById("fch-" + idPost) != null)
 			document.getElementById("fch-" + idPost).value = document.getElementById("tmpfch-" + idPost).value;
 	}	
