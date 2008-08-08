@@ -2,7 +2,7 @@
  * @author Robertux
  */
 
-function EnablePost(idPost){
+function EnablePost(idPost, plainTextContent){
 	//Cambiamos la clase CSS del control Texto, para que permita modificar su texto
 	document.getElementById("txt-" + idPost).disabled = false;
 	document.getElementById("txt-" + idPost).className = "innerTitleEdit";
@@ -23,17 +23,38 @@ function EnablePost(idPost){
 	}
 	
 	//activamos el TinyMCE para que se aplique al <div class='innerContent'>
-	EnablePostContent(idPost);			
+	EnablePostContent(idPost, plainTextContent);	
 }
 
-function EnablePostContent(idPost){	
-	tinyMCE.execCommand('mceAddControl', false, ("area-" + idPost));
+function EnablePostContent(idPost, plainTextContent){
 	
 	//Ocultamos los botones de agregar/editar/eliminar y desactivamos los botones que no pertenecen a este post
 	ToggleEditButtons(idPost, false);
+	
+	if (plainTextContent) {
+		tinymceInitOneRow();
+		tinyMCE.execCommand('mceAddControl', false, ("area-" + idPost));
+	}
+	else {
+		elements = document.getElementsByTagName("input");
+		for (var i = 0; i < elements.length; i++) {
+			if (elements[i].id == ("input-" + idPost)) {
+				elements[i].className = "PostInputEdit";
+				elements[i].disabled = false;
+			}
+		}
+		
+		elements = document.getElementsByTagName("div");
+		for (var i = 0; i < elements.length; i++) {
+			if (elements[i].id == ("div-" + idPost)) {				
+				tinymceInitTwoRows();
+				tinyMCE.execCommand('mceAddControl', false, ("div-" + idPost));				
+			}
+		}
+	}		
 }
 
-function DisablePost(idPost){
+function DisablePost(idPost, plainTextContent){
 	//Cambiamos la clase CSS del control Texto, para que ya no permita modificar su texto
 	//alert("id del post a desactivar: " + idPost);
 	document.getElementById("txt-" + idPost).disabled = true;	
@@ -46,15 +67,36 @@ function DisablePost(idPost){
 	}	
 	
 	//desactivamos el TinyMCE
-	DisablePostContent(idPost);
-		
+	DisablePostContent(idPost, plainTextContent);
 }
 
-function DisablePostContent(idPost){
-	tinyMCE.execCommand('mceRemoveControl', false, "area-" + idPost);
+function DisablePostContent(idPost, plainTextContent){
 	
 	//Mostramos los botones de agregar/editar/eliminar y activamos los botones que no pertenecen a este post
 	ToggleEditButtons(idPost, true);
+	
+	if (plainTextContent) {
+		tinyMCE.execCommand('mceRemoveControl', false, "area-" + idPost);
+	}
+	else {
+		elements = document.getElementsByTagName("input");
+		for (var i = 0; i < elements.length; i++) {
+			if (elements[i].id == ("input-" + idPost)) {
+				elements[i].className = "PostInput";
+				elements[i].disabled = true;
+			}
+		}
+		
+		elements = document.getElementsByTagName("div");
+		for (var i = 0; i < elements.length; i++) {
+			if (elements[i].id == ("div-" + idPost)) {
+				try{
+					tinyMCE.execCommand('mceRemoveControl', true, ("div-" + idPost));
+				}catch(e){ /*alert("error: " + e)*/ }
+			}
+		}
+	}
+		
 }
 
 function ToggleEditButtons(idPost, state){
@@ -100,8 +142,8 @@ function ToggleEditButtons(idPost, state){
 	
 }
 
-function EditPost(idPost){
-	EnablePost(idPost);
+function EditPost(idPost, plainTextContent){
+	EnablePost(idPost, plainTextContent);
 	//guardamos el contenido del post en un elemento temporal
 	//alert("editando post: " + idPost);
 	document.getElementById("tmpcnt-" + idPost).value = document.getElementById("area-" + idPost).innerHTML;
@@ -112,8 +154,8 @@ function EditPost(idPost){
 	//alert("area guardada: " + document.getElementById("tmp-" + idPost).value);
 }
 
-function EditPostContent(idPost){
-	EnablePostContent(idPost);
+function EditPostContent(idPost, plainTextContent){
+	EnablePostContent(idPost, plainTextContent);
 	
 	//guardamos el contenido del post en un elemento temporal
 	//alert("editando post: " + idPost);
@@ -124,8 +166,8 @@ function EditPostContent(idPost){
 	}
 }
 
-function SavePost(idPost, uid){
-	DisablePost(idPost);
+function SavePost(idPost, uid, plainTextContent){
+	DisablePost(idPost, plainTextContent);
 	//alert("SavePost. uid= " + uid );
 	actionPost = "edit";
 	//alert("idpost: " + document.getElementById("id-" + idPost).value);
@@ -188,17 +230,17 @@ function SavePost(idPost, uid){
 	}
 }
 
-function CancelPost(idPost){
+function CancelPost(idPost, plainTextContent){
 	//Si estamos agregando un nuevo post y cancelamos la operacion, borramos el post
 	if (document.getElementById("id-" + idPost).value == "-1") {
-		DisablePost(idPost);
+		DisablePost(idPost, plainTextContent);
 		document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
 	}	
 	//Si es un post existente, mostramos la informacion que tenia en un principio
-	else{
-		DisablePost(idPost);
+	else{		
 		document.getElementById("area-" + idPost).innerHTML = document.getElementById("tmpcnt-" + idPost).value;
 		document.getElementById("txt-" + idPost).value = document.getElementById("tmptit-" + idPost).value;
+		DisablePost(idPost, plainTextContent);
 		if(document.getElementById("fch-" + idPost) != null)
 			document.getElementById("fch-" + idPost).value = document.getElementById("tmpfch-" + idPost).value;
 	}	
