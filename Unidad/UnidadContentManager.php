@@ -89,7 +89,7 @@
 					$tempPost = new InnerPost("", "", 530, false, true, true);
 					$tempPost->editableTitle = false;
 					$tempPost->id = $arreglo["id"];
-					$tempPost->tabla = "docentes";
+					$tempPost->tabla = "docente";
 					$tempPost->titulo = $arreglo["apellidos"] . ", " . $arreglo["nombres"];
 					
 					$vTable = new VerticalTable();

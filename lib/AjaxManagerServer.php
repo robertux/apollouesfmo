@@ -127,12 +127,27 @@ $conn = new cConexion();
 						echo "[id]" . $id . "[/id]";
 						break;
 						
+					case "docente":
+						$id = $_GET["id"];
+						$apellidos = $_GET["apellidos"];
+						$nombres = $_GET["nombres"];
+						$grado = $_GET["grado"];
+						$desc = $_GET["desc"];						
+						$conn->Conectar();
+						$conn->mysqli->query("update docente set apellidos='$apellidos', nombres='$nombres', gradoacademico='$grado', descripcion='$desc' where id=$id;");
+						echo "update docentes set apellidos='$apellidos', nombres='$nombres', gradoacademico='$grado', descripcion='$desc' where id=$id;";
+						$conn->mysqli->close();
+						echo "[id]" . $id . "[/id]";
+						break;
+						
 					case "utileria":
 						$id = $_GET["id"];
 						$titulo = $_GET["title"];
-						$contenido = $_GET["content"];
+						$vinculo = $_GET["link"];
+						$contenido = $_GET["desc"];
 						$conn->Conectar();
-						$conn->mysqli->query("update utileria set titulo='$titulo', descripcion='$contenido' where id=$id;");
+						$conn->mysqli->query("update utileria set titulo='$titulo', vinculo='$vinculo', descripcion='$contenido' where id=$id;");
+						echo "update utileria set titulo='$titulo', vinculo=$vinculo, descripcion='$contenido' where id=$id;";
 						$conn->mysqli->close();
 						echo "[id]" . $id . "[/id]";
 						
@@ -141,24 +156,12 @@ $conn = new cConexion();
 				break;
 				
 			case "del":
-				switch($_GET["table"]){
-
-					case "novedades":
-						$id = $_GET["id"];
-						$conn->Conectar();
-						$conn->mysqli->query("delete from novedades where id=$id;");
-						$conn->mysqli->close();
-						echo "[id]" . 0 . "[/id]";
-						break;
-						
-					case "utileria":
-						$id = $_GET["id"];
-						$conn->Conectar();
-						$conn->mysqli->query("delete from utileria where id=$id;");
-						$conn->mysqli->close();
-						echo "[id]" . 0 . "[/id]";						
-						break;
-				}
+				$tabla = $_GET["table"];
+				$id = $_GET["id"];
+				$conn->Conectar();
+				$conn->mysqli->query("delete from $tabla where id=$id;");
+				$conn->mysqli->close();
+				echo "[id]" . 0 . "[/id]";						
 				break;
 				
 			case "getpage":
@@ -192,7 +195,7 @@ $conn = new cConexion();
 						$ucm->showNews($currentPg, true);					
 						break;
 						
-					case "docente":											
+					case "docente":								
 						$ucm->ShowProfs($currentPg, true);
 						break;
 						

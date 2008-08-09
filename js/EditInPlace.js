@@ -30,7 +30,7 @@ function EnablePostContent(idPost, plainTextContent){
 	
 	//Ocultamos los botones de agregar/editar/eliminar y desactivamos los botones que no pertenecen a este post
 	ToggleEditButtons(idPost, false);
-	
+		
 	if (plainTextContent) {
 		tinymceInitOneRow();
 		tinyMCE.execCommand('mceAddControl', false, ("area-" + idPost));
@@ -172,6 +172,7 @@ function EditPostContent(idPost, plainTextContent){
 
 function SavePost(idPost, uid, plainTextContent){
 	DisablePost(idPost, plainTextContent);
+	var xmlHttp;
 	//alert("SavePost. uid= " + uid );
 	actionPost = "edit";
 	//alert("idpost: " + document.getElementById("id-" + idPost).value);
@@ -199,38 +200,52 @@ function SavePost(idPost, uid, plainTextContent){
 	}
 	
 	tablaPost = document.getElementById("tbl-" + idPost).value;
-	//alert("tablapost: " + tablaPost);
-	if(tablaPost == "novedades"){
-		indexPost = document.getElementById("id-" + idPost).value;
-		tituloPost = document.getElementById("txt-" + idPost).value;
-		//alert("titulo: " + tituloPost);
-		//alert("la fecha contiene: " + document.getElementById("fch-" + idPost).value);
-		fechaPost = document.getElementById("fch-" + idPost).value;
-		//alert("fecha generada: " + fechaPost);
-		contenidoPost = document.getElementById("area-" + idPost).innerHTML;
-		xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&date=" + fechaPost + "&id=" + indexPost);		
-		//if(actionPost == "add"){
-			xmlHttp.onreadystatechange = function(){
-				if (xmlHttp.readyState == 4) {
-					//alert("response received: " + xmlHttp.responseText);	
-					CatchNewPost(tablaPost, uid);
+	indexPost = document.getElementById("id-" + idPost).value;
+	
+	switch(tablaPost){
+		case "novedades":
+			tituloPost = document.getElementById("txt-" + idPost).value;
+			fechaPost = document.getElementById("fch-" + idPost).value;
+			contenidoPost = document.getElementById("area-" + idPost).innerHTML;
+			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&date=" + fechaPost + "&id=" + indexPost);
+			break;
+		
+		case "docente":
+			var allItems = document.getElementsByTagName("input");
+			var postItems = [];			
+			for(var i=0; i<allItems.length; i++){
+				if(allItems[i].id == ("input-" + idPost)){
+					postItems.push(allItems[i].value);
 				}
 			}
-		//}
+			apellidosPost = postItems[0];
+			nombresPost = postItems[1];
+			gradoPost = postItems[2];
+			descripcionPost = document.getElementById("div-" + idPost).innerHTML;
+			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&apellidos=" + apellidosPost + "&nombres=" + nombresPost + "&grado=" + gradoPost + "&desc=" + descripcionPost + "&id=" + indexPost);
+			break;
 			
-	}
-	else{
-		indexPost = document.getElementById("id-" + idPost).value;
-		//alert("indexpost: " + indexPost);
-		tituloPost = document.getElementById("txt-" + idPost).value;
-		contenidoPost = document.getElementById("area-" + idPost).innerHTML;
-		xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&id=" + indexPost);
-		xmlHttp.onreadystatechange = function(){
-			if (xmlHttp.readyState == 4) {
-				//alert("response received: " + xmlHttp.responseText);	
-				CatchNewPost(tablaPost, uid);
+		case "utileria":
+			var allItems = document.getElementsByTagName("input");
+			var postItems = [];			
+			for(var i=0; i<allItems.length; i++){
+				if(allItems[i].id == ("input-" + idPost)){
+					postItems.push(allItems[i].value);
 				}
 			}
+			tituloPost = postItems[0];
+			vinculoPost = postItems[1];
+			descripcionPost = document.getElementById("div-" + idPost).innerHTML;
+			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&link=" + vinculoPost + "&desc=" + descripcionPost + "&id=" + indexPost);
+			break;
+	}
+
+	//Tomamos el valor que nos devuelva el servidor via ajax e invocamos una funcion que se encargara de procesar la respuesta.
+	xmlHttp.onreadystatechange = function(){
+		if (xmlHttp.readyState == 4) {
+			//alert("response received: " + xmlHttp.responseText);	
+			CatchNewPost(tablaPost, uid);
+		}
 	}
 }
 
@@ -258,10 +273,10 @@ function AddPost(idPost, idTabla, uid){
 	" <div id='pst-0' class='innerPost' style='width: 530px;'> " +
 	" 	<div class='PostTitle' style='width: 526px;'> " +
 	"			<div class='toolbox'>			   " +
-	"				<input type='button' id='edit-0' title='editar' class='edit' onClick=\"EditPost('0')\" /> " +
+	"				<input type='button' id='edit-0' title='editar' class='edit' onClick=\"EditPost('0', '1')\" /> " +
 	"				<input type='button' id='del-0' title='eliminar' class='del' onClick=\"DelPost('0', " + uid + ")\" /> " +
-	"				<input type='button' id='sav-0' title='guardar' class='sav' onClick=\"SavePost('0', " + uid + ")\" /> " +
-	"				<input type='button' id='can-0' title='cancelar' class='can' onClick=\"CancelPost('0')\" /> " +
+	"				<input type='button' id='sav-0' title='guardar' class='sav' onClick=\"SavePost('0', " + uid + ", '1')\" /> " +
+	"				<input type='button' id='can-0' title='cancelar' class='can' onClick=\"CancelPost('0', '1')\" /> " +
 	"			</div> " +
 	"			<input type='text' id='fch-0' class='PostDate' value='" +
 		
@@ -284,7 +299,7 @@ function AddPost(idPost, idTabla, uid){
    	" </div> "	
 		
 	document.getElementById("area-" + idPost).innerHTML = newPost + document.getElementById("area-" + idPost).innerHTML;
-	EnablePost("0");
+	EnablePost("0", '1');
 }
 
 function DelPost(idPost, uid){
