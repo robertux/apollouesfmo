@@ -110,6 +110,7 @@
 			}
 			
 			$pst = new Post("Docentes de la Unidad", $postList, 550, true, false, false);
+			$pst->tabla = "docente";
 			$pst->pie = $pPager->ToString();
 			if($onlyContent)
 				echo $pst->ToContentString();
@@ -144,7 +145,7 @@
 				$tempPost = new InnerPost("No hay resultados", "No hay noticias que mostrar...", 530);
 				$tempPost->id = "noresults";
 				$postList .= $tempPost->ToString();
-			}			
+			}
 			$pst = new Post("Noticias de la Unidad", $postList, 550, true, false, false);
 			$pst->tabla = "novedades";
 			$pst->pie = $pPager->ToString();

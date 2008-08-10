@@ -244,7 +244,7 @@ function SavePost(idPost, uid, plainTextContent){
 	xmlHttp.onreadystatechange = function(){
 		if (xmlHttp.readyState == 4) {
 			//alert("response received: " + xmlHttp.responseText);	
-			CatchNewPost(tablaPost, uid);
+			CatchSavedPost(tablaPost, uid);
 		}
 	}
 }
@@ -267,39 +267,10 @@ function CancelPost(idPost, plainTextContent){
 
 function AddPost(idPost, idTabla, uid){
 	
-	//alert("idtabla: " + idTabla);
-	dt = new Date();
-	var newPost = 
-	" <div id='pst-0' class='innerPost' style='width: 530px;'> " +
-	" 	<div class='PostTitle' style='width: 526px;'> " +
-	"			<div class='toolbox'>			   " +
-	"				<input type='button' id='edit-0' title='editar' class='edit' onClick=\"EditPost('0', '1')\" /> " +
-	"				<input type='button' id='del-0' title='eliminar' class='del' onClick=\"DelPost('0', " + uid + ")\" /> " +
-	"				<input type='button' id='sav-0' title='guardar' class='sav' onClick=\"SavePost('0', " + uid + ", '1')\" /> " +
-	"				<input type='button' id='can-0' title='cancelar' class='can' onClick=\"CancelPost('0', '1')\" /> " +
-	"			</div> " +
-	"			<input type='text' id='fch-0' class='PostDate' value='" +
-		
-	(dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate()) +
-	
-	"			' disabled='true'></input>" +
-	"		<input type='text' id='txt-0' class='innerTitle' value='Nuevo Post' disabled='true' /> " +
-	"		</div> " +
-	"		<div id='cont-0' class='PostContent'> " +
-	"		    <div id='area-0' class='innerContent'> " +
-	"				Contenido del nuevo post " +
-	"			</div> " +
-	"		</div> " +
-	"		<input type='hidden' id='tmpcnt-0' value=''/> " +
-	"		<input type='hidden' id='tmptit-0' value=''/> " +	
-	"		<input type='hidden' id='tmpfch-0' value=''/> " +	
-	"		<input type='hidden' id='id-0' value='-1'/> " +
-	"		<input type='hidden' id='tbl-0' value='" + idTabla + "'/> " +		
-   	"	</div> "
-   	" </div> "	
-		
-	document.getElementById("area-" + idPost).innerHTML = newPost + document.getElementById("area-" + idPost).innerHTML;
-	EnablePost("0", '1');
+	if(idTabla == "novedades")
+		AjaxSendRequestPost(idTabla, uid, '1');
+	else
+		AjaxSendRequestPost(idTabla, uid, '0');
 }
 
 function DelPost(idPost, uid){
@@ -321,6 +292,14 @@ function DelPostNoConfirm(idPost){
 }
 
 
-function CatchNewPost(tablaPost, uid){
+function CatchSavedPost(tablaPost, uid){
 	refreshPage(tablaPost, uid);
+}
+
+function CatchNewPost(tablaPost, responseText){
+	document.getElementById("area-").innerHTML = responseText + document.getElementById("area-").innerHTML;
+	if(tablaPost == "novedades")
+		EnablePost("-1", '1');
+	else
+		EnablePostContent("-1", '');
 }
