@@ -30,19 +30,19 @@
 			$this->plainTextContent = true;
 		}
 		
-		public function SetTBox(){
+		public function SetTBox(){						
 			
 			if($this->editableTitle)
 				$this->tbox->btnEdit->onClick = "EditPost('$this->id', '$this->plainTextContent')";
 			else
 				$this->tbox->btnEdit->onClick = "EditPostContent('$this->id', '$this->plainTextContent')";
 			$this->tbox->btnAdd->id = "add-$this->id";
-			$this->tbox->btnAdd->onClick = "AddPost('$this->id', '$this->tabla'," . $this->uid . ")";
+			$this->tbox->btnAdd->onClick = "AddPost('$this->id', '$this->tabla','" . $this->uid . "')";
 			$this->tbox->btnEdit->id = "edit-$this->id";
 			$this->tbox->btnDel->id = "del-$this->id";
-			$this->tbox->btnDel->onClick = "DelPost('$this->id'," . $this->uid . ")";
+			$this->tbox->btnDel->onClick = "DelPost('$this->id','" . $this->uid . "')";
 			$this->tbox->btnSave->id = "sav-$this->id";
-			$this->tbox->btnSave->onClick = "SavePost('$this->id', " . $this->uid . ", '$this->plainTextContent')";
+			$this->tbox->btnSave->onClick = "SavePost('$this->id', '" . $this->uid . "', '$this->plainTextContent')";
 			$this->tbox->btnCancel->id = "can-$this->id";
 			$this->tbox->btnCancel->onClick = "CancelPost('$this->id', '$this->plainTextContent')";
 		}

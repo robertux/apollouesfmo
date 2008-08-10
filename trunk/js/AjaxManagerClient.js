@@ -29,8 +29,7 @@ function AjaxInit(){
 
 function AjaxSend(content){
 	var xmlHttp = AjaxInit();
-	alert("enviando contenido: " + content);
-	//TODO: cambiar por la URL oficial del sitio
+	//alert("enviando contenido: " + content);
     xmlHttp.open("GET", "../lib/AjaxManagerServer.php?" + content, true);
 	xmlHttp.send(null);
 	return xmlHttp;
@@ -55,6 +54,16 @@ function AjaxSendRequestPage(currentPage, newPage, uid, tabla){
 		if (xmlHttp.readyState == 4) {
 			//alert("response received: " + xmlHttp.responseText);
 			CatchNewPage(xmlHttp.responseText);
+		}
+	}
+}
+
+function AjaxSendRequestPost(tabla, uid, showdate){
+	var xmlHttp = AjaxSend("action=getpost&tabla=" + tabla + "&uid=" + uid + "&showdate=" + showdate);
+	
+	xmlHttp.onreadystatechange = function(){
+		if(xmlHttp.readyState == 4){
+			CatchNewPost(tabla, xmlHttp.responseText);
 		}
 	}
 }
