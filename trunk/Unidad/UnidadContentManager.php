@@ -47,8 +47,12 @@
 				}
 			}
 			$pstPreview = new InnerPost("Vista Previa", $MGManager->ToString(), 500, true, false, false);
+			$pstPreview->id = "prev";
 			
-			$pstContent = new InnerPost("Procesos Generales", "<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' />", 500, false, true, true);
+			if($MGManager->images[0] != null)
+				$pstContent = new InnerPost($MGManager->images[0]->nombre, $MGManager->images[0]->ToString(false), 500, false, true, true);
+			else
+				$pstContent = new InnerPost("No hay imagenes que mostrar", "No hay imagenes que mostrar", 500, false, true, true);
 			$pst = new Post("Procesos Academicos de la Unidad", $pstPreview->ToString() . $pstContent->ToString());
 			$pst->Show();
 		}

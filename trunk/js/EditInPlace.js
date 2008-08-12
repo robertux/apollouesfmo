@@ -303,3 +303,22 @@ function CatchNewPost(tablaPost, responseText){
 	else
 		EnablePostContent("-1", '');
 }
+
+function ShowBigImage(id){
+	imagen = document.getElementById("img-big");
+	if(imagen != null)
+		imagen.src = "../lib/ShowImage.php?id=" + id;
+}
+
+function ShowImgTitle(id){
+	titulo = document.getElementById("txt-prev");
+	imgNombre = document.getElementById("img-" + id);
+	if(titulo != null && imgNombre != null)
+		titulo.value = "Vista Previa - " + imgNombre.alt;
+}
+
+function ClearImgTitle(){
+	titulo = document.getElementById("txt-prev");
+	if(titulo != null)	
+	titulo.value = "Vista Previa";
+}
