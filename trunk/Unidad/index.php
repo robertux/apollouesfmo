@@ -7,7 +7,9 @@
 	require_once("../clases/cnovedades.php");
 	require_once("../clases/cutileria.php");	
 	require_once("../clases/cdocente.php");
+	require_once("../clases/cprocesos.php");	
 	require_once("../lib/VerticalTable.php");
+	require_once("../lib/MGalleryManager.php");
 	
 	$pag = new paginaSecundaria();
 	$pag->encabezado();

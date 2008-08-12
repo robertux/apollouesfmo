@@ -37,38 +37,33 @@
 		}
 		
 		public function ShowProcs($pg=-1, $onlyContent=false){
-			$pstPreview = new InnerPost("Vista Previa", "
-			<table border='1'>
-				<tr>
-					<td>
+			
+			$MGManager = new MGalleryManager();
+			$cprof = new cProcesos();
+			$pPager = new PostPager($cprof, 2);
+			$profResult = $pPager->GetPosts($pg);
+			if($profResult->num_rows > 0){
+				while($arreglo = $profResult->fetch_array()){
+					$MGManager->images[] = new MGalleryImage($arreglo["id"], $arreglo["nombre"], $arreglo["descripcion"], $arreglo["imagen"]);
+				}
+			}
+			
+			/*$pstPreview = new InnerPost("Vista Previa", "
+					<div id='motioncontainer' style='position:relative;overflow:hidden;'>
+						<div id='motiongallery' style='position:absolute;left:0;top:0;white-space: nowrap;'>
+						<nobr id='trueContainer'>
+						<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' width='100' height='100' onClick='alert(\"Diste clic sobre una imagen\")' />
 						<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' width='100' height='100' />
-					</td>
-					<td>
 						<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' width='100' height='100' />
-					</td>
-					<td>
 						<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' width='100' height='100' />
-					</td>
-					<td>
 						<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' width='100' height='100' />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Proceso de Inscripcion
-					</td>
-					<td>
-						Proceso de Clases y Evaluaciones
-					</td>
-					<td>
-						Servicio Social
-					</td>
-					<td>
-						Proceso de Graduacion
-					</td>
-				</tr>
-			</table>
-			", 500);
+						<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' width='100' height='100' />
+						<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' width='100' height='100' />
+						</nobr>
+						</div>
+					</div>
+			", 500);*/
+			$pstPreview = new InnerPost("Vista Previa", $MGManager->ToString(), 500);
 			
 			$pstPreview->tbox->btnAdd->enabled = true;
 			$pstPreview->tbox->btnEdit->enabled = true;
@@ -205,6 +200,7 @@
 				$tempPost->titulo = "Informacion de Contacto";
 				$gen->GetPorTitulo('contacto');
 				$tempPost->contenido = $gen->contenido;
+				$tempPost->editableTitle = false;
 				$postList .= $tempPost->ToString();			
 			
 			//Informacion de suscripcion FEED RSS
@@ -213,6 +209,7 @@
 				$tempPost->titulo = "Suscribete a esta pagina";
 				$gen->GetPorTitulo('suscripcion');
 				$tempPost->contenido = $gen->contenido;
+				$tempPost->editableTitle = false;
 				$postList .= $tempPost->ToString();
 			
 			$pst = new Post("Contacto y Suscripcion", $postList, 550, false, false, false);
