@@ -39,7 +39,7 @@
 		}
 		
 		public function ToString(){
-			return "<img src=\"../lib/ShowImage.php?id=$this->id\" id='$this->id' alt='$this->name' onClick='' width='100' height='100' />";
+			return "<img class='mgalleryimage' src=\"../lib/ShowImage.php?id=$this->id\" id='$this->id' alt='$this->name' onClick='' width='100' height='100' />";
 		}
 		
 		public function Show(){
