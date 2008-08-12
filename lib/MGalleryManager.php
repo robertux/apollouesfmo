@@ -13,12 +13,12 @@
 				$strImages .= $image->ToString();
 			return "
 				<div id='motioncontainer' style='position:relative;overflow:hidden;'>
-						<div id='motiongallery' style='position:absolute;left:0;top:0;white-space: nowrap;'>
+					<div id='motiongallery' style='position:absolute;left:0;top:0;white-space: nowrap;'>
 						<nobr id='trueContainer'>
 							$strImages
 						</nobr>
-						</div>
 					</div>
+				</div>
 			";
 		}
 		
@@ -38,8 +38,11 @@
 			$this->src = $pSrc;
 		}
 		
-		public function ToString(){
-			return "<img class='mgalleryimage' src=\"../lib/ShowImage.php?id=$this->id\" id='$this->id' alt='$this->name' onClick='' width='100' height='100' />";
+		public function ToString($isThumb=true){
+			if($isThumb)
+				return "<img class='mgalleryimage' src=\"../lib/ShowImage.php?id=$this->id\" id='img-$this->id' alt='$this->name' onClick='ShowBigImage($this->id)' onMouseOver='ShowImgTitle($this->id)' onMouseOut='ClearImgTitle()' width='100' height='100' />";
+			else
+				return "<img class='mgalleryimage' src=\"../lib/ShowImage.php?id=$this->id\" id='img-big' alt='$this->name' width='470' onClick=''/>";
 		}
 		
 		public function Show(){
