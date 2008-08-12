@@ -33,7 +33,6 @@
 			echo "<link rel=\"stylesheet\" href=\"../js/jscalendar/calendar-system.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";			
 			
 			//Y ahora...... tatatatannnnn. LOS JAVASCRIPT! efectos efectos efectos!
-			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/prototype.js\"></script>";
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/EditInPlace.js\"></script>";
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/AjaxManagerClient.js\"></script>";
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/PostPager.js\"></script>";
@@ -70,8 +69,34 @@
 					});										
 					
 				</script>
-				";
-			echo "</head>";
+				";								
+      		
+			//El Motion Gallery, tomado de Dynamic Drive.
+			echo "
+				<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/gallerystyle.css\" />
+				<!-- Do not edit IE conditional style below -->
+				<!--[if gte IE 5.5]>
+					<style type=\"text/css\">
+						#motioncontainer {
+							width:expression(Math.min(this.offsetWidth, maxwidth)+'px');
+						}
+					</style>
+				<![endif]-->
+				<!-- End Conditional Style -->
+				
+				<script type=\"text/javascript\" src=\"../js/motiongallery/motiongallery.js\">
+				
+				/***********************************************
+				* CMotion Image Gallery- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+				* Visit http://www.dynamicDrive.com for hundreds of DHTML scripts
+				* This notice must stay intact for legal use
+				* Modified by Jscheuer1 for autowidth and optional starting positions
+				***********************************************/
+				
+				</script> ";
+				
+			echo "</head>";						
+			
 		}
 		
 		//Aqui inicia el cuerpo
