@@ -40,35 +40,15 @@
 			
 			$MGManager = new MGalleryManager();
 			$cprof = new cProcesos();
-			$pPager = new PostPager($cprof, 2);
-			$profResult = $pPager->GetPosts($pg);
+			$profResult = $cprof->GetLista();
 			if($profResult->num_rows > 0){
 				while($arreglo = $profResult->fetch_array()){
 					$MGManager->images[] = new MGalleryImage($arreglo["id"], $arreglo["nombre"], $arreglo["descripcion"], $arreglo["imagen"]);
 				}
 			}
+			$pstPreview = new InnerPost("Vista Previa", $MGManager->ToString(), 500, true, false, false);
 			
-			/*$pstPreview = new InnerPost("Vista Previa", "
-					<div id='motioncontainer' style='position:relative;overflow:hidden;'>
-						<div id='motiongallery' style='position:absolute;left:0;top:0;white-space: nowrap;'>
-						<nobr id='trueContainer'>
-						<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' width='100' height='100' onClick='alert(\"Diste clic sobre una imagen\")' />
-						<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' width='100' height='100' />
-						<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' width='100' height='100' />
-						<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' width='100' height='100' />
-						<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' width='100' height='100' />
-						<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' width='100' height='100' />
-						<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' width='100' height='100' />
-						</nobr>
-						</div>
-					</div>
-			", 500);*/
-			$pstPreview = new InnerPost("Vista Previa", $MGManager->ToString(), 500);
-			
-			$pstPreview->tbox->btnAdd->enabled = true;
-			$pstPreview->tbox->btnEdit->enabled = true;
-			$pstPreview->tbox->btnDel->enabled = true;
-			$pstContent = new InnerPost("Procesos Generales", "<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' />", 500);			
+			$pstContent = new InnerPost("Procesos Generales", "<img src='FlowCharts/UesFmoPostgradosFlowChart.png' alt='Procesos Generales - Unidad de Postgrados' />", 500, false, true, true);
 			$pst = new Post("Procesos Academicos de la Unidad", $pstPreview->ToString() . $pstContent->ToString());
 			$pst->Show();
 		}

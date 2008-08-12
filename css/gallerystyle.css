@@ -31,3 +31,7 @@ visibility: hidden;
 color: red; /* Dummy definition to overcome IE bug */
 }
 /* End Gallery Styles */
+
+.mgalleryimage {
+	padding: 4px 4px 4px 4px;
+}
