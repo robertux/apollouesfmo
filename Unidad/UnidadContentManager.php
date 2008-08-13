@@ -41,20 +41,34 @@
 			$MGManager = new MGalleryManager();
 			$cprof = new cProcesos();
 			$profResult = $cprof->GetLista();
+			$metaInfo = "";
 			if($profResult->num_rows > 0){
 				while($arreglo = $profResult->fetch_array()){
 					$MGManager->images[] = new MGalleryImage($arreglo["id"], $arreglo["nombre"], $arreglo["descripcion"], $arreglo["imagen"]);
+					$metaInfo .= "<input type='hidden' id='descr-". $arreglo["id"] ."' value='". $arreglo["descripcion"] ."' />";
 				}
 			}
 			$pstPreview = new InnerPost("Vista Previa", $MGManager->ToString(), 500, true, false, false);
 			$pstPreview->id = "prev";
 			
-			if($MGManager->images[0] != null)
-				$pstContent = new InnerPost($MGManager->images[0]->nombre, $MGManager->images[0]->ToString(false), 500, false, true, true);
+			if($MGManager->images[0] != null){
+				$pstContent = new InnerPost($MGManager->images[0]->name, $MGManager->images[0]->ToString(false), 500, false, true, true);
+				$pstContent->id = "cont";
+				$vTable = new VerticalTable();
+				$vTable->rows[] = new VerticalTableRow(array("Descripcion", $MGManager->images[0]->desc), $pstContent->id, true);
+				$pstContent->contenido .= $vTable->ToString();
+				$pstContent->plainTextContent = false;
+				$pstContent->tabla = "procesos";
+				$metaInfo .= "<input type=hidden id='id-bigimg' value='". $MGManager->images[0]->id ."'>";
+			}	
 			else
-				$pstContent = new InnerPost("No hay imagenes que mostrar", "No hay imagenes que mostrar", 500, false, true, true);
-			$pst = new Post("Procesos Academicos de la Unidad", $pstPreview->ToString() . $pstContent->ToString());
-			$pst->Show();
+				$pstContent = new InnerPost("No hay imagenes que mostrar", "No hay imagenes que mostrar", 500);
+			$pst = new Post("Procesos Academicos de la Unidad", $pstPreview->ToString() . $pstContent->ToString() . $metaInfo);
+			$pts->tabla = "procesos";
+			if($onlyContent)
+				echo $pst->ToContentString();
+			else
+				echo $pst->ToString();
 		}
 		
 		public function ShowProfs($pg=-1, $onlyContent=false){

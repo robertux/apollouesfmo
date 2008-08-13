@@ -238,6 +238,13 @@ function SavePost(idPost, uid, plainTextContent){
 			descripcionPost = document.getElementById("div-" + idPost).innerHTML;
 			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&link=" + vinculoPost + "&desc=" + descripcionPost + "&id=" + indexPost);
 			break;
+			
+		case "procesos":
+			indexPost = document.getElementById("id-bigimg").value;
+			tituloPost = document.getElementById("txt-cont").value;
+			descripcionPost = document.getElementById("div-cont").innerHTML;
+			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&desc=" + descripcionPost + "&id=" + indexPost);
+			break;
 	}
 
 	//Tomamos el valor que nos devuelva el servidor via ajax e invocamos una funcion que se encargara de procesar la respuesta.
@@ -275,11 +282,15 @@ function AddPost(idPost, idTabla, uid){
 
 function DelPost(idPost, uid){
 	//alert("DelPost. uid= " + uid);
-	indexPost = document.getElementById("id-" + idPost).value;
 	tablaPost = document.getElementById("tbl-" + idPost).value;
+	indexPost = document.getElementById("id-" + idPost).value;
+	if(tablaPost == "procesos")
+		indexPost = document.getElementById("id-bigimg").value;
 	if (confirm("Esta seguro que desea eliminar este elemento?")) {
-		if (document.getElementById("pst-" + idPost) != null)		
-			document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
+		if (document.getElementById("pst-" + idPost) != null) {
+			if(tablaPost != "procesos")
+				document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
+		}
 		AjaxSend("action=del&table=" + tablaPost + "&id=" + indexPost);
 		refreshPage(tablaPost, uid);
 		
@@ -305,9 +316,18 @@ function CatchNewPost(tablaPost, responseText){
 }
 
 function ShowBigImage(id){
-	imagen = document.getElementById("img-big");
-	if(imagen != null)
-		imagen.src = "../lib/ShowImage.php?id=" + id;
+	imagenSrc = document.getElementById("img-" + id);
+	imagenBig = document.getElementById("img-big");
+	rowDesc = document.getElementById("div-cont");
+	idBigImg = document.getElementById("id-bigimg");
+	rowNewValue = document.getElementById("descr-" + id);
+	titulo = document.getElementById("txt-cont");
+	if (imagenBig != null && titulo != null && rowDesc != null && rowNewValue != null && idBigImg != null) {
+		imagenBig.src = "../lib/ShowImage.php?id=" + id;
+		titulo.value = imagenSrc.alt;
+		rowDesc.innerHTML = rowNewValue.value;
+		idBigImg.value = id;
+	}
 }
 
 function ShowImgTitle(id){
