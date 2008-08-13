@@ -29,7 +29,7 @@ function AjaxInit(){
 
 function AjaxSend(content){
 	var xmlHttp = AjaxInit();
-	//alert("enviando contenido: " + content);
+	alert("enviando contenido: " + content);
     xmlHttp.open("GET", "../lib/AjaxManagerServer.php?" + content, true);
 	xmlHttp.send(null);
 	return xmlHttp;

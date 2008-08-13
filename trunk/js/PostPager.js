@@ -18,7 +18,10 @@
 
 function refreshPage(tabla, uid){
 	currentPage = 0;
- 	currentPage = document.getElementById("currentPage").value;
+	if(document.getElementById("currentPage") != null)
+	 	currentPage = document.getElementById("currentPage").value;
+	else
+		currentPage = -1;
 	AjaxSendRequestPage(currentPage, "current", uid, tabla);
 }
 

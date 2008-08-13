@@ -10,8 +10,10 @@ require_once(RUTA . "/clases/cusuario.php");
 require_once(RUTA . "/clases/cnovedades.php");
 require_once(RUTA . "/clases/cdocente.php");
 require_once(RUTA . "/clases/cutileria.php");
+require_once(RUTA . "/clases/cprocesos.php");
 require_once(RUTA . "/Unidad/UnidadContentManager.php");
 require_once(RUTA . "/lib/VerticalTable.php");
+require_once(RUTA . "/lib/MGalleryManager.php");
 
 $conn = new cConexion();
 
@@ -54,6 +56,12 @@ $conn = new cConexion();
 						$contenido = $_GET["desc"];
 						$query = "insert into utileria values($id, '$titulo', '$vinculo', '$contenido');";
 						break;
+						
+					/*case "procesos":
+						$titulo = $_GET["title"];
+						$descripcion = $_GET["desc"];
+						$query = "insert into utileria values($id, '$titulo', '$descripcion');";
+						break;*/
 				}
 				$conn->Conectar();
 				$res = $conn->mysqli->query($query);				
@@ -123,10 +131,17 @@ $conn = new cConexion();
 						$titulo = $_GET["title"];
 						$vinculo = $_GET["link"];
 						$contenido = $_GET["desc"];
-						$query = "update utileria set titulo='$titulo', vinculo='$vinculo', descripcion='$contenido' where id=$id;";						
+						$query = "update utileria set titulo='$titulo', vinculo='$vinculo', descripcion='$contenido' where id=$id;";
+						break;
+						
+					case "procesos":
+						$titulo = $_GET["title"];
+						$descripcion = $_GET["desc"];
+						$query = "update procesos set nombre='$titulo', descripcion='$descripcion' where id=$id;";
 						break;
 				}
 				$conn->Conectar();
+				echo "query: " . $query;
 				$conn->mysqli->query($query);
 				$conn->mysqli->close();
 				break;
@@ -162,6 +177,9 @@ $conn = new cConexion();
 						break;						
 					case "utileria":
 						$ucm->ShowUtils($currentPg, true);
+						break;
+					case "procesos":
+						$ucm->ShowProcs($currentPg, true);
 						break;
 				}				
 				break;
