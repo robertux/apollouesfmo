@@ -57,11 +57,33 @@ $conn = new cConexion();
 						$query = "insert into utileria values($id, '$titulo', '$vinculo', '$contenido');";
 						break;
 						
-					/*case "procesos":
+					case "procesos":
 						$titulo = $_GET["title"];
 						$descripcion = $_GET["desc"];
-						$query = "insert into utileria values($id, '$titulo', '$descripcion');";
-						break;*/
+						
+						echo "agregando a la tabla procesos.";
+						echo "existe? " . (isset($_FILES)? "sip. ": "nop. ");
+						echo "text? " . $_POST["input--1"];
+						echo "cuantos elementos tiene? " . count($_FILES);
+						//if($_FILES[0]['size'] > 0){													
+							$fileName = $_FILES[0]['name'];
+							echo "nombre original del archivo: $fileName";
+							$tmpName  = $_FILES[0]['tmp_name'];
+							$fileSize = $_FILES[0]['size'];
+							echo "tamanio: $fileSize";
+							$fileType = $_FILES[0]['type'];
+							echo "tipo: $fileType";
+							
+							$fp      = fopen($tmpName, 'r');
+							$content = fread($fp, filesize($tmpName));
+							$content = addslashes($content);
+							fclose($fp);
+						//}
+						
+						$query = "insert into procesos values($id, '$content', '$titulo', '$descripcion', null);";
+						echo "query: $query";
+						$query = "";
+						break;
 				}
 				$conn->Conectar();
 				$res = $conn->mysqli->query($query);				
@@ -136,8 +158,9 @@ $conn = new cConexion();
 						
 					case "procesos":
 						$titulo = $_GET["title"];
-						$descripcion = $_GET["desc"];
-						$query = "update procesos set nombre='$titulo', descripcion='$descripcion' where id=$id;";
+						$descripcion = $_GET["desc"];						
+						
+						$query = "update procesos set nombre='$titulo', descripcion='$descripcion'  where id=$id;";
 						break;
 				}
 				$conn->Conectar();
@@ -202,7 +225,7 @@ $conn = new cConexion();
 					$vTable->rows[] = new VerticalTableRow(array("Apellidos", ""), $pst->id);
 					$vTable->rows[] = new VerticalTableRow(array("Nombres", ""), $pst->id);
 					$vTable->rows[] = new VerticalTableRow(array("Grado Academico", ""), $pst->id);
-					$vTable->rows[] = new VerticalTableRow(array("Descripcion", ""), $pst->id, true);
+					$vTable->rows[] = new VerticalTableRow(array("Descripcion", ""), $pst->id, "area");
 					$pst->contenido = $vTable->ToString();
 					$pst->plainTextContent = false;
 				}				
@@ -210,10 +233,21 @@ $conn = new cConexion();
 					$vTable = new VerticalTable();
 					$vTable->rows[] = new VerticalTableRow(array("Titulo", ""), $pst->id);
 					$vTable->rows[] = new VerticalTableRow(array("Vinculo", ""), $pst->id);
-					$vTable->rows[] = new VerticalTableRow(array("Descripcion", ""), $pst->id, true);					
+					$vTable->rows[] = new VerticalTableRow(array("Descripcion", ""), $pst->id, "area");
 					$pst->contenido = $vTable->ToString();
 					$pst->plainTextContent = false;
-				}				
+				}
+				if($tabla == "procesos"){
+					$vTable = new VerticalTable();
+					$pst->contenido .= "<form id='frmProcs' method='post' enctype='multipart/form-data'>";
+					$vTable->rows[] = new VerticalTableRow(array("Nombre", ""), $pst->id);
+					$vTable->rows[] = new VerticalTableRow(array("Archivo (max. 2Mb)", ""), $pst->id, "file");
+					$vTable->rows[] = new VerticalTableRow(array("Descripcion", ""), $pst->id, "area");					
+					$pst->contenido .= $vTable->ToString();
+					$pst->contenido .= "</form>";
+					$pst->plainTextContent = false;
+					$pst->editableTitle = false;
+				}
 				$pst->Show();
 				break;
 		}

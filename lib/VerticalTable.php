@@ -27,15 +27,22 @@ class VerticalTableRow{
 	
 	public $cells = array();	
 	
-	public function VerticalTableRow($pCells, $id=-1, $areaContent = false){
+	public function VerticalTableRow($pCells, $id=-1, $typeContent = "text"){
 		/*foreach($pCells as $pCell){
 			$this->cells[] = new VerticalTableCell($pCell);
 		}*/		
 		$this->cells[] = new VerticalTableCell($pCells[0], true);
-		if($areaContent)
-			$this->cells[] = new VerticalTableCell("<div id='div-$id' class='PostInput'>" . $pCells[1]. "</div>", false);
-		else
+		switch($typeContent){
+		case "text":
 			$this->cells[] = new VerticalTableCell("<input id='input-$id' class='PostInput' type='text' value='" . $pCells[1] . "' disabled='true' />", false);
+			break;
+		case "area":
+			$this->cells[] = new VerticalTableCell("<div id='div-$id' class='PostInput'>" . $pCells[1]. "</div>", false);
+			break;
+		case "file":
+			$this->cells[] = new VerticalTableCell("<input type='hidden' name='MAX_FILE_SIZE' value='2000000'><input id='upld-$id' class='PostInputEdit' type='file' disabled='true' />", false);
+			break;
+		}
 	}
 	
 	public function ToString(){
