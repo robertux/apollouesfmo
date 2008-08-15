@@ -84,7 +84,7 @@ function DisablePostContent(idPost, plainTextContent){
 	else {
 		elements = document.getElementsByTagName("input");
 		for (var i = 0; i < elements.length; i++) {
-			if (elements[i].id == ("input-" + idPost) || elements[i].id == ("upld-" + idPost)) {
+			if (elements[i].id == ("input-" + idPost)) {
 				elements[i].className = "PostInput";
 				elements[i].disabled = true;
 			}
@@ -170,7 +170,7 @@ function EditPostContent(idPost, plainTextContent){
 	EnablePostContent(idPost, plainTextContent);
 }
 
-function SavePost(idPost, uid, plainTextContent){	
+function SavePost(idPost, uid, plainTextContent){
 	DisablePost(idPost, plainTextContent);
 	var xmlHttp;
 	//alert("SavePost. uid= " + uid );
@@ -243,10 +243,15 @@ function SavePost(idPost, uid, plainTextContent){
 			indexPost = document.getElementById("id-bigimg").value;
 			tituloPost = document.getElementById("txt-cont").value;
 			descripcionPost = document.getElementById("div-cont").innerHTML;
-			document.forms[1].action = "../lib/AjaxManagerServer.php?action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&desc=" + descripcionPost + "&id=" + indexPost;			
-			document.forms[1].submit();
-			return;
-			//xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&desc=" + descripcionPost + "&id=" + indexPost);
+			if(actionPost == "add"){
+				indexPost = "0";
+				tituloPost = document.getElementById("input--1").value;
+				descripcionPost = document.getElementById("div--1").innerHTML;
+				document.forms[1].action = "../lib/AjaxManagerServer.php?action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&desc=" + descripcionPost + "&id=" + indexPost;
+				document.forms[1].submit();
+				return;
+			}			
+			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&desc=" + descripcionPost + "&id=" + indexPost);
 			break;
 	}
 
