@@ -23,6 +23,7 @@ $conn = new cConexion();
 			case "add":
 				$id = 0;
 				$id = $_GET["id"];
+				//echo "id? $id";
 				$tabla = $_GET["table"];
 				if($id == 0){
 					$query = "select (max(id) + 1) as maxid from $tabla;";
@@ -47,7 +48,7 @@ $conn = new cConexion();
 						$grado = $_GET["grado"];
 						$desc = $_GET["desc"];
 						$query = "insert into docente values($id, '$apellidos', '$nombres', '$grado', 1, '$desc');";
-						echo $query;
+						//echo $query;
 						break;						
 						
 					case "utileria":
@@ -61,32 +62,35 @@ $conn = new cConexion();
 						$titulo = $_GET["title"];
 						$descripcion = $_GET["desc"];
 						
-						echo "agregando a la tabla procesos.";
+						/*echo "agregando a la tabla procesos.";
 						echo "existe? " . (isset($_FILES)? "sip. ": "nop. ");
-						echo "text? " . $_POST["input--1"];
-						echo "cuantos elementos tiene? " . count($_FILES);
-						//if($_FILES[0]['size'] > 0){													
-							$fileName = $_FILES[0]['name'];
-							echo "nombre original del archivo: $fileName";
-							$tmpName  = $_FILES[0]['tmp_name'];
-							$fileSize = $_FILES[0]['size'];
-							echo "tamanio: $fileSize";
-							$fileType = $_FILES[0]['type'];
-							echo "tipo: $fileType";
+						echo "cuantos elementos tiene post? " . count($_POST);
+						echo "post[0]? " . $_POST[0];
+						echo "post[1]? " . $_POST[1];
+						echo "cuantos elementos tiene files? " . count($_FILES);*/
+						if($_FILES['upld']['size'] > 0){							
+							$fileName = $_FILES['upld']['name'];
+							//echo "nombre original del archivo: $fileName";
+							$tmpName  = $_FILES['upld']['tmp_name'];
+							$fileSize = $_FILES['upld']['size'];
+							//echo "tamanio: $fileSize";
+							$fileType = $_FILES['upld']['type'];
+							//echo "tipo: $fileType";
 							
 							$fp      = fopen($tmpName, 'r');
 							$content = fread($fp, filesize($tmpName));
 							$content = addslashes($content);
 							fclose($fp);
-						//}
+						}
 						
 						$query = "insert into procesos values($id, '$content', '$titulo', '$descripcion', null);";
-						echo "query: $query";
-						$query = "";
+						//echo "query: $query";
 						break;
 				}
 				$conn->Conectar();
-				$res = $conn->mysqli->query($query);				
+				$res = $conn->mysqli->query($query);
+				if($_GET["table"] == "procesos")
+					header("location: ../Unidad/index.php?opt=proc");
 				break;
 			
 			case "editcontacto":

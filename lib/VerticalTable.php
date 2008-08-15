@@ -34,13 +34,13 @@ class VerticalTableRow{
 		$this->cells[] = new VerticalTableCell($pCells[0], true);
 		switch($typeContent){
 		case "text":
-			$this->cells[] = new VerticalTableCell("<input id='input-$id' class='PostInput' type='text' value='" . $pCells[1] . "' disabled='true' />", false);
+			$this->cells[] = new VerticalTableCell("<input id='input-$id' name='input-$id' class='PostInput' type='text' value='" . $pCells[1] . "' disabled='true' />", false);
 			break;
 		case "area":
-			$this->cells[] = new VerticalTableCell("<div id='div-$id' class='PostInput'>" . $pCells[1]. "</div>", false);
+			$this->cells[] = new VerticalTableCell("<div id='div-$id' name='div-$id'  class='PostInput'>" . $pCells[1]. "</div>", false);
 			break;
 		case "file":
-			$this->cells[] = new VerticalTableCell("<input type='hidden' name='MAX_FILE_SIZE' value='2000000'><input id='upld-$id' class='PostInputEdit' type='file' disabled='true' />", false);
+			$this->cells[] = new VerticalTableCell("<input type='hidden' name='MAX_FILE_SIZE' value='2000000'><input id='upld-$id' name='upld' class='PostInputEdit' type='file' disabled='true' />", false);
 			break;
 		}
 	}

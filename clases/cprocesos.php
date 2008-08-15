@@ -37,7 +37,7 @@ class cProcesos
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
     public function GetLista()
     {
-    	return($this->Consultar("SELECT id, nombre, imagen, descripcion, vprevia FROM procesos;", true));
+    	return($this->Consultar("SELECT id, nombre, imagen, descripcion, vprevia FROM procesos ORDER BY id;", true));
     }
 	
 	public function GetListaFiltrada($ini=0, $len=10)
