@@ -522,8 +522,8 @@ class RSSCreator091 extends FeedCreator {
         $this->descriptionTruncSize = 500;
         $feed.= "        <description>".$this->getDescription()."</description>\n";
         $feed.= "        <link>".$this->link."</link>\n";
-        $now = new FeedDate();
-        $feed.= "        <lastBuildDate>".htmlspecialchars($now->rfc822())."</lastBuildDate>\n";
+        //$now = new FeedDate();
+        //$feed.= "        <lastBuildDate>".htmlspecialchars($now->rfc822())."</lastBuildDate>\n";
         $feed.= "        <generator>".FEED_VERSION."</generator>\n";
 
         if ($this->image!=null) {
@@ -600,8 +600,9 @@ class RSSCreator091 extends FeedCreator {
                 $feed.= "            <comments>".htmlspecialchars($this->items[$i]->comments)."</comments>\n";
             }
             if ($this->items[$i]->date!="") {
-            $itemDate = new FeedDate($this->items[$i]->date);
-                $feed.= "            <pubDate>".htmlspecialchars($itemDate->rfc822())."</pubDate>\n";
+            	//$itemDate = new FeedDate($this->items[$i]->date);
+                //$feed.= "            <pubDate>".htmlspecialchars($itemDate->rfc822())."</pubDate>\n";
+                $feed.= "            <pubDate>".htmlspecialchars($this->items[$i]->date)."</pubDate>\n";
             }
             if ($this->items[$i]->guid!="") {
                 $feed.= "            <guid>".htmlspecialchars($this->items[$i]->guid)."</guid>\n";
