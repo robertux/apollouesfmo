@@ -94,7 +94,11 @@
   </tr>
   <tr>
     <td width="10" height="60" bgcolor="#FFFFFF">&nbsp;</td>
-    <td width="900" height="60" bgcolor="#FFFFFF"><center><a href="http://srbyte.com">llena este espacio con vinculos importantes :) </a></center></td>
+    <td width="900" height="60" bgcolor="#FFFFFF">
+		<center>
+			<a href="./AcercaDe/">Acerca De ...</a>
+		</center>
+	</td>
     <td width="10" height="60" background="Media/right.png">&nbsp;</td>
   </tr>
 </table>
