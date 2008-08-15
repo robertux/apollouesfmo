@@ -42,7 +42,7 @@
 			if($isThumb)
 				return "<img class='mgalleryimage' src=\"../lib/ShowImage.php?id=$this->id\" id='img-$this->id' alt='$this->name' onClick='ShowBigImage($this->id)' onMouseOver='ShowImgTitle($this->id)' onMouseOut='ClearImgTitle()' width='100' height='100' />";
 			else
-				return "<img class='mgalleryimage' src=\"../lib/ShowImage.php?id=$this->id\" id='img-big' alt='$this->name' width='470' onClick=''/>";
+				return "<img class='mgalleryimage' src=\"../lib/ShowImage.php?id=$this->id\" id='img-big' alt='$this->name' width='500' onClick=''/>";
 		}
 		
 		public function Show(){

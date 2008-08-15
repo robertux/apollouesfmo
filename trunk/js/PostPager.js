@@ -28,4 +28,5 @@ function refreshPage(tabla, uid){
  function CatchNewPage(ajaxResponse){
  	//alert("respuesta recibida: " + ajaxResponse);
 	document.getElementById("pst-").innerHTML = ajaxResponse;
+	fillup();
  }

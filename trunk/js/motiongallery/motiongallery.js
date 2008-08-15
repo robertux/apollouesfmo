@@ -132,6 +132,7 @@ function stopmotion(e){
 }
 
 function fillup(){
+	try{
 	if (iedom){
 		crossmain=document.getElementById? document.getElementById("motioncontainer") : document.all.motioncontainer;
 		if(typeof crossmain.style.maxWidth!=='undefined')
@@ -157,6 +158,8 @@ function fillup(){
 	}
 	if (document.body.filters)
 		onresize()
+	}
+	catch(e){ /* pass */ }
 }
 
 window.onload=fillup;
@@ -167,6 +170,8 @@ onresize=function(){
 		motioncontainer.style.width="";
 		motioncontainer.style.width=Math.min(motioncontainer.offsetWidth, maxwidth)+'px';
 	}
-	menuwidth=crossmain.offsetWidth;
-	cross_scroll.style.left=startpos? (menuwidth-actualwidth)/startpos+'px' : 0;
+	try{
+		menuwidth=crossmain.offsetWidth;
+		cross_scroll.style.left=startpos? (menuwidth-actualwidth)/startpos+'px' : 0;
+	}catch(e){ /*pass*/ }
 }

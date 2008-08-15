@@ -38,7 +38,7 @@ function EnablePostContent(idPost, plainTextContent){
 	else {
 		elements = document.getElementsByTagName("input");
 		for (var i = 0; i < elements.length; i++) {
-			if (elements[i].id == ("input-" + idPost)) {
+			if (elements[i].id == ("input-" + idPost) || elements[i].id == ("upld-" + idPost)) {
 				elements[i].className = "PostInputEdit";
 				elements[i].disabled = false;
 			}
@@ -84,7 +84,7 @@ function DisablePostContent(idPost, plainTextContent){
 	else {
 		elements = document.getElementsByTagName("input");
 		for (var i = 0; i < elements.length; i++) {
-			if (elements[i].id == ("input-" + idPost)) {
+			if (elements[i].id == ("input-" + idPost) || elements[i].id == ("upld-" + idPost)) {
 				elements[i].className = "PostInput";
 				elements[i].disabled = true;
 			}
@@ -170,7 +170,7 @@ function EditPostContent(idPost, plainTextContent){
 	EnablePostContent(idPost, plainTextContent);
 }
 
-function SavePost(idPost, uid, plainTextContent){
+function SavePost(idPost, uid, plainTextContent){	
 	DisablePost(idPost, plainTextContent);
 	var xmlHttp;
 	//alert("SavePost. uid= " + uid );
@@ -243,7 +243,10 @@ function SavePost(idPost, uid, plainTextContent){
 			indexPost = document.getElementById("id-bigimg").value;
 			tituloPost = document.getElementById("txt-cont").value;
 			descripcionPost = document.getElementById("div-cont").innerHTML;
-			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&desc=" + descripcionPost + "&id=" + indexPost);
+			document.forms[1].action = "../lib/AjaxManagerServer.php?action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&desc=" + descripcionPost + "&id=" + indexPost;			
+			document.forms[1].submit();
+			return;
+			//xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&desc=" + descripcionPost + "&id=" + indexPost);
 			break;
 	}
 
@@ -253,7 +256,7 @@ function SavePost(idPost, uid, plainTextContent){
 			//alert("response received: " + xmlHttp.responseText);	
 			CatchSavedPost(tablaPost, uid);
 		}
-	}
+	}	
 }
 
 function CancelPost(idPost, plainTextContent){
@@ -269,15 +272,14 @@ function CancelPost(idPost, plainTextContent){
 		document.getElementById("txt-" + idPost).value = document.getElementById("tmptit-" + idPost).value;			
 		if(document.getElementById("fch-" + idPost) != null)
 			document.getElementById("fch-" + idPost).value = document.getElementById("tmpfch-" + idPost).value;
-	}	
+	}
 }
 
-function AddPost(idPost, idTabla, uid){
-	
+function AddPost(idPost, idTabla, uid){	
 	if(idTabla == "novedades")
 		AjaxSendRequestPost(idTabla, uid, '1');
 	else
-		AjaxSendRequestPost(idTabla, uid, '0');
+		AjaxSendRequestPost(idTabla, uid, '0');	
 }
 
 function DelPost(idPost, uid){
@@ -291,9 +293,12 @@ function DelPost(idPost, uid){
 			if(tablaPost != "procesos")
 				document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
 		}
-		AjaxSend("action=del&table=" + tablaPost + "&id=" + indexPost);
-		refreshPage(tablaPost, uid);
-		
+		xmlHttp = AjaxSend("action=del&table=" + tablaPost + "&id=" + indexPost);
+		xmlHttp.onreadystatechange = function(){
+			if (xmlHttp.readyState == 4) {
+				refreshPage(tablaPost, uid);
+			}
+		}		
 	}
 }
 
@@ -308,11 +313,13 @@ function CatchSavedPost(tablaPost, uid){
 }
 
 function CatchNewPost(tablaPost, responseText){
+	//alert("recibido: " + responseText);
 	document.getElementById("area-").innerHTML = responseText + document.getElementById("area-").innerHTML;
 	if(tablaPost == "novedades")
 		EnablePost("-1", '1');
 	else
 		EnablePostContent("-1", '');
+	fillup();
 }
 
 function ShowBigImage(id){
