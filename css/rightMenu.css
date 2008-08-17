@@ -1,9 +1,9 @@
 #rightMenu {
 	width: 200px;
-	/*float:right;*/
 	position: absolute;
-	top: 320px;
-	left: 680px;
+	top: 20px;
+	right: 90px;
+	
 }
 
 #rightMenu ul {
@@ -23,6 +23,7 @@
 	text-decoration: none;
 	text-align: left;
 	font-size: 14px;
+	font-weight: bold;
 	display: block;
 	padding: 6px;
 	width: 160px;
