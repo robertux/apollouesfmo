@@ -3,6 +3,10 @@
 	position: relative;
 	margin: 2px 5px 2px 6px;
 	padding-top: 4px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	text-align: left;
+	font-size: smaller;
 }
 
 .ButtonPagerList{
@@ -21,7 +25,9 @@
 	margin: 1px 2px 1px 2px;
 	color: #000000;
 	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
 	font-weight: normal;
+	font-size: smaller;
 }
 
 .btn-PgrNext{

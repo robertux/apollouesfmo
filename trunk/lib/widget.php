@@ -45,7 +45,7 @@ class WidgetNovedades extends Widget{
     	while($row = $resultado->fetch_array())
         {
         	//titulo, vinculo //$t = $row[0]; //$v = $row[1];
-        	$this->Contenido .= "<li><a href='$row[1]'>$row[0]</a></li>";
+        	$this->Contenido .= "<li>$row[0]</li>";
         }
 		$resultado->close();
         $this->Contenido .= "</ul></div>";

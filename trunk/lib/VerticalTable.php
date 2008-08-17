@@ -6,13 +6,13 @@ class VerticalTable{
 	public $border;
 	public $width;
 
-	public function VerticalTable($pBorder = "1", $pWidth = "100%"){
+	public function VerticalTable($pWidth = "100%"){
 		$this->border = $pBorder;
 		$this->width = $pWidth;
 	}
 
 	public function ToString(){
-		$returnValue = "<table border='$this->border' width='$this->width'>";
+		$returnValue = "<table width='$this->width'>";
 		foreach($this->rows as $row){
 			$returnValue .= $row->ToString();
 		}

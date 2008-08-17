@@ -27,21 +27,26 @@
     </ul>
   </div>
   <!-- /header -->
-  <div id="content"> <img src="../Media/style/MainBanner.png" alt="" class="img" />
-    <?php	
-		$ccm = new CursosContentManager($_GET["opt"]);
-		$ccm->Show();
-	?>
+  <div id="content"> 
+  	<div id="banner">
+  		<img src="../Media/style/MainBanner.png" alt="" class="img" />
 	</div>
-  <div id="rightMenu">
-	<ul>
-	<li><a href="index.php?opt=mine">Mis Maestrias</a></li>
-	<li><a href="index.php?opt=actual">Maestrias Actuales</a></li>
-	<li><a href="index.php?opt=next">Maestrias Proximas</a></li>
-	<li><a href="index.php?opt=event">Eventos</a></li>
-	<li><a href="index.php?opt=stuff">Recursos Adicionales</a></li>
-	<li><a href="index.php?opt=serv">Servicio Social</a></li>
-	</ul>
+	<div id="innerContent">
+	    <?php	
+			$ccm = new CursosContentManager($_GET["opt"]);
+			$ccm->Show();
+		?>	
+		<div id="rightMenu">
+			<ul>
+			<li><a href="index.php?opt=mine">Mis Maestrias</a></li>
+			<li><a href="index.php?opt=actual">Maestrias Actuales</a></li>
+			<li><a href="index.php?opt=next">Maestrias Proximas</a></li>
+			<li><a href="index.php?opt=event">Eventos</a></li>
+			<li><a href="index.php?opt=stuff">Recursos Adicionales</a></li>
+			<li><a href="index.php?opt=serv">Servicio Social</a></li>
+			</ul>
+		  </div>
+	</div>
   </div>
     <!-- /content -->
 

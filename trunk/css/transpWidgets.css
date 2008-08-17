@@ -4,8 +4,8 @@
 	border-color: #CCCCCC;
 	border-width: 1px;*/
 	position: absolute;
-	left: 5px;
-	top: 150px;
+	left: 75px;
+	top: 200px;
 	width: 350px;
 	height: 370px;
 }
@@ -17,8 +17,8 @@
 	border-width: 1px;*/
 	position: absolute;
 	/*float: right;*/
-	right: 5px;
-	top: 150px;
+	right: 75px;
+	top: 200px;
 	width: 350px;
 	height: 370px;
 }
