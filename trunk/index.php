@@ -41,7 +41,7 @@
     	<div id="logo" style="top: 0px">
 			<div id="principal">Principal</div>
 	    </div>
-    	<ul id="nav" style="top: -3px; left: 480px;">
+    	<ul id="nav" style="top: 2%; left: 47%;">
 	      <li style="padding: 0 7px"><a>Principal</a></li>
 	      <li style="padding: 0 7px"><a href="Cursos/index.php?opt=mine">Maestrias</a></li>
 	      <li style="padding: 0 7px"><a href="Forum/index.php?opt=cat">Foro</a></li>

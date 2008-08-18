@@ -28,7 +28,8 @@
 	width: 120px;
 	height: 14px;
 	font-size: smaller;
-	float: left;
+	/*float: left;*/
+	vertical-align: top;
 }
 
 .lblInput{
@@ -36,9 +37,10 @@
 	margin-left: 3px;
 	margin-right: 3px;
 	color: #000000;
-	float: left;
+	/*float: left;*/
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: small;	
+	font-size: small;
+	vertical-align: top;
 }
 
 .btnSubmit{
@@ -48,9 +50,10 @@
 	border: 0px solid #FF0000;
 	background-color: transparent;
 	width: 102px;
-	height: 16px;
-        background-image: url(../Media/forms/BkgButton.png);
-        cursor: pointer;        
+	/*height: 16px;*/
+    background-image: url(../Media/forms/BkgButton.png);
+    cursor: pointer;      
+	vertical-align: top;
 }
 
 .errorMsg{

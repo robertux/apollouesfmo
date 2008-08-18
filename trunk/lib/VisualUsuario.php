@@ -7,11 +7,11 @@
 
     class VisualUsuario{
     	public $usr;
-		var $sBox;
+		//var $sBox;
 		
 		function VisualUsuario(){
 			$this->usr = new cUsuario();
-			$this->sBox = new SearchBox();
+			//$this->sBox = new SearchBox();
 		}
 		
 		//Muestra el loginBox, en base a una accion (login/logout) y a las variables de sesion
@@ -71,8 +71,7 @@
 					<div class='LoginBoxFrame'>
 						<div class='LoginBoxInnerFrame'>
 							<label for='btnSubmit' class='lblInput'>Bienvenido <b>" . $this->usr->nombre . " [" . $this->usr->privilegio . "]</b></label>
-							<input type='submit' id='btnSubmit' value='Cerrar Sesion' class='btnSubmit'/>
-							" . $this->sBox->ToString() . "
+							<input type='submit' id='btnSubmit' value='Cerrar Sesion' class='btnSubmit'/>							
 						</div>
 					</div>
 
@@ -91,8 +90,7 @@
 								<input type='text' id='txtNombre' name='txtNombre' class='txtInput'/>
 								<label for='txtClave' class='lblInput'>clave: </label>
 								<input type='password' id='txtClave' name='txtClave' class='txtInput' />
-								<input type='submit' id='btnSubmit' value='Iniciar Sesion' class='btnSubmit'/>
-								" . $this->sBox->ToString() . "
+								<input type='submit' id='btnSubmit' value='Iniciar Sesion' class='btnSubmit'/>								
 				");
             if($errorMsg != "")
                 echo("<input type='label' class='errorMsg' value='$errorMsg' />");                    
