@@ -4,8 +4,8 @@
 	border-color: #CCCCCC;
 	border-width: 1px;*/
 	position: absolute;
-	left: 75px;
-	top: 200px;
+	left: 8%;
+	top: 27%;
 	width: 350px;
 	height: 370px;
 }
@@ -17,8 +17,8 @@
 	border-width: 1px;*/
 	position: absolute;
 	/*float: right;*/
-	right: 75px;
-	top: 200px;
+	right: 8%;
+	top: 27%;
 	width: 350px;
 	height: 370px;
 }
@@ -112,6 +112,7 @@ a:hover { color: #850505; }
 	position: absolute;
 	top: 20%;
 	left: 5%;
+	color: white;
 	/*border-style: solid;
 	border-color: #FFFFFF;
 	border-width: 1px;*/
