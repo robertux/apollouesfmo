@@ -27,12 +27,20 @@ class cForo
         //...
     }
 	
-    public function GetListaPosts($pNum = 15)
+    public function GetListaPosts()
     {
-	$consulta = $this->Consultar("SELECT t.id, t.poster, t.subject, t.posted, t.last_post, f.id AS fid, f.forum_name FROM foro_topics AS t INNER JOIN foro_forums AS f ON f.id=t.forum_id JOIN
-foro_forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id=3)
-WHERE (fp.read_forum IS NULL OR fp.read_forum=0)");
-		/*$consulta = $this->Consultar('SELECT t.id, t.poster, t.subject, t.posted, t.last_post, f.id AS fid, f.forum_name FROM '.$this->prefijo.'topics AS t INNER JOIN '.$this->prefijo.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$this->prefijo.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id=3) WHERE (fp.read_forum IS NULL OR fp.read_forum=1) DESC LIMIT'.$pNum);*/
+	//Borrado por motivos de erroes extravagantes
+	/*$consulta = $this->Consultar(
+	"SELECT t.id, t.poster, t.subject, t.posted, t.last_post, f.id AS fid, f.forum_name
+	FROM foro_topics AS t 
+	INNER JOIN foro_forums AS f ON f.id=t.forum_id 
+	JOIN foro_forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id=3)
+	WHERE (fp.read_forum IS NULL OR fp.read_forum=0)");*/
+	$consulta = $this->Consultar("SELECT t.subject AS fid, f.forum_name
+FROM foro_topics AS t INNER JOIN foro_forums AS f ON f.id=t.forum_id
+WHERE (t.num_views<=1)");
+	//consulta original que utiliza el foro, medio funciona.
+	/*$consulta = $this->Consultar('SELECT t.id, t.poster, t.subject, t.posted, t.last_post, f.id AS fid, f.forum_name FROM '.$this->prefijo.'topics AS t INNER JOIN '.$this->prefijo.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$this->prefijo.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id=3) WHERE (fp.read_forum IS NULL OR fp.read_forum=1) DESC LIMIT'.$pNum);*/
 		return $consulta;
     }
     
