@@ -206,13 +206,15 @@ CREATE TABLE `foro_categories` (
   `cat_name` varchar(80) NOT NULL default 'New Category',
   `disp_position` int(10) NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `foro_categories`
 --
 
 /*!40000 ALTER TABLE `foro_categories` DISABLE KEYS */;
+INSERT INTO `foro_categories` (`id`,`cat_name`,`disp_position`) VALUES 
+ (6,'Bienvenido',0);
 /*!40000 ALTER TABLE `foro_categories` ENABLE KEYS */;
 
 
@@ -295,7 +297,7 @@ INSERT INTO `foro_config` (`conf_name`,`conf_value`) VALUES
  ('o_avatars_height','0'),
  ('o_avatars_size','0'),
  ('o_search_all_forums','1'),
- ('o_base_url','http://localhost/apollo'),
+ ('o_base_url','http://localhost/apollo/Forum'),
  ('o_admin_email','admin@email.com'),
  ('o_webmaster_email','webmaster@email.com'),
  ('o_subscriptions','0'),
@@ -371,13 +373,15 @@ CREATE TABLE `foro_forums` (
   `disp_position` int(10) NOT NULL default '0',
   `cat_id` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `foro_forums`
 --
 
 /*!40000 ALTER TABLE `foro_forums` DISABLE KEYS */;
+INSERT INTO `foro_forums` (`id`,`forum_name`,`forum_desc`,`redirect_url`,`moderators`,`num_topics`,`num_posts`,`last_post`,`last_post_id`,`last_poster`,`sort_by`,`disp_position`,`cat_id`) VALUES 
+ (5,'Bienvenido',NULL,NULL,NULL,1,1,1219257190,4,'ramayac',0,0,6);
 /*!40000 ALTER TABLE `foro_forums` ENABLE KEYS */;
 
 
@@ -439,7 +443,7 @@ CREATE TABLE `foro_online` (
 
 /*!40000 ALTER TABLE `foro_online` DISABLE KEYS */;
 INSERT INTO `foro_online` (`user_id`,`ident`,`logged`,`idle`) VALUES 
- (1,'127.0.0.1',1218825712,0);
+ (2,'ramayac',1219260438,0);
 /*!40000 ALTER TABLE `foro_online` ENABLE KEYS */;
 
 
@@ -463,13 +467,15 @@ CREATE TABLE `foro_posts` (
   PRIMARY KEY  (`id`),
   KEY `foro_posts_topic_id_idx` (`topic_id`),
   KEY `foro_posts_multi_idx` (`poster_id`,`topic_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `foro_posts`
 --
 
 /*!40000 ALTER TABLE `foro_posts` DISABLE KEYS */;
+INSERT INTO `foro_posts` (`id`,`poster`,`poster_id`,`poster_ip`,`poster_email`,`message`,`hide_smilies`,`posted`,`edited`,`edited_by`,`topic_id`) VALUES 
+ (4,'ramayac',2,'127.0.0.1',NULL,':D',0,1219257190,NULL,NULL,4);
 /*!40000 ALTER TABLE `foro_posts` ENABLE KEYS */;
 
 
@@ -563,6 +569,10 @@ CREATE TABLE `foro_search_matches` (
 --
 
 /*!40000 ALTER TABLE `foro_search_matches` DISABLE KEYS */;
+INSERT INTO `foro_search_matches` (`post_id`,`word_id`,`subject_match`) VALUES 
+ (4,5,1),
+ (4,6,1),
+ (4,7,1);
 /*!40000 ALTER TABLE `foro_search_matches` ENABLE KEYS */;
 
 
@@ -576,7 +586,7 @@ CREATE TABLE `foro_search_words` (
   `word` varchar(20) character set utf8 collate utf8_bin NOT NULL default '',
   PRIMARY KEY  (`word`),
   KEY `foro_search_words_id_idx` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `foro_search_words`
@@ -584,7 +594,10 @@ CREATE TABLE `foro_search_words` (
 
 /*!40000 ALTER TABLE `foro_search_words` DISABLE KEYS */;
 INSERT INTO `foro_search_words` (`id`,`word`) VALUES 
- (2,0x707275656261);
+ (2,0x707275656261),
+ (5,0x7072696D6572),
+ (6,0x74656D61),
+ (7,0x666F726F);
 /*!40000 ALTER TABLE `foro_search_words` ENABLE KEYS */;
 
 
@@ -629,13 +642,15 @@ CREATE TABLE `foro_topics` (
   PRIMARY KEY  (`id`),
   KEY `foro_topics_forum_id_idx` (`forum_id`),
   KEY `foro_topics_moved_to_idx` (`moved_to`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `foro_topics`
 --
 
 /*!40000 ALTER TABLE `foro_topics` DISABLE KEYS */;
+INSERT INTO `foro_topics` (`id`,`poster`,`subject`,`posted`,`last_post`,`last_post_id`,`last_poster`,`num_views`,`num_replies`,`closed`,`sticky`,`moved_to`,`forum_id`) VALUES 
+ (4,'ramayac','Primer tema del foro.',1219257190,1219257190,4,'ramayac',1,0,0,0,NULL,5);
 /*!40000 ALTER TABLE `foro_topics` ENABLE KEYS */;
 
 
@@ -694,7 +709,7 @@ CREATE TABLE `foro_users` (
 /*!40000 ALTER TABLE `foro_users` DISABLE KEYS */;
 INSERT INTO `foro_users` (`id`,`group_id`,`username`,`password`,`email`,`title`,`realname`,`url`,`jabber`,`icq`,`msn`,`aim`,`yahoo`,`location`,`use_avatar`,`signature`,`disp_topics`,`disp_posts`,`email_setting`,`save_pass`,`notify_with_post`,`show_smilies`,`show_img`,`show_img_sig`,`show_avatars`,`show_sig`,`timezone`,`language`,`style`,`num_posts`,`last_post`,`registered`,`registration_ip`,`last_visit`,`admin_note`,`activate_string`,`activate_key`) VALUES 
  (1,3,'Guest','Guest','Guest',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'English','Oxygen',0,NULL,0,'0.0.0.0',0,NULL,NULL,NULL),
- (2,1,'ramayac','d033e22ae348aeb5660fc2140aec35850c4da997','ramayac@gmail.com','Br.','Rodrigo Amaya','http://SrByte.blogspot.com',NULL,NULL,NULL,NULL,NULL,'Santa Ana',0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'English','Sulfur',3,1214767309,1211988301,'127.0.0.1',1215065425,NULL,NULL,NULL),
+ (2,1,'ramayac','d033e22ae348aeb5660fc2140aec35850c4da997','ramayac@gmail.com','Br.','Rodrigo Amaya','http://SrByte.blogspot.com',NULL,NULL,NULL,NULL,NULL,'Santa Ana',0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,0,'English','Sulfur',4,1219257190,1211988301,'127.0.0.1',1219259485,NULL,NULL,NULL),
  (4,4,'robertux','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8','foo@bar.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,1,1,0,1,1,1,1,1,-6,'Spanish','Minerva',0,NULL,1214966189,'127.0.0.1',1214967051,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `foro_users` ENABLE KEYS */;
 
