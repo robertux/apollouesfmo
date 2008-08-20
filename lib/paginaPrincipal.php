@@ -19,7 +19,10 @@ class paginaPrincipal{
 		echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"PostGrados - Actividad en el Foro\" href=\"".URL."rss/feeds.php?genera=foro\" />";
 		echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"PostGrados - Noticias sobre los Cursos\" href=\"".URL."rss/feeds.php?genera=cursos\" />";
 		echo "<link rel=\"stylesheet\" href=\"css/main.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
-		echo "<link rel=\"stylesheet\" href=\"css/transpWidgets.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
+		if(eregi("MSIE", $_REQUEST["HTTP_USER_AGENT"]))
+			echo "<link rel=\"stylesheet\" href=\"css/transpWidgetsIE.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\"> \n";
+		else
+			echo "<link rel=\"stylesheet\" href=\"css/transpWidgets.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\"> \n";			
 		echo "<link rel=\"stylesheet\" href=\"css/forms.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
 		echo "<link rel=\"stylesheet\" href=\"css/solidBlockMainMenu.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
 		//echo "<script type=\"text/javascript\" src=\"/calendario/calendario/javascripts.js\"></script>\n";

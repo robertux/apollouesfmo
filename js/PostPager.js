@@ -3,21 +3,21 @@
  */
 
  function nextPage(tabla, uid){
- 	currentPage = 0;
- 	currentPage = document.getElementById("currentPage").value;
-	AjaxSendRequestPage(currentPage, "next", uid, tabla);
  	//alert("siguiente pagina");
+ 	var currentPage = 0;
+ 	currentPage = document.getElementById("currentPage").value;
+	AjaxSendRequestPage(currentPage, "next", uid, tabla); 	
  }
 
  function prevPage(tabla, uid){
- 	currentPage = 0;
- 	currentPage = document.getElementById("currentPage").value;
-	AjaxSendRequestPage(currentPage, "prev", uid, tabla);
  	//alert("pagina anterior");
+ 	var currentPage = 0;
+ 	currentPage = document.getElementById("currentPage").value;
+	AjaxSendRequestPage(currentPage, "prev", uid, tabla); 	
  }
 
 function refreshPage(tabla, uid){
-	currentPage = 0;
+	var currentPage = 0;
 	if(document.getElementById("currentPage") != null)
 	 	currentPage = document.getElementById("currentPage").value;
 	else

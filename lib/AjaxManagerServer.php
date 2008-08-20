@@ -16,7 +16,6 @@ require_once(RUTA . "/lib/VerticalTable.php");
 require_once(RUTA . "/lib/MGalleryManager.php");
 
 $conn = new cConexion();
-
 	if(isset($_GET["action"])){
 		switch($_GET["action"]){
 
@@ -194,14 +193,14 @@ $conn = new cConexion();
 				else if ($direction == "prev")
 					$currentPg--;
 				
-				$ucm = new UnidadContentManager();				
-				switch($_GET["tabla"]){					
-					case "novedades":												
-						$ucm->showNews($currentPg, true);					
-						break;						
-					case "docente":								
+				$ucm = new UnidadContentManager();
+				switch($_GET["tabla"]){
+					case "novedades":
+						$ucm->showNews($currentPg, true);
+						break;
+					case "docente":
 						$ucm->ShowProfs($currentPg, true);
-						break;						
+						break;
 					case "utileria":
 						$ucm->ShowUtils($currentPg, true);
 						break;

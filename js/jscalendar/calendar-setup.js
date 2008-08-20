@@ -103,23 +103,25 @@ Calendar.setup = function (params) {
 	}
 
 	function onSelect(cal) {
-		var p = cal.params;
-		var update = (cal.dateClicked || p.electric);
-		if (update && p.inputField) {
-			p.inputField.value = cal.date.print(p.ifFormat);
-			if (typeof p.inputField.onchange == "function")
-				p.inputField.onchange();
-		}
-		if (update && p.displayArea)
-			p.displayArea.innerHTML = cal.date.print(p.daFormat);
-		if (update && typeof p.onUpdate == "function")
-			p.onUpdate(cal);
-		if (update && p.flat) {
-			if (typeof p.flatCallback == "function")
-				p.flatCallback(cal);
-		}
-		if (update && p.singleClick && cal.dateClicked)
-			cal.callCloseHandler();
+		try{
+			var p = cal.params;
+			var update = (cal.dateClicked || p.electric);
+			if (update && p.inputField) {
+				p.inputField.value = cal.date.print(p.ifFormat);
+				if (typeof p.inputField.onchange == "function")
+					p.inputField.onchange();
+			}
+			if (update && p.displayArea)
+				p.displayArea.innerHTML = cal.date.print(p.daFormat);
+			if (update && typeof p.onUpdate == "function")
+				p.onUpdate(cal);
+			if (update && p.flat) {
+				if (typeof p.flatCallback == "function")
+					p.flatCallback(cal);
+			}
+			if (update && p.singleClick && cal.dateClicked)
+				cal.callCloseHandler();
+		}catch(e){ /*pass */ }
 	};
 
 	if (params.flat != null) {

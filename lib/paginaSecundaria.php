@@ -11,7 +11,7 @@
 			echo "<!DOCTYPE html PUBLIC \"-//IETF//DTD HTML 2.0//EN\"><html><head><title>";
 			echo "Portal Unidad de PostGrados - Universidad de El Salvador</title>\n";
 			//Los meta, para que Google y los demas nos indexen, jajaja
-			echo "<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=\"UTF8\">\n";
+			echo "<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=\"utf-8\">\n";
 			echo "<META NAME=\"AUTHOR\" CONTENT=\"Roberto Linares - Rodrigo Amaya\">\n";
 			echo "<META NAME=\"COPYRIGHT\" CONTENT=\"Copyright (c) 2008 by Roberto Linares - Rodrigo Amaya\">\n";
 			echo "<META NAME=\"KEYWORDS\" CONTENT=\"PostGrados, Maestria, Facultad Multidisciplinaria de Occidente, Universidad de El Salvador, UES, FMO, UES-FMO, Santa Ana\">\n";
@@ -33,19 +33,12 @@
 			echo "<link rel=\"stylesheet\" href=\"../js/jscalendar/calendar-system.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";			
 			
 			//Y ahora...... tatatatannnnn. LOS JAVASCRIPT! efectos efectos efectos!
-			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/EditInPlace.js\"></script>";
-			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/AjaxManagerClient.js\"></script>";
-			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/PostPager.js\"></script>";
-			
-			//El jsCalendar y sus dependencias:
-			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/jscalendar/calendar.js\"></script>";
-			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/jscalendar/lang/calendar-es.js\"></script>";
-			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/jscalendar/calendar-setup.js\"></script>";
 			
 			//TinyMCE:
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/tiny_mce/tiny_mce.js\"></script>";			
 			echo "
-				<script language=\"javascript\" type=\"text/javascript\" src=\"../js/tinymceinit.js\" />
+				<script language=\"javascript\" type=\"text/javascript\" src=\"../js/tinymceinit.js \"></script>
+				<script language=\"javascript\" type=\"text/javascript\">
 					tinyMCE.init({
 					mode : \"textareas\",
 					
@@ -61,15 +54,21 @@
 					theme_advanced_toolbar_location : \"top\",
 					theme_advanced_toolbar_align : \"left\",
 					theme_advanced_statusbar_location : \"bottom\",
-					theme_advanced_resizing : true,
-					
-					
-
-					
+					theme_advanced_resizing : true
 					});										
 					
 				</script>
-				";								
+				";
+			
+			//Otros muy necesarios:
+			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/EditInPlace.js\"></script>";
+			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/AjaxManagerClient.js\"></script>";
+			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/PostPager.js\"></script>";
+			
+			//El jsCalendar y sus dependencias:
+			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/jscalendar/calendar.js\"></script>";
+			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/jscalendar/lang/calendar-es.js\"></script>";
+			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/jscalendar/calendar-setup.js\"></script>";														
       		
 			//El Motion Gallery, tomado de Dynamic Drive.
 			echo "

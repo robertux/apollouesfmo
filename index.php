@@ -16,23 +16,21 @@
 		<link rel=\"alternate\" type=\"application/rss+xml\" title=\"PostGrados - Ultimas Novedades\" href=\"".URL."rss/feeds.php?genera=novedades\" />
 		<link rel=\"alternate\" type=\"application/rss+xml\" title=\"PostGrados - Actividad en el Foro\" href=\"".URL."rss/feeds.php?genera=foro\" />
 		<link rel=\"alternate\" type=\"application/rss+xml\" title=\"PostGrados - Noticias sobre los Cursos\" href=\"".URL."rss/feeds.php?genera=cursos\" />
-		<link rel=\"stylesheet\" href=\"css/main.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n
-		<link rel=\"stylesheet\" href=\"css/transpWidgets.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n
-		<link rel=\"stylesheet\" href=\"css/forms.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n
+		<link rel=\"stylesheet\" href=\"css/main.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n";
+		$userInfo = $_SERVER['HTTP_USER_AGENT'];
+		if(strpos($userInfo, "MSIE") != "")
+			echo "<link rel=\"stylesheet\" href=\"css/transpWidgetsIE.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\"> \n";
+		else
+			echo "<link rel=\"stylesheet\" href=\"css/transpWidgets.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\"> \n";			
+		echo "<link rel=\"stylesheet\" href=\"css/forms.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n
 		<link rel=\"stylesheet\" href=\"css/solidBlockMainMenu.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n
 		<link rel=\"stylesheet\" href=\"css/style.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n
 		</head>";
 ?>
-   		<div id="loginBox">
-
-				<div class='LoginBoxFrame'>
 				<?php
 					$vuser = new VisualUsuario();
 					$vuser->Show();
 				?>				
-				</div>
-
-		</div>
 
 <div id="tables" style="position: relative; top: 20px;">
 <table width="910" height="60" border="0" align="center" cellpadding="0" cellspacing="0" background="Media/hd3.png">
@@ -41,7 +39,7 @@
     	<div id="logo" style="top: 0px">
 			<div id="principal">Principal</div>
 	    </div>
-    	<ul id="nav" style="top: 2%; left: 47%;">
+    	<ul id="nav" style="top: 2%; left: 45%;">
 	      <li style="padding: 0 7px"><a>Principal</a></li>
 	      <li style="padding: 0 7px"><a href="Cursos/index.php?opt=mine">Maestrias</a></li>
 	      <li style="padding: 0 7px"><a href="Forum/index.php?opt=cat">Foro</a></li>

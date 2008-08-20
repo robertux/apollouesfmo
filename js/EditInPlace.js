@@ -12,14 +12,15 @@ function EnablePost(idPost, plainTextContent){
 	if (document.getElementById("fch-" + idPost) != null) {
 		document.getElementById("fch-" + idPost).className = "PostDateEdit";
 		document.getElementById("fch-" + idPost).disabled = false;
-		
-		Calendar.setup({
-			inputField: ("fch-" + idPost), // id of the input field
-			ifFormat: "%Y-%m-%d", // format of the input field
-			align: "Tl", // alignment (defaults to "Bl")
-			displayArea: ("fch-" + idPost), // ID of the span where the date is to be shown
-			singleClick: true
-		});
+		try{
+			Calendar.setup({
+				inputField: ("fch-" + idPost), // id of the input field
+				ifFormat: "%Y-%m-%d", // format of the input field
+				align: "Tl", // alignment (defaults to "Bl")
+				displayArea: ("fch-" + idPost), // ID of the span where the date is to be shown
+				singleClick: true
+			});
+		}catch(e){ /*pass */ }
 	}
 	
 	//activamos el TinyMCE para que se aplique al <div class='innerContent'>
@@ -48,7 +49,7 @@ function EnablePostContent(idPost, plainTextContent){
 		for (var i = 0; i < elements.length; i++) {
 			if (elements[i].id == ("div-" + idPost)) {				
 				try{
-					tinymceInitTwoRows();
+					tinymceInitTwoRows();					
 					//alert("activando: div-" + idPost);
 					tinyMCE.execCommand('mceAddControl', false, ("div-" + idPost));				
 				}catch(e) { alert("error: " + e); }
@@ -64,9 +65,11 @@ function DisablePost(idPost, plainTextContent){
 	document.getElementById("txt-" + idPost).className = "innerTitle";
 	
 	if (document.getElementById("fch-" + idPost) != null) {
-		document.getElementById("fch-" + idPost).className = "PostDate";
-		document.getElementById("fch-" + idPost).disabled = true;		
-		document.getElementById("fch-" + idPost).innerHTML = "";
+		try{
+			document.getElementById("fch-" + idPost).className = "PostDate";
+			document.getElementById("fch-" + idPost).disabled = true;		
+			document.getElementById("fch-" + idPost).innerHTML = "";
+		}catch(e) { /*pass */ }
 	}	
 	
 	//desactivamos el TinyMCE
@@ -183,19 +186,26 @@ function SavePost(idPost, uid, plainTextContent){
 		//alert("idpost: " + document.getElementById("id-" + idPost).value);
 		
 	}
+	
+	//Tomamos el valor que nos devuelva el servidor via ajax e invocamos una funcion que se encargara de procesar la respuesta.
+	var obj = new Object();
+	obj.responseFunction = function(){
+		CatchSavedPost(tablaPost, uid);
+	}	
+	
 	//alert("actionpost: " + actionPost);
 	if(idPost == "contacto"){
-		AjaxSendContacto(document.getElementById("area-" + idPost).innerHTML);
+		AjaxSendContacto(document.getElementById("area-" + idPost).innerHTML, obj);
 		return null;
 	}
 	
 	if(idPost == "Acerca de la Unidad"){
-		AjaxSendAbout(document.getElementById("area-" + idPost).innerHTML);
+		AjaxSendAbout(document.getElementById("area-" + idPost).innerHTML, obj);
 		return null;
 	}
 	
 	if(idPost == "suscripcion"){
-		AjaxSendSuscripcion(document.getElementById("area-" + idPost).innerHTML);
+		AjaxSendSuscripcion(document.getElementById("area-" + idPost).innerHTML, obj);
 		return null;
 	}
 	
@@ -205,9 +215,9 @@ function SavePost(idPost, uid, plainTextContent){
 	switch(tablaPost){
 		case "novedades":
 			tituloPost = document.getElementById("txt-" + idPost).value;
-			fechaPost = document.getElementById("fch-" + idPost).value;
+			fechaPost = document.getElementById("fch-" + idPost).value.substr(0,10);
 			contenidoPost = document.getElementById("area-" + idPost).innerHTML;
-			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&date=" + fechaPost + "&id=" + indexPost);
+			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&content=" + contenidoPost + "&date=" + fechaPost + "&id=" + indexPost, obj);
 			break;
 		
 		case "docente":
@@ -222,7 +232,7 @@ function SavePost(idPost, uid, plainTextContent){
 			nombresPost = postItems[1];
 			gradoPost = postItems[2];
 			descripcionPost = document.getElementById("div-" + idPost).innerHTML;
-			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&apellidos=" + apellidosPost + "&nombres=" + nombresPost + "&grado=" + gradoPost + "&desc=" + descripcionPost + "&id=" + indexPost);
+			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&apellidos=" + apellidosPost + "&nombres=" + nombresPost + "&grado=" + gradoPost + "&desc=" + descripcionPost + "&id=" + indexPost, obj);
 			break;
 			
 		case "utileria":
@@ -236,7 +246,7 @@ function SavePost(idPost, uid, plainTextContent){
 			tituloPost = postItems[0];
 			vinculoPost = postItems[1];
 			descripcionPost = document.getElementById("div-" + idPost).innerHTML;
-			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&link=" + vinculoPost + "&desc=" + descripcionPost + "&id=" + indexPost);
+			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&link=" + vinculoPost + "&desc=" + descripcionPost + "&id=" + indexPost, obj);
 			break;
 			
 		case "procesos":
@@ -251,17 +261,9 @@ function SavePost(idPost, uid, plainTextContent){
 				document.forms[1].submit();
 				return;
 			}			
-			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&desc=" + descripcionPost + "&id=" + indexPost);
+			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&desc=" + descripcionPost + "&id=" + indexPost, obj);
 			break;
 	}
-
-	//Tomamos el valor que nos devuelva el servidor via ajax e invocamos una funcion que se encargara de procesar la respuesta.
-	xmlHttp.onreadystatechange = function(){
-		if (xmlHttp.readyState == 4) {
-			//alert("response received: " + xmlHttp.responseText);	
-			CatchSavedPost(tablaPost, uid);
-		}
-	}	
 }
 
 function CancelPost(idPost, plainTextContent){
@@ -298,12 +300,11 @@ function DelPost(idPost, uid){
 			if(tablaPost != "procesos")
 				document.getElementById("pst-" + idPost).parentNode.removeChild(document.getElementById("pst-" + idPost));
 		}
-		xmlHttp = AjaxSend("action=del&table=" + tablaPost + "&id=" + indexPost);
-		xmlHttp.onreadystatechange = function(){
-			if (xmlHttp.readyState == 4) {
+		var obj = new Object();
+		obj.responseFunction = function(){
 				refreshPage(tablaPost, uid);
-			}
-		}		
+		}
+		AjaxSend("action=del&table=" + tablaPost + "&id=" + indexPost, obj);
 	}
 }
 
