@@ -1,4 +1,6 @@
 <?php
+	
+	include(realpath("./") . "clases/cgeneral.php");
     class mainContentManager{
     	
 		public function showNews(){
@@ -27,8 +29,9 @@
 		}
 		
 		public function showAbout(){
-			return "La unidad de postgrados ofrece a la poblacion estudiantil la oportunidad de aumentar sus conocimientos y especializarse".
-			" en areas con un mayor grado de demanda para aumentar sus...";
+			$about = new cGeneral();
+			$about->GetPorTitulo("about");
+			return substr($about->contenido,0,250) . "...";
 		}
 		
     }

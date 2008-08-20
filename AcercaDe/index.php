@@ -31,22 +31,27 @@
     </ul>
   </div>
   <!-- /header -->
-  <div id="content"> <img src="../Media/style/MainBanner.png" alt="" class="img" />
+  <div id="content"> 
+	  <div id="banner">
+  		<img src="../Media/style/MainBanner.png" alt="" class="img" />
+	  </div>
+	  <div id="innerContent">
     	<?php
 			$cm = new AcercaDeContentManager();
 			$cm->Show();
 		?>
-  </div>
-    <div id="rightMenu">
-	<ul>
-	<li><a href="../index.php">Regresar a la pagina principal</a></li>
-	<!-- <li><a href="index.php?opt=proc">Procesos Academicos</a></li>
-	<li><a href="index.php?opt=profs">Docentes</a></li>
-	<li><a href="index.php?opt=news">Noticias</a></li>
-	<li><a href="index.php?opt=util">Programas de Utileria</a></li>
-	<li><a href="index.php?opt=contact">Contacto/Suscripcion</a></li> -->
-	</ul>
-  </div>
+	    <div id="rightMenu">
+			<ul>
+			<li><a href="../index.php">Regresar a la pagina principal</a></li>
+			<!-- <li><a href="index.php?opt=proc">Procesos Academicos</a></li>
+			<li><a href="index.php?opt=profs">Docentes</a></li>
+			<li><a href="index.php?opt=news">Noticias</a></li>
+			<li><a href="index.php?opt=util">Programas de Utileria</a></li>
+			<li><a href="index.php?opt=contact">Contacto/Suscripcion</a></li> -->
+			</ul>
+	  </div>
+	  </div>
+   </div>
   <!-- /content -->
   <!--<div class="clearfix"></div>-->
   <div id="footer">

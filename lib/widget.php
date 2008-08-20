@@ -45,7 +45,7 @@ class WidgetNovedades extends Widget{
     	while($row = $resultado->fetch_array())
         {
         	//titulo, vinculo //$t = $row[0]; //$v = $row[1];
-        	$this->Contenido .= "<li>$row[0]</li>";
+        	$this->Contenido .= "<li>" . (strlen($row[0])>35? substr($row[0],0,38) . "...": $row[0]) . "</li>";
         }
 		$resultado->close();
         $this->Contenido .= "</ul></div>";
