@@ -4,21 +4,26 @@
 
 function AjaxInit(){
 	var xmlHttp;
-	try{
-		// Firefox, Opera 8.0+, Safari
-  		xmlHttp=new XMLHttpRequest();
-	}
-	catch (e){
-		// Internet Explorer
+	var browser = navigator.appName;
+	//alert("browser: " + browser);
+	if(browser == "Netscape" | browser == "Opera"){
 		try{
-			xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+			xmlHttp=new XMLHttpRequest();
+		}catch(e){
+			alert("Tu navegador no soporta AJAX!");
+			return null;
+		}
+	}
+	else if (browser == "Microsoft Internet Explorer"){
+		try{
+			xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");			
 		}
 		catch (e){
 			try{
 				xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
 			}
 			catch (e){
-				//alert("Your browser does not support AJAX!");
+				alert("Tu navegador no soporta AJAX!");
 				return null;
 			}
 		}
@@ -27,43 +32,49 @@ function AjaxInit(){
 }
 
 
-function AjaxSend(content){
+function AjaxSend(content, responseObject){
 	var xmlHttp = AjaxInit();
 	//alert("enviando contenido: " + content);
     xmlHttp.open("GET", "../lib/AjaxManagerServer.php?" + content, true);
+	if (responseObject != null) {
+		if (responseObject.responseFunction != null) {
+			xmlHttp.onreadystatechange = function(){
+				//alert("readystate: " + xmlHttp.readyState);
+				if (xmlHttp.readyState == 4) {
+					//alert("respuesta: " + xmlHttp.responseText);
+					responseObject.responseFunction(xmlHttp.responseText);
+				}
+			}
+		}
+	}
 	xmlHttp.send(null);
 	return xmlHttp;
 }
 
-function AjaxSendAbout(content){	
-	AjaxSend("action=editabout&value=" + content);
+function AjaxSendAbout(content, obj){	
+	AjaxSend("action=editabout&value=" + content, obj);
 }
 
-function AjaxSendContacto(content){	
-	AjaxSend("action=editcontacto&value=" + content);
+function AjaxSendContacto(content, obj){	
+	AjaxSend("action=editcontacto&value=" + content, obj);
 }
 
-function AjaxSendSuscripcion(content){	
-	AjaxSend("action=editsuscripcion&value=" + content);
+function AjaxSendSuscripcion(content, obj){	
+	AjaxSend("action=editsuscripcion&value=" + content, obj);
 }
 
-function AjaxSendRequestPage(currentPage, newPage, uid, tabla){
-	var xmlHttp = AjaxSend("action=getpage&current=" + currentPage + "&new=" + newPage + "&uid=" + uid + "&tabla=" + tabla);
-	
-	xmlHttp.onreadystatechange = function(){
-		if (xmlHttp.readyState == 4) {
-			//alert("response received: " + xmlHttp.responseText);
-			CatchNewPage(xmlHttp.responseText);
-		}
+function AjaxSendRequestPage(currentPage, newPage, uid, tabla){	
+	var obj = new Object();
+	obj.responseFunction = function(responseText){
+		CatchNewPage(responseText);
 	}
+	var xmlHttp = AjaxSend("action=getpage&current=" + currentPage + "&new=" + newPage + "&uid=" + uid + "&tabla=" + tabla, obj);	
 }
 
-function AjaxSendRequestPost(tabla, uid, showdate){
-	var xmlHttp = AjaxSend("action=getpost&tabla=" + tabla + "&uid=" + uid + "&showdate=" + showdate);
-	
-	xmlHttp.onreadystatechange = function(){
-		if(xmlHttp.readyState == 4){
-			CatchNewPost(tabla, xmlHttp.responseText);
-		}
+function AjaxSendRequestPost(tabla, uid, showdate){	
+	var obj = new Object();
+	obj.responseFunction = function(responseText){		
+			CatchNewPost(tabla, responseText);
 	}
+	var xmlHttp = AjaxSend("action=getpost&tabla=" + tabla + "&uid=" + uid + "&showdate=" + showdate, obj);
 }

@@ -38,7 +38,7 @@
 	border-style: solid;
 	/*border-color: black;*/
 	border-width: 0px;
-	width: 75%;
+	width: 70%;
 	/*make me look like a label */
 	cursor: default;
 	background-color: transparent;
@@ -54,7 +54,7 @@
 	border-style: solid;
 	border-color: black;
 	border-width: 1px;
-	width: 75%;
+	width: 70%;
 }
 
 .PostContent{
@@ -81,7 +81,7 @@
 	font-size: small;
 	float: left;
 	margin: 0px 3px 0px 2px;
-	width: 12.5%
+	width: 18%
 }
 
 .PostDateEdit{
@@ -95,7 +95,7 @@
 	border-style: solid;
 	border-color: black;
 	border-width: 1px;
-	width: 15%
+	width: 18%
 }
 
 .PostInput{

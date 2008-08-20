@@ -16,7 +16,7 @@
 					break;
 				case "profs": $this->ShowProfs();
 					break;
-				case "news": $this->ShowNews();				
+				case "news": $this->ShowNews();
 					break;
 				case "util": $this->ShowUtils();
 					break;
@@ -131,7 +131,8 @@
 					$tempPost->tabla = "novedades";
 					$tempPost->fecha = substr($arreglo["fecha"],0,10);
 					$tempPost->titulo = $arreglo["titulo"];
-					$tempPost->contenido = substr($arreglo["descripcion"],3,strlen($arreglo["descripcion"])-4);
+					//$tempPost->contenido = substr($arreglo["descripcion"],3,strlen($arreglo["descripcion"])-4);
+					$tempPost->contenido = $arreglo["descripcion"];
 					$postList .= $tempPost->ToString();
 				}	
 			}
