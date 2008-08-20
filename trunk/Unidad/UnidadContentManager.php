@@ -29,7 +29,7 @@
 		public function ShowAbout($pg=-1, $onlyContent=false){
 			
 			$about = new cGeneral();
-			$aboutResult = $about->GetPorTitulo("about");
+			$about->GetPorTitulo("about");
 			
 			$pst = new Post("Acerca de la Unidad", $about->contenido,530, false, true, false);
 			$pst->editableTitle = false;
