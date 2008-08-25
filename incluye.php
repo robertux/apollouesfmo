@@ -17,5 +17,6 @@ require_once(RUTA."/lib/MainMenu.php");
 require_once(RUTA."/lib/Post.php");
 require_once(RUTA."/lib/ToolBox.php");
 require_once(RUTA."/lib/PostPager.php");
+require_once(RUTA . "/clases/cgeneral.php");
 //etc...
 ?>

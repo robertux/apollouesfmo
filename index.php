@@ -41,7 +41,7 @@
 	    </div>
     	<ul id="nav" style="top: 2%; left: 45%;">
 	      <li style="padding: 0 7px"><a>Principal</a></li>
-	      <li style="padding: 0 7px"><a href="Cursos/index.php?opt=mine">Maestrias</a></li>
+	      <li style="padding: 0 7px"><a href="Cursos/index.php?opt=actual">Maestrias</a></li>
 	      <li style="padding: 0 7px"><a href="Forum/index.php?opt=cat">Foro</a></li>
 	      <li style="padding: 0 7px"><a href="Unidad/index.php?opt=about">La Unidad</a></li>
     	</ul>
@@ -98,13 +98,24 @@
   </tr>
   <tr>
     <td width="10" height="60" bgcolor="#FFFFFF">&nbsp;</td>
-    <td width="900" height="60" bgcolor="#FFFFFF"><center><a href="http://srbyte.com">llena este espacio con vinculos importantes :) </a></center></td>
+    <td width="900" height="60" bgcolor="#FFFFFF">
+    	<div class="about" style="position: relative; top: 20px; width: 700px; border-top: 1px solid #DDDDDD;"><p style="color: black;">
+			Universidad de El Salvador Facultad Multidisciplinaria de Occidente<br/>
+			Todos los Derechos (C) Reservados - Teléfonos:(503)2449-0349, Fax:(503)2449-0352 Apdo. 1908<br/>
+			<a href="AcercaDe/index.php">Créditos</a></p>
+		</div>
+	</td>
     <td width="10" height="60" background="Media/right.png">&nbsp;</td>
   </tr>
 </table>
 <table width="910" height="20" border="0" align="center" cellpadding="0" cellspacing="0" background="Media/ft2.png">
   <tr>
     <td></td>
+  </tr>  
+</table>
+<table>
+	<tr>
+  	<td><br/></td>
   </tr>
 </table>
 </div>
