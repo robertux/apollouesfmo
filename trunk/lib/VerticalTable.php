@@ -43,7 +43,7 @@ class VerticalTableRow{
 			$this->cells[] = new VerticalTableCell("<input type='hidden' name='MAX_FILE_SIZE' value='2000000'><input id='upld-$id' name='upld' class='PostInputEdit' type='file' disabled='true' />", false);
 			break;
 		case "numero":
-			$this->cells[] = new VerticalTableCell("<input id='num-$id' name='num-$id' class='PostInput' type='text' value='" . $pCells[1] . "' disabled='true' onkeydown=' return FilterText(event)' />", false);
+			$this->cells[] = new VerticalTableCell("<input id='input-$id' name='input-$id' class='PostInput' type='text' value='" . $pCells[1] . "' disabled='true' onkeydown=' return FilterText(event)' />", false);
 			break;
 		case "fecha":
 			$this->cells[] = new VerticalTableCell("<input type='text' id='fch-$id' class='PostDate' value='" . $pCells[1] . "' disabled='true' ></input>", false);
