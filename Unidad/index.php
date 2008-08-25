@@ -73,7 +73,7 @@
 	<br/>
 	<br/>
 	<br/>
-	<div class="about" style="position: relative; top: 20px; width: 700px; border-top: 1px solid #DDDDDD;"><p style="color: black;">
+	<div class="about" style="position: relative; top: 20px; width: 700px; border-top: 1px solid #DDDDDD;"><p style="color: #686C7A; font-size: 8pt"">
 		Universidad de El Salvador Facultad Multidisciplinaria de Occidente<br/>
 		Todos los Derechos (C) Reservados - Teléfonos:(503)2449-0349, Fax:(503)2449-0352 Apdo. 1908<br/>
 		<a href="../AcercaDe/index.php">Créditos</a></p>
