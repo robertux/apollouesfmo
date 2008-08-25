@@ -20,14 +20,13 @@
 			$this->entidad = $pEntidad;
 		}
 		
-		function GetPosts($page = -1){
+		function GetPosts($page = -1, $condicion=""){
 			$this->CalcRegs($page);
-			return $this->entidad->GetListaFiltrada($this->iniReg-1, $this->pageLen);
+			return $this->entidad->GetListaFiltrada($this->iniReg-1, $this->pageLen, $condicion);
 		}		
 		
-		function ToString(){
-									
-			$this->CalcRegs();
+		function ToString($condicion=""){
+			$this->CalcRegs(-1, $condicion);
 			if($this->iniReg == 1)
 				$this->btnPrev->enabled = false;
 			if($this->finReg == $this->totRegs)
@@ -40,9 +39,11 @@
 			$currentUser = "-1";
 			if($_SESSION['CurrentUser'] != "")
 				$currentUser = $_SESSION['CurrentUser'];
-							
-			$this->btnPrev->onClick = "prevPage(\"" . $this->entidad->tabla . "\", " . $currentUser . ")";
-			$this->btnNext->onClick = "nextPage(\"" . $this->entidad->tabla . "\", " . $currentUser . ")";
+			
+			if($condicion != "")
+				$condicion = ", \"" . $condicion . "\"";
+			$this->btnPrev->onClick = "prevPage(\"" . $this->entidad->tabla . "\", " . $currentUser . $condicion . ")";
+			$this->btnNext->onClick = "nextPage(\"" . $this->entidad->tabla . "\", " . $currentUser . $condicion . ")";
 				
 			return "
 				<div class='TextPager'>Mostrando registros del <div id='iniReg' class='bold'>$this->iniReg</div> al <div id='finReg' class='bold'>$this->finReg</div> de los <div id='totRegs' class='bold'>$this->totRegs</div> totales</div>
@@ -52,7 +53,7 @@
 				<div class='ButtonPagerList'>" . $this->btnPrev->ToString() . $this->btnNext->ToString() . "</div>";
 		}
 		
-		function CalcRegs($page = -1){
+		function CalcRegs($page = -1, $condicion=""){
 			if($page == -1){
 				if(isset($_GET["page"]))
 					$this->currentPage = $_GET["page"];
@@ -60,7 +61,7 @@
 			else
 				$this->currentPage = $page;
 				
-			$this->totRegs = $this->GetTotalPosts();
+			$this->totRegs = $this->GetTotalPosts($condicion);
 			
 			$this->iniReg = ($this->currentPage * $this->pageLen) + 1;
 			$this->finReg = ($this->currentPage * $this->pageLen) + $this->pageLen;
@@ -68,8 +69,8 @@
 				$this->finReg = $this->totRegs;
 		}
 				
-		function GetTotalPosts(){
-			$res = $this->entidad->GetLista();
+		function GetTotalPosts($condicion=""){
+			$res = $this->entidad->GetLista($condicion);
 			return $res->num_rows;
 		}
     }

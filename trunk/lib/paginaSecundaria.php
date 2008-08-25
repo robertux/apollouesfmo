@@ -2,7 +2,6 @@
 
     class paginaSecundaria
     {
-    	
 		//Agrega el encabezado. Todas las inclusiones de los css y js necesarias
 		public function encabezado()
 		{
@@ -108,7 +107,8 @@
 		//Y aqui finaliza el cuerpo
 		public function pie()
 		{
-			echo "</body></html>";
+			echo "
+			</body></html>";
 		}
     }
 ?>

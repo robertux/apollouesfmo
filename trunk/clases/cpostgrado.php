@@ -1,5 +1,5 @@
 <?php 
-include("cconexion.php");
+include_once("cconexion.php");
 
 class cPostGrado
 {
@@ -8,13 +8,19 @@ class cPostGrado
 	public $id;
 	public $nombre;
 	public $notaminima;
-	public $totaluvs;
-	public $cumminimo;
-	public $abreviatura;
-	public $maxalum;	
+	public $inicioclases;
+	public $grado_obtener;
+	public $poblacion;
+	public $horario;	
 	
-	public $presentacion;
+	public $inversion;
 	public $descripcion;
+	public $codigo;
+	public $mision;
+	public $vision;
+	public $desarrollo;
+	public $duracion;
+	public $esactual;
 	public $tabla;
 	
 	public $error;
@@ -34,10 +40,21 @@ class cPostGrado
     
     //Obtenemos una lista (un resultset) de este objeto
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
-    public function GetLista()
+    public function GetLista($cond="")
     {
-    	return($this->Consultar("SELECT * FROM postgrado;", true));
+    	$numCond = 1;
+    	if($cond == "actual") $numCond = 1;
+		if($cond == "proximo") $numCond = 0;
+    	return($this->Consultar("SELECT * FROM postgrado WHERE esactual=$numCond ;", true));
     }
+	
+	public function GetListaFiltrada($ini=0, $len=10, $cond = "")
+	{	
+		$numCond = 1;
+    	if($cond == "actual") $numCond = 1;
+		if($cond == "proximo") $numCond = 0;	
+		return($this->Consultar("SELECT * FROM postgrado WHERE esactual=$numCond ORDER BY id DESC limit $ini, $len;", true));
+	}
     
     //Just for now...
     public function GetPorId($pId)
@@ -49,8 +66,8 @@ class cPostGrado
 	public function Insert()
     {
     	$this->Consultar("INSERT INTO 
-    	postgrado(nombre,notaminima,totaluvs,cumminimo,abreviatura,maxalum,presentacion,descripcion)
-    	VALUES ('$this->nombre',$this->notaminima,$this->totaluvs,$this->cumminimo,'$this->abreviatura', $this->maxalum, '$this->presentacion','$this->descripcion');", false);
+    	postgrado(nombre,notaminima,inicioclases,grado_obtener,poblacion,horario,inversion,descripcion,codigo,mision,vision,desarrollo,duracion,esactual)
+    	VALUES ('$this->nombre',$this->notaminima,'$this->inicioclases','$this->grado_obtener','$this->poblacion', '$this->horario', $this->inversion,'$this->descripcion', '$this->codigo', '$this->mision', '$this->vision', '$this->desarrollo', '$this->duracion', $this->esactual);", false);
     }
     
     public function Update()
@@ -58,12 +75,19 @@ class cPostGrado
     	$this->Consultar("UPDATE postgrado SET 
     	nombre = '$this->nombre', 
     	notaminima = $this->notaminima,
-    	totaluvs = $this->totaluvs,
-    	cumminimo= $this->cumminimo,
-    	abreviatura = '$this->abreviatura',
-    	maxalum = $this->maxalum,
-    	presentacion = '$this->presentacion',    	
-    	descripcion = '$this->descripcion' 
+    	inicioclases = '$this->inicioclases',
+    	grado_obtener= '$this->grado_obtener',
+    	poblacion = '$this->poblacion',
+    	horario = '$this->horario',
+    	inversion = $this->inversion,    	
+    	descripcion = '$this->descripcion',
+		codigo = '$this->codigo',
+		mision = '$this->mision',
+		vision = '$this->vision',
+		desarrollo = '$this->desarrollo',
+		duracion = '$this->duracion'
+		esactual = $this->esactual;
+		
     	WHERE id = $this->id;", false);
     }
 	
@@ -91,15 +115,21 @@ class cPostGrado
         			while($row = $resultado->fetch_array()) 
         			{
 	        			//id,nombre,notaminima,totaluvs,cumminimo,abreviatura,maxalum,presentacion,descripcion
-    	        		$this->id = $row[0];
-        	    		$this->nombre = $row[1];
-            			$this->notaminima = $row[2];
-            			$this->totaluvs = $row[3];
-            			$this->comminimo = $row[4];
-            			$this->abreviatura = $row[5];
-            			$this->maxalum = $row[6];
-						$this->presentacion = $row[7];
-						$this->descripcion = $row[8];
+    	        		$this->id = $row['id'];
+        	    		$this->nombre = $row['nombre'];
+            			$this->notaminima = $row['notaminima'];
+            			$this->inicioclases = $row['inicioclases'];
+            			$this->grado_obtener = $row['grado_obtener'];
+            			$this->poblacion = $row['poblacion'];
+            			$this->horario = $row['horario'];
+						$this->inversion = $row['inversion'];
+						$this->descripcion = $row['descripcion'];
+						$this->codigo = $row['codigo'];
+						$this->mision = $row['mision'];
+						$this->vision = $row['vision'];
+						$this->desarrollo = $row['desarrollo'];
+						$this->duracion = $row['duracion'];
+						$this->esactual = $row['esactual'];
         			}
         			// liberar la memoria
     				$resultado->close();

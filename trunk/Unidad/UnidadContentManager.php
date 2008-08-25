@@ -22,6 +22,8 @@
 					break;
 				case "contact": $this->ShowContact();
 					break;
+				case "usr": $this->ShowUsr();
+					break;
 				default: $this->ShowAbout();
 			}
 		}
@@ -217,6 +219,47 @@
 			//$pst->tbox->btnEdit->enabled = false;
 			//$pst->tbox->btnDel->enabled = false;
 			$pst->Show();
+		}
+		
+		public function ShowUsr($pg=-1, $onlyContent=false){
+			if($_SESSION["CurrentUser"] != ""){
+					$myUser = new cusuario();
+					$myUser->GetPorId($_SESSION["CurrentUser"]);
+					if($myUser->privilegio == "admin"){
+						
+						$postList = "";
+						$cusr = new cUsuario();
+						$pPager = new PostPager($cusr, 2);
+						$usrResult = $pPager->GetPosts($pg);
+						if($usrResult->num_rows > 0){
+							while($arreglo = $usrResult->fetch_array()){
+								$tempPost = new InnerPost("", "", 530, false, true, true);
+								$tempPost->editableTitle = false;
+								$tempPost->id = $arreglo["id"];
+								$tempPost->tabla = "usuario";
+								$tempPost->titulo = $arreglo["nombre"];
+								
+								$vTable = new VerticalTable();
+								$vTable->rows[] = new VerticalTableRow(array("Nombre", $arreglo["nombre"]), $tempPost->id);
+								$vTable->rows[] = new VerticalTableRow(array("Clave", $arreglo["clave"]), $tempPost->id);
+								
+								$tempPost->contenido = $vTable->ToString();
+								$tempPost->plainTextContent = false;
+								$postList .= $tempPost->ToString();
+							}
+						}
+						else{
+							$tempPost = new InnerPost("No hay resultados", "No hay docentes que mostrar...", 530, true, false, false);
+							$tempPost->id = "noresults";
+							$postList .= $tempPost->ToString();
+						}
+						
+						$pst = new Post("Usuarios del Sitio Web", $postList, 550, true, false, false);
+						$pst->Show();
+						return;
+					}
+				}
+			$this->ShowAbout();
 		}
     }
 ?>

@@ -63,12 +63,15 @@ function AjaxSendSuscripcion(content, obj){
 	AjaxSend("action=editsuscripcion&value=" + content, obj);
 }
 
-function AjaxSendRequestPage(currentPage, newPage, uid, tabla){	
+function AjaxSendRequestPage(currentPage, newPage, uid, tabla, condicion){	
 	var obj = new Object();
 	obj.responseFunction = function(responseText){
 		CatchNewPage(responseText);
 	}
-	var xmlHttp = AjaxSend("action=getpage&current=" + currentPage + "&new=" + newPage + "&uid=" + uid + "&tabla=" + tabla, obj);	
+	pCondicion = "";
+	if(condicion)
+		pCondicion = "&cond=" + condicion;	
+	var xmlHttp = AjaxSend("action=getpage&current=" + currentPage + "&new=" + newPage + "&uid=" + uid + "&tabla=" + tabla + pCondicion, obj);
 }
 
 function AjaxSendRequestPost(tabla, uid, showdate){	

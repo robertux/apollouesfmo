@@ -36,8 +36,13 @@ class cUsuario
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
     public function GetLista()
     {
-    	return($this->Consultar("SELECT * FROM foro_users;", true));
+    	return($this->Consultar("SELECT * FROM foro_users" . ($cond == ""? " ": " WHERE $cond ") . ";", true));
     }
+	
+	public function GetListaFiltrada($ini=0, $len=10, $cond="")
+	{
+		return($this->Consultar("SELECT * FROM usuario" . ($cond == ""? " ": " WHERE $cond ") . "ORDER BY id DESC limit $ini, $len;", true));
+	}
     
     public function GetPorNombreClave($pNombre, $pClave)
     {

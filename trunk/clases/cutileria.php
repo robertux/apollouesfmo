@@ -37,12 +37,12 @@ class cUtileria
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
     public function GetLista()
     {
-    	return($this->Consultar("SELECT id, titulo, vinculo, descripcion FROM utileria;", true));
+    	return($this->Consultar("SELECT id, titulo, vinculo, descripcion FROM utileria" . ($cond == ""? " ": " WHERE $cond ") . ";", true));
     }
 	
-	public function GetListaFiltrada($ini=0, $len=10)
+	public function GetListaFiltrada($ini=0, $len=10, $cond="")
 	{
-		return($this->Consultar("SELECT * FROM utileria ORDER BY id limit $ini, $len;", true));
+		return($this->Consultar("SELECT * FROM utileria" . ($cond == ""? " ": " WHERE $cond ") . "ORDER BY id limit $ini, $len;", true));
 	}
 	
 	public function GetListaOrden()
