@@ -1,6 +1,6 @@
 <?php
 define("RUTAINC", realpath("../"));
-$foo = RUTAINC."clases/cconexion.php";
+$foo = RUTAINC."/clases/cconexion.php";
 require_once($foo);
 $con = new cConexion();
 #echo "<h1>".$foo."</h1>";
