@@ -5,6 +5,8 @@
 	require_once("CursosContentManager.php");
 	require_once("Materia.php");
 	require_once("ResManager.php");
+	require_once("../clases/cpostgrado.php");
+	require_once("../lib/VerticalTable.php");
 	
 	$pag = new paginaSecundaria();
 	$pag->encabezado();
@@ -38,14 +40,36 @@
 		?>	
 		<div id="rightMenu">
 			<ul>
-			<li><a href="index.php?opt=mine">Mis Maestrias</a></li>
 			<li><a href="index.php?opt=actual">Maestrias Actuales</a></li>
 			<li><a href="index.php?opt=next">Maestrias Proximas</a></li>
 			<li><a href="index.php?opt=event">Eventos</a></li>
-			<li><a href="index.php?opt=stuff">Recursos Adicionales</a></li>
 			<li><a href="index.php?opt=serv">Servicio Social</a></li>
 			</ul>
+			<?php 
+				if($_SESSION["CurrentUser"] != ""){
+					$myUser = new cusuario();
+					$myUser->GetPorId($_SESSION["CurrentUser"]);
+					if($myUser->privilegio == "admin"){
+						echo "
+							<div id=\"\">
+							<div class='innerTitle' style='margin-top: 25px'>Administracion</div>
+							</div>
+							<ul>
+								<li><a href=\"index.php?opt=usr\">Usuarios</a></li>
+							</ul>							
+						";
+					}
+				}
+			?>
 		  </div>
+	</div>
+	<br/>
+	<br/>
+	<br/>
+	<div class="about" style="position: relative; top: 20px; width: 700px; border-top: 1px solid #DDDDDD;"><p style="color: black;">
+		Universidad de El Salvador Facultad Multidisciplinaria de Occidente<br/>
+		Todos los Derechos (C) Reservados - Teléfonos:(503)2449-0349, Fax:(503)2449-0352 Apdo. 1908<br/>
+		<a href="../AcercaDe/index.php">Créditos</a></p>
 	</div>
   </div>
     <!-- /content -->
