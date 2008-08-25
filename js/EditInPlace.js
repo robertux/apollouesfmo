@@ -39,21 +39,30 @@ function EnablePostContent(idPost, plainTextContent){
 	else {
 		elements = document.getElementsByTagName("input");
 		for (var i = 0; i < elements.length; i++) {
-			if (elements[i].id == ("input-" + idPost) || elements[i].id == ("upld-" + idPost)) {
+			if (elements[i].id == ("input-" + idPost) || elements[i].id == ("upld-" + idPost) || elements[i].id == ("fch-" + idPost) || elements[i].id == ("num-" + idPost)) {
 				elements[i].className = "PostInputEdit";
 				elements[i].disabled = false;
 			}
 		}
 		
 		elements = document.getElementsByTagName("div");
+		var divIdExtra = 1;
 		for (var i = 0; i < elements.length; i++) {
-			if (elements[i].id == ("div-" + idPost)) {				
+			if (elements[i].id == ("div-" + idPost)) {
 				try{
-					tinymceInitTwoRows();					
+					tinymceInitTwoRows();
 					//alert("activando: div-" + idPost);
-					tinyMCE.execCommand('mceAddControl', false, ("div-" + idPost));				
+					tinyMCE.execCommand('mceAddControl', false, ("div-" + idPost));
 				}catch(e) { alert("error: " + e); }
-			}			
+			}
+			if (elements[i].id == ("div-" + idPost + "-" + divIdExtra)) {
+				try{					
+					//alert("buscando div-" + idPost + "-" + divIdExtra);
+					tinymceInitTwoRows();
+					tinyMCE.execCommand('mceAddControl', false, ("div-" + idPost + "-" + divIdExtra));
+					divIdExtra++;
+				}catch(e){ /* pass */ }
+			}
 		}
 	}		
 }
@@ -354,4 +363,23 @@ function ClearImgTitle(){
 	titulo = document.getElementById("txt-prev");
 	if(titulo != null)	
 	titulo.value = "Vista Previa";
+}
+
+function FilterText(e){
+	//alert("tecla presionada.");
+	var keynum;
+	var keychar;
+	var numcheck;
+
+	if(window.event){  //IE
+		keynum = e.keyCode;
+	}
+	else if(e.which){ // Netscape/Firefox/Opera
+		keynum = e.which;
+	}
+	//alert("keynum? " + keynum);
+	keychar = String.fromCharCode(keynum);
+	numcheck = /\d/;
+	return /*numcheck.test(keychar) ||*/(keynum > 47 && keynum < 58) || (keynum > 95 && keynum < 106) || keynum == 13 || keynum == 27 || keynum == 32 || keynum == 8 || keynum == 9 || keynum == 46 || keynum == 110 || keynum == 190 || (keynum > 36 && keynum < 41);
+
 }

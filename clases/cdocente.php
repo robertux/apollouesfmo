@@ -30,14 +30,14 @@ class cDocente
     
     //Obtenemos una lista (un resultset) de este objeto
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
-    public function GetLista()
+    public function GetLista($cond="")
     {
-    	return($this->Consultar("SELECT * FROM docente;", true));
+    	return($this->Consultar("SELECT * FROM docente" . ($cond == ""? " ": " WHERE $cond ") . ";", true));
     }
 	
-	public function GetListaFiltrada($ini=0, $len=10)
+	public function GetListaFiltrada($ini=0, $len=10, $cond="")
 	{
-		return($this->Consultar("SELECT * FROM docente ORDER BY id limit $ini, $len;", true));
+		return($this->Consultar("SELECT * FROM docente" . ($cond == ""? " ": " WHERE $cond ") . "ORDER BY id limit $ini, $len;", true));
 	}
     
     public function GetPorId($pId)

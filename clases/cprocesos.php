@@ -35,14 +35,14 @@ class cProcesos
     
     //Obtenemos una lista (un resultset) de este objeto
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
-    public function GetLista()
+    public function GetLista($cond="")
     {
-    	return($this->Consultar("SELECT id, nombre, imagen, descripcion, vprevia FROM procesos ORDER BY id;", true));
+    	return($this->Consultar("SELECT id, nombre, imagen, descripcion, vprevia FROM procesos " . ($cond == ""? " ": " WHERE $cond ") . "ORDER BY id;", true));
     }
 	
-	public function GetListaFiltrada($ini=0, $len=10)
+	public function GetListaFiltrada($ini=0, $len=10, $cond="")
 	{
-		return($this->Consultar("SELECT * FROM procesos ORDER BY id limit $ini, $len;", true));
+		return($this->Consultar("SELECT * FROM procesos" . ($cond == ""? " ": " WHERE $cond ") . "ORDER BY id limit $ini, $len;", true));
 	}
 	
 	public function GetListaOrden()

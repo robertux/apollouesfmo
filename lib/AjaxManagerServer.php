@@ -11,7 +11,9 @@ require_once(RUTA . "/clases/cnovedades.php");
 require_once(RUTA . "/clases/cdocente.php");
 require_once(RUTA . "/clases/cutileria.php");
 require_once(RUTA . "/clases/cprocesos.php");
+require_once(RUTA . "/clases/cpostgrado.php");
 require_once(RUTA . "/Unidad/UnidadContentManager.php");
+require_once(RUTA . "/Cursos/CursosContentManager.php");
 require_once(RUTA . "/lib/VerticalTable.php");
 require_once(RUTA . "/lib/MGalleryManager.php");
 
@@ -187,6 +189,7 @@ $conn = new cConexion();
 				$uid = $_GET["uid"];
 				$_SESSION["CurrentUser"] = $uid;
 				$direction = $_GET["new"];
+				$condicion = $_GET["cond"];
 				
 				if($direction == "next")
 					$currentPg++;
@@ -194,6 +197,7 @@ $conn = new cConexion();
 					$currentPg--;
 				
 				$ucm = new UnidadContentManager();
+				$ccm = new CursosContentManager();
 				switch($_GET["tabla"]){
 					case "novedades":
 						$ucm->showNews($currentPg, true);
@@ -206,6 +210,12 @@ $conn = new cConexion();
 						break;
 					case "procesos":
 						$ucm->ShowProcs($currentPg, true);
+						break;
+					case "postgrado":
+						if($condicion == "actual")
+							$ccm->ShowCursos($currentPg, true, true);
+						elseif($condicion == "proximo")
+							$ccm->ShowCursos($currentPg, true, false);
 						break;
 				}				
 				break;

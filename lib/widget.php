@@ -78,14 +78,18 @@ class WidgetForo extends Widget{
     {
     	$resultado = $this->foro->GetListaPosts();
     	$foo = 1;
-    	while($row = $resultado->fetch_array())
-        {
-        	//titulo, vinculo //$t = $row[0]; //$v = $row[1];
-        	$this->Contenido .= "<li>$row[1]: $row[0]</li>";
-        	$foo++;
-        	if ($foo==5) break;
-        }
-		$resultado->close();
+		
+		if($resultado->num_rows >0){
+	    	while($row = $resultado->fetch_array()){
+	        	//titulo, vinculo //$t = $row[0]; //$v = $row[1];
+	        	$this->Contenido .= "<li>$row[1]: $row[0]</li>";
+	        	$foo++;
+	        	if ($foo==5) break;
+	        }
+			$resultado->close();
+		}
+		else
+			$this->Contenido .= "No hay novedades.";
         $this->Contenido .= "</ul></div>";
     }
 		

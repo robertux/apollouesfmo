@@ -1,6 +1,5 @@
 <?php
-	
-	include(realpath("./") . "clases/cgeneral.php");
+		
     class mainContentManager{
     	
 		public function showNews(){
