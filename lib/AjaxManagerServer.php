@@ -87,9 +87,31 @@ $conn = new cConexion();
 						$query = "insert into procesos values($id, '$content', '$titulo', '$descripcion', null);";
 						//echo "query: $query";
 						break;
+						
+					case "postgrado":					
+						$codigoPost = $_GET["codigo"];
+						$nombrePost = $_GET["nombre"];
+						$desarrolloPost = $_GET["desarrollo"];
+						$duracionPost = $_GET["duracion"];
+						$cmaPost = $_GET["cma"];
+						$iniclPost = $_GET["inicl"];
+						$gradoPost = $_GET["grado"];
+						$invPost = $_GET["inv"];
+						$descPost = $_GET["desc"];
+						$misionPost = $_GET["mision"];
+						$visionPost = $_GET["vision"];
+						$poblaPost = $_GET["poblac"];
+						$horarioPost = $_GET["horario"];
+						$esactual = $_GET["esactual"];
+						
+						$query = "insert into postgrado values($id, '$nombrePost', $cmaPost, '$descPost', '$iniclPost', '$gradoPost', "
+						. "'$poblaPost', '$horarioPost', $invPost, '$codigoPost', '$misionPost', '$visionPost', "
+						. "'$desarrolloPost', '$duracionPost', $esactual);";
+						echo $query;
+						break;
 				}
 				$conn->Conectar();
-				$res = $conn->mysqli->query($query);
+				echo $res = $conn->mysqli->query($query);
 				if($_GET["table"] == "procesos")
 					header("location: ../Unidad/index.php?opt=proc");
 				break;
@@ -168,7 +190,7 @@ $conn = new cConexion();
 						$query = "update procesos set nombre='$titulo', descripcion='$descripcion'  where id=$id;";
 						break;
 					case "postgrado":
-						echo "postgrado";
+						//echo "postgrado";
 						$codigoPost = $_GET["codigo"];
 						$nombrePost = $_GET["nombre"];
 						$desarrolloPost = $_GET["desarrollo"];
@@ -280,6 +302,24 @@ $conn = new cConexion();
 					$pst->contenido .= "</form>";
 					$pst->plainTextContent = false;
 					$pst->editableTitle = false;
+				}
+				if($tabla == "postgrado"){
+					$vTable = new VerticalTable();
+					$vTable->rows[] = new VerticalTableRow(array("Nombre", ""), $pst->id);
+					$vTable->rows[] = new VerticalTableRow(array("Descripcion", ""), $pst->id . "-1", "area");
+					$vTable->rows[] = new VerticalTableRow(array("Mision", ""), $pst->id . "-2", "area");
+					$vTable->rows[] = new VerticalTableRow(array("Vision", ""), $pst->id . "-3", "area");
+					$vTable->rows[] = new VerticalTableRow(array("Desarrollo del Programa", ""), $pst->id);
+					$vTable->rows[] = new VerticalTableRow(array("Duracion", ""), $pst->id);
+					$vTable->rows[] = new VerticalTableRow(array("Calificacion Minima de Aprobacion", ""), $pst->id, "numero");
+					$vTable->rows[] = new VerticalTableRow(array("Inicio de Clases", ""), $pst->id, "fecha");
+					$vTable->rows[] = new VerticalTableRow(array("Grado a Obtener", ""), $pst->id);
+					$vTable->rows[] = new VerticalTableRow(array("Poblacion a la que se Dirige el Programa", ""), $pst->id . "-4", "area");
+					$vTable->rows[] = new VerticalTableRow(array("Horario", ""), $pst->id . "-5", "area");
+					$vTable->rows[] = new VerticalTableRow(array("Inversion", ""), $pst->id, "numero");
+					$pst->contenido .= $vTable->ToString();
+					$pst->plainTextContent = false;
+					$pst->editableTitle = true;
 				}
 				$pst->Show();
 				break;
