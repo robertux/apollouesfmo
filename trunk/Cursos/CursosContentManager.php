@@ -79,7 +79,7 @@
 			}
 			
 			$pst = new Post("Maestrias " . ($showActuales? "Actuales": "Proximas"), $postList, 550, true, false, false);
-			$pst->tabla = "docente";
+			$pst->tabla = "postgrado";
 			$pst->pie = $pPager->ToString($condicion);
 			$pst->contenido .= "<input type='hidden' id='tipocursos' value='$condicion' />";
 			if($onlyContent)

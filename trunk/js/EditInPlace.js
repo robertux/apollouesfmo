@@ -311,8 +311,9 @@ function SavePost(idPost, uid, plainTextContent){
 			visionPost = postItems[8];
 			poblaPost = postItems[9];
 			horarioPost = postItems[10];
+			cursoPost = (document.getElementById("tipocursos").value == "actual"? 1: 0);
 			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&codigo=" + codigoPost + "&nombre=" + nombrePost + "&desarrollo=" + desarrolloPost + "&duracion=" + duracionPost + "&cma=" + cmaPost
-			+"&inicl=" + iniclPost + "&grado=" + gradoPost + "&inv=" + invPost + "&desc=" + descPost + "&mision=" + misionPost + "&vision=" + visionPost + "&poblac=" + poblaPost + "&horario=" + horarioPost + "&id=" + indexPost
+			+"&inicl=" + iniclPost + "&grado=" + gradoPost + "&inv=" + invPost + "&desc=" + descPost + "&mision=" + misionPost + "&vision=" + visionPost + "&poblac=" + poblaPost + "&horario=" + horarioPost + "&id=" + indexPost + "&esactual=" + cursoPost
 			, obj);
 			break;
 	}
@@ -345,6 +346,7 @@ function DelPost(idPost, uid){
 	//alert("DelPost. uid= " + uid);
 	tablaPost = document.getElementById("tbl-" + idPost).value;
 	indexPost = document.getElementById("id-" + idPost).value;
+	condicion = document.getElementById("tipocursos").value;
 	if(tablaPost == "procesos")
 		indexPost = document.getElementById("id-bigimg").value;
 	if (confirm("Esta seguro que desea eliminar este elemento?")) {
@@ -354,7 +356,7 @@ function DelPost(idPost, uid){
 		}
 		var obj = new Object();
 		obj.responseFunction = function(){
-				refreshPage(tablaPost, uid);
+				refreshPage(tablaPost, uid, condicion);
 		}
 		AjaxSend("action=del&table=" + tablaPost + "&id=" + indexPost, obj);
 	}
@@ -371,11 +373,12 @@ function CatchSavedPost(tablaPost, uid){
 	refreshPage(tablaPost, uid, $condicion);
 }
 
-function CatchNewPost(tablaPost, responseText){
-	//alert("recibido: " + responseText);
+function CatchNewPost(tablaPost, responseText){	
 	document.getElementById("area-").innerHTML = responseText + document.getElementById("area-").innerHTML;
 	if(tablaPost == "novedades")
 		EnablePost("-1", '1');
+	else if (tablaPost == "postgrado")
+		EnablePost("-1", '');
 	else
 		EnablePostContent("-1", '');
 	fillup();
