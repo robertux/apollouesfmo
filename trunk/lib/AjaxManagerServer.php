@@ -308,24 +308,27 @@ $conn = new cConexion();
 				
 				$pst = new InnerPost("", "", 530, false, true, true);
 				$pst->id = "-1";
-				$pst->tabla = $tabla;
+				$pst->tabla = $tabla;				
 								
 				if($showDate == '1')
 					$pst->fecha = date("Y-m-d") . " 00:00:00";
 				
+				if($tabla == "novedades"){
+					$pst->tituloMaxLength="50";
+				}				
 				if($tabla == "docente"){
 					$vTable = new VerticalTable();
-					$vTable->rows[] = new VerticalTableRow(array("Apellidos", ""), $pst->id);
-					$vTable->rows[] = new VerticalTableRow(array("Nombres", ""), $pst->id);
-					$vTable->rows[] = new VerticalTableRow(array("Grado Academico", ""), $pst->id);
+					$vTable->rows[] = new VerticalTableRow(array("Apellidos", ""), $pst->id, "text", "200");
+					$vTable->rows[] = new VerticalTableRow(array("Nombres", ""), $pst->id, "text", "200");
+					$vTable->rows[] = new VerticalTableRow(array("Grado Academico", ""), $pst->id, "text", "50");
 					$vTable->rows[] = new VerticalTableRow(array("Descripcion", ""), $pst->id, "area");
 					$pst->contenido = $vTable->ToString();
 					$pst->plainTextContent = false;
 				}				
 				if($tabla == "utileria"){
 					$vTable = new VerticalTable();
-					$vTable->rows[] = new VerticalTableRow(array("Titulo", ""), $pst->id);
-					$vTable->rows[] = new VerticalTableRow(array("Vinculo", ""), $pst->id);
+					$vTable->rows[] = new VerticalTableRow(array("Titulo", ""), $pst->id, "text", "50");
+					$vTable->rows[] = new VerticalTableRow(array("Vinculo", ""), $pst->id, "text", "100");
 					$vTable->rows[] = new VerticalTableRow(array("Descripcion", ""), $pst->id, "area");
 					$pst->contenido = $vTable->ToString();
 					$pst->plainTextContent = false;
@@ -333,7 +336,7 @@ $conn = new cConexion();
 				if($tabla == "procesos"){
 					$vTable = new VerticalTable();
 					$pst->contenido .= "<form id='frmProcs' method='post' enctype='multipart/form-data'>";
-					$vTable->rows[] = new VerticalTableRow(array("Nombre", ""), $pst->id);
+					$vTable->rows[] = new VerticalTableRow(array("Nombre", ""), $pst->id, "text", "20");
 					$vTable->rows[] = new VerticalTableRow(array("Archivo (max. 2Mb)", ""), $pst->id, "file");
 					$vTable->rows[] = new VerticalTableRow(array("Descripcion", ""), $pst->id, "area");					
 					$pst->contenido .= $vTable->ToString();
@@ -343,42 +346,45 @@ $conn = new cConexion();
 				}
 				if($tabla == "postgrado"){
 					$vTable = new VerticalTable();
-					$vTable->rows[] = new VerticalTableRow(array("Nombre", ""), $pst->id);
+					$vTable->rows[] = new VerticalTableRow(array("Nombre", ""), $pst->id, "text", "200");
 					$vTable->rows[] = new VerticalTableRow(array("Descripcion", ""), $pst->id . "-1", "area");
 					$vTable->rows[] = new VerticalTableRow(array("Mision", ""), $pst->id . "-2", "area");
 					$vTable->rows[] = new VerticalTableRow(array("Vision", ""), $pst->id . "-3", "area");
 					$vTable->rows[] = new VerticalTableRow(array("Desarrollo del Programa", ""), $pst->id);
-					$vTable->rows[] = new VerticalTableRow(array("Duracion", ""), $pst->id);
+					$vTable->rows[] = new VerticalTableRow(array("Duracion", ""), $pst->id, "text", "200");
 					$vTable->rows[] = new VerticalTableRow(array("Calificacion Minima de Aprobacion", ""), $pst->id, "numero");
 					$vTable->rows[] = new VerticalTableRow(array("Inicio de Clases", date("Y-m-d")), $pst->id, "fecha");
-					$vTable->rows[] = new VerticalTableRow(array("Grado a Obtener", ""), $pst->id);
+					$vTable->rows[] = new VerticalTableRow(array("Grado a Obtener", ""), $pst->id, "text", "150");
 					$vTable->rows[] = new VerticalTableRow(array("Poblacion a la que se Dirige el Programa", ""), $pst->id . "-4", "area");
 					$vTable->rows[] = new VerticalTableRow(array("Horario", ""), $pst->id . "-5", "area");
 					$vTable->rows[] = new VerticalTableRow(array("Inversion", ""), $pst->id, "numero");
 					$pst->contenido .= $vTable->ToString();
 					$pst->plainTextContent = false;
 					$pst->editableTitle = true;
+					$pst->tituloMaxLength = "10";
 				}
 				if($tabla == "evento"){
 					$vTable = new VerticalTable();
 					$vTable->rows[] = new VerticalTableRow(array("Fecha", date("Y-m-d")), $pst->id, "fecha");
-					$vTable->rows[] = new VerticalTableRow(array("Lugar", ""), $pst->id);
+					$vTable->rows[] = new VerticalTableRow(array("Lugar", ""), $pst->id, "text", "300");
 					$vTable->rows[] = new VerticalTableRow(array("Detalle", ""), $pst->id, "area");
 					
 					$pst->contenido = $vTable->ToString();
 					$pst->plainTextContent = false;
 					$pst->editableTitle = true;
+					$pst->tituloMaxLength = "300";
 					
 				}
 				if($tabla == "servsocial"){
 					$vTable = new VerticalTable();
 					$vTable->rows[] = new VerticalTableRow(array("Descripcion", ""), $pst->id, "area");
-					$vTable->rows[] = new VerticalTableRow(array("Duracion", ""), $pst->id);
+					$vTable->rows[] = new VerticalTableRow(array("Duracion", ""), $pst->id, "text", "200");
 					$vTable->rows[] = new VerticalTableRow(array("Total Horas", ""), $pst->id, "numero");
 					
 					$pst->contenido = $vTable->ToString();
 					$pst->plainTextContent = false;
 					$pst->editableTitle = true;
+					$pst->tituloMaxLength = "300";
 				}
 				$pst->Show();
 				break;

@@ -44,17 +44,18 @@
 						$tempPost->id = $arreglo["id"];
 						$tempPost->tabla = "postgrado";
 						$tempPost->titulo = $arreglo["codigo"];
+						$tempPost->tituloMaxLength = "10";
 						
 						$vTable = new VerticalTable();
-						$vTable->rows[] = new VerticalTableRow(array("Nombre", $arreglo["nombre"]), $tempPost->id);
+						$vTable->rows[] = new VerticalTableRow(array("Nombre", $arreglo["nombre"]), $tempPost->id, "text", "200");
 						$vTable->rows[] = new VerticalTableRow(array("Descripcion", $arreglo["descripcion"]), $tempPost->id . "-1", "area");
 						$vTable->rows[] = new VerticalTableRow(array("Mision", $arreglo["mision"]), $tempPost->id . "-2", "area");
 						$vTable->rows[] = new VerticalTableRow(array("Vision", $arreglo["vision"]), $tempPost->id . "-3", "area");
 						$vTable->rows[] = new VerticalTableRow(array("Desarrollo del Programa", $arreglo["desarrollo"]), $tempPost->id);
-						$vTable->rows[] = new VerticalTableRow(array("Duracion", $arreglo["duracion"]), $tempPost->id);
+						$vTable->rows[] = new VerticalTableRow(array("Duracion", $arreglo["duracion"]), $tempPost->id, "text", "200");
 						$vTable->rows[] = new VerticalTableRow(array("Calificacion Minima de Aprobacion", $arreglo["notaminima"]), $tempPost->id, "numero");
 						$vTable->rows[] = new VerticalTableRow(array("Inicio de Clases", substr($arreglo["inicioclases"],0,10)), $tempPost->id, "fecha");
-						$vTable->rows[] = new VerticalTableRow(array("Grado a Obtener", $arreglo["grado_obtener"]), $tempPost->id);
+						$vTable->rows[] = new VerticalTableRow(array("Grado a Obtener", $arreglo["grado_obtener"]), $tempPost->id, "text", "150");
 						$vTable->rows[] = new VerticalTableRow(array("Poblacion a la que se Dirige el Programa", $arreglo["poblacion"]), $tempPost->id . "-4", "area");
 						$vTable->rows[] = new VerticalTableRow(array("Horario", $arreglo["horario"]), $tempPost->id . "-5", "area");
 						$vTable->rows[] = new VerticalTableRow(array("Inversion", $arreglo["inversion"]), $tempPost->id, "numero");
@@ -98,10 +99,11 @@
 					$tempPost->id = $arreglo["id"];
 					$tempPost->tabla = "evento";
 					$tempPost->titulo = $arreglo["titulo"];
+					$tempPost->tituloMaxLength = "300";
 					
 					$vTable = new VerticalTable();
 					$vTable->rows[] = new VerticalTableRow(array("Fecha", substr($arreglo["fecha"], 0, 10)), $tempPost->id, "fecha");
-					$vTable->rows[] = new VerticalTableRow(array("Lugar", $arreglo["lugar"]), $tempPost->id);
+					$vTable->rows[] = new VerticalTableRow(array("Lugar", $arreglo["lugar"]), $tempPost->id, "text", "300");
 					$vTable->rows[] = new VerticalTableRow(array("Detalle", $arreglo["detalle"]), $tempPost->id, "area");
 					
 					$tempPost->contenido = $vTable->ToString();
@@ -142,10 +144,11 @@
 					$tempPost->id = $arreglo["id"];
 					$tempPost->tabla = "servsocial";
 					$tempPost->titulo = $arreglo["nombre"];
+					$tempPost->tituloMaxLength = "300";
 					
 					$vTable = new VerticalTable();
 					$vTable->rows[] = new VerticalTableRow(array("Descripcion", $arreglo["descripcion"]), $tempPost->id, "area");
-					$vTable->rows[] = new VerticalTableRow(array("Duracion", $arreglo["duracion"]), $tempPost->id);
+					$vTable->rows[] = new VerticalTableRow(array("Duracion", $arreglo["duracion"]), $tempPost->id, "text", "200");
 					$vTable->rows[] = new VerticalTableRow(array("Total Horas", $arreglo["total_horas"]), $tempPost->id, "numero");
 					
 					$tempPost->contenido = $vTable->ToString();

@@ -25,16 +25,18 @@ class VerticalTable{
 
 class VerticalTableRow{
 	
-	public $cells = array();	
+	public $cells = array();
 	
-	public function VerticalTableRow($pCells, $id=-1, $typeContent = "text"){
+	public function VerticalTableRow($pCells, $id=-1, $typeContent = "text", $maxLength = ""){
 		/*foreach($pCells as $pCell){
 			$this->cells[] = new VerticalTableCell($pCell);
 		}*/		
 		$this->cells[] = new VerticalTableCell($pCells[0], true);
+		if($maxLength != "")
+			$maxLength = " maxlength='" . $maxLength . "'";
 		switch($typeContent){
 		case "text":
-			$this->cells[] = new VerticalTableCell("<input id='input-$id' name='input-$id' class='PostInput' type='text' value='" . $pCells[1] . "' disabled='true' />", false);
+			$this->cells[] = new VerticalTableCell("<input id='input-$id' name='input-$id' class='PostInput' type='text' value='" . $pCells[1] . "' disabled='true' $maxLength />", false);
 			break;
 		case "area":
 			$this->cells[] = new VerticalTableCell("<div id='div-$id' name='div-$id'  class='PostInput'>" . $pCells[1]. "</div>", false);
@@ -43,7 +45,7 @@ class VerticalTableRow{
 			$this->cells[] = new VerticalTableCell("<input type='hidden' name='MAX_FILE_SIZE' value='2000000'><input id='upld-$id' name='upld' class='PostInputEdit' type='file' disabled='true' />", false);
 			break;
 		case "numero":
-			$this->cells[] = new VerticalTableCell("<input id='input-$id' name='input-$id' class='PostInput' type='text' value='" . $pCells[1] . "' disabled='true' onkeydown=' return FilterText(event)' />", false);
+			$this->cells[] = new VerticalTableCell("<input id='input-$id' name='input-$id' class='PostInput' type='text' value='" . $pCells[1] . "' disabled='true' maxlength='11' onkeydown=' return FilterText(event)' />", false);
 			break;
 		case "fecha":
 			$this->cells[] = new VerticalTableCell("<input type='text' id='fch-$id' class='PostDate' value='" . $pCells[1] . "' disabled='true' ></input>", false);
@@ -70,6 +72,7 @@ class VerticalTableCell{
 	
 	public $value = "";
 	public $header = false;
+	public $maxLength = "";
 	
 	public function VerticalTableCell($pValue, $pHeader=false){
 		$this->value = $pValue;

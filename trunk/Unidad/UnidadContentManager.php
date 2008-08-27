@@ -63,6 +63,7 @@
 				$pstContent->contenido .= $vTable->ToString();
 				$pstContent->plainTextContent = false;
 				$pstContent->tabla = "procesos";
+				$pstContent->tituloMaxLength = "20";
 				$metaInfo .= "<input type=hidden id='id-bigimg' value='". $MGManager->images[0]->id ."'>";
 			}	
 			else
@@ -90,9 +91,9 @@
 					$tempPost->titulo = $arreglo["apellidos"] . ", " . $arreglo["nombres"];
 					
 					$vTable = new VerticalTable();
-					$vTable->rows[] = new VerticalTableRow(array("Apellidos", $arreglo["apellidos"]), $tempPost->id);
-					$vTable->rows[] = new VerticalTableRow(array("Nombres", $arreglo["nombres"]), $tempPost->id);
-					$vTable->rows[] = new VerticalTableRow(array("Grado Academico", $arreglo["gradoacademico"]), $tempPost->id);
+					$vTable->rows[] = new VerticalTableRow(array("Apellidos", $arreglo["apellidos"]), $tempPost->id, "text", "200");
+					$vTable->rows[] = new VerticalTableRow(array("Nombres", $arreglo["nombres"]), $tempPost->id, "text", "200");
+					$vTable->rows[] = new VerticalTableRow(array("Grado Academico", $arreglo["gradoacademico"]), $tempPost->id, "text", "50");
 					$vTable->rows[] = new VerticalTableRow(array("Descripcion", $arreglo["descripcion"]), $tempPost->id, "area");
 					
 					$tempPost->contenido = $vTable->ToString();
@@ -134,6 +135,7 @@
 					$tempPost->tabla = "novedades";
 					$tempPost->fecha = substr($arreglo["fecha"],0,10);
 					$tempPost->titulo = $arreglo["titulo"];
+					$tempPost->tituloMaxLength = "50";
 					//$tempPost->contenido = substr($arreglo["descripcion"],3,strlen($arreglo["descripcion"])-4);
 					$tempPost->contenido = $arreglo["descripcion"];
 					$postList .= $tempPost->ToString();
@@ -168,8 +170,8 @@
 					$tempPost->titulo = $arreglo["titulo"];
 					
 					$vTable = new VerticalTable();
-					$vTable->rows[] = new VerticalTableRow(array("Titulo", $arreglo["titulo"]), $arreglo["id"]);
-					$vTable->rows[] = new VerticalTableRow(array("Vinculo", $arreglo["vinculo"]), $arreglo["id"]);
+					$vTable->rows[] = new VerticalTableRow(array("Titulo", $arreglo["titulo"]), $arreglo["id"], "text", "50");
+					$vTable->rows[] = new VerticalTableRow(array("Vinculo", $arreglo["vinculo"]), $arreglo["id"], "text", "100");
 					$vTable->rows[] = new VerticalTableRow(array("Descripcion", $arreglo["descripcion"]), $arreglo["id"], "area");
 					
 					$tempPost->contenido = $vTable->ToString();
