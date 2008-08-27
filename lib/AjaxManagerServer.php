@@ -110,6 +110,14 @@ $conn = new cConexion();
 						. "'$desarrolloPost', '$duracionPost', $esactual);";
 						echo $query;
 						break;
+						
+					case "evento":
+						$titulo = $_GET["titulo"];
+						$fecha = $_GET["fecha"];
+						$lugar = $_GET["lugar"];
+						$detalle = $_GET["detalle"];
+						$query = "insert into evento values($id, 0, '$titulo', '$fecha', '$lugar', '$detalle');";
+						break;
 				}
 				$conn->Conectar();
 				echo $res = $conn->mysqli->query($query);
@@ -209,6 +217,14 @@ $conn = new cConexion();
 						$query = "update postgrado set nombre='$nombrePost', notaminima=$cmaPost, descripcion='$descPost', inicioclases='$iniclPost', grado_obtener='$gradoPost', "
 						. "poblacion='$poblaPost', horario='$horarioPost', inversion=$invPost, codigo='$codigoPost', mision='$misionPost', vision='$visionPost', "
 						. "desarrollo='$desarrolloPost', duracion='$duracionPost' where id=$id";
+						break;
+						
+					case "evento":
+						$titulo = $_GET["titulo"];
+						$fecha = $_GET["fecha"];
+						$lugar = $_GET["lugar"];
+						$detalle = $_GET["detalle"];
+						$query = "update evento set titulo='$titulo', fecha='$fecha', lugar='$lugar', detalle='$detalle' where id=$id;";
 						break;
 				}
 				$conn->Conectar();
@@ -315,7 +331,7 @@ $conn = new cConexion();
 					$vTable->rows[] = new VerticalTableRow(array("Desarrollo del Programa", ""), $pst->id);
 					$vTable->rows[] = new VerticalTableRow(array("Duracion", ""), $pst->id);
 					$vTable->rows[] = new VerticalTableRow(array("Calificacion Minima de Aprobacion", ""), $pst->id, "numero");
-					$vTable->rows[] = new VerticalTableRow(array("Inicio de Clases", ""), $pst->id, "fecha");
+					$vTable->rows[] = new VerticalTableRow(array("Inicio de Clases", date("Y-m-d")), $pst->id, "fecha");
 					$vTable->rows[] = new VerticalTableRow(array("Grado a Obtener", ""), $pst->id);
 					$vTable->rows[] = new VerticalTableRow(array("Poblacion a la que se Dirige el Programa", ""), $pst->id . "-4", "area");
 					$vTable->rows[] = new VerticalTableRow(array("Horario", ""), $pst->id . "-5", "area");
@@ -326,7 +342,7 @@ $conn = new cConexion();
 				}
 				if($tabla == "evento"){
 					$vTable = new VerticalTable();
-					$vTable->rows[] = new VerticalTableRow(array("Fecha", ""), $tpt->id, "fecha");
+					$vTable->rows[] = new VerticalTableRow(array("Fecha", date("Y-m-d")), $pst->id, "fecha");
 					$vTable->rows[] = new VerticalTableRow(array("Lugar", ""), $pst->id);
 					$vTable->rows[] = new VerticalTableRow(array("Detalle", ""), $pst->id, "area");
 					

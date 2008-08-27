@@ -33,12 +33,12 @@ class cEvento
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
     public function GetLista($cond="")
     {
-    	return($this->Consultar("SELECT * FROM evento" . ($cond == ""? " ": " WHERE $cond ") . ";", true));
+    	return($this->Consultar("SELECT * FROM evento" . ($cond == ""? " ": " WHERE $cond ") . "ORDER BY id DESC;", true));
     }
 	
 	public function GetListaFiltrada($ini=0, $len=10, $cond="")
 	{
-		return($this->Consultar("SELECT * FROM evento" . ($cond == ""? " ": " WHERE $cond ") . "ORDER BY id limit $ini, $len;", true));
+		return($this->Consultar("SELECT * FROM evento" . ($cond == ""? " ": " WHERE $cond ") . "ORDER BY id DESC limit $ini, $len;", true));
 	}
     
     public function GetPorId($pId)
