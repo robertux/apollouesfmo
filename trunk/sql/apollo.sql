@@ -86,6 +86,21 @@ CREATE TABLE  `apollo`.`evaluacion` (
   KEY `fk_modulo_id_evaluacion` (`modulo`),
   CONSTRAINT `fk_modulo_id_evaluacion` FOREIGN KEY (`modulo`) REFERENCES `modulo` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE  `apollo`.`evento` (
+  `id` int(11) NOT NULL,
+  `postgrado` int(11) NOT NULL,
+  `titulo` varchar(300) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `lugar` varchar(300) NOT NULL,
+  `detalle` text NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+INSERT INTO `apollo`.`evento` VALUES  (1,1,'evento111','2008-08-26 00:00:00','aqui','<p>detalle evento1</p>'),
+ (2,1,'evento222','2008-10-11 00:00:00','alla!','<p>detalle evento2!!!</p>'),
+ (3,1,'evento3','2008-10-12 00:00:00','en todas partes','detalle evento3'),
+ (4,2,'evento4','2008-10-13 00:00:00','en todas partes','detalle evento4'),
+ (5,2,'evento5','2008-10-14 00:00:00','en todas partes','detalle evento5'),
+ (6,3,'evento6','2008-10-15 00:00:00','en todas partes','detalle evento6');
 CREATE TABLE  `apollo`.`foro_bans` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `username` varchar(200) default NULL,
@@ -487,10 +502,15 @@ CREATE TABLE  `apollo`.`postgrado` (
   `duracion` varchar(200) default NULL,
   `esactual` tinyint(1) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 INSERT INTO `apollo`.`postgrado` VALUES  (1,'Maestria y Tecnicas de Investigacion Social',7,'<p>Objetivos: Formar teï¿½rica y metodolï¿½gicamente recurso humano especializado en investigaciï¿½n cuantitativa y cualitativa que contribuya al desarrollo del conocimiento cientifico a nivel regional y nacional. Desarrollar competencias en la planificacion, ejecucion y presentacion de informes de investigacion. Generar sensibilidad por el estudio de aquellas problematicas sociales de interï¿½s nacional, que permitan la reflexiï¿½n, el anï¿½lisis y la propuesta de alternativas de soluciï¿½n.  Poblaciï¿½n a la que se dirige el programa: Licenciados, Ingenieros, Mï¿½ster o Doctores graduados de la Universidad debidamente autorizados por el Ministerio de Educaciï¿½n.</p>','2008-07-26 00:00:00','','','',0,'MP-0003','','','','',0),
  (2,'Maestria en Consultoria Empresarial',7,'<p>Vision: Ser lideres en la formaciï¿½n de profesionales a nivel de maestrï¿½a, mejorando continuamente la calidad acadï¿½mica e incorporando en los planes de estudio contenidos programï¿½ticos que faciliten la efectiva ejecuciï¿½n de la gestiï¿½n y consultorï¿½a empresarial. Mision: Formar profesionales con iniciativa par organizar unidades especificas de negocios, con elevada formaciï¿½n teï¿½rico-practica para enfrentar los retos que demande el actual desarrollo empresarial y social.</p>','2008-08-26 00:00:00','','','',0,'MP-0002','','','','',0),
- (3,'Maestria en Profesionalizacion de la Docencia Superior',7,'<p>El programa de maestria en profesionalizacion de la docencia superior nacio en un convenio entre la Universidad de El Salvador (UES) y la facultad de estudios superiores cuautitlon de la Universidad Autonoma de Mexico (UNAM) en 1994. Se han graduado ya de este programa, diversos profesionales que laboran en instituciones publicas y privadas de todo el pais. Vision: La alta formacion de cuadros academicos y profesionales, asi como la generacion de conocimientos mediante la investigacion del que hacer educativo de la zona occidental del pais; con el objeto de fortalecer los procesos de ensenanza-aprendizaje en los distintos niveles del sistema educativo nacional y la produccion academica en funcion de la cualificacion de la educacion en general y la universitaria en particular. Mision: La construccion de la educacion y de una docencia universitaria de la zona occidental del pais, como objeto de estudio, y su visualizacion como fenomeno socio-cultural asequible desde una prespectiva teorica transdisciplinar y una practica untimamente ligada a los campos social, economico y politico; tomando como base la ensenanza integral desd ela perspectiva teorica practica en el enfoque metodologico del trabajo analitico.</p>','2008-08-26 00:00:00','Master','<p>Poblacion</p>','<p>Horario</p>',35,'MP-0001','<p>Mision de la maestria</p>','<p>Vision de la Maestria</p>','Desarrollo del programa','de tres a seis meses',0);
+ (3,'Maestria en Profesionalizacion de la Docencia Superior',7,'<p>El programa de maestria en profesionalizacion de la docencia superior nacio en un convenio entre la Universidad de El Salvador (UES) y la facultad de estudios superiores cuautitlon de la Universidad Autonoma de Mexico (UNAM) en 1994. Se han graduado ya de este programa, diversos profesionales que laboran en instituciones publicas y privadas de todo el pais. Vision: La alta formacion de cuadros academicos y profesionales, asi como la generacion de conocimientos mediante la investigacion del que hacer educativo de la zona occidental del pais; con el objeto de fortalecer los procesos de ensenanza-aprendizaje en los distintos niveles del sistema educativo nacional y la produccion academica en funcion de la cualificacion de la educacion en general y la universitaria en particular. Mision: La construccion de la educacion y de una docencia universitaria de la zona occidental del pais, como objeto de estudio, y su visualizacion como fenomeno socio-cultural asequible desde una prespectiva teorica transdisciplinar y una practica untimamente ligada a los campos social, economico y politico; tomando como base la ensenanza integral desd ela perspectiva teorica practica en el enfoque metodologico del trabajo analitico.</p>','2008-08-26 00:00:00','Master','<p>Poblacion</p>','<p>Horario</p>',35,'MP-000111','<p>Mision de la maestria</p>','<p>Vision de la Maestria</p>','Desarrollo del programa','de tres a seis meses',0);
+INSERT INTO `apollo`.`postgrado` VALUES  (4,'nombrenuevo',0,'','2008-07-26 00:00:00','','','',0,'MP-000x','','','','',0),
+ (5,'blablabla',0,'<p>blablabla</p>','2008-07-26 00:00:00','','','',0,'blablabla','','','','',1),
+ (6,'ma2',0,'<p>maestria2</p>','2008-07-26 00:00:00','','','',0,'MA-0002','','','','',1),
+ (7,'ma3',0,'<p>maestria3</p>','2008-08-26 00:00:00','','','',0,'MA-0003','','','','',1),
+ (8,'Ninguna',7,NULL,NULL,NULL,NULL,NULL,NULL,'MA-0000',NULL,NULL,NULL,NULL,NULL);
 CREATE TABLE  `apollo`.`presentadoc` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `descripcion` varchar(100) NOT NULL,
@@ -572,7 +592,8 @@ CREATE TABLE  `apollo`.`utileria` (
 INSERT INTO `apollo`.`utileria` VALUES  (5,'Nuevo Programa','www.nuevoprograma.com','<p>bla</p><p>bla</p><p>bla</p><p>bla</p><p>Descripcion</p>'),
  (3,'Progama Utileria 1','vinculo','<p>Contenido del nuevo post</p>'),
  (4,'Nuevo Post','vinculo del nuevo post.','<p>Contenido del nuevo post</p>'),
- (6,'Prueba...','www.example.com','<p>[...]</p><p>.</p><p>.</p>');
+ (6,'Prueba...','www.example.com','<p>[...]</p><p>.</p><p>.</p>'),
+ (7,'foo','bar','<p>blah</p>');
 
 
 

@@ -39,7 +39,7 @@ function EnablePostContent(idPost, plainTextContent){
 		tinyMCE.execCommand('mceAddControl', false, ("area-" + idPost));
 	}
 	else {
-		elements = document.getElementsByTagName("input");
+		elements = document.getElementsByTagName("input");		
 		for (var i = 0; i < elements.length; i++) {
 			if (elements[i].id == ("input-" + idPost) || elements[i].id == ("upld-" + idPost) || elements[i].id == ("fch-" + idPost) || elements[i].id == ("num-" + idPost)) {
 				elements[i].className = "PostInputEdit";
@@ -305,7 +305,7 @@ function SavePost(idPost, uid, plainTextContent){
 			desarrolloPost = postItems[1];
 			duracionPost = postItems[2];
 			cmaPost = (postItems[3] == ""? "0": postItems[3]);
-			iniclPost = (document.getElementById("fch-" + idPost).value == ""? (dt.getFullYear() + "-" + dt.getMonth() + "-" + dt.getDate()) : document.getElementById("fch-" + idPost).value.substr(0, 10)) + " 00:00:00";
+			iniclPost = document.getElementById("fch-" + idPost).value.substr(0, 10) + " 00:00:00";
 			alert("inicio clases: " + iniclPost);
 			gradoPost = postItems[4];
 			invPost = (postItems[5] == ""? "0": postItems[5]);
@@ -320,19 +320,12 @@ function SavePost(idPost, uid, plainTextContent){
 			, obj);
 			break;
 			
-		case "evemto":
-			var allItems = document.getElementsByTagName("input");
-			var postItems = [];			
-			for(var i=0; i<allItems.length; i++){
-				if(allItems[i].id == ("input-" + idPost)){
-					postItems.push(allItems[i].value);
-				}
-			}
-			apellidosPost = postItems[0];
-			nombresPost = postItems[1];
-			gradoPost = postItems[2];
-			descripcionPost = document.getElementById("div-" + idPost).innerHTML;
-			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&apellidos=" + apellidosPost + "&nombres=" + nombresPost + "&grado=" + gradoPost + "&desc=" + descripcionPost + "&id=" + indexPost, obj);
+		case "evento":			
+			tituloPost = document.getElementById("txt-" + idPost).value;
+			fechaPost = (document.getElementById("fch-" + idPost).value == ""? (dt.getFullYear() + "-" + dt.getMonth() + "-" + dt.getDate()) : document.getElementById("fch-" + idPost).value.substr(0, 10)) + " 00:00:00";
+			lugarPost = document.getElementById("input-" + idPost).value;
+			detallePost = document.getElementById("div-" + idPost).innerHTML;
+			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&titulo=" + tituloPost + "&fecha=" + fechaPost + "&lugar=" + lugarPost + "&detalle=" + detallePost + "&id=" + indexPost, obj);
 			break;
 	}
 }
@@ -364,7 +357,9 @@ function DelPost(idPost, uid){
 	//alert("DelPost. uid= " + uid);
 	tablaPost = document.getElementById("tbl-" + idPost).value;
 	indexPost = document.getElementById("id-" + idPost).value;
-	condicion = document.getElementById("tipocursos").value;
+	var condicion = "";
+	if(document.getElementById("tipocursos") != null)
+		condicion = document.getElementById("tipocursos").value;
 	if(tablaPost == "procesos")
 		indexPost = document.getElementById("id-bigimg").value;
 	if (confirm("Esta seguro que desea eliminar este elemento?")) {
@@ -395,7 +390,7 @@ function CatchNewPost(tablaPost, responseText){
 	document.getElementById("area-").innerHTML = responseText + document.getElementById("area-").innerHTML;
 	if(tablaPost == "novedades")
 		EnablePost("-1", '1');
-	else if (tablaPost == "postgrado")
+	else if (tablaPost == "postgrado" || tablaPost == "evento")
 		EnablePost("-1", '');
 	else
 		EnablePostContent("-1", '');

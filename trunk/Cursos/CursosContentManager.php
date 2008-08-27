@@ -102,7 +102,7 @@
 					$tempPost->titulo = $arreglo["titulo"];
 					
 					$vTable = new VerticalTable();
-					$vTable->rows[] = new VerticalTableRow(array("Fecha", $arreglo["fecha"]), $tempPost->id, "fecha");
+					$vTable->rows[] = new VerticalTableRow(array("Fecha", substr($arreglo["fecha"], 0, 10)), $tempPost->id, "fecha");
 					$vTable->rows[] = new VerticalTableRow(array("Lugar", $arreglo["lugar"]), $tempPost->id);
 					$vTable->rows[] = new VerticalTableRow(array("Detalle", $arreglo["detalle"]), $tempPost->id, "area");
 					
