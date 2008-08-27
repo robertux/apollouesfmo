@@ -119,6 +119,14 @@ $conn = new cConexion();
 						$detalle = $_GET["detalle"];
 						$query = "insert into evento values($id, 0, '$titulo', '$fecha', '$lugar', '$detalle');";
 						break;
+						
+					case "servsocial":
+						$titulo = $_GET["titulo"];
+						$descripcion = $_GET["desc"];
+						$duracion = $_GET["duracion"];
+						$horas = $_GET["horas"];
+						$query = "insert into servsocial values($id, '$titulo', '$descripcion', '$duracion', $horas);";
+						break;
 				}
 				$conn->Conectar();
 				echo $res = $conn->mysqli->query($query);
@@ -226,6 +234,14 @@ $conn = new cConexion();
 						$lugar = $_GET["lugar"];
 						$detalle = $_GET["detalle"];
 						$query = "update evento set titulo='$titulo', fecha='$fecha', lugar='$lugar', detalle='$detalle' where id=$id;";
+						break;
+						
+					case "servsocial":
+						$titulo = $_GET["titulo"];
+						$descripcion = $_GET["desc"];
+						$duracion = $_GET["duracion"];
+						$horas = $_GET["horas"];
+						$query = "update servsocial set nombre='$titulo', descripcion='$descripcion', duracion='$duracion', total_horas=$horas where id=$id;";						
 						break;
 				}
 				$conn->Conectar();
@@ -353,6 +369,16 @@ $conn = new cConexion();
 					$pst->plainTextContent = false;
 					$pst->editableTitle = true;
 					
+				}
+				if($tabla == "servsocial"){
+					$vTable = new VerticalTable();
+					$vTable->rows[] = new VerticalTableRow(array("Descripcion", ""), $pst->id, "area");
+					$vTable->rows[] = new VerticalTableRow(array("Duracion", ""), $pst->id);
+					$vTable->rows[] = new VerticalTableRow(array("Total Horas", ""), $pst->id, "numero");
+					
+					$pst->contenido = $vTable->ToString();
+					$pst->plainTextContent = false;
+					$pst->editableTitle = true;
 				}
 				$pst->Show();
 				break;

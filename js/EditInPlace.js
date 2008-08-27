@@ -327,6 +327,22 @@ function SavePost(idPost, uid, plainTextContent){
 			detallePost = document.getElementById("div-" + idPost).innerHTML;
 			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&titulo=" + tituloPost + "&fecha=" + fechaPost + "&lugar=" + lugarPost + "&detalle=" + detallePost + "&id=" + indexPost, obj);
 			break;
+		
+		case "servsocial":
+			var allItems = document.getElementsByTagName("input");
+			var postItems = [];
+			for(var i=0; i<allItems.length; i++){
+				if(allItems[i].id == ("input-" + idPost)){
+					postItems.push(allItems[i].value);
+				}				
+			}
+			tituloPost = document.getElementById("txt-" + idPost).value;
+			descripcionPost = document.getElementById("div-" + idPost).innerHTML;
+			duracionPost = postItems[0];
+			horasPost = (postItems[1] == ""? "0": postItems[1]);
+			
+			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&titulo=" + tituloPost + "&desc=" + descripcionPost + "&duracion=" + duracionPost + "&horas=" + horasPost + "&id=" + indexPost, obj);
+			break;
 	}
 }
 
@@ -382,7 +398,9 @@ function DelPostNoConfirm(idPost){
 
 
 function CatchSavedPost(tablaPost, uid){
-	$condicion = document.getElementById("tipocursos").value;
+	var $condicion = "";
+	if(document.getElementById("tipocursos") != null)
+		$condicion = document.getElementById("tipocursos").value;
 	refreshPage(tablaPost, uid, $condicion);
 }
 
@@ -390,7 +408,7 @@ function CatchNewPost(tablaPost, responseText){
 	document.getElementById("area-").innerHTML = responseText + document.getElementById("area-").innerHTML;
 	if(tablaPost == "novedades")
 		EnablePost("-1", '1');
-	else if (tablaPost == "postgrado" || tablaPost == "evento")
+	else if (tablaPost == "postgrado" || tablaPost == "evento" || tablaPost == "servsocial")
 		EnablePost("-1", '');
 	else
 		EnablePostContent("-1", '');
