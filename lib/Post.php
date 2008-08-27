@@ -15,6 +15,7 @@
 		var $editableTitle;
 		var $plainTextContent;
 		var $uid;
+		var $tituloMaxLength;
 		
 		public function Post($pTitulo="Titulo", $pContenido="Contenido", $pAncho=550, $pShowAddWhenAdmin=false, $pShowEditWhenAdmin=false, $pShowDelWhenAdmin=false){
 			$this->id = $pId;
@@ -78,11 +79,14 @@
 			$footer = "";
 			if($this->pie != "")
 				$footer = "<div class='PostFooter' style='width: " . $this->ancho . "px;'>$this->pie</div>";
+				
+			if($this->tituloMaxLength != "")
+				$this->tituloMaxLength = " maxlength='" . $this->tituloMaxLength . "'";
 
 			return "			
 	    		<div class='PostTitle' style='width: " . ($this->ancho - 12) . "px;'>
 					" . $this->tbox->ToString() . $fechaField .
-					"<input type='text' id='txt-$this->id' class='innerTitle' value='$this->titulo' disabled='true' />
+					"<input type='text' id='txt-$this->id' class='innerTitle' value='$this->titulo' disabled='true' $this->maxLength />
 				</div>
 				<div id='cont-$this->id' class='PostContent'>
 				    <div id='area-$this->id' class='innerContent'>
@@ -125,10 +129,13 @@
 			if($this->pie != "")
 				$footer = "<div class='PostFooter'>$this->pie</div>";
 			
+			if($this->tituloMaxLength != "")
+				$this->tituloMaxLength = " maxlength='" . $this->tituloMaxLength . "'";
+			
 			return "			
     			<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
 					"  . $this->tbox->ToString() . $fechaField .
-					"<input type='text' id='txt-$this->id' class='innerTitle' value='$this->titulo' disabled='true' />
+					"<input type='text' id='txt-$this->id' class='innerTitle' value='$this->titulo' disabled='true' $this->tituloMaxLength />
 				</div>
 				<div id='cont-$this->id' class='PostContent'>
 				    <div id='area-$this->id' class='innerContent'>
@@ -165,10 +172,13 @@
 			if($this->pie != "")
 				$footer = "<div class='PostFooter'>$this->pie</div>";
 			
+			if($this->tituloMaxLength != "")
+				$this->tituloMaxLength = " maxlength='" . $this->tituloMaxLength . "'";
+			
 			return "			
 	    		<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
 					" . $this->tbox->ToString() . $fechaField .
-					"<input type='text' id='txt-$this->id' class='innerTitle' value='$this->titulo' disabled='true' />
+					"<input type='text' id='txt-$this->id' class='innerTitle' value='$this->titulo' disabled='true' $this->tituloMaxLength />
 				</div>
 				<div id='cont-$this->id' class='PostContent'>
 				    <div id='area-$this->id' class='innerContent'>
