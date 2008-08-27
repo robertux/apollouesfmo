@@ -42,10 +42,14 @@ class cPostGrado
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
     public function GetLista($cond="")
     {
-    	$numCond = 1;
-    	if($cond == "actual") $numCond = 1;
-		if($cond == "proximo") $numCond = 0;
-    	return($this->Consultar("SELECT * FROM postgrado WHERE esactual=$numCond ;", true));
+    	if($cond != ""){
+	    	$numCond = 1;
+	    	if($cond == "actual") $numCond = 1;
+			if($cond == "proximo") $numCond = 0;
+	    	return($this->Consultar("SELECT * FROM postgrado WHERE esactual=$numCond ;", true));
+		}
+		else
+			return($this->Consultar("SELECT * FROM postgrado;", true));
     }
 	
 	public function GetListaFiltrada($ini=0, $len=10, $cond = "")

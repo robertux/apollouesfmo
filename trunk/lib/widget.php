@@ -43,12 +43,16 @@ class WidgetNovedades extends Widget{
     private function Llenar()
     {
     	$resultado = $this->novedades->GetParaWidget(5);
-    	while($row = $resultado->fetch_array())
-        {
-        	//titulo, vinculo //$t = $row[0]; //$v = $row[1];
-        	$this->Contenido .= "<li>" . (strlen($row[0])>35? substr($row[0],0,38) . "...": $row[0]) . "</li>";
-        }
-		$resultado->close();
+		if($resultado->num_rows > 0){
+			while($row = $resultado->fetch_array())
+	        {
+	        	//titulo, vinculo //$t = $row[0]; //$v = $row[1];
+	        	$this->Contenido .= "<li>" . (strlen($row[0])>35? substr($row[0],0,38) . "...": $row[0]) . "</li>";
+	        }
+			$resultado->close();
+		}
+    	else
+			$this->Contenido -= "No hay novedades.";
         $this->Contenido .= "</ul></div>";
     }
 		
@@ -103,4 +107,48 @@ class WidgetForo extends Widget{
 		");
 	}
 }
+
+
+class WidgetCursos extends Widget{
+		
+	private $cursos;
+	
+	public function __construct() 
+    {
+		$this->cursos = new cPostgrado();
+		$this->Contenido = "<div class='WidgetContent'><ul>";
+		$this->Llenar();		
+    }
+    
+    private function Llenar()
+    {
+    	$resultado = $this->cursos->GetLista();
+		$foo = 1;
+		
+		if($resultado->num_rows > 0){
+	    	while($row = $resultado->fetch_array())
+	        {
+	        	//titulo, vinculo //$t = $row[0]; //$v = $row[1];
+	        	$this->Contenido .= "<li>" . (strlen($row[1])>35? substr($row[1],0,38) . "...": $row[1]) . "</li>";
+				$foo++;
+				if($foo == 5) break;
+	        }
+			$resultado->close();
+		}
+		else
+			$this->Contenido .= "No hay cursos";
+        $this->Contenido .= "</ul></div>";
+    }
+		
+	public function Show(){
+		echo("
+		<div class='$this->claseCSS'>
+		<div class='WidgetTitle'><a id='TitleBlock' href='$this->masURL'><div id='TitleText'>$this->Titulo</div></a></div>
+			$this->Contenido
+			<div class='footer'><a href='$this->masURL'>Ver m&aacute;s...</a></div>
+		</div>
+		");
+	}
+}
+
 ?>

@@ -42,8 +42,8 @@
     	<ul id="nav" style="top: 2%; left: 45%;">
 	      <li style="padding: 0 7px"><a>Principal</a></li>
 	      <li style="padding: 0 7px"><a href="Cursos/index.php?opt=actual">Maestrias</a></li>
-	      <li style="padding: 0 7px"><a href="Forum/index.php?opt=cat">Foro</a></li>
 	      <li style="padding: 0 7px"><a href="Unidad/index.php?opt=about">La Unidad</a></li>
+	      <li style="padding: 0 7px"><a href="Forum/index.php?opt=cat">Foro</a></li>		  
     	</ul>
     </td>
   </tr>
@@ -82,8 +82,13 @@
 				</div>
 				<div class="WidgetListRight">
 				<?php
-					$wgCursos = new Widget("Maestrias Actuales y Proximas", "Cursos/index.php?opt=actual", $mcm->showCourses(), "WidgetRight");
-					$wgCursos->Show();												
+					/*$wgCursos = new Widget("Maestrias Actuales y Proximas", "Cursos/index.php?opt=actual", $mcm->showCourses(), "WidgetRight");
+					$wgCursos->Show();*/
+					$wdg = new WidgetCursos();
+					$wdg->claseCSS="WidgetRight";
+					$wdg->Titulo="Maestrias Actuales y Proximas";
+					$wdg->masURL="Cursos/index.php?opt=actual";
+					$wdg->Show();
 
 					//ejemplo de uso de widget foro
 					$wdg = new WidgetForo();
@@ -102,7 +107,7 @@
     	<div class="about" style="position: relative; top: 20px; width: 700px; border-top: 1px solid #DDDDDD;"><p style="color: #686C7A; font-size: 8pt">
 			Universidad de El Salvador Facultad Multidisciplinaria de Occidente<br/>
 			Todos los Derechos (C) Reservados - Teléfonos:(503)2449-0349, Fax:(503)2449-0352 Apdo. 1908<br/>
-			<a href="AcercaDe/index.php">Créditos</a></p>
+			<a href="AcercaDe/index.php">Créditos</a> - <a href="http://www.uesocc.edu.sv">Pagina Principal de la UES FMOcc</a></p>
 		</div>
 	</td>
     <td width="10" height="60" background="Media/right.png">&nbsp;</td>

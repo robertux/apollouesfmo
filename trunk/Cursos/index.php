@@ -24,8 +24,8 @@
     <ul id="nav">
       <li><a href="../index.php">Principal</a></li>
       <li><a>Maestrias</a></li>
-      <li><a href="../Forum/index.php?opt=cat">Foro</a></li>
       <li><a href="../Unidad/index.php?opt=about">La Unidad</a></li>
+      <li><a href="../Forum/index.php?opt=cat">Foro</a></li>	  
     </ul>
   </div>
   <!-- /header -->
@@ -69,7 +69,7 @@
 	<div class="about" style="position: relative; top: 20px; width: 700px; border-top: 1px solid #DDDDDD;"><p style="color: #686C7A; font-size: 8pt">
 		Universidad de El Salvador Facultad Multidisciplinaria de Occidente<br/>
 		Todos los Derechos (C) Reservados - Teléfonos:(503)2449-0349, Fax:(503)2449-0352 Apdo. 1908<br/>
-		<a href="../AcercaDe/index.php">Créditos</a></p>
+			<a href="AcercaDe/index.php">Créditos</a> - <a href="http://www.uesocc.edu.sv">Pagina Principal de la UES FMOcc</a></p>
 	</div>
   </div>
     <!-- /content -->
