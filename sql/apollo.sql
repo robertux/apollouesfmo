@@ -574,6 +574,19 @@ INSERT INTO `apollo`.`requisito` VALUES  (15,'Los profesionales graduados en el 
  (17,'Presentación del trabajo de graduación.',3),
  (18,'Cumplimiento del servicio social (300 horas).',3),
  (19,'Requisitos y trámites de graduación según los reglamentos de Administración Académica de la UES.',3);
+CREATE TABLE  `apollo`.`servsocial` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(300) NOT NULL,
+  `descripcion` text NOT NULL,
+  `duracion` varchar(200) NOT NULL,
+  `total_horas` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+INSERT INTO `apollo`.`servsocial` VALUES  (1,'servsoc1','descripcion del servsoc1','6 meses',120),
+ (2,'servsoc2','descripcion del servsoc2','8 meses',150),
+ (3,'servsoc3','descripcion del servsoc3','5 meses',100),
+ (4,'servsoc4','descripcion del servsoc4','10 meses',250),
+ (5,'servsoc5','descripcion del servsoc5','8 meses',200);
 CREATE TABLE  `apollo`.`usuario` (
   `id` int(11) NOT NULL auto_increment,
   `clave` varchar(10) default NULL,

@@ -13,6 +13,7 @@ require_once(RUTA . "/clases/cutileria.php");
 require_once(RUTA . "/clases/cprocesos.php");
 require_once(RUTA . "/clases/cpostgrado.php");
 require_once(RUTA . "/clases/cevento.php");
+require_once(RUTA . "/clases/cservsoc.php");
 require_once(RUTA . "/Unidad/UnidadContentManager.php");
 require_once(RUTA . "/Cursos/CursosContentManager.php");
 require_once(RUTA . "/lib/VerticalTable.php");
@@ -278,6 +279,8 @@ $conn = new cConexion();
 						break;
 					case "evento":
 						$ccm->ShowEventos($currentPg, true);
+					case "servsocial":
+						$ccm->ShowServSoc($currentPg, true);
 				}				
 				break;
 				
