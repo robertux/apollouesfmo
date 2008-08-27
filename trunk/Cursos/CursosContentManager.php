@@ -17,8 +17,6 @@
 					break;
 				case "event": $this->ShowEventos();
 					break;
-				case "stuff": $this->ShowRecursos();
-					break;
 				case "serv": $this->ShowServSoc();
 					break;
 				default: $this->ShowCursos(-1, false, true);
@@ -132,20 +130,42 @@
 			$pst->Show();
 		}
 		
-		public function ShowServSoc(){
-			$pstServSoc = new InnerPost("Mi Servicio Social", "
-				<table border='1' width='100%'>
-					<tr><th>Nombre:</th><td id='Left'>Cursos Introductorios a los Aspirantes Universitarios</td></tr>
-					<tr><th>Descripcion:</th><td id='Left'>Cursos Introductorios a los Aspirantes Universitarios</td></tr>
-					<tr><th>Inicio:</th><td id='Left'>10 de Noviembre de 2007</td></tr>
-					<tr><th>Duracion:</th><td id='Left'>2 meses</td></tr>
-					<tr><th>Horas totales:</th><td id='Left'>150</td></tr>
-					<tr><th>Asesor:</th><td id='Left'>Lic. Juan Perez</td></tr>
-					<tr><th>Estado:</th><td id='Left'>Pendiente</td></tr>
-				</table>
-			", 500);
-			$pst = new Post("Servicio Social", $pstServSoc->ToString());
-			$pst->Show();
-		}		
+		public function ShowServSoc($pg=-1, $onlyContent=false){
+			$postList = "";
+			$cserv = new cServSocial();
+			$pPager = new PostPager($cserv, 4);
+			$servResult = $pPager->GetPosts($pg);
+			if($servResult->num_rows > 0){
+				while($arreglo = $servResult->fetch_array()){
+					$tempPost = new InnerPost("", "", 530, false, true, true);
+					$tempPost->editableTitle = true;
+					$tempPost->id = $arreglo["id"];
+					$tempPost->tabla = "servsocial";
+					$tempPost->titulo = $arreglo["nombre"];
+					
+					$vTable = new VerticalTable();
+					$vTable->rows[] = new VerticalTableRow(array("Descripcion", $arreglo["descripcion"]), $tempPost->id, "area");
+					$vTable->rows[] = new VerticalTableRow(array("Duracion", $arreglo["duracion"]), $tempPost->id);
+					$vTable->rows[] = new VerticalTableRow(array("Total Horas", $arreglo["total_horas"]), $tempPost->id, "numero");
+					
+					$tempPost->contenido = $vTable->ToString();
+					$tempPost->plainTextContent = false;
+					$postList .= $tempPost->ToString();
+				}
+			}
+			else{
+				$tempPost = new InnerPost("No hay resultados", "No hay servicios sociales que mostrar...", 530);
+				$tempPost->id = "noresults";
+				$postList .= $tempPost->ToString();
+			}
+			
+			$pst = new Post("Proyectos Disponibles Para Servicio Social", $postList, 550, true, false, false);
+			$pst->tabla = "servsocial";
+			$pst->pie = $pPager->ToString();
+			if($onlyContent)
+				echo $pst->ToContentString();
+			else
+				echo $pst->ToString();
+		}
     }
 ?>
