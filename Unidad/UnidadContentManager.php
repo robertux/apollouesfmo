@@ -34,6 +34,7 @@
 			$about->GetPorTitulo("about");
 			
 			$pst = new Post("Acerca de la Unidad", $about->contenido,530, false, true, false);
+			$pst->id = "Acerca de la Unidad";
 			$pst->editableTitle = false;
 			$pst->Show();
 		}

@@ -286,6 +286,7 @@ function SavePost(idPost, uid, plainTextContent){
 			var allItems = document.getElementsByTagName("input");
 			var postItems = [];
 			var divIdExtra = 1;
+			var dt = new Date();
 			for(var i=0; i<allItems.length; i++){
 				if(allItems[i].id == ("input-" + idPost)){
 					postItems.push(allItems[i].value);
@@ -302,10 +303,10 @@ function SavePost(idPost, uid, plainTextContent){
 			nombrePost = postItems[0];
 			desarrolloPost = postItems[1];
 			duracionPost = postItems[2];
-			cmaPost = postItems[3];
-			iniclPost = document.getElementById("fch-" + idPost).value.substr(0, 10) + " 00:00:00";
+			cmaPost = (postItems[3] == ""? "0": postItems[3]);
+			iniclPost = (document.getElementById("fch-" + idPost).value == ""? (dt.getFullYear() + "-" + dt.getMonth() + "-" + dt.getDate()) : document.getElementById("fch-" + idPost).value.substr(0, 10)) + " 00:00:00";
 			gradoPost = postItems[4];
-			invPost = postItems[5];
+			invPost = (postItems[5] == ""? "0": postItems[5]);
 			descPost = postItems[6];
 			misionPost = postItems[7];
 			visionPost = postItems[8];
