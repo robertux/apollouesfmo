@@ -12,6 +12,7 @@ require_once(RUTA . "/clases/cdocente.php");
 require_once(RUTA . "/clases/cutileria.php");
 require_once(RUTA . "/clases/cprocesos.php");
 require_once(RUTA . "/clases/cpostgrado.php");
+require_once(RUTA . "/clases/cevento.php");
 require_once(RUTA . "/Unidad/UnidadContentManager.php");
 require_once(RUTA . "/Cursos/CursosContentManager.php");
 require_once(RUTA . "/lib/VerticalTable.php");
@@ -259,6 +260,8 @@ $conn = new cConexion();
 						elseif($condicion == "proximo")
 							$ccm->ShowCursos($currentPg, true, false);
 						break;
+					case "evento":
+						$ccm->ShowEventos($currentPg, true);
 				}				
 				break;
 				
@@ -320,6 +323,17 @@ $conn = new cConexion();
 					$pst->contenido .= $vTable->ToString();
 					$pst->plainTextContent = false;
 					$pst->editableTitle = true;
+				}
+				if($tabla == "evento"){
+					$vTable = new VerticalTable();
+					$vTable->rows[] = new VerticalTableRow(array("Fecha", ""), $tpt->id, "fecha");
+					$vTable->rows[] = new VerticalTableRow(array("Lugar", ""), $pst->id);
+					$vTable->rows[] = new VerticalTableRow(array("Detalle", ""), $pst->id, "area");
+					
+					$pst->contenido = $vTable->ToString();
+					$pst->plainTextContent = false;
+					$pst->editableTitle = true;
+					
 				}
 				$pst->Show();
 				break;

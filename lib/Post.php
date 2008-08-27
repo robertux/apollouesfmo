@@ -72,7 +72,7 @@
 			$this->SetTBox();
 			$fechaField = "";
 			if($this->fecha != ""){
-				$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' ></inpurt>";
+				$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' style='width: 18%' ></inpurt>";
 			}
 			
 			$footer = "";
@@ -118,7 +118,7 @@
 			$this->SetTBox();
 			$fechaField = "";
 			if($this->fecha != ""){
-				$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' ></input>";
+				$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' style='width: 18%' ></input>";
 			}
 			
 			$footer = "";
@@ -158,7 +158,7 @@
 			$this->SetTBox();
 			$fechaField = "";
 			if($this->fecha != ""){
-				$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' ></input>";
+				$fechaField = "<input type='text' id='fch-$this->id' class='PostDate' value='$this->fecha' disabled='true' style='width: 18%' ></input>";
 			}
 			
 			$footer = "";

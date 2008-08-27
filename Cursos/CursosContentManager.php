@@ -87,55 +87,43 @@
 			else
 				echo $pst->ToString();
 		}
-		
-		public function ShowCursosProximos(){
-			$cmaf = new CursoMAF();
-			$cmpds = new CursoMPDS();
-
-			$pstCursoMAF = new InnerPost($cmaf->GetTitulo(), $cmaf->GetDescripcionProximo(), 530);
-			$pstCursoMAF->tbox->btnEdit->visible = true;
-			$pstCursoMPDS = new InnerPost($cmpds->GetTitulo(), $cmpds->GetDescripcionProximo(), 530);
-			$pstCursoMPDS->tbox->btnEdit->visible = true;
+				
+		public function ShowEventos($pg=-1, $onlyContent=false){
+			$postList = "";
+			$cev = new cEvento();
+			$pPager = new PostPager($cev, 4);
+			$evResult = $pPager->GetPosts($pg);
+			if($evResult->num_rows > 0){
+				while($arreglo = $evResult->fetch_array()){
+					$tempPost = new InnerPost("", "", 530, false, true, true);
+					$tempPost->editableTitle = true;
+					$tempPost->id = $arreglo["id"];
+					$tempPost->tabla = "evento";
+					$tempPost->titulo = $arreglo["titulo"];
+					
+					$vTable = new VerticalTable();
+					$vTable->rows[] = new VerticalTableRow(array("Fecha", $arreglo["fecha"]), $tempPost->id, "fecha");
+					$vTable->rows[] = new VerticalTableRow(array("Lugar", $arreglo["lugar"]), $tempPost->id);
+					$vTable->rows[] = new VerticalTableRow(array("Detalle", $arreglo["detalle"]), $tempPost->id, "area");
+					
+					$tempPost->contenido = $vTable->ToString();
+					$tempPost->plainTextContent = false;
+					$postList .= $tempPost->ToString();
+				}
+			}
+			else{
+				$tempPost = new InnerPost("No hay resultados", "No hay eventos que mostrar...", 530);
+				$tempPost->id = "noresults";
+				$postList .= $tempPost->ToString();
+			}
 			
-			$pst = new Post("Maestrias Proximas", $pstCursoMAF->ToString() . $pstCursoMPDS->ToString());
-			$pst->Show();
-		}
-		
-		public function ShowEventos(){
-			$pstEv1 = new InnerPost("22/05/08 - Primer examen corto","
-				<table border='1' width='100%'>
-					<tr><th>Hora:</th><td id='left'>06:30 p.m.</td></tr>
-					<tr><th>Lugar:</th><td id='left'>Aula S2C</td></tr>
-					<tr><th>Detalle:</th><td id='left'>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed in eros. Praesent sed ligula. Nullam quam. Etiam posuere cursus eros. Duis in sapien. Pellentesque non augue. Maecenas ut lacus nec tellus vehicula vulputate. Phasellus sem libero, vehicula sed, tempor at, facilisis a, mi. Duis lobortis urna a nunc. Nunc condimentum, diam eget tristique consectetuer, est risus ultricies erat, sit amet auctor enim risus a ligula. Vivamus id tortor eget massa molestie rhoncus. Nulla at arcu. Ut egestas tempus metus. Nullam pellentesque dui ac libero. Pellentesque libero dolor, aliquet sed, aliquam tincidunt, egestas nec, tortor. Fusce ligula nunc, iaculis ac, fermentum ac, egestas eu, quam.
-</td></tr>
-				</table>
-			",500);
-			$pstEv2 = new InnerPost("20/05/08 - Entrega de primera tarea evaluada","
-				<table border='1' width='100%'>
-					<tr><th>Hora:</th><td id='left'>02:30 p.m.</td></tr>
-					<tr><th>Lugar:</th><td id='left'>Cubiculo del departamento</td></tr>
-					<tr><th>Detalle:</th><td id='left'>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed in eros. Praesent sed ligula. Nullam quam. Etiam posuere cursus eros. Duis in sapien. Pellentesque non augue. Maecenas ut lacus nec tellus vehicula vulputate. Phasellus sem libero, vehicula sed, tempor at, facilisis a, mi. Duis lobortis urna a nunc. Nunc condimentum, diam eget tristique consectetuer, est risus ultricies erat, sit amet auctor enim risus a ligula. Vivamus id tortor eget massa molestie rhoncus. Nulla at arcu. Ut egestas tempus metus. Nullam pellentesque dui ac libero. Pellentesque libero dolor, aliquet sed, aliquam tincidunt, egestas nec, tortor. Fusce ligula nunc, iaculis ac, fermentum ac, egestas eu, quam.
-</td></tr>
-				</table>
-			",500);
-			$pstEv3 = new InnerPost("12/05/08 - Inicio de clases","
-				<table border='1' width='100%'>
-					<tr><th>Hora:</th><td id='left'>06:30 p.m.</td></tr>
-					<tr><th>Lugar:</th><td id='left'>Aula S2E</td></tr>
-					<tr><th>Detalle:</th><td id='left'>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed in eros. Praesent sed ligula. Nullam quam. Etiam posuere cursus eros. Duis in sapien. Pellentesque non augue. Maecenas ut lacus nec tellus vehicula vulputate. Phasellus sem libero, vehicula sed, tempor at, facilisis a, mi. Duis lobortis urna a nunc. Nunc condimentum, diam eget tristique consectetuer, est risus ultricies erat, sit amet auctor enim risus a ligula. Vivamus id tortor eget massa molestie rhoncus. Nulla at arcu. Ut egestas tempus metus. Nullam pellentesque dui ac libero. Pellentesque libero dolor, aliquet sed, aliquam tincidunt, egestas nec, tortor. Fusce ligula nunc, iaculis ac, fermentum ac, egestas eu, quam.
-</td></tr>
-				</table>
-			",500);
-			
-			$pstEv1->tbox->btnEdit->visible = true;
-			$pstEv1->tbox->btnDel->visible = true;
-			$pstEv2->tbox->btnEdit->visible = true;
-			$pstEv2->tbox->btnDel->visible = true;
-			$pstEv3->tbox->btnEdit->visible = true;
-			$pstEv3->tbox->btnDel->visible = true;
-			
-			$pst = new Post("Eventos de las Maestrias", $pstEv1->ToString() . $pstEv2->ToString() . $pstEv3->ToString());
-			$pst->Show();
+			$pst = new Post("Eventos de las Maestrias", $postList, 550, true, false, false);
+			$pst->tabla = "evento";
+			$pst->pie = $pPager->ToString();
+			if($onlyContent)
+				echo $pst->ToContentString();
+			else
+				echo $pst->ToString();
 		}
 		
 		public function ShowRecursos(){

@@ -12,6 +12,7 @@ function EnablePost(idPost, plainTextContent){
 	if (document.getElementById("fch-" + idPost) != null) {
 		document.getElementById("fch-" + idPost).className = "PostDateEdit";
 		document.getElementById("fch-" + idPost).disabled = false;
+		document.getElementById("fch-" + idPost).onkeypress = function() { return false; }
 		try{
 			Calendar.setup({
 				inputField: ("fch-" + idPost), // id of the input field
@@ -305,6 +306,7 @@ function SavePost(idPost, uid, plainTextContent){
 			duracionPost = postItems[2];
 			cmaPost = (postItems[3] == ""? "0": postItems[3]);
 			iniclPost = (document.getElementById("fch-" + idPost).value == ""? (dt.getFullYear() + "-" + dt.getMonth() + "-" + dt.getDate()) : document.getElementById("fch-" + idPost).value.substr(0, 10)) + " 00:00:00";
+			alert("inicio clases: " + iniclPost);
 			gradoPost = postItems[4];
 			invPost = (postItems[5] == ""? "0": postItems[5]);
 			descPost = postItems[6];
@@ -316,6 +318,21 @@ function SavePost(idPost, uid, plainTextContent){
 			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&codigo=" + codigoPost + "&nombre=" + nombrePost + "&desarrollo=" + desarrolloPost + "&duracion=" + duracionPost + "&cma=" + cmaPost
 			+"&inicl=" + iniclPost + "&grado=" + gradoPost + "&inv=" + invPost + "&desc=" + descPost + "&mision=" + misionPost + "&vision=" + visionPost + "&poblac=" + poblaPost + "&horario=" + horarioPost + "&id=" + indexPost + "&esactual=" + cursoPost
 			, obj);
+			break;
+			
+		case "evemto":
+			var allItems = document.getElementsByTagName("input");
+			var postItems = [];			
+			for(var i=0; i<allItems.length; i++){
+				if(allItems[i].id == ("input-" + idPost)){
+					postItems.push(allItems[i].value);
+				}
+			}
+			apellidosPost = postItems[0];
+			nombresPost = postItems[1];
+			gradoPost = postItems[2];
+			descripcionPost = document.getElementById("div-" + idPost).innerHTML;
+			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&apellidos=" + apellidosPost + "&nombres=" + nombresPost + "&grado=" + gradoPost + "&desc=" + descripcionPost + "&id=" + indexPost, obj);
 			break;
 	}
 }

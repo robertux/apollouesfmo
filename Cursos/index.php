@@ -6,6 +6,7 @@
 	require_once("Materia.php");
 	require_once("ResManager.php");
 	require_once("../clases/cpostgrado.php");
+	require_once("../clases/cevento.php");
 	require_once("../lib/VerticalTable.php");
 	
 	$pag = new paginaSecundaria();
