@@ -50,6 +50,9 @@ class VerticalTableRow{
 		case "fecha":
 			$this->cells[] = new VerticalTableCell("<input type='text' id='fch-$id' class='PostDate' value='" . $pCells[1] . "' disabled='true' ></input>", false);
 			break;
+		case "password":
+			$this->cells[] = new VerticalTableCell("<input id='input-$id' name='input-$id' class='PostInput' type='password' value='" . $pCells[1] . "' disabled='true' $maxLength />", false);
+			break;
 		}
 	}
 	

@@ -34,9 +34,9 @@ class cUsuario
 
     //Obtenemos una lista (un resultset) de este objeto
     //Ojo, el objeto NO toma NINGUN valor de esta lista.
-    public function GetLista()
+    public function GetLista($cond = "")
     {
-    	return($this->Consultar("SELECT * FROM foro_users" . ($cond == ""? " ": " WHERE $cond ") . ";", true));
+    	return($this->Consultar("SELECT * FROM usuario" . ($cond == ""? " ": " WHERE $cond ") . " ORDER BY id DESC;", true));
     }
 	
 	public function GetListaFiltrada($ini=0, $len=10, $cond="")
@@ -46,17 +46,17 @@ class cUsuario
     
     public function GetPorNombreClave($pNombre, $pClave)
     {
-    	return $this->Consultar("SELECT * FROM foro_users WHERE username = '$pNombre' AND password = '$pClave';", false);
+    	return $this->Consultar("SELECT * FROM usuario WHERE nombre = '$pNombre' AND clave = '$pClave';", false);
     }
 	
 	public function GetPorId($pId)
 	{
-		return $this->Consultar("SELECT * FROM foro_users WHERE id = '$pId';", false);
+		return $this->Consultar("SELECT * FROM usuario WHERE id = '$pId';", false);
 	}
     
     public function Insert()
     {
-    	$this->Consultar("INSERT INTO foro_users(id, password, username) VALUES ('$this->id', '$this->nombre','$this->clave');", false);
+    	$this->Consultar("INSERT INTO usuario(id, clave, nombre) VALUES ('$this->id', '$this->nombre','$this->clave');", false);
     }
     
     //?
@@ -67,12 +67,12 @@ class cUsuario
     
     public function Update()
     {
-    	$this->Consultar("UPDATE foro_users SET password = '$this->clave', username = '$this->nombre' WHERE id = $this->id;", false);
+    	$this->Consultar("UPDATE usuario SET clave = '$this->clave', nombre = '$this->nombre' WHERE id = $this->id;", false);
     }
 	
 	public function Delete()
     {
-    	$this->Consultar("DELETE FROM foro_users WHERE id = $this->id;", false);
+    	$this->Consultar("DELETE FROM usuario WHERE id = $this->id;", false);
     }
     
     function Consultar($Consulta, $GetLista)

@@ -232,19 +232,22 @@
 						
 						$postList = "";
 						$cusr = new cUsuario();
-						$pPager = new PostPager($cusr, 2);
-						$usrResult = $pPager->GetPosts($pg);
+						$pPager = new PostPager($cusr, 3);
+						$usrResult = $pPager->GetPosts($pg, "id != 0");
 						if($usrResult->num_rows > 0){
 							while($arreglo = $usrResult->fetch_array()){
-								$tempPost = new InnerPost("", "", 530, false, true, true);
+								$tempPost = new InnerInnerPost("", "", 530, false, true, true);
 								$tempPost->editableTitle = false;
 								$tempPost->id = $arreglo["id"];
 								$tempPost->tabla = "usuario";
 								$tempPost->titulo = $arreglo["nombre"];
+								$tempPost->displayArea = false;
 								
 								$vTable = new VerticalTable();
-								$vTable->rows[] = new VerticalTableRow(array("Nombre", $arreglo["nombre"]), $tempPost->id);
-								$vTable->rows[] = new VerticalTableRow(array("Clave", $arreglo["clave"]), $tempPost->id);
+								$vTable->rows[] = new VerticalTableRow(array("Nombre", $arreglo["nombre"]), $tempPost->id, "text", "15");
+								$vTable->rows[] = new VerticalTableRow(array("Clave Anterior", ""), $tempPost->id, "password", "10");
+								$vTable->rows[] = new VerticalTableRow(array("Nueva Clave", ""), $tempPost->id, "password", "10");
+								$vTable->rows[] = new VerticalTableRow(array("Repita la Nueva Clave", ""), $tempPost->id, "password", "10");
 								
 								$tempPost->contenido = $vTable->ToString();
 								$tempPost->plainTextContent = false;
@@ -252,17 +255,24 @@
 							}
 						}
 						else{
-							$tempPost = new InnerPost("No hay resultados", "No hay docentes que mostrar...", 530, true, false, false);
+							$tempPost = new InnerPost("No hay resultados", "No hay usuarios que mostrar...", 530, true, false, false);
 							$tempPost->id = "noresults";
 							$postList .= $tempPost->ToString();
 						}
 						
 						$pst = new Post("Usuarios del Sitio Web", $postList, 550, true, false, false);
-						$pst->Show();
-						return;
-					}
+						$pst->tabla = "usuario";
+						$pst->pie = $pPager->ToString("id != 0");
+						if($onlyContent)
+							echo $pst->ToContentString();
+						else
+							echo $pst->ToString();
 				}
-			$this->ShowAbout();
+				else
+					$this->ShowAbout();
+			}
+			else
+				$this->ShowAbout();
 		}
     }
 ?>
