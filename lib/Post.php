@@ -154,6 +154,8 @@
 	
 	class InnerInnerPost extends InnerPost{
 		
+		public $displayArea = true;
+		
 		public function ToString(){			
 			return "<div id='pst-$this->id' class='innerInnerPost' style='width: " . $this->ancho . "px;'>" . 
 			$this->ToContentString() . 
@@ -175,13 +177,17 @@
 			if($this->tituloMaxLength != "")
 				$this->tituloMaxLength = " maxlength='" . $this->tituloMaxLength . "'";
 			
+			$display = " style='display: none' ";
+			if($this->displayArea)
+				$display = " style='display: block' ";
+			
 			return "			
 	    		<div class='PostTitle' style='width: " . ($this->ancho - 4) . "px;'>
 					" . $this->tbox->ToString() . $fechaField .
 					"<input type='text' id='txt-$this->id' class='innerTitle' value='$this->titulo' disabled='true' $this->tituloMaxLength />
 				</div>
-				<div id='cont-$this->id' class='PostContent'>
-				    <div id='area-$this->id' class='innerContent'>
+				<div id='cont-$this->id' class='PostContent' >
+				    <div id='area-$this->id' class='innerContent' $display >
 						$this->contenido
 					</div>
 					<input type='hidden' id='tmpcnt-$this->id' value=''/>

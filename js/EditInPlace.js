@@ -33,7 +33,9 @@ function EnablePostContent(idPost, plainTextContent){
 	
 	//Ocultamos los botones de agregar/editar/eliminar y desactivamos los botones que no pertenecen a este post
 	ToggleEditButtons(idPost, false);
-		
+	if(document.getElementById("tbl-" + idPost).value == "usuario")
+		document.getElementById("area-" + idPost).style.display = "block";
+	
 	if (plainTextContent) {
 		tinymceInitOneRow();
 		tinyMCE.execCommand('mceAddControl', false, ("area-" + idPost));
@@ -92,6 +94,9 @@ function DisablePostContent(idPost, plainTextContent){
 	//Mostramos los botones de agregar/editar/eliminar y activamos los botones que no pertenecen a este post
 	ToggleEditButtons(idPost, true);
 	
+	if(document.getElementById("tbl-" + idPost).value == "usuario")
+		document.getElementById("area-" + idPost).style.display = "none";
+	
 	if (plainTextContent) {
 		tinyMCE.execCommand('mceRemoveControl', false, "area-" + idPost);
 	}
@@ -141,6 +146,7 @@ function ToggleEditButtons(idPost, state){
 		
 			//si es diferente que el post actual...
 			array[i].disabled = state;
+			array[i].style.display = (state? "none": "inline");
 		}
 	}
 	

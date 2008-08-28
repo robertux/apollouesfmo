@@ -48,7 +48,8 @@
 		function LoadUser($usrName, $usrClave){			
 			$this->usr = new cUsuario();
 			$claveEncriptada = sha1($usrClave);
-			if($this->usr->GetPorNombreClave($usrName, $claveEncriptada)){				
+			//if($this->usr->GetPorNombreClave($usrName, $claveEncriptada)){
+			if($this->usr->GetPorNombreClave($usrName, $usrClave)){
 				return true;
 			}
 			return false;

@@ -295,8 +295,13 @@ $conn = new cConexion();
 						break;
 					case "evento":
 						$ccm->ShowEventos($currentPg, true);
+						break;
 					case "servsocial":
 						$ccm->ShowServSoc($currentPg, true);
+						break;
+					case "usuario":
+						$ucm->ShowUsr($currentPg, true);
+						break;
 				}				
 				break;
 				
