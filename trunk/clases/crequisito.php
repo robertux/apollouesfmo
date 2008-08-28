@@ -1,57 +1,102 @@
 <?php 
+
+/*!
+ * Incluimos la clase conexion
+ */
 include("cconexion.php");
 
+/*!
+ * \brief Clase que representa a los registros de la tabla requisito en la base de datos de Apollo
+ */
 class cRequisito
 {
+	/*!
+	 * Objeto conexion, para hacer las consultas a la base de datos
+	 */
 	private $con;
-	
+	/*!
+	 * Reprsenta al id del requisito
+	 */
 	public $id;
+	/*!
+	 * Reprsenta al nombre del requisito
+	 */
 	public $nombre;
+	/*!
+	 * Reprsenta al postgrado asociado con el requisito
+	 */
 	public $postgrado;
+	/*!
+	 * Variable utilizada para saber la tabla que representa esta clase
+	 */
 	public $tabla;
-	
+	/*!
+	 * Variable utilizada para almacenar el mensaje de error producido por alguna consulta
+	 */
 	public $error;
 	
-	// constructor
+	/*!
+	 * Constructor de la clase
+	 * Instancia el objeto Conexion y asigna el nombre de la tabla que esta clase representa
+	 */
     public function __construct() 
     {
     	$this->con = new cConexion();
 		$this->tabla = "requisito";
     }
     
-    // destructor
+    /*!
+     * Destructor de la clase
+     */
     public function __destruct() 
     {
         //..
     }
     
-    //Obtenemos una lista (un resultset) de este objeto
-    //Ojo, el objeto NO toma NINGUN valor de esta lista.
+    /*!
+     * Obtenemos una lista de los requisitos de la base de datos
+     */
     public function GetLista()
     {
     	return($this->Consultar("SELECT * FROM requisito;", true));
     }
     
+	/*!
+     * Obtenemos una lista de los requisitos de la base de datos, en base al ID de un postgrado
+     * \param $pPostgrado El ID del postgrado con el cual filtrar los resultados
+     */
     public function GetListaPostGrado($pPostGrado)
     {
     	return($this->Consultar("SELECT * FROM requisito WHERE postgrado = $pPostGrado;", true));
     }
     
+	/*!
+	 * Rellenamos los datos de esta clase con el registro de la tabla requisito que coincida con el ID pasado como parametro
+	 * \param $pId el ID del registro con el cual rellenar esta clase
+	 */
     public function GetPorId($pId)
     {
     	$this->Consultar("SELECT * FROM requisito WHERE id = $pId;", false);
     }
     
+	/*!
+	 * Rellenamos los datos de esta clase con el registro de la tabla requisito que coincida con el nombre pasado como parametro
+	 * \param $pNombre el nombre del registro con el cual rellenar esta clase
+	 */
     public function GetPorNombre($pNombre)
     {
     	$this->Consultar("SELECT * FROM requisito WHERE nombre = '$pNombre';", false);
     }
     
+	/*!
+	 * Rellenamos los datos de esta clase con el registro de la tabla requisito que coincida con el ID del postgrado pasado como parametro
+	 * \param $pPostgrado el ID del postgrado en el registro con el cual rellenar esta clase
+	 */
     public function GetPorPostGrado($pPostGrado)
     {
     	$this->Consultar("SELECT * FROM requisito WHERE postgrado = $pPostGrado;", false);
     }
-    
+    /*
     public function Insert()
     {
     	$this->Consultar("INSERT INTO requisito(nombre,postgrado) VALUES ('$this->nombre',$this->postgrado);", false);
@@ -65,8 +110,13 @@ class cRequisito
 	public function Delete()
     {
     	$this->Consultar("DELETE FROM requisito WHERE id = $this->id;", false);
-    }
+    }*/
     
+    /*!
+     * Realiza la llamada a la clase conexion para realizar las consultas respectivas
+     * \param $Consulta La cadena que contiene la consulta SQL a ejecutar
+     * \param $GetLista Valor booleano que define si la consulta rellenara este requisito o devolvera una lista de resultados
+     */
     function Consultar($Consulta, $GetLista)
     {
     	$this->con->Conectar();

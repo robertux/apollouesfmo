@@ -1,45 +1,113 @@
 <?php 
+
+/*!
+ * Incluimos la clase conexion
+ */
 include_once("cconexion.php");
 
+/*!
+ * \brief Clase que representa a los registros de la tabla postgrados en la base de datos de Apollo
+ * Los postgrados son carreras que se estudian despues de haber cursado y aprobado una carrera universitaria
+ * En esta clase se incluye los campos de la tabla postgrados
+ */
 class cPostGrado
 {
+	/*!
+	 * Objeto conexion, para hacer las consultas a la base de datos
+	 */
 	private $con;
-	
+	/*!
+	 * Reprsenta al id del postgrado
+	 */	
 	public $id;
+	/*!
+	 * Representa el nombre del postgrado
+	 */
 	public $nombre;
+	/*!
+	 * Representa la nota minima del postgrado
+	 */
 	public $notaminima;
+	/*!
+	 * Representa la fecha en la que inician las clases de dicho postgrado
+	 */
 	public $inicioclases;
+	/*!
+	 * Representa el grado que se obtendra al terminar dicho postgrado
+	 */
 	public $grado_obtener;
+	/*!
+	 * Representa la poblacion a la que va dirigida este postgrado
+	 */
 	public $poblacion;
+	/*!
+	 * Representa el horario de clases de este postgrado
+	 */
 	public $horario;	
-	
+	/*!
+	 * Representa la inversion monetaria que requiere este postgrado
+	 */
 	public $inversion;
+	/*!
+	 * Representa la descripcion detallada de este postgrado
+	 */
 	public $descripcion;
+	/*!
+	 * Representa el codigo de carrera de este postgrado
+	 */
 	public $codigo;
+	/*!
+	 * Representa la mision de este postgrado
+	 */
 	public $mision;
+	/*!
+	 * Representa la vision de este postgrado
+	 */
 	public $vision;
+	/*!
+	 * Representa la informacion de como se desarrollara este postgrado
+	 */
 	public $desarrollo;
+	/*!
+	 * Representa la duracion total de este postgrado
+	 */
 	public $duracion;
+	/*!
+	 * Representa si este postgrado se esta impartiendo actualmente o es para un futuro
+	 */
 	public $esactual;
+	/*!
+	 * Variable utilizada para almacenar el mensaje de error producido por alguna consulta
+	 */
 	public $tabla;
-	
+	/*!
+	 * Constructor de la clase
+	 * Instancia el objeto Conexion y asigna el nombre de la tabla que esta clase representa
+	 */
 	public $error;
 	
-	// constructor
+	/*!
+	 * Constructor de la clase
+	 * Instancia el objeto Conexion y asigna el nombre de la tabla que esta clase representa
+	 */
     public function __construct() 
     {
     	$this->con = new cConexion();
 		$this->tabla = "postgrado";
     }
     
-    // destructor
+    /*!
+     * Destructor de la clase
+     */
     public function __destruct() 
     {
         //...
     }
     
-    //Obtenemos una lista (un resultset) de este objeto
-    //Ojo, el objeto NO toma NINGUN valor de esta lista.
+    /*!
+     * Obtenemos una lista de los postgrados de la base de datos
+     * \param $cond Parametro opcional que define una condicion WHERE a incluir en la consulta de seleccion de los postgrados
+     */
     public function GetLista($cond="")
     {
     	if($cond != ""){
@@ -52,6 +120,13 @@ class cPostGrado
 			return($this->Consultar("SELECT * FROM postgrado;", true));
     }
 	
+	/*!
+	 * Obtenemos una lista filtrada de los postgrados de la base de datos
+	 * El filtro se hace para poder paginar los resultados mediante la clausula LIMIT en la consulta de seleccion
+	 * \param $ini El numero del registro inicial a incluir en el rango de los resultados
+	 * \param $len Cantidad de registros a incluir en el rango de los resultados
+	 * \param $cond Parametro opcional que define una condicion WHERE a incluir en la consulta de seleccion de los postgrados
+	 */
 	public function GetListaFiltrada($ini=0, $len=10, $cond = "")
 	{	
 		$numCond = 1;
@@ -60,12 +135,16 @@ class cPostGrado
 		return($this->Consultar("SELECT * FROM postgrado WHERE esactual=$numCond ORDER BY id DESC limit $ini, $len;", true));
 	}
     
-    //Just for now...
+    /*!
+	 * Rellenamos los datos de esta clase con el registro de la tabla postgrado que coincida con el ID pasado como parametro
+	 * \param $pId el ID del registro con el cual rellenar esta clase
+	 */
     public function GetPorId($pId)
     {
     	$this->Consultar("SELECT * FROM postgrado WHERE id = $pId;", false);
     }
     
+	/*
     //id,nombre,notaminima,totaluvs,cumminimo,abreviatura,maxalum,presentacion,descripcion
 	public function Insert()
     {
@@ -99,7 +178,13 @@ class cPostGrado
     {
     	$this->Consultar("DELETE FROM postgrado WHERE id = $this->id;", false);
     }
+    */
     
+    /*!
+     * Realiza la llamada a la clase conexion para realizar las consultas respectivas
+     * \param $Consulta La cadena que contiene la consulta SQL a ejecutar
+     * \param $GetLista Valor booleano que define si la consulta rellenara este postgrado o devolvera una lista de resultados
+     */
     function Consultar($Consulta, $GetLista)
     {
     	$this->con->Conectar();

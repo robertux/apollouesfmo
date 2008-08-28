@@ -1,20 +1,53 @@
 <?php 
+
+/*!
+ * Incluimos la clase conexion
+ */
 include("cconexion.php");
 
+/*!
+ * \brief Clase que representa a los registros de la tabla evaluacion en la base de datos de Apollo
+ */
 class cEvaluacion
 {
+	/*!
+	 * Objeto conexion, para hacer las consultas a la base de datos
+	 */
 	private $con;
 	//id, fecha, porcentaje, nota, modulo
+	/*!
+	 * Reprsenta al id de la evaluacion
+	 */
 	public $id;
+	/*!
+	 * Representa la fecha de la evaluacion
+	 */
 	public $fecha;
+	/*!
+	 * Representa el porcentaje de la nota global con el que es valorada esta evaluacion
+	 */
 	public $porcentaje;
+	/*!
+	 * Representa la nota obtenida en la evaluacion
+	 */
 	public $nota;
+	/*!
+	 * Representa el modulo en el que fue realizada esta evaluacion
+	 */
 	public $modulo;
+	/*!
+	 * Variable utilizada para saber la tabla que representa esta clase
+	 */
 	public $tabla;
-	
+	/*!
+	 * Variable utilizada para almacenar el mensaje de error producido por alguna consulta
+	 */
 	public $error;
 	
-	// constructor
+	/*!
+	 * Constructor de la clase
+	 * Instancia el objeto Conexion y asigna el nombre de la tabla que esta clase representa
+	 */
     public function __construct() 
     {
     	$this->con = new cConexion();
@@ -22,24 +55,35 @@ class cEvaluacion
 		//$this->con->Conectar();
     }
     
-    // destructor
+    /*!
+     * Destructor de la clase
+     */
     public function __destruct() 
     {
         //..
     }
     
-    //Obtenemos una lista (un resultset) de este objeto
-    //Ojo, el objeto NO toma NINGUN valor de esta lista.
+    /*!
+     * Obtenemos una lista de las evaluaciones de la base de datos
+     */
     public function GetLista()
     {
     	return($this->Consultar("SELECT * FROM evaluacion;", true));
     }
     
+	/*!
+	 * Obtenemos una lista de las evaluaciones que tengan un ID del modulo que coincida con el ID pasado como parametro
+	 * \param $pModulo ID del Modulo que deben poseer los registros a seleccionar
+	 */
     public function GetListaModulo($pModulo)
     {
     	$this->Consultar("SELECT * FROM evaluacion WHERE modulo = $pModulo;", true);
     }
-    
+	
+    /*!
+	 * Rellenamos los datos de esta clase con el registro de la tabla evaluacion que coincida con el ID pasado como parametro
+	 * \param $pId el ID del registro con el cual rellenar esta clase
+	 */
     public function GetPorId($pId)
     {
     	$this->Consultar("SELECT * FROM evaluacion WHERE id = $pId;", false);
@@ -60,6 +104,11 @@ class cEvaluacion
     	//...
     }*/
     
+    /*!
+     * Realiza la llamada a la clase conexion para realizar las consultas respectivas
+     * \param $Consulta La cadena que contiene la consulta SQL a ejecutar
+     * \param $GetLista Valor booleano que define si la consulta rellenara este alumno o devolvera una lista de resultados
+     */
     function Consultar($Consulta, $GetLista)
     {
     	$this->con->Conectar();
