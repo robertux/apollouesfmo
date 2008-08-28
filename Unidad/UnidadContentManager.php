@@ -236,7 +236,10 @@
 						$usrResult = $pPager->GetPosts($pg, "id != 0");
 						if($usrResult->num_rows > 0){
 							while($arreglo = $usrResult->fetch_array()){
-								$tempPost = new InnerInnerPost("", "", 530, false, true, true);
+								if($arreglo["id"] == $myUser->id)
+									$tempPost = new InnerInnerPost("", "", 530, false, true, false);
+								else
+									$tempPost = new InnerInnerPost("", "", 530, false, true, true);
 								$tempPost->editableTitle = false;
 								$tempPost->id = $arreglo["id"];
 								$tempPost->tabla = "usuario";
