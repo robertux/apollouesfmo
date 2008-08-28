@@ -127,6 +127,24 @@ $conn = new cConexion();
 						$horas = $_GET["horas"];
 						$query = "insert into servsocial values($id, '$titulo', '$descripcion', '$duracion', $horas);";
 						break;
+						
+					case "usuario":
+						$usuario = $_GET["usuario"];
+						$clave = $_GET["clave"];
+						$query = "insert into usuario values($id, '$clave', '$usuario');";
+						$conn->Conectar();
+						$res = $conn->mysqli->query($query);
+						$conn->mysqli->close();
+						
+						$query = "select max(id) as maxid from asignacion;";
+						$conn->Conectar();
+						$res = $conn->mysqli->query($query);
+						$arr = $res->fetch_array();
+						$assignId = $arr["maxid"];
+						$conn->mysqli->close();						
+						
+						$query = "inesrt into asignacion values($assignId, $id, 4);";
+						break;
 				}
 				$conn->Conectar();
 				echo $res = $conn->mysqli->query($query);
@@ -243,9 +261,33 @@ $conn = new cConexion();
 						$horas = $_GET["horas"];
 						$query = "update servsocial set nombre='$titulo', descripcion='$descripcion', duracion='$duracion', total_horas=$horas where id=$id;";						
 						break;
+						
+					case "usuario":
+						$usuario = $_GET["usuario"];
+						$claveant = $_GET["claveant"];
+						$clave = $_GET["clave"];
+						
+						if($claveant != ""){
+							$query = "select clave from usuario where id=$id;";
+							$conn->Conectar();
+							$res = $conn->mysqli->query($query);
+							$arr = $res->fetch_array();
+							$claveantReal = $arr["clave"];
+							$conn->mysqli->close();
+							
+							if($claveant != $claveantReal){
+								echo "nomatch";
+								break;
+							}
+							else
+								$query = "update usuario set nombre='$usuario', clave='$clave' where id=$id;";
+						}
+						else
+							$query = "update usuario set nombre='$usuario' where id=$id;";
+						break;
 				}
 				$conn->Conectar();
-				echo "query: " . $query;
+				//echo "query: " . $query;
 				$conn->mysqli->query($query);
 				$conn->mysqli->close();
 				break;
@@ -390,6 +432,16 @@ $conn = new cConexion();
 					$pst->plainTextContent = false;
 					$pst->editableTitle = true;
 					$pst->tituloMaxLength = "300";
+				}
+				if($tabla == "usuario"){
+					$vTable = new VerticalTable();
+					$vTable->rows[] = new VerticalTableRow(array("Nombre", ""), $pst->id, "text", "15");
+					$vTable->rows[] = new VerticalTableRow(array("Nueva Clave", ""), $pst->id, "password", "10");
+					$vTable->rows[] = new VerticalTableRow(array("Repita la Nueva Clave", ""), $pst->id, "password", "10");
+					
+					$pst->contenido = $vTable->ToString();
+					$pst->plainTextContent = false;
+					$pst->editableTitle = false;
 				}
 				$pst->Show();
 				break;

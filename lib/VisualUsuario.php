@@ -47,9 +47,9 @@
 		//Verifica si el usuario y clave pasados coinciden con un registro en la bd
 		function LoadUser($usrName, $usrClave){			
 			$this->usr = new cUsuario();
-			$claveEncriptada = sha1($usrClave);
-			//if($this->usr->GetPorNombreClave($usrName, $claveEncriptada)){
-			if($this->usr->GetPorNombreClave($usrName, $usrClave)){
+			$claveEncriptada = md5($usrClave);
+			if($this->usr->GetPorNombreClave($usrName, $claveEncriptada)){
+			//if($this->usr->GetPorNombreClave($usrName, $usrClave)){
 				return true;
 			}
 			return false;
