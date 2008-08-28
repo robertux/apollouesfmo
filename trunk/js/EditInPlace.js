@@ -215,8 +215,8 @@ function SavePost(idPost, uid, plainTextContent){
 	
 	//Tomamos el valor que nos devuelva el servidor via ajax e invocamos una funcion que se encargara de procesar la respuesta.
 	var obj = new Object();
-	obj.responseFunction = function(){
-		CatchSavedPost(tablaPost, uid);
+	obj.responseFunction = function(responseText){
+		CatchSavedPost(tablaPost, uid, responseText, idPost);
 	}	
 	
 	//alert("actionpost: " + actionPost);
@@ -349,6 +349,43 @@ function SavePost(idPost, uid, plainTextContent){
 			
 			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&titulo=" + tituloPost + "&desc=" + descripcionPost + "&duracion=" + duracionPost + "&horas=" + horasPost + "&id=" + indexPost, obj);
 			break;
+			
+		case "usuario":
+			var allItems = document.getElementsByTagName("input");
+			var postItems = [];
+			for(var i=0; i<allItems.length; i++){
+				if(allItems[i].id == ("input-" + idPost)){
+					postItems.push(allItems[i].value);
+				}				
+			}			
+			if (actionPost == "edit") {
+				usuarioPost = postItems[0];
+				claveAntPost = postItems[1];
+				claveNewPost = postItems[2];
+				claveReNewPost = postItems[3];
+				if (claveAntPost != "" || claveNewPost != "" || claveReNewPost != ""){
+					if(claveNewPost != claveReNewPost){
+						alert("La nueva clave y la repeticion de la nueva clave no coinciden");
+						EnablePostContent(idPost, plainTextContent);
+						break;
+					}
+					xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&usuario=" + usuarioPost + "&claveant=" + hex_md5(claveAntPost) + "&clave=" + hex_md5(claveNewPost) + "&id=" + indexPost, obj);
+				}
+				else
+					xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&usuario=" + usuarioPost + "&id=" + indexPost, obj);
+			}
+			else{
+				usuarioPost = postItems[0];
+				claveNewPost = postItems[1];
+				claveReNewPost = postItems[2];
+				if(claveNewPost != claveReNewPost){
+					alert("La nueva clave y la repeticion de la nueva clave no coinciden");
+					EnablePostContent(idPost, plainTextContent);
+					break;
+				}
+				xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&usuario=" + usuarioPost + "&clave=" + hex_md5(claveNewPost) + "&id=" + indexPost, obj);
+			}			
+			break;
 	}
 }
 
@@ -403,10 +440,16 @@ function DelPostNoConfirm(idPost){
 }
 
 
-function CatchSavedPost(tablaPost, uid){
+function CatchSavedPost(tablaPost, uid, responseText, postId){
 	var $condicion = "";
 	if(document.getElementById("tipocursos") != null)
 		$condicion = document.getElementById("tipocursos").value;
+	
+	if (responseText == "nomatch"){
+		alert("La clave antterior es incorrecta");
+		EnablePostContent(postId, false);
+		return;
+	}
 	refreshPage(tablaPost, uid, $condicion);
 }
 

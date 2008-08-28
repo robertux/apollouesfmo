@@ -63,6 +63,9 @@
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/EditInPlace.js\"></script>";
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/AjaxManagerClient.js\"></script>";
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/PostPager.js\"></script>";
+	
+			//MD5	
+			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/md5.js\"></script>";
 			
 			//El jsCalendar y sus dependencias:
 			echo "<script language=\"javascript\" type=\"text/javascript\" src=\"../js/jscalendar/calendar.js\"></script>";
