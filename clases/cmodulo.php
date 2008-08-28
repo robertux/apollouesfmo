@@ -1,23 +1,65 @@
 <?php 
+
+/*!
+ * Incluimos la clase conexion
+ */
 include("cconexion.php");
 
+/*!
+ * \brief Clase que representa a los registros de la tabla modulo en la base de datos de Apollo
+ */
 class cModulo
 {
+	/*!
+	 * Objeto conexion, para hacer las consultas a la base de datos
+	 */
 	private $con;
 	//id, correlativo, docente, fechainicio, duracion, notafinal, curso, materia
+	/*!
+	 * Reprsenta al id del modulo
+	 */
 	public $id;
+	/*!
+	 * Representa al numero correlativo del modulo
+	 */
 	public $correlativo; 
+	/*!
+	 * Representa al docente asociado con el modulo
+	 */	
 	public $docente;
+	/*!
+	 * Representa la fecha de inicio del modulo
+	 */
 	public $fechainicio;
+	/*!
+	 * Representa la duracion del modulo
+	 */
 	public $duracion;
+	/*!
+	 * Representa la nota final del modulo
+	 */
 	public $notafinal;
+	/*!
+	 * Representa el curso asociado con este modulo
+	 */
 	public $curso;
+	/*!
+	 * Representa la materia asociada con este modulo
+	 */
 	public $materia;
+	/*!
+	 * Variable utilizada para saber la tabla que representa esta clase
+	 */
 	public $tabla;
-	
+	/*!
+	 * Variable utilizada para almacenar el mensaje de error producido por alguna consulta
+	 */
 	public $error;
 	
-	// constructor
+	/*!
+	 * Constructor de la clase
+	 * Instancia el objeto Conexion y asigna el nombre de la tabla que esta clase representa
+	 */
     public function __construct() 
     {
     	$this->con = new cConexion();
@@ -25,34 +67,53 @@ class cModulo
 		//$this->con->Conectar();
     }
     
-    // destructor
+    /*!
+     * Destructor de la clase
+     */
     public function __destruct() 
     {
         //..
     }
     
-    //Obtenemos una lista (un resultset) de este objeto
-    //Ojo, el objeto NO toma NINGUN valor de esta lista.
+    /*!
+     * Obtenemos una lista de los modulos de la base de datos
+     */
     public function GetLista()
     {
     	return($this->Consultar("SELECT * FROM modulo;", true));
     }
     
+	/*!
+	 * Rellenamos los datos de esta clase con el registro de la tabla modulos que coincida con el ID pasado como parametro
+	 * \param $pId el ID del registro con el cual rellenar esta clase
+	 */
     public function GetPorId($pId)
     {
     	$this->Consultar("SELECT * FROM modulo WHERE id = $pId;", false);
     }
     
+	/*!
+	 * Rellenamos los datos de esta clase con el registro de la tabla modulos que coincida con el ID del docente pasado como parametro
+	 * \param $pDocente el ID del docente en el registro con el cual rellenar esta clase
+	 */
     public function GetPorDocente($pDocente)
     {
     	$this->Consultar("SELECT * FROM modulo WHERE docente = $pDocente;", false);
     }
     
+	/*!
+	 * Rellenamos los datos de esta clase con el registro de la tabla modulos que coincida con el ID del curso pasado como parametro
+	 * \param $pICurso el ID del curso en el registro con el cual rellenar esta clase
+	 */
     public function GetPorCurso($pCurso)
     {
     	$this->Consultar("SELECT * FROM modulo WHERE curso = $pCurso;", false);
     }
     
+	/*!
+	 * Rellenamos los datos de esta clase con el registro de la tabla modulos que coincida con el ID de la materia pasada como parametro
+	 * \param $pMateria el ID de la materia en el registro con el cual rellenar esta clase
+	 */
     public function GetPorMateria($pMateria)
     {
     	$this->Consultar("SELECT * FROM modulo WHERE materia = $pMateria;", false);
@@ -83,6 +144,11 @@ class cModulo
     	$this->Consultar("DELETE FROM modulo WHERE id = $this->id;", false);
     }*/
     
+    /*!
+     * Realiza la llamada a la clase conexion para realizar las consultas respectivas
+     * \param $Consulta La cadena que contiene la consulta SQL a ejecutar
+     * \param $GetLista Valor booleano que define si la consulta rellenara este modulo o devolvera una lista de resultados
+     */
     function Consultar($Consulta, $GetLista)
     {
     	$this->con->Conectar();

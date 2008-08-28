@@ -1,21 +1,56 @@
 <?php 
+
+/*!
+ * Incluimos la clase conexion
+ */
 include("cconexion.php");
 
+/*!
+ * \brief Clase que representa a los registros de la tabla materia en la base de datos de Apollo
+ */
 class cMateria
 {
+	/*!
+	 * Objeto conexion, para hacer las consultas a la base de datos
+	 */
 	private $con;
-	
+	/*!
+	 * Reprsenta al id de la materia
+	 */
 	public $id;
+	/*!
+	 * Representa al nombre de la materia
+	 */
 	public $nombre; //string
+	/*!
+	 * Representa al total de unidades valorativas de la materia
+	 */
 	public $uvs;
+	/*!
+	 * Representa al tipo de materia [normal, optativa]
+	 */
 	public $tipo;
+	/*!
+	 * Representa el id de la materia para la cual esta es requisito
+	 */
 	public $requisitopara;
+	/*!
+	 * Representa el id del postgrado asociado con esta materia
+	 */
 	public $postgrado;
+	/*!
+	 * Variable utilizada para saber la tabla que representa esta clase
+	 */
 	public $tabla;
-	
+	/*!
+	 * Variable utilizada para almacenar el mensaje de error producido por alguna consulta
+	 */
 	public $error;
 	
-	// constructor
+	/*!
+	 * Constructor de la clase
+	 * Instancia el objeto Conexion y asigna el nombre de la tabla que esta clase representa
+	 */
     public function __construct() 
     {
     	$this->con = new cConexion();
@@ -23,24 +58,35 @@ class cMateria
 		//$this->con->Conectar();
     }
     
-    // destructor
+    /*!
+     * Destructor de la clase
+     */
     public function __destruct() 
     {
         //..
     }
     
-    //Obtenemos una lista (un resultset) de este objeto
-    //Ojo, el objeto NO toma NINGUN valor de esta lista.
+    /*!
+     * Obtenemos una lista de los materias de la base de datos
+     */
     public function GetLista()
     {
     	return($this->Consultar("SELECT * FROM materia;", true));
     }
     
+	/*!
+     * Obtenemos una lista de los materias de la base de datos, en base al ID de un postgrado asociado
+     * \param $pPostgrado El ID del postgrado asociado con el cual filtrar los resultados
+     */
     public function GetListaPostGrado($pPostGrado)
     {
     	return($this->Consultar("SELECT * FROM materia WHERE postgrado = $pPostGrado;", true));
     }
     
+	/*!
+	 * Rellenamos los datos de esta clase con el registro de la tabla materias que coincida con el ID pasado como parametro
+	 * \param $pId el ID del registro con el cual rellenar esta clase
+	 */
     public function GetPorId($pId)
     {
     	$this->Consultar("SELECT * FROM materia WHERE id = $pId;", false);
@@ -70,7 +116,12 @@ class cMateria
     {
     	$this->Consultar("DELETE FROM materia WHERE id = $this->id;", false);
     }*/
-    
+	
+    /*!
+     * Realiza la llamada a la clase conexion para realizar las consultas respectivas
+     * \param $Consulta La cadena que contiene la consulta SQL a ejecutar
+     * \param $GetLista Valor booleano que define si la consulta rellenara esta materia o devolvera una lista de resultados
+     */
     function Consultar($Consulta, $GetLista)
     {
     	$this->con->Conectar();

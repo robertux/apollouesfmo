@@ -1,4 +1,10 @@
 <?php
+	
+	/*!
+	 * Pagina principal del AcercaDe.Muestra una plantilla similar a todas las demas paginas al hacer uso de la clase paginaSecundaria
+	 * Su menu vertical se reduce a nada mas "Volver a Pagina Principal"
+	 */
+
 	define("RUTA", realpath("../"));
 	require_once("../incluye.php");	
 	require_once("../clases/cgeneral.php");
@@ -10,16 +16,27 @@
 	require_once("../lib/MGalleryManager.php");
 	require_once("AcercaDeContentManager.php");
 	
+	/*!
+	 * Instanciamos la clase paginaSecundaria e invocamos a sus metodos que nos generan el HTML basico
+	 */
 	$pag = new paginaSecundaria();
 	$pag->encabezado();
 	$pag->cuerpo();
 ?>
 <div id="wrap">	
 	<?php
+		/*!
+		 * Mostramos la barra superior para login/logout
+		 */
 		$vuser = new VisualUsuario();
 		$vuser->Show();
 	?>
   <div id="header">
+  	<?php 
+		/*!
+		 * Mostramos el banner principal y el menu principal
+		 */	
+	 ?>
     <div id="logo">
       <h1>Acerca De...</h1>
     </div>
@@ -37,8 +54,15 @@
 	  </div>
 	  <div id="innerContent">
     	<?php
+			/*!
+			 * El contenido lo tomamos de la invocacion al metodo Show() de la clase AcercaDeContentManager
+			 */
 			$cm = new AcercaDeContentManager();
 			$cm->Show();
+			
+			/*
+			 * Mostramos el menu lateral. Con la unica opcion de regresar a la pagina principal
+			 */ 
 		?>
 	    <div id="rightMenu">
 			<ul>

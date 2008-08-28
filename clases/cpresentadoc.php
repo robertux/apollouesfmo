@@ -1,41 +1,74 @@
 <?php 
+
+/*!
+ * Incluimos la clase conexion
+ */
 include("cconexion.php");
 
+/*!
+ * \brief Clase que representa a los registros de la tabla presentadoc en la base de datos de Apollo
+ * PresentaDoc repreesnta los documentos que debe presentar un aspirante a una maestria, como requisito para la inscripcion en la misma
+ */
 class cPresentaDoc
 {
+	/*!
+	 * Objeto conexion, para hacer las consultas a la base de datos
+	 */
 	private $con;
 	//id, nombre
+	/*!
+	 * Reprsenta al id del documento
+	 */
 	public $id;
+	/*!
+	 * Representa el nombre del documento
+	 */
 	public $nombre;
+	/*!
+	 * Variable utilizada para saber la tabla que representa esta clase
+	 */
 	public $tabla;
-	
+	/*!
+	 * Variable utilizada para almacenar el mensaje de error producido por alguna consulta
+	 */
 	public $error;
 	
-	// constructor
+	/*!
+	 * Constructor de la clase
+	 * Instancia el objeto Conexion y asigna el nombre de la tabla que esta clase representa
+	 */
     public function __construct() 
     {
     	$this->con = new cConexion();
 		$this->tabla = "presantadoc";
     }
     
-    // destructor
+    /*!
+     * Destructor de la clase
+     */
     public function __destruct() 
     {
         //..
     }
     
-    //Obtenemos una lista (un resultset) de este objeto
-    //Ojo, el objeto NO toma NINGUN valor de esta lista.
+    /*!
+     * Obtenemos una lista de los documentos de la base de datos
+     */
     public function GetLista()
     {
     	return($this->Consultar("SELECT * FROM presentadoc;", true));
     }
     
+	/*!
+	 * Rellenamos los datos de esta clase con el registro de la tabla presentadoc que coincida con el ID pasado como parametro
+	 * \param $pId el ID del registro con el cual rellenar esta clase
+	 */
     public function GetPorId($pId)
     {
     	$this->Consultar("SELECT * FROM presentadoc WHERE id = $pId;", false);
     }
     
+	/*
     public function Insert()
     {
     	$this->Consultar("INSERT INTO presentadoc(descripcion) VALUES ('$this->descripcion');", false);
@@ -49,8 +82,13 @@ class cPresentaDoc
 	public function Delete()
     {
     	$this->Consultar("DELETE FROM presentadoc WHERE id = $this->id;", false);
-    }
+    }*/
     
+    /*!
+     * Realiza la llamada a la clase conexion para realizar las consultas respectivas
+     * \param $Consulta La cadena que contiene la consulta SQL a ejecutar
+     * \param $GetLista Valor booleano que define si la consulta rellenara este documento o devolvera una lista de resultados
+     */
     function Consultar($Consulta, $GetLista)
     {
     	$this->con->Conectar();
