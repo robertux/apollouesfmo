@@ -136,18 +136,19 @@ $conn = new cConexion();
 						$res = $conn->mysqli->query($query);
 						$conn->mysqli->close();
 						
-						$query = "select max(id) as maxid from asignacion;";
+						$query = "select (max(id) +  1) as maxid from asignacion;";
 						$conn->Conectar();
 						$res = $conn->mysqli->query($query);
 						$arr = $res->fetch_array();
 						$assignId = $arr["maxid"];
 						$conn->mysqli->close();						
 						
-						$query = "inesrt into asignacion values($assignId, $id, 4);";
+						$query = "insert into asignacion values($assignId, $id, 4);";
+						echo $query;
 						break;
 				}
 				$conn->Conectar();
-				echo $res = $conn->mysqli->query($query);
+				$res = $conn->mysqli->query($query);
 				if($_GET["table"] == "procesos")
 					header("location: ../Unidad/index.php?opt=proc");
 				break;

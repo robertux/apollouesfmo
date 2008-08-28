@@ -99,7 +99,7 @@ class cUsuario
         	    		$this->nombre = $row[2];
 						$conTemp = new cConexion();
 						$conTemp->Conectar();
-						$resPriv = $conTemp->mysqli->query("SELECT nombre FROM privilegio p INNER JOIN asignacion a ON p.id = a.privilegio INNER JOIN foro_users u ON a.usuario = u.id WHERE u.id=$this->id;");
+						$resPriv = $conTemp->mysqli->query("SELECT p.nombre FROM privilegio p INNER JOIN asignacion a ON p.id = a.privilegio INNER JOIN usuario u ON a.usuario = u.id WHERE u.id=$this->id;");
 						if($resRow = $resPriv->fetch_array())
 							$this->privilegio = $resRow[0];
 						$conTemp->mysqli->close();
