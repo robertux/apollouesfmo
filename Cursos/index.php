@@ -1,4 +1,8 @@
 <?php
+
+	/*!
+	 * Agregamos los archivos que vamos a utilizar
+	 */
 	define("RUTA", realpath("../"));
 	require_once("../incluye.php");
 	require_once("CursosContentManager.php");
@@ -7,12 +11,19 @@
 	require_once("../clases/cservsoc.php");	
 	require_once("../lib/VerticalTable.php");
 	
+	/*!
+	 * Generamos la estructura basica de la pagina mediante la clase paginaSecundaria
+	 */
 	$pag = new paginaSecundaria();
 	$pag->encabezado();
 	$pag->cuerpo();
 ?>
 <div id="wrap">
 	<?php
+	
+		/*!
+		 * Mostramos la barra superior para Iniciar/Cerrar sesion
+		 */
 		$vuser = new VisualUsuario();
 		$vuser->Show();
 	?>	
@@ -45,6 +56,11 @@
 			<li><a href="index.php?opt=serv">Servicio Social</a></li>
 			</ul>
 			<?php 
+				
+				/*!
+				 * Si el usuario que ha iniciado sesion posee privilegios de administrador, le mostraremos la opcion para administrar los usuarios
+				 */
+				
 				if($_SESSION["CurrentUser"] != ""){
 					$myUser = new cusuario();
 					$myUser->GetPorId($_SESSION["CurrentUser"]);

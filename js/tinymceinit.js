@@ -2,6 +2,9 @@
  * @author developer
  */
 
+/*!
+ * Metodo que nos permite inicializar el TinyMCE para que muestre los botones en dos filas
+ */
 function tinymceInitTwoRows(){
 
 	tinyMCE.init({
@@ -24,6 +27,9 @@ function tinymceInitTwoRows(){
 	
 }
 
+/*!
+ * Metodo que nos permite inicializar el TinyMCE para que muestre los botones en una fila
+ */
 function tinymceInitOneRow(){
 
 	tinyMCE.init({

@@ -3,18 +3,28 @@
 	//include_once("Usuario.php");
 	define("RUTA", realpath("../"));
 	require_once(RUTA."/clases/cusuario.php");
-	require_once(RUTA."/lib/SearchBox.php");
-
+	
+	/*!
+	 * Clase que representa a la barra de Login/Logout que aparece en la parte superior de las paginas
+	 */
     class VisualUsuario{
+    	/*!
+    	 * Representa al ID del usuario logueado
+    	 */
     	public $usr;
 		//var $sBox;
 		
+		/*!
+		 * Constructor
+		 */
 		function VisualUsuario(){
 			$this->usr = new cUsuario();
 			//$this->sBox = new SearchBox();
 		}
 		
-		//Muestra el loginBox, en base a una accion (login/logout) y a las variables de sesion
+		/*!
+		 * Metodo que muestra el loginBox, en base a una accion (login/logout) y a las variables de sesion
+		 */
 		function Show(){ 
 						
 			if(isset($_GET["action"])){ //el usuario desea hacer alguna accion con el login?
@@ -44,7 +54,11 @@
 			}							
 		}
 
-		//Verifica si el usuario y clave pasados coinciden con un registro en la bd
+		/*!
+		 * Metodo que verifica si el usuario y clave pasados coinciden con un registro en la bd
+		 * \param $usrName El nombre del usuario
+		 * \param $usrClave La clave de acceso del usuario
+		 */
 		function LoadUser($usrName, $usrClave){			
 			$this->usr = new cUsuario();
 			$claveEncriptada = md5($usrClave);
@@ -56,6 +70,10 @@
 			
 		}
 		
+		/*!
+		 * Metodo que verifica si un ID de usuario es valido, segun los regitros de la tabla usuario de la base de datos
+		 * \param $pId El ID del usuario a verificar
+		 */
 		function loadUserById($pId){
 			$this->usr = new cUsuario();
 			if($this->usr->GetPorId($pId)){		
@@ -64,7 +82,9 @@
 			return false;
 		}
 		
-		//Muestra un mensaje de bienvenida con el nombre del usuario logueado mas el boton para desloguearse
+		/*!
+		 * Metodo que muestra un mensaje de bienvenida con el nombre del usuario logueado mas el boton para desloguearse
+		 */
 		function ShowUserInfo(){
 			echo("
 			<form id='frmLogout' action='index.php?action=logout' method='POST' accept-charset='utf-8'>					
@@ -80,7 +100,9 @@
 			");
 		}
 		
-		//Muestra el cuadro de login con sus textbox y boton submit. Alternativamente puede mostrar un mensaje de error
+		/*!
+		 * Metodo que muestra el cuadro de login con sus textbox y boton submit. Alternativamente puede mostrar un mensaje de error
+		 */
 		function ShowLoginBox($errorMsg){
 			$action = "";
 			echo("

@@ -1,5 +1,8 @@
 <?php
 
+/*!
+ * Definimos todos los archivos que vamos a necesitar incluir
+ */
 define("RUTA", realpath("../"));
 require_once(RUTA . "/clases/cconexion.php");
 require_once(RUTA . "/clases/cgeneral.php");
@@ -19,15 +22,22 @@ require_once(RUTA . "/Cursos/CursosContentManager.php");
 require_once(RUTA . "/lib/VerticalTable.php");
 require_once(RUTA . "/lib/MGalleryManager.php");
 
+//!Creamos una instancia de la clase conexion, para gestionar todas las operaciones en la base de datos
 $conn = new cConexion();
+
+	//!Verificamos que nos haya enviado una accion para decidir que hacer con la llamada
 	if(isset($_GET["action"])){
 		switch($_GET["action"]){
 
+			//!Si vamos a agregar un nuevo post...
 			case "add":
-				$id = 0;
+				//!Tomamos el parametro ID, el cual por defecto es 0, pero por las dudas...
+				$id = 0;				
 				$id = $_GET["id"];
 				//echo "id? $id";
+				//!Tomamos el parametro table, para saber en que tabla estamos trabajando
 				$tabla = $_GET["table"];
+				//!Si el ID es cero (como debe de ser) hacemos una consulta para obtener el ultimo ID de los registros existentes y sumarle 1 para obtener el nuevo Id para nuestro registro
 				if($id == 0){
 					$query = "select (max(id) + 1) as maxid from $tabla;";
 					$conn->Conectar();
@@ -36,7 +46,8 @@ $conn = new cConexion();
 					$id = $arr["maxid"];
 					$conn->mysqli->close();
 				}
-	
+				
+				//!Verificamos en que tabla vamos a agregar el nuevo registro. Cada tabla requiere diferentes parametros. Con estos parametros armamos la consulta y la guardamos en $query
 				switch($_GET["table"]){
 					case "novedades":						
 						$titulo = $_GET["title"];
@@ -71,6 +82,8 @@ $conn = new cConexion();
 						echo "post[0]? " . $_POST[0];
 						echo "post[1]? " . $_POST[1];
 						echo "cuantos elementos tiene files? " . count($_FILES);*/
+						
+						//!La tabla procesos toma parametros especiales ya que no fue llamada via ajax sino via postback. Estos parametros definen caracteristicas de la imagen que se va a agregar a la BD
 						if($_FILES['upld']['size'] > 0){							
 							$fileName = $_FILES['upld']['name'];
 							//echo "nombre original del archivo: $fileName";
@@ -147,12 +160,16 @@ $conn = new cConexion();
 						echo $query;
 						break;
 				}
+				
+				//!Una vez que tenemos formada la consulta, abrimos la conexion y la ejecutamos
 				$conn->Conectar();
 				$res = $conn->mysqli->query($query);
+				//!Para el caso de los procesos, volvemos via redirect a la pagina original
 				if($_GET["table"] == "procesos")
 					header("location: ../Unidad/index.php?opt=proc");
 				break;
 			
+			//!Para las acciones de edicion, es el mismo rollo. Verificamos que tabla es y en base a los parametros recibidos via GET, armamos la consulta. Al final la ejecutamos
 			case "editcontacto":
 				$newContent = $_GET["value"];
 				
@@ -192,7 +209,8 @@ $conn = new cConexion();
 				$conn->mysqli->query("update general set contenido = '$newContent' where titulo = 'about'");
 				$conn->mysqli->close();
 				break;
-				
+			
+			//!Para las acciones de edicion, es el mismo rollo. Verificamos que tabla es y en base a los parametros recibidos via GET, armamos la consulta. Al final la ejecutamos	
 			case "edit":
 				$query = "";
 				$id = $_GET["id"];
@@ -268,6 +286,7 @@ $conn = new cConexion();
 						$claveant = $_GET["claveant"];
 						$clave = $_GET["clave"];
 						
+						//!Para el caso especial de editar un usuario existente, hay que verificar si deseaba cambiar la clave y de ser asi, verificar si el campo ClaveAnterior que escribio, coincide con la clave del usuario
 						if($claveant != ""){
 							$query = "select clave from usuario where id=$id;";
 							$conn->Conectar();
@@ -276,6 +295,7 @@ $conn = new cConexion();
 							$claveantReal = $arr["clave"];
 							$conn->mysqli->close();
 							
+							//!Si no coincide, se devuelve el texto 'nomatch' Al otro lado saben que hacer si devolvemos esto
 							if($claveant != $claveantReal){
 								echo "nomatch";
 								break;
@@ -293,6 +313,7 @@ $conn = new cConexion();
 				$conn->mysqli->close();
 				break;
 				
+			//!Para el caso de eliminar registros es mas sencillo todavia ya que no requerimos preguntar por cada tabla ya que para cada tabla lo unico que necesitaremos para armar la consulta es el id del registro a borrar y el nombre de la tabla a la que pertenece
 			case "del":
 				$tabla = $_GET["table"];
 				$id = $_GET["id"];
@@ -300,9 +321,11 @@ $conn = new cConexion();
 				$conn->mysqli->query("delete from $tabla where id=$id;");
 				$conn->mysqli->close();
 				break;
-				
+			
+			//!Si la accion es obtener una nueva pagina (hablando de paginacion...)	
 			case "getpage":
 			
+				//!Obtenemos los parametros que nos enviaron...
 				$currentPg = 0;
 				$currentPg = $_GET["current"];
 				$uid = $_GET["uid"];
@@ -310,11 +333,14 @@ $conn = new cConexion();
 				$direction = $_GET["new"];
 				$condicion = $_GET["cond"];
 				
+				//!Verificamos que pagina quieren...
 				if($direction == "next")
 					$currentPg++;
 				else if ($direction == "prev")
 					$currentPg--;
 				
+				//!Verificamos de que tabla quieren la nueva pagina e invocamos al ContentManager adecuado, pasandole los parametros.
+				//!Y mostramos la lista de posts que posee en base a la pagina que el usuario desea ver
 				$ucm = new UnidadContentManager();
 				$ccm = new CursosContentManager();
 				switch($_GET["tabla"]){
@@ -347,8 +373,10 @@ $conn = new cConexion();
 						break;
 				}				
 				break;
-				
+			
+			//!Si la accion es agregar un nuevo post y desean la estructura en blanco de ese nuevo post...				
 			case "getpost":
+				//!Obtenemos los parametros que nos enviaron, entre ellos la tabla
 				$tabla = $_GET["tabla"];
 				$showDate = $_GET["showdate"];
 				$uid = $_GET["uid"];
@@ -361,9 +389,10 @@ $conn = new cConexion();
 				if($showDate == '1')
 					$pst->fecha = date("Y-m-d") . " 00:00:00";
 				
+				//!En base a la tabla, generamos el nuevo Post, asi como lo hacen los ContentManagers, solo que este tendra los campos vacios y un id de '-1'
 				if($tabla == "novedades"){
 					$pst->tituloMaxLength="50";
-				}				
+				}
 				if($tabla == "docente"){
 					$vTable = new VerticalTable();
 					$vTable->rows[] = new VerticalTableRow(array("Apellidos", ""), $pst->id, "text", "200");
@@ -444,6 +473,7 @@ $conn = new cConexion();
 					$pst->plainTextContent = false;
 					$pst->editableTitle = false;
 				}
+				//!Y al final, solo lo imprimimos, par que le llegue como respuesta al usuario
 				$pst->Show();
 				break;
 		}

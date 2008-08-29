@@ -1,6 +1,9 @@
 <?php
+
+	/*!
+	 * Define los archivos necesarios
+	 */
 	require_once("incluye.php");
-	$mcm = new MainContentManager();
 
 		session_start();
 		echo "<!DOCTYPE html PUBLIC \"-//IETF//DTD HTML 2.0//EN\"><html><head><title>
@@ -69,8 +72,13 @@
     </table>
 				<div class="WidgetListLeft">
 				<?php
-					$wgAbout = new Widget("Acerca de la Unidad", "Unidad/index.php?opt=about", $mcm->showAbout(), "WidgetLeft");
-					$wgAbout->Show();			
+					/*$wgAbout = new Widget("Acerca de la Unidad", "Unidad/index.php?opt=about", $mcm->showAbout(), "WidgetLeft");
+					$wgAbout->Show();*/
+					$wdg = new WidgetAbout();
+					$wdg->claseCSS="WidgetLeft";
+					$wdg->Titulo="Acerca de la Unidad";
+					$wdg->masURL="Unidad/index.php?opt=about";
+					$wdg->Show();	
 				
 					//ejemplo de uso de widget novedades
 					$wdg = new WidgetNovedades();

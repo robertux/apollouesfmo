@@ -1,4 +1,8 @@
 <?php
+
+	/*!
+	 * Inclusion de los archivos necesarios
+	 */
 	define("RUTA", realpath("../"));
 	require_once("../incluye.php");
 	require_once("UnidadContentManager.php");	
@@ -11,12 +15,18 @@
 	require_once("../lib/VerticalTable.php");
 	require_once("../lib/MGalleryManager.php");
 	
+	/*!
+	 * Se crea una instancia de la pagina secundaria para que esta genere la estructura basica de la pagina
+	 */
 	$pag = new paginaSecundaria();
 	$pag->encabezado();
 	$pag->cuerpo();
 ?>
 <div id="wrap">	
 	<?php
+		/*!
+		 * Se crea la barra superior para Iniciar/Cerrar sesion
+		 */
 		$vuser = new VisualUsuario();
 		$vuser->Show();
 	?>
@@ -51,6 +61,9 @@
 				<li><a href="index.php?opt=contact">Contacto/Suscripcion</a></li>
 			</ul>
 			<?php 
+				/*!
+				 * Si hay un usuario logueado y este tiene permisos de administrador, se le mostrara la opcion de administrar usuarios
+				 */
 				if($_SESSION["CurrentUser"] != ""){
 					$myUser = new cusuario();
 					$myUser->GetPorId($_SESSION["CurrentUser"]);
