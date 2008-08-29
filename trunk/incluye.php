@@ -1,4 +1,9 @@
 <?php
+
+/*!
+ * Define una serie de archivos necesarios por las demas clases
+ */
+
 /* AQUI SE COLOCAN LOS REQUIRE QUE TODAS LAS PAGINAS NECESITAN */
 define("URL", "http://localhost/apollo/");
 define("UNIDAD", "Unidad de PostGrados - UES FMOcc");
@@ -11,9 +16,7 @@ require_once(RUTA."/lib/VisualUsuario.php");
 /*CLASES*/
 require_once(RUTA."/lib/paginaPrincipal.php");
 require_once(RUTA."/lib/paginaSecundaria.php");
-require_once(RUTA."/lib/mainContentManager.php");
 require_once(RUTA."/lib/widget.php");
-require_once(RUTA."/lib/MainMenu.php");
 require_once(RUTA."/lib/Post.php");
 require_once(RUTA."/lib/ToolBox.php");
 require_once(RUTA."/lib/PostPager.php");

@@ -1,12 +1,21 @@
 <?php
 
+/*!
+ * /brief Clase que contiene la estructura basica de la pagina web principal del sitio de Apollo
+ * Incluye todas las etiquetas META asi como las inclusiones de los CSS y Javascript que se utilizan en la pagina
+ */
 class paginaPrincipal{
-	
+
+	/*!
+	 * Imprime todas las etiquetas que forman el encabezado de la pagina
+	 */
 	public function encabezado()
 	{
 		session_start();
+		//Los doctype
 		echo "<!DOCTYPE html PUBLIC \"-//IETF//DTD HTML 2.0//EN\"><html><head><title>";
 		echo "Portal Unidad de PostGrados - Universidad de El Salvador</title>\n";
+		//Los meta, para que Google y los demas nos indexen, jajaja
 		echo "<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=\"UTF8\">\n";
 		echo "<META NAME=\"AUTHOR\" CONTENT=\"Roberto Linares - Rodrigo Amaya\">\n";
 		echo "<META NAME=\"COPYRIGHT\" CONTENT=\"Copyright (c) 2008 by Roberto Linares - Rodrigo Amaya\">\n";
@@ -15,6 +24,7 @@ class paginaPrincipal{
 		echo "<META NAME=\"ROBOTS\" CONTENT=\"INDEX, FOLLOW\">\n";
 		echo "<META NAME=\"REVISIT-AFTER\" CONTENT=\"1 DAYS\">\n";	
 		echo "<META NAME=\"RATING\" CONTENT=\"GENERAL\">\n";
+		//Los stylesheets, para darle plante al sitio. Sino, se ve chafa
 		echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"PostGrados - Ultimas Novedades\" href=\"".URL."rss/feeds.php?genera=novedades\" />";
 		echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"PostGrados - Actividad en el Foro\" href=\"".URL."rss/feeds.php?genera=foro\" />";
 		echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"PostGrados - Noticias sobre los Cursos\" href=\"".URL."rss/feeds.php?genera=cursos\" />";
@@ -31,11 +41,17 @@ class paginaPrincipal{
 		echo "</head>";
 	}
 	
+	/*!
+	 * Imprime las etiquetas que forman la bsae del cuerpo de la pagina
+	 */
 	public function cuerpo()
 	{
 		echo "<body>";
 	}
 
+	/*!
+	 * Imprime las etiquetas que forman la base del pie de la pagina
+	 */
 	public function pie()
 	{
 		echo "</body></html>";

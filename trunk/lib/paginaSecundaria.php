@@ -1,8 +1,14 @@
 <?php
 
+	/*!
+	 * /brief Clase que contiene la estructura basica de las paginas secundarias del sitio de Apollo
+	 * Incluye todas las etiquetas META asi como las inclusiones de los CSS y Javascript que se utilizan en la pagina
+	 */
     class paginaSecundaria
     {
-		//Agrega el encabezado. Todas las inclusiones de los css y js necesarias
+		/*!
+		 * Imprime todas las etiquetas que forman el encabezado de la pagina
+		 */
 		public function encabezado()
 		{
 			session_start();
@@ -100,14 +106,18 @@
 			
 		}
 		
-		//Aqui inicia el cuerpo
+		/*!
+		 * Imprime las etiquetas que forman la bsae del cuerpo de la pagina
+		 */
 		public function cuerpo()
 		{
 			echo "<body>";			
 		}
 		
 		
-		//Y aqui finaliza el cuerpo
+		/*!
+		 * Imprime las etiquetas que forman la base del pie de la pagina
+		 */
 		public function pie()
 		{
 			echo "
