@@ -1,0 +1,482 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>ApolloUESFMO: Referencia de la Clase cNovedades</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generado por Doxygen 1.5.6 -->
+<script type="text/javascript">
+<!--
+function changeDisplayState (e){
+  var num=this.id.replace(/[^[0-9]/g,'');
+  var button=this.firstChild;
+  var sectionDiv=document.getElementById('dynsection'+num);
+  if (sectionDiv.style.display=='none'||sectionDiv.style.display==''){
+    sectionDiv.style.display='block';
+    button.src='open.gif';
+  }else{
+    sectionDiv.style.display='none';
+    button.src='closed.gif';
+  }
+}
+function initDynSections(){
+  var divs=document.getElementsByTagName('div');
+  var sectionCounter=1;
+  for(var i=0;i<divs.length-1;i++){
+    if(divs[i].className=='dynheader'&&divs[i+1].className=='dynsection'){
+      var header=divs[i];
+      var section=divs[i+1];
+      var button=header.firstChild;
+      if (button!='IMG'){
+        divs[i].insertBefore(document.createTextNode(' '),divs[i].firstChild);
+        button=document.createElement('img');
+        divs[i].insertBefore(button,divs[i].firstChild);
+      }
+      header.style.cursor='pointer';
+      header.onclick=changeDisplayState;
+      header.id='dynheader'+sectionCounter;
+      button.src='closed.gif';
+      section.id='dynsection'+sectionCounter;
+      section.style.display='none';
+      section.style.marginLeft='14px';
+      sectionCounter++;
+    }
+  }
+}
+window.onload = initDynSections;
+-->
+</script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>Página&nbsp;principal</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Clases</span></a></li>
+      <li><a href="files.html"><span>Archivos</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>Lista&nbsp;de&nbsp;clases</span></a></li>
+      <li><a href="functions.html"><span>Miembros&nbsp;de&nbsp;las&nbsp;clases</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Referencia de la Clase cNovedades</h1><!-- doxytag: class="cNovedades" -->Clase que representa a los registros de la tabla docentes en la base de datos de Apollo Las novedades son noticias, informacion relevante asociada con la unidad de postgrados, ordenada en base a la fecha iniciando por la mas reciente. En esta clase se incluye el titulo, fecha y contenido de dichas noticias.  
+<a href="#_details">Más...</a>
+<p>
+
+<p>
+<a href="classcNovedades-members.html">Lista de todos los miembros.</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Métodos públicos</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#4ce64b00c4a44367a56e68fba9cebd89">__construct</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#a6a915b30fe777892c3c0b57c72b7089">__destruct</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#d790df27de77f6e6c91a206ab1409eee">GetPorId</a> ($pId)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#43281d4b4db176e8c4470c946c83688a">GetPorTitulo</a> ($pTitulo)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#f43cfa07f809d3e8448f63e1c4e08aa9">GetLista</a> ($cond=&quot;&quot;)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#2db57832e881966a75a10bbfe6c9c0b0">GetListaFiltrada</a> ($ini=0, $len=10, $cond=&quot;&quot;)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#6bb399e46781bb2a803c1636e4c259d0">GetUltimos</a> ($pNumero=10)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#efbd7f1cd8745d72e788be94881431c7">GetParaWidget</a> ($pNumero=5)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#47d8566625af3d223bff60895aacec2d">Consultar</a> ($Consulta, $GetLista)</td></tr>
+
+<tr><td colspan="2"><br><h2>Atributos públicos</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#0fb1cfc1f96952a5ef8c3d5e81ef950f">$con</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#0f17a4ebda4c689f41b0483a5fbb27bd">$id</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#9a51b01cbd263c4b1a90b87d7f5b4442">$titulo</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#ddceec657fb5ddf0f9b10f0f51e42e7b">$vinculo</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#e41967e146b8886019824b39e0a2cb50">$descripcion</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#a27b77417e7095cefb36643af1f61212">$fecha</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#91e6afa81f9497a273c41ebee06d177b">$tabla</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcNovedades.html#3d80857b30b8a2691c1a21747a9bff64">$error</a></td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>Descripción detallada</h2>
+Clase que representa a los registros de la tabla docentes en la base de datos de Apollo Las novedades son noticias, informacion relevante asociada con la unidad de postgrados, ordenada en base a la fecha iniciando por la mas reciente. En esta clase se incluye el titulo, fecha y contenido de dichas noticias. 
+<p>
+Incluimos la clase conexion <hr><h2>Documentación del constructor y destructor</h2>
+<a class="anchor" name="4ce64b00c4a44367a56e68fba9cebd89"></a><!-- doxytag: member="cNovedades::__construct" ref="4ce64b00c4a44367a56e68fba9cebd89" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::__construct           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructor de la clase Instancia el objeto Conexion y asigna el nombre de la tabla que esta clase representa 
+</div>
+</div><p>
+<a class="anchor" name="a6a915b30fe777892c3c0b57c72b7089"></a><!-- doxytag: member="cNovedades::__destruct" ref="a6a915b30fe777892c3c0b57c72b7089" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::__destruct           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Destructor de la clase 
+</div>
+</div><p>
+<hr><h2>Documentación de las funciones miembro</h2>
+<a class="anchor" name="d790df27de77f6e6c91a206ab1409eee"></a><!-- doxytag: member="cNovedades::GetPorId" ref="d790df27de77f6e6c91a206ab1409eee" args="($pId)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::GetPorId           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>pId</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Rellenamos los datos de esta clase con el registro de la tabla novedades que coincida con el ID pasado como parametro <dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$pId</em>&nbsp;</td><td>el ID del registro con el cual rellenar esta clase </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="43281d4b4db176e8c4470c946c83688a"></a><!-- doxytag: member="cNovedades::GetPorTitulo" ref="43281d4b4db176e8c4470c946c83688a" args="($pTitulo)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::GetPorTitulo           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>pTitulo</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Rellenamos los datos de esta clase con el registro de la tabla novedades que coincida con el titulo pasado como parametro <dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$pTitulo</em>&nbsp;</td><td>el titulo del registro con el cual rellenar esta clase </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="f43cfa07f809d3e8448f63e1c4e08aa9"></a><!-- doxytag: member="cNovedades::GetLista" ref="f43cfa07f809d3e8448f63e1c4e08aa9" args="($cond=&quot;&quot;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::GetLista           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>cond</em> = <code>&quot;&quot;</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Obtenemos una lista de las novedades de la base de datos <dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$cond</em>&nbsp;</td><td>Parametro opcional que define una condicion WHERE a incluir en la consulta de seleccion de las novedades </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="2db57832e881966a75a10bbfe6c9c0b0"></a><!-- doxytag: member="cNovedades::GetListaFiltrada" ref="2db57832e881966a75a10bbfe6c9c0b0" args="($ini=0, $len=10, $cond=&quot;&quot;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::GetListaFiltrada           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>ini</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>len</em> = <code>10</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>cond</em> = <code>&quot;&quot;</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Obtenemos una lista filtrada de las novedades de la base de datos El filtro se hace para poder paginar los resultados mediante la clausula LIMIT en la consulta de seleccion <dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$ini</em>&nbsp;</td><td>El numero del registro inicial a incluir en el rango de los resultados </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$len</em>&nbsp;</td><td>Cantidad de registros a incluir en el rango de los resultados </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$cond</em>&nbsp;</td><td>Parametro opcional que define una condicion WHERE a incluir en la consulta de seleccion de las novedades </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="6bb399e46781bb2a803c1636e4c259d0"></a><!-- doxytag: member="cNovedades::GetUltimos" ref="6bb399e46781bb2a803c1636e4c259d0" args="($pNumero=10)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::GetUltimos           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>pNumero</em> = <code>10</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Devuelve una lista con los ultimos registros de la tabla novedades <dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$pNumero</em>&nbsp;</td><td>La cantidad de registros a devolver en la lista de resultados </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="efbd7f1cd8745d72e788be94881431c7"></a><!-- doxytag: member="cNovedades::GetParaWidget" ref="efbd7f1cd8745d72e788be94881431c7" args="($pNumero=5)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::GetParaWidget           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>pNumero</em> = <code>5</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Devuelve una lista con los ultimos registros de la tabla novedades, especificamente para ser usado en el widget de la pagina principal <dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$pNumero</em>&nbsp;</td><td>La cantidad de registros a devolver en la lista de resultados </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="47d8566625af3d223bff60895aacec2d"></a><!-- doxytag: member="cNovedades::Consultar" ref="47d8566625af3d223bff60895aacec2d" args="($Consulta, $GetLista)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::Consultar           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>Consulta</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>GetLista</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Realiza la llamada a la clase conexion para realizar las consultas respectivas <dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$Consulta</em>&nbsp;</td><td>La cadena que contiene la consulta SQL a ejecutar </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$GetLista</em>&nbsp;</td><td>Valor booleano que define si la consulta rellenara esta novedad o devolvera una lista de resultados </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<hr><h2>Documentación de los datos miembro</h2>
+<a class="anchor" name="0fb1cfc1f96952a5ef8c3d5e81ef950f"></a><!-- doxytag: member="cNovedades::$con" ref="0fb1cfc1f96952a5ef8c3d5e81ef950f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::$con          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Objeto conexion, para hacer las consultas a la base de datos 
+</div>
+</div><p>
+<a class="anchor" name="0f17a4ebda4c689f41b0483a5fbb27bd"></a><!-- doxytag: member="cNovedades::$id" ref="0f17a4ebda4c689f41b0483a5fbb27bd" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::$id          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Reprsenta al id del docente 
+</div>
+</div><p>
+<a class="anchor" name="9a51b01cbd263c4b1a90b87d7f5b4442"></a><!-- doxytag: member="cNovedades::$titulo" ref="9a51b01cbd263c4b1a90b87d7f5b4442" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::$titulo          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Representa el titulo de la noticia 
+</div>
+</div><p>
+<a class="anchor" name="ddceec657fb5ddf0f9b10f0f51e42e7b"></a><!-- doxytag: member="cNovedades::$vinculo" ref="ddceec657fb5ddf0f9b10f0f51e42e7b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::$vinculo          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Representa el hipervinculo a una pagina web externa que explica con detalle la noticia 
+</div>
+</div><p>
+<a class="anchor" name="e41967e146b8886019824b39e0a2cb50"></a><!-- doxytag: member="cNovedades::$descripcion" ref="e41967e146b8886019824b39e0a2cb50" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::$descripcion          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Representa la informacion detallada de la noticia 
+</div>
+</div><p>
+<a class="anchor" name="a27b77417e7095cefb36643af1f61212"></a><!-- doxytag: member="cNovedades::$fecha" ref="a27b77417e7095cefb36643af1f61212" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::$fecha          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Representa la fecha de publicacion de la noticia 
+</div>
+</div><p>
+<a class="anchor" name="91e6afa81f9497a273c41ebee06d177b"></a><!-- doxytag: member="cNovedades::$tabla" ref="91e6afa81f9497a273c41ebee06d177b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::$tabla          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Variable utilizada para saber la tabla que representa esta clase 
+</div>
+</div><p>
+<a class="anchor" name="3d80857b30b8a2691c1a21747a9bff64"></a><!-- doxytag: member="cNovedades::$error" ref="3d80857b30b8a2691c1a21747a9bff64" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cNovedades::$error          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Variable utilizada para almacenar el mensaje de error producido por alguna consulta 
+</div>
+</div><p>
+<hr>La documentación para esta clase fue generada a partir del siguiente fichero:<ul>
+<li>/media/hdc5/Pgm/php/Apollo/clases/<a class="el" href="cnovedades_8php.html">cnovedades.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Generado el Fri Aug 29 00:58:42 2008 para ApolloUESFMO por&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
+</body>
+</html>
