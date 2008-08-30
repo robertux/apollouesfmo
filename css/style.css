@@ -64,10 +64,16 @@ a {
 #content{
 	background:url(../Media/style/bg2.png);
 	padding-bottom: 10px;
+	text-align: center;
+}
+
+#banner{
+	text-align: left;
 }
 
 #innerContent{
 	position: relative;
+	text-align: left;
 }
 
 .img { margin:0px 0  0 70px; }
