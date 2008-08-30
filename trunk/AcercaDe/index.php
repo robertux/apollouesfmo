@@ -75,6 +75,14 @@
 			</ul>
 	  </div>
 	  </div>
+	  <br/>
+	<br/>
+	<div class="about"><p style="color: #686C7A; font-size: 8pt"">
+		Universidad de El Salvador Facultad Multidisciplinaria de Occidente<br/>
+		Todos los Derechos (C) Reservados - Teléfonos:(503)2449-0349, Fax:(503)2449-0352 Apdo. 1908<br/>
+		<a href="http://www.uesocc.edu.sv">Pagina Principal de la UES FMOcc</a></p>
+	</div>
+	<br/>
    </div>
   <!-- /content -->
   <!--<div class="clearfix"></div>-->
