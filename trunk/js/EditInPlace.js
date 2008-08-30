@@ -280,6 +280,10 @@ function SavePost(idPost, uid, plainTextContent){
 		
 	}
 	
+	//!Obtenemos la tabla a la que pertenece el registro que almacena el Post, ademas del ID del registro
+	tablaPost = document.getElementById("tbl-" + idPost).value;
+	indexPost = document.getElementById("id-" + idPost).value;
+	
 	//!Tomamos el valor que nos devuelva el servidor via ajax e invocamos una funcion que se encargara de procesar la respuesta.
 	var obj = new Object();
 	//!Creamos el metodo ResponseFunction para el objeto ResponseObject que se le pasara al xmlHttpReques y asi obtener la respuesta del servidor
@@ -293,25 +297,21 @@ function SavePost(idPost, uid, plainTextContent){
 	//alert("actionpost: " + actionPost);
 	//!Si la accion del Post es editar la seccion de Contacto de la Unidad...
 	if(idPost == "contacto"){
-		AjaxSendContacto(document.getElementById("area-" + idPost).innerHTML, obj);
+		AjaxSendContacto(document.getElementById("area-" + idPost).innerHTML);
 		return null;
 	}
 	
 	//!Si la accion del Post es editar la seccion del Acerca de la Unidad...
 	if(idPost == "Acerca de la Unidad"){
-		AjaxSendAbout(document.getElementById("area-" + idPost).innerHTML, obj);
+		AjaxSendAbout(document.getElementById("area-" + idPost).innerHTML);
 		return null;
 	}
 	
 	//!Si la accion del Post es editar la seccion de Suscripcion de la Unidad...
 	if(idPost == "suscripcion"){
-		AjaxSendSuscripcion(document.getElementById("area-" + idPost).innerHTML, obj);
+		AjaxSendSuscripcion(document.getElementById("area-" + idPost).innerHTML);
 		return null;
-	}
-	
-	//!Obtenemos la tabla a la que pertenece el registro que almacena el Post, ademas del ID del registro
-	tablaPost = document.getElementById("tbl-" + idPost).value;
-	indexPost = document.getElementById("id-" + idPost).value;
+	}		
 	
 	//!Evaluamos en base a la tabla, para saber que parametros mandar al AjaxSend(), tomando los elementos internos del Post para enviarlos como parametros.
 	switch(tablaPost){
@@ -444,7 +444,8 @@ function SavePost(idPost, uid, plainTextContent){
 				if (claveAntPost != "" || claveNewPost != "" || claveReNewPost != ""){
 					if(claveNewPost != claveReNewPost){
 						alert("La nueva clave y la repeticion de la nueva clave no coinciden");
-						EnablePostContent(idPost, plainTextContent);
+						document.getElementById("id-" + idPost).value = "-1";
+						EditPostContent(idPost, plainTextContent);
 						break;
 					}
 					xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&usuario=" + usuarioPost + "&claveant=" + hex_md5(claveAntPost) + "&clave=" + hex_md5(claveNewPost) + "&id=" + indexPost, obj);
@@ -459,7 +460,8 @@ function SavePost(idPost, uid, plainTextContent){
 				claveReNewPost = postItems[2];
 				if(claveNewPost != claveReNewPost){
 					alert("La nueva clave y la repeticion de la nueva clave no coinciden");
-					EnablePostContent(idPost, plainTextContent);
+					document.getElementById("id-" + idPost).value = "-1";
+					EditPostContent(idPost, plainTextContent);
 					break;
 				}
 				xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&usuario=" + usuarioPost + "&clave=" + hex_md5(claveNewPost) + "&id=" + indexPost, obj);

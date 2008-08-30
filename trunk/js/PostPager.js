@@ -47,6 +47,9 @@ function refreshPage(tabla, uid, condicion){
  */
  function CatchNewPage(ajaxResponse){
  	//alert("respuesta recibida: " + ajaxResponse);
-	document.getElementById("pst-").innerHTML = ajaxResponse;
+	if(document.getElementById("pst-") != null)
+		document.getElementById("pst-").innerHTML = ajaxResponse;
+	else /*if (document.getElementById("pst-Acerca de la Unidad") != null)*/
+		document.getElementById("pst-Acerca de la Unidad").innerHTML = ajaxResponse;
 	fillup();
  }

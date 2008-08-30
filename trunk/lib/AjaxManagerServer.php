@@ -173,10 +173,10 @@ $conn = new cConexion();
 			case "editcontacto":
 				$newContent = $_GET["value"];
 				
-				$Post = new cGeneral();
+				/*$Post = new cGeneral();
 				$Post->GetPorTitulo("contacto");
 				$Post->contenido = $newContent;
-				$Post->Update();
+				$Post->Update();*/
 				
 				$conn->Conectar();
 				$conn->mysqli->query("update general set contenido = '$newContent' where titulo = 'contacto'");
@@ -186,10 +186,10 @@ $conn = new cConexion();
 			case "editsuscripcion":
 				$newContent = $_GET["value"];
 				
-				$Post = new cGeneral();
+				/*$Post = new cGeneral();
 				$Post->GetPorTitulo("suscripcion");
 				$Post->contenido = $newContent;
-				$Post->Update();
+				$Post->Update();*/
 				
 				$conn->Conectar();
 				$conn->mysqli->query("update general set contenido = '$newContent' where titulo = 'suscripcion'");
@@ -199,11 +199,11 @@ $conn = new cConexion();
 			case "editabout":
 				$newContent = $_GET["value"];
 				
-				$aboutPost = new cGeneral();
+				/*$aboutPost = new cGeneral();
 				$aboutPost->GetPorTitulo("about");
 				
 				$aboutPost->contenido = $newContent;
-				$aboutPost->Update();
+				$aboutPost->Update();*/
 				
 				$conn->Conectar();
 				$conn->mysqli->query("update general set contenido = '$newContent' where titulo = 'about'");
