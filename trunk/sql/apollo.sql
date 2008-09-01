@@ -137,8 +137,7 @@ CREATE TABLE `docente` (
   `usuario` int(11) NOT NULL,
   `descripcion` text,
   PRIMARY KEY  (`id`),
-  KEY `fk_usuario_id_docente` (`usuario`),
-  CONSTRAINT `fk_usuario_id_docente` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`id`)
+  KEY `fk_usuario_id_docente` (`usuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
