@@ -297,7 +297,7 @@
 						
 						$postList = "";
 						$cusr = new cUsuario();
-						$pPager = new PostPager($cusr, 3);
+						$pPager = new PostPager($cusr, 5);
 						$usrResult = $pPager->GetPosts($pg, "id != 0");
 						if($usrResult->num_rows > 0){
 							while($arreglo = $usrResult->fetch_array()){
