@@ -32,18 +32,19 @@ $conn = new cConexion();
 			//!Si vamos a agregar un nuevo post...
 			case "add":
 				//!Tomamos el parametro ID, el cual por defecto es 0, pero por las dudas...
-				$id = 0;				
-				$id = $_GET["id"];
-				//echo "id? $id";
+				$id = 0;
+				$id = $_GET["id"];				
 				//!Tomamos el parametro table, para saber en que tabla estamos trabajando
 				$tabla = $_GET["table"];
 				//!Si el ID es cero (como debe de ser) hacemos una consulta para obtener el ultimo ID de los registros existentes y sumarle 1 para obtener el nuevo Id para nuestro registro
 				if($id == 0){
+					$id++;
 					$query = "select (max(id) + 1) as maxid from $tabla;";
 					$conn->Conectar();
 					$res = $conn->mysqli->query($query);
-					$arr = $res->fetch_array();
-					$id = $arr["maxid"];
+					if($arr = $res->fetch_array()){
+						$id = ($arr["maxid"] == ""? 1: $arr["maxid"]);
+					}
 					$conn->mysqli->close();
 				}
 				

@@ -351,10 +351,7 @@ function SavePost(idPost, uid, plainTextContent){
 			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&link=" + vinculoPost + "&desc=" + descripcionPost + "&id=" + indexPost, obj);
 			break;
 			
-		case "procesos":
-			indexPost = document.getElementById("id-bigimg").value;
-			tituloPost = document.getElementById("txt-cont").value;
-			descripcionPost = document.getElementById("div-cont").innerHTML;
+		case "procesos":			
 			if(actionPost == "add"){
 				indexPost = "0";
 				tituloPost = document.getElementById("input--1").value;
@@ -363,7 +360,10 @@ function SavePost(idPost, uid, plainTextContent){
 				document.forms[1].action = "../lib/AjaxManagerServer.php?action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&desc=" + descripcionPost + "&id=" + indexPost;
 				document.forms[1].submit();
 				return;
-			}			
+			}
+			indexPost = document.getElementById("id-bigimg").value;
+			tituloPost = document.getElementById("txt-cont").value;
+			descripcionPost = document.getElementById("div-cont").innerHTML;
 			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&title=" + tituloPost + "&desc=" + descripcionPost + "&id=" + indexPost, obj);
 			break;
 		case "postgrado":
