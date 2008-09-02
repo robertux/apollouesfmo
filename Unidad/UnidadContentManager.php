@@ -1,5 +1,4 @@
 <?php
-
 	/*!
 	 * \brief Clase que se encarga de manejar el contenido de la seccion La Unidad
 	 * Entre sus opciones se encuentran las de mostrar el acerca de la unidad, los procesos, docentes, noticias, contacto, etc.
@@ -9,7 +8,7 @@
 		/*!
 		 * Campo que define cual opcion se mostrara en la pagina
 		 */
-		var $opcion;
+		var $opcion;		
 		
 		/*!
 		 * Constructor. Inicializa la opcion a mostrar en base al parametro recibido
@@ -269,11 +268,16 @@
 				$postList .= $tempPost->ToString();			
 			
 			//Informacion de suscripcion FEED RSS
-				$tempPost = new InnerPost("", "", 530, false, true, false);
+				$tempPost = new InnerPost("", "", 530, false, false, false);
 				$tempPost->id = "suscripcion";
 				$tempPost->titulo = "Suscribete a esta pagina";
-				$gen->GetPorTitulo('suscripcion');
-				$tempPost->contenido = $gen->contenido;
+				//$gen->GetPorTitulo('suscripcion');
+				//$tempPost->contenido = $gen->contenido;
+				$tempPost->contenido = '<center>';
+				$tempPost->contenido .= '<a href="../rss/feeds.php?genera=novedades" type="application/rss+xml">Ultimas Novedades <img src="../Media/feed.png" alt="" border="0"></a><br/>';
+				$tempPost->contenido .= '<a href="../rss/feeds.php?genera=foro" type="application/rss+xml">Actividad en el Foro <img src="../Media/feed.png" alt="" border="0"></a><br/>';
+				$tempPost->contenido .= '<a href="../rss/feeds.php?genera=cursos" type="application/rss+xml">Noticias sobre los Cursos <img src="../Media/feed.png" alt="" border="0"></a><br/></center>';
+				
 				$tempPost->editableTitle = false;
 				$postList .= $tempPost->ToString();
 			

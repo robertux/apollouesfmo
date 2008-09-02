@@ -5,6 +5,7 @@ require_once("cfeed.php");
 define("RUTA", realpath("../"));
 require_once(RUTA."/clases/cnovedades.php");
 require_once(RUTA."/clases/cforo.php");
+require_once(RUTA."/clases/cpostgrado.php");
 
 /**
  * Ultimas Novedades		novedades
@@ -56,7 +57,7 @@ class GenerarFeedsPostGrado
 	{
 		$this->rss->title = "Novedades";
 		$this->rss->description = "Noticias recientes en la Unidad de PostGrados";
-		$this->rss->link = URL."index.php?section=revista";
+		$this->rss->link = URL."Unidad/index.php?opt=news";
 		$this->rss->syndicationURL = URL."rss/feeds.php?genera=novedades";
 		
 		$this->novedades = new cNovedades();
@@ -91,19 +92,19 @@ class GenerarFeedsPostGrado
 	{
 		$this->rss->title = "Cursos";
 		$this->rss->description = "Avisos sobre los Cursos de la Unidad de PostGrados";
-		$this->rss->link = URL."cursos/index.php";
+		$this->rss->link = URL."Cursos/index.php?opt=next";
 		$this->rss->syndicationURL = URL."rss/feeds.php?genera=cursos";
 		
-		//$this->novedades = new cNovedades();
-		/*
-		$listanovedades = $this->novedades->GetUltimos();
-		if ($listanovedades)
+		$this->cursos = new cPostGrado();
+		
+		$listacursos = $this->cursos->GetLista("proximo");
+		if ($listacursos)
 		{			
-			while($row = $listanovedades->fetch_array())
+			while($row = $listacursos->fetch_array())
 			{
     			$item = new FeedItem();
     			$item->title = $row[1];
-    			$item->link = $row[2];
+    			$item->link = $this->rss->link;
     			$item->description = $row[3];
     			$item->date = $row[4];
     			$item->source = URL;
@@ -111,21 +112,21 @@ class GenerarFeedsPostGrado
     			
     			$this->rss->addItem($item);
 			}
-			$listanovedades->close();
+			$listacursos->close();
 		}
 		else 
-		{*/
+		{
 			$this->FeedError();
-		//}
+		}
 		//$this->rss->saveFeed("RSS2.0", "postgrado-cursos.xml"); 
-		//$this->salida = $this->rss->createFeed();
+		$this->salida = $this->rss->createFeed();
 	}
 	
 	private function Foros()
 	{
 		$this->rss->title = "Foros";
 		$this->rss->description = "Ultimas entradas en el Foro de la Unidad de PostGrados";
-		$this->rss->link = URL."foro/index.php";
+		$this->rss->link = URL."Forum/index.php";
 		$this->rss->syndicationURL = URL."rss/feeds.php?genera=foro";
 		
 		$forum = new cForo();
