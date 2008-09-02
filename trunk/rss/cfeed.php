@@ -293,7 +293,7 @@ class FeedCreator extends HtmlDescribable {
     /**
      * This feed's MIME content type.
      */
-    var $contentType = "application/xml";
+    var $contentType = "application/rss+xml ";
     
     /**
      * This feed's character encoding.
@@ -514,9 +514,11 @@ class RSSCreator091 extends FeedCreator {
      */
     function createFeed() {
         $feed = "<?xml version=\"1.0\" encoding=\"".$this->encoding."\"?>\n";
-        $feed.= $this->_createGeneratorComment();
+		
+		$feed.= $this->_createGeneratorComment();
         $feed.= $this->_createStylesheetReferences();
-        $feed.= "<rss version=\"".$this->RSSVersion."\">\n"; 
+
+		$feed.= "<rss version=\"".$this->RSSVersion."\">\n"; 
         $feed.= "    <channel>\n";
         $feed.= "        <title>".FeedCreator::iTrunc(htmlspecialchars($this->title),100)."</title>\n";
         $this->descriptionTruncSize = 500;
