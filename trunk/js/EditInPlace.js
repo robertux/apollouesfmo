@@ -313,6 +313,7 @@ function SavePost(idPost, uid, plainTextContent){
 		return null;
 	}		
 	
+	//alert("tablapost: " + tablaPost);
 	//!Evaluamos en base a la tabla, para saber que parametros mandar al AjaxSend(), tomando los elementos internos del Post para enviarlos como parametros.
 	switch(tablaPost){
 		case "novedades":
@@ -389,7 +390,7 @@ function SavePost(idPost, uid, plainTextContent){
 			duracionPost = postItems[2];
 			cmaPost = (postItems[3] == ""? "0": postItems[3]);
 			iniclPost = document.getElementById("fch-" + idPost).value.substr(0, 10) + " 00:00:00";
-			alert("inicio clases: " + iniclPost);
+			//alert("inicio clases: " + iniclPost);
 			gradoPost = postItems[4];
 			invPost = (postItems[5] == ""? "0": postItems[5]);
 			descPost = postItems[6];
