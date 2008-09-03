@@ -63,7 +63,7 @@ $conn = new cConexion();
 						$grado = $_GET["grado"];
 						$desc = $_GET["desc"];
 						$query = "insert into docente values($id, '$apellidos', '$nombres', '$grado', 1, '$desc');";
-						//echo $query;
+						echo $query;
 						break;						
 						
 					case "utileria":
@@ -90,7 +90,7 @@ $conn = new cConexion();
 							//echo "nombre original del archivo: $fileName";
 							$tmpName  = $_FILES['upld']['tmp_name'];
 							$fileSize = $_FILES['upld']['size'];
-							//echo "tamanio: $fileSize";
+							echo "tamanio: $fileSize";
 							$fileType = $_FILES['upld']['type'];
 							//echo "tipo: $fileType";
 							
@@ -167,7 +167,7 @@ $conn = new cConexion();
 				$res = $conn->mysqli->query($query);
 				//!Para el caso de los procesos, volvemos via redirect a la pagina original
 				if($_GET["table"] == "procesos")
-					header("location: ../Unidad/index.php?opt=proc");
+					//header("location: ../Unidad/index.php?opt=proc");
 				break;
 			
 			//!Para las acciones de edicion, es el mismo rollo. Verificamos que tabla es y en base a los parametros recibidos via GET, armamos la consulta. Al final la ejecutamos
