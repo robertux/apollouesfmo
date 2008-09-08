@@ -5,7 +5,7 @@
  */
 
 /* AQUI SE COLOCAN LOS REQUIRE QUE TODAS LAS PAGINAS NECESITAN */
-define("URL", "http://localhost/apollo/");
+define("URL", "http://localhost/apollo2/postgrados/");
 define("UNIDAD", "Unidad de PostGrados - UES FMOcc");
 define("RUTA", realpath("./"));
 /*LIBRERIA*/

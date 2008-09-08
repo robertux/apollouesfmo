@@ -6,7 +6,7 @@ Cache file, re coded to disable cache implementation un punBB, by Ramayac.
 if (!defined('PUN'))
 {
 	// Estatico en el archivo cache_config.php
-	define("RUTA", realpath("../../"));
+	define("RUTA", realpath("../../")."/");
 	require_once(RUTA."clases/cconexion.php");
 	require_once(RUTA."clases/cforo.php");
 	$forum = new cForo();	
@@ -15,10 +15,14 @@ if (!defined('PUN'))
 	$resultado = $forum->Consultar('SELECT * FROM foro_config');
 	while ($row = $resultado->fetch_row())
 		$output[$row[0]] = $row[1];
-	define("RUTA", realpath("../../"));
-	$fh = @fopen(RUTA.'Forum/cache/cache_config.php', 'wb');
-	if (!$fh)
-		echo 'Sssshhh!, no digas nada';
+	define("RUTA", realpath("../../")."/");
+	$nombrearchivo = RUTA."Forum/cache/cache_config.php";
+	echo "<h1>".$nombrearchivo."</h1>";
+	$fh = fopen($nombrearchivo, "wb");
+	/*if (!$fh){
+		echo 'Sssshhh!, no digas nada, que regada.';
+		return;
+	}*/
 	fwrite($fh, '<?php'."\n\n".'define(\'PUN_CONFIG_LOADED\', 1);'."\n\n".'$pun_config = '.var_export($output, true).';'."\n\n".'?>');
 	fclose($fh);
 	echo 'Se genero el archivo de Cache de la configuracion';
