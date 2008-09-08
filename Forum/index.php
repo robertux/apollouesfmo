@@ -1,5 +1,5 @@
 <?php
-define("PUN_ROOT", realpath("./"));
+define("PUN_ROOT", realpath("./")."/");
 require PUN_ROOT.'include/common.php';
 
 if ($pun_user['g_read_board'] == '0')
