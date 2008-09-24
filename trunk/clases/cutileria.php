@@ -125,9 +125,9 @@ class cUtileria
      */
     public function Consultar($Consulta, $GetLista)
     {
-    	$this->con->Conectar();
+    	@$this->con->Conectar();
 		// ejecutar la consulta
-		if ($resultado = $this->con->mysqli->query($Consulta))
+		if ($resultado = @$this->con->mysqli->query($Consulta))
 		{
     		// hay registros?
     		if ($resultado->num_rows > 0) 
@@ -139,7 +139,7 @@ class cUtileria
     			}
     			else
     			{
-        			while($row = $resultado->fetch_array()) 
+        			while($row = @$resultado->fetch_array()) 
         			{
         				//id, titulo, vinculo, descripcion
 	            		$this->id = $row[0];
@@ -160,10 +160,10 @@ class cUtileria
 		else 
 		{
     		// tiremos el error (si hay)... ojala que no :P
-    		echo "Error en la consulta: $this->consulta. ".$this->con->mysqli->error;
+    		//echo "Error en la consulta: $this->consulta. ".$this->con->mysqli->error;
 		}
 		// cerrar la conexion
-		$this->con->mysqli->close();
+		@$this->con->mysqli->close();
     }
 }
 ?>

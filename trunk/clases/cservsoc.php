@@ -127,9 +127,9 @@ class cServSocial
      */
     function Consultar($Consulta, $GetLista)
     {
-    	$this->con->Conectar();
+    	@$this->con->Conectar();
 		// ejecutar la consulta
-		if ($resultado = $this->con->mysqli->query($Consulta))
+		if ($resultado = @$this->con->mysqli->query($Consulta))
 		{
     		// hay registros?
     		if ($resultado->num_rows > 0) 
@@ -141,7 +141,7 @@ class cServSocial
     			}
     			else
     			{
-        			while($row = $resultado->fetch_array()) 
+        			while($row = @$resultado->fetch_array()) 
         			{
         				////id, apellidos, nombres, gradoacademico, usuario
 	            		$this->id = $row[0];
@@ -163,10 +163,10 @@ class cServSocial
 		else 
 		{
     		// tiremos el error (si hay)... ojala que no :P
-    		echo "Error en la consulta: $this->consulta. ".$this->con->mysqli->error;
+    		//echo "Error en la consulta: $this->consulta. ".$this->con->mysqli->error;
 		}
 		// cerrar la conexion
-		$this->con->mysqli->close();
+		@$this->con->mysqli->close();
     }
 }
 ?>

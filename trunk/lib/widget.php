@@ -82,17 +82,22 @@ class WidgetNovedades extends Widget{
 	 */
     private function Llenar()
     {
-    	$resultado = $this->novedades->GetParaWidget(5);
-		if($resultado->num_rows > 0){
-			while($row = $resultado->fetch_array())
-	        {
-	        	//titulo, vinculo //$t = $row[0]; //$v = $row[1];
-	        	$this->Contenido .= "<li>" . (strlen($row[0])>35? substr($row[0],0,38) . "...": $row[0]) . "</li>";
-	        }
-			$resultado->close();
+    	try{
+	    	$resultado = $this->novedades->GetParaWidget(5);
+			if($resultado->num_rows > 0){
+				while($row = $resultado->fetch_array())
+		        {
+		        	//titulo, vinculo //$t = $row[0]; //$v = $row[1];
+		        	$this->Contenido .= "<li>" . (strlen($row[0])>35? substr($row[0],0,38) . "...": $row[0]) . "</li>";
+		        }
+				$resultado->close();
+			}
+	    	else
+				$this->Contenido -= "No hay novedades.";
 		}
-    	else
-			$this->Contenido -= "No hay novedades.";
+		catch(Exception $e){
+			$this->Contenido .= "Oooops! al parecer ocurrio algun error interno. Lo sentimos mucho :'(  Vuelve a intentarlo en unos minutos!";
+		}
         $this->Contenido .= "</ul></div>";
     }
 		
@@ -126,20 +131,25 @@ class WidgetForo extends Widget{
     
     private function Llenar()
     {
-    	$resultado = $this->foro->GetListaPosts();
-    	$foo = 1;
-		
-		if($resultado->num_rows >0){
-	    	while($row = $resultado->fetch_array()){
-	        	//titulo, vinculo //$t = $row[0]; //$v = $row[1];
-	        	$this->Contenido .= "<li>$row[1]: $row[0]</li>";
-	        	$foo++;
-	        	if ($foo==5) break;
-	        }
-			$resultado->close();
+    	try{
+	    	$resultado = $this->foro->GetListaPosts();
+	    	$foo = 1;
+			
+			if($resultado->num_rows >0){
+		    	while($row = $resultado->fetch_array()){
+		        	//titulo, vinculo //$t = $row[0]; //$v = $row[1];
+		        	$this->Contenido .= "<li>$row[1]: $row[0]</li>";
+		        	$foo++;
+		        	if ($foo==5) break;
+		        }
+				$resultado->close();
+			}
+			else
+				$this->Contenido .= "No hay novedades.";			
 		}
-		else
-			$this->Contenido .= "No hay novedades.";
+		catch(Exception $e){
+			$this->Contenido .= "Oooops! al parecer ocurrio algun error interno. Lo sentimos mucho :'(  Vuelve a intentarlo en unos minutos!";
+		}
         $this->Contenido .= "</ul></div>";
     }
 		
@@ -171,21 +181,26 @@ class WidgetCursos extends Widget{
     
     private function Llenar()
     {
-    	$resultado = $this->cursos->GetLista();
-		$foo = 1;
-		
-		if($resultado->num_rows > 0){
-	    	while($row = $resultado->fetch_array())
-	        {
-	        	//titulo, vinculo //$t = $row[0]; //$v = $row[1];
-	        	$this->Contenido .= "<li>" . (strlen($row[1])>35? substr($row[1],0,38) . "...": $row[1]) . "</li>";
-				$foo++;
-				if($foo == 5) break;
-	        }
-			$resultado->close();
+    	try{
+	    	$resultado = $this->cursos->GetLista();
+			$foo = 1;
+			
+			if($resultado->num_rows > 0){
+		    	while($row = $resultado->fetch_array())
+		        {
+		        	//titulo, vinculo //$t = $row[0]; //$v = $row[1];
+		        	$this->Contenido .= "<li>" . (strlen($row[1])>35? substr($row[1],0,38) . "...": $row[1]) . "</li>";
+					$foo++;
+					if($foo == 5) break;
+		        }
+				$resultado->close();
+			}
+			else
+				$this->Contenido .= "No hay cursos";
 		}
-		else
-			$this->Contenido .= "No hay cursos";
+		catch(Exception $e){
+			$this->Contenido .= "Oooops! al parecer ocurrio algun error interno. Lo sentimos mucho :'(  Vuelve a intentarlo en unos minutos!";
+		}
         $this->Contenido .= "</ul></div>";
     }
 		
@@ -209,9 +224,14 @@ class WidgetAbout extends Widget{
 	
 	public function __construct() 
     {
-    	$this->about = new cGeneral();
-		$this->about->GetPorTitulo("about");
-		$this->Contenido = "<div class='WidgetContent'> " . substr($this->about->contenido,0,250) . "..." .  "</div>";
+    	try{
+    		$this->about = new cGeneral();
+			$this->about->GetPorTitulo("about");
+			$this->Contenido = "<div class='WidgetContent'> " . substr($this->about->contenido,0,250) . "..." .  "</div>";
+		}
+		catch(Exception $e){
+			$this->Contenido = "<div class='WidgetContent'>Oooops! al parecer ocurrio algun error interno. Lo sentimos mucho :'(  Vuelve a intentarlo en unos minutos!</div>";
+		}
     }
     		
 	public function Show(){
