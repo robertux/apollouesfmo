@@ -197,6 +197,8 @@
 			}
 			$pst = new Post("Noticias de la Unidad", $postList, 550, true, false, false);
 			$pst->tabla = "novedades";
+			$pst->showHelp = "admin";
+			$pst->helpAction = "window.open('../Documentacion/Videos/apollo.novedades.htm', 'ayuda','height=596,width=928')";
 			$pst->pie = $pPager->ToString();
 			if($onlyContent)
 				echo $pst->ToContentString();
@@ -271,6 +273,8 @@
 				$tempPost = new InnerPost("", "", 530, false, false, false);
 				$tempPost->id = "suscripcion";
 				$tempPost->titulo = "Suscribete a esta pagina";
+				$tempPost->showHelp = "always";
+				$tempPost->helpAction = "window.open('../Documentacion/Videos/apollo.suscripcion.htm', 'ayuda','height=596,width=928')";
 				//$gen->GetPorTitulo('suscripcion');
 				//$tempPost->contenido = $gen->contenido;
 				$tempPost->contenido = '<center>';
@@ -334,6 +338,8 @@
 						
 						$pst = new Post("Usuarios del Sitio Web", $postList, 550, true, false, false);
 						$pst->tabla = "usuario";
+						$pst->showHelp = "admin";
+						$pst->helpAction = "window.open('../Documentacion/Videos/apollo.usuarios.htm', 'ayuda','height=596,width=928')";
 						$pst->pie = $pPager->ToString("id != 0");
 						if($onlyContent)
 							echo $pst->ToContentString();

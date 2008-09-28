@@ -8,7 +8,7 @@
 	height: 20px;*/
 }
 
-.add, .edit, .del, .sav, .can{	
+.add, .edit, .del, .sav, .can, .hlp{	
 	border: 0px solid #FF0000;
 	background-color: transparent;
 	cursor: pointer;
@@ -25,3 +25,5 @@
 .sav{ background-image: url('../Media/accept.png'); display: none }
 
 .can{ background-image: url('../Media/cancel.png'); display: none; }
+
+.hlp{ background-image: url('../Media/help.png'); }

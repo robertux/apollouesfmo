@@ -25,8 +25,7 @@
 		/*!
 		 * Metodo que muestra el loginBox, en base a una accion (login/logout) y a las variables de sesion
 		 */
-		function Show(){ 
-						
+		function Show(){ 			
 			if(isset($_GET["action"])){ //el usuario desea hacer alguna accion con el login?
 				if($_GET["action"] == "login"){ //la acicon a realizar es login?
 					if($this->LoadUser($_POST["txtNombre"], $_POST["txtClave"])){  //el nombre y clave de usuario coincidio con un registro en la bd?
@@ -86,17 +85,18 @@
 		 * Metodo que muestra un mensaje de bienvenida con el nombre del usuario logueado mas el boton para desloguearse
 		 */
 		function ShowUserInfo(){
+			$tbox = new ToolBox(false, false, false, true);
 			echo("
 			<form id='frmLogout' action='index.php?action=logout' method='POST' accept-charset='utf-8'>					
 
 					<div class='LoginBoxFrame'>
 						<div class='LoginBoxInnerFrame'>
-							<label for='btnSubmit' class='lblInput'>Bienvenido <b>" . $this->usr->nombre . " [" . $this->usr->privilegio . "]</b></label>
+							"/* . $tbox->ToString() */. "
+							<label for='btnSubmit' class='lblInput'>Bienvenido <b>" . $this->usr->nombre . " [" . $this->usr->privilegio . "]</b></label>							
 							<input type='submit' id='btnSubmit' value='Cerrar Sesion' class='btnSubmit'/>							
 						</div>
-					</div>
-
-			</form>
+					</div>			
+			</form>			
 			");
 		}
 		
@@ -105,10 +105,12 @@
 		 */
 		function ShowLoginBox($errorMsg){
 			$action = "";
+			$tbox = new ToolBox(false, false, false, true);
 			echo("
 				<form id='frmLogin' action='index.php?action=login' method='POST' accept-charset='utf-8'>
 						<div class='LoginBoxFrame'>
 							<div class='LoginBoxInnerFrame'>
+								"/* . ($errorMsg == ""? $tbox->btnHelp->ToString(): "") */. "
 								<label for='txtNombre' class='lblInput'>usuario: </label>
 								<input type='text' id='txtNombre' name='txtNombre' class='txtInput'/>
 								<label for='txtClave' class='lblInput'>clave: </label>

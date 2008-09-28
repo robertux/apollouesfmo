@@ -23,6 +23,10 @@
 		 * Objeto ToolBoxbutton que representa al boton Cancelar
 		 */
 		public $btnCancel;
+		/*!
+		 * Objeto ToolBoxbutton que representa al boton Ayuda
+		 */
+		public $btnHelp;
 		
 		/*!
 		 * Constructor. Inicializa sus campos
@@ -30,12 +34,13 @@
 		 * \param $editEnabled Define si estara visible el boton de editar
 		 * \param $delEnabled Define si estara visible el boton de eliminar
 		 */
-		public function ToolBox($addEnabled=false, $editEnabled=false, $delEnabled=false){
+		public function ToolBox($addEnabled=false, $editEnabled=false, $delEnabled=false, $helpEnabled=false){
 			$this->btnAdd = new ToolBoxButton("add", $addEnabled);
 			$this->btnEdit = new ToolBoxButton("edit", $editEnabled);
 			$this->btnDel = new ToolBoxButton("del", $delEnabled);
 			$this->btnSave = new ToolBoxButton("sav", true);
 			$this->btnCancel = new ToolBoxButton("can", true);
+			$this->btnHelp = new ToolBoxButton("hlp", $helpEnabled);
 		}
     	
 		/*!
@@ -51,7 +56,7 @@
 		public function ToString(){
 			return "
 				<div class='toolbox'>
-					" . $this->btnAdd->ToString() . $this->btnEdit->ToString() . $this->btnDel->ToString() . $this->btnSave->ToString() . $this->btnCancel->ToString() . "
+					" . $this->btnAdd->ToString() . $this->btnEdit->ToString() . $this->btnDel->ToString() . $this->btnSave->ToString() . $this->btnCancel->ToString() . $this->btnHelp->ToString() . "
 				</div>
 			";
 		}
@@ -102,6 +107,7 @@
 				case "del": $this->title = "eliminar";	break;
 				case "sav": $this->title = "guardar";	break;
 				case "can": $this->title = "cancelar";	break;
+				case "hlp": $this->title = "ayuda"; break;
 			}			
 			$this->enabled = $pEnabled;
 			$this->onClick = $pOnClick;
