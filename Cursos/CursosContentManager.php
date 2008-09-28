@@ -271,6 +271,8 @@
 						
 						$pst = new Post("Usuarios del Sitio Web", $postList, 550, true, false, false);
 						$pst->tabla = "usuario";
+						$pst->showHelp = "admin";
+						$pst->helpAction = "window.open('../Documentacion/Videos/apollo.usuarios.htm', 'ayuda','height=596,width=928')";
 						$pst->pie = $pPager->ToString("id != 0");
 						if($onlyContent)
 							echo $pst->ToContentString();

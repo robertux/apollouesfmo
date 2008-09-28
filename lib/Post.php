@@ -49,8 +49,16 @@
 		 */
 		var $showDelWhenAdmin;
 		/*!
-		 * Contenido de la parte inferior del Post. Comunmente aqui va el PostPager
+		 * Valor booleano que indica si la ayuda de este post sera visible por todos(always), por un usuario con privilegios de administracion(admin) o por ningun usuario(never)
 		 */
+		public $showHelp;
+		/*!
+		 * Variable que almacena la URL de la pagina de ayuda correspondiente a este post.
+		 */		
+		public $helpAction;
+		/*!
+		 * Contenido de la parte inferior del Post. Comunmente aqui va el PostPager
+		 */		
 		var $pie;
 		/*!
 		 * Valor booleano que define si sera posible editar el titulo del post cuando se esta en modo de edicion
@@ -87,6 +95,7 @@
 		 	$this->showAddWhenAdmin = $pShowAddWhenAdmin;			
 		 	$this->showEditWhenAdmin = $pShowEditWhenAdmin;
 			$this->showDelWhenAdmin = $pShowDelWhenAdmin;
+			$this->showHelp = "never";
 			$this->pie = "";
 			$this->editableTitle = true;
 			$this->plainTextContent = true;
@@ -126,7 +135,14 @@
 					$this->tbox->btnEdit->enabled = true;
 				if($this->showDelWhenAdmin)
 					$this->tbox->btnDel->enabled = true;
-			}			
+				if($this->showHelp == "admin")
+					$this->tbox->btnHelp->enabled = true;
+			}
+			if($this->showHelp == "always")
+				$this->tbox->btnHelp->enabled = true;
+			elseif($this->showHelp == "never")
+				$this->tbox->btnHelp->enabled = false;
+			$this->tbox->btnHelp->onClick = $this->helpAction;
 			$this->uid = $_SESSION["CurrentUser"];
 		}
 		
@@ -186,7 +202,7 @@
 		/*!
 		 * Imprime este Post en la posicion actual
 		 */
-		public function Show(){
+		public function Show(){			
 			echo($this->ToString());
 		}
     }
