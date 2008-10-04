@@ -82,16 +82,6 @@
 						$vTable = new VerticalTable();
 						$vTable->rows[] = new VerticalTableRow(array("Nombre", $arreglo["nombre"]), $tempPost->id, "text", "200");
 						$vTable->rows[] = new VerticalTableRow(array("Descripcion", $arreglo["descripcion"]), $tempPost->id . "-1", "area");
-						$vTable->rows[] = new VerticalTableRow(array("Mision", $arreglo["mision"]), $tempPost->id . "-2", "area");
-						$vTable->rows[] = new VerticalTableRow(array("Vision", $arreglo["vision"]), $tempPost->id . "-3", "area");
-						$vTable->rows[] = new VerticalTableRow(array("Desarrollo del Programa", $arreglo["desarrollo"]), $tempPost->id);
-						$vTable->rows[] = new VerticalTableRow(array("Duracion", $arreglo["duracion"]), $tempPost->id, "text", "200");
-						$vTable->rows[] = new VerticalTableRow(array("Calificacion Minima de Aprobacion", $arreglo["notaminima"]), $tempPost->id, "numero");
-						$vTable->rows[] = new VerticalTableRow(array("Inicio de Clases", substr($arreglo["inicioclases"],0,10)), $tempPost->id, "fecha");
-						$vTable->rows[] = new VerticalTableRow(array("Grado a Obtener", $arreglo["grado_obtener"]), $tempPost->id, "text", "150");
-						$vTable->rows[] = new VerticalTableRow(array("Poblacion a la que se Dirige el Programa", $arreglo["poblacion"]), $tempPost->id . "-4", "area");
-						$vTable->rows[] = new VerticalTableRow(array("Horario", $arreglo["horario"]), $tempPost->id . "-5", "area");
-						$vTable->rows[] = new VerticalTableRow(array("Inversion", $arreglo["inversion"]), $tempPost->id, "numero");
 						
 						//!Una vez que se ha definido el contenido y las caracteristicas del post, este se agrega a la lista de posts a mostrar
 						$tempPost->contenido = $vTable->ToString();

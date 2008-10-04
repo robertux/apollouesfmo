@@ -25,30 +25,6 @@ class cPostGrado
 	 */
 	public $nombre;
 	/*!
-	 * Representa la nota minima del postgrado
-	 */
-	public $notaminima;
-	/*!
-	 * Representa la fecha en la que inician las clases de dicho postgrado
-	 */
-	public $inicioclases;
-	/*!
-	 * Representa el grado que se obtendra al terminar dicho postgrado
-	 */
-	public $grado_obtener;
-	/*!
-	 * Representa la poblacion a la que va dirigida este postgrado
-	 */
-	public $poblacion;
-	/*!
-	 * Representa el horario de clases de este postgrado
-	 */
-	public $horario;	
-	/*!
-	 * Representa la inversion monetaria que requiere este postgrado
-	 */
-	public $inversion;
-	/*!
 	 * Representa la descripcion detallada de este postgrado
 	 */
 	public $descripcion;
@@ -56,22 +32,6 @@ class cPostGrado
 	 * Representa el codigo de carrera de este postgrado
 	 */
 	public $codigo;
-	/*!
-	 * Representa la mision de este postgrado
-	 */
-	public $mision;
-	/*!
-	 * Representa la vision de este postgrado
-	 */
-	public $vision;
-	/*!
-	 * Representa la informacion de como se desarrollara este postgrado
-	 */
-	public $desarrollo;
-	/*!
-	 * Representa la duracion total de este postgrado
-	 */
-	public $duracion;
 	/*!
 	 * Representa si este postgrado se esta impartiendo actualmente o es para un futuro
 	 */
@@ -206,18 +166,8 @@ class cPostGrado
 	        			//id,nombre,notaminima,totaluvs,cumminimo,abreviatura,maxalum,presentacion,descripcion
     	        		$this->id = $row['id'];
         	    		$this->nombre = $row['nombre'];
-            			$this->notaminima = $row['notaminima'];
-            			$this->inicioclases = $row['inicioclases'];
-            			$this->grado_obtener = $row['grado_obtener'];
-            			$this->poblacion = $row['poblacion'];
-            			$this->horario = $row['horario'];
-						$this->inversion = $row['inversion'];
 						$this->descripcion = $row['descripcion'];
 						$this->codigo = $row['codigo'];
-						$this->mision = $row['mision'];
-						$this->vision = $row['vision'];
-						$this->desarrollo = $row['desarrollo'];
-						$this->duracion = $row['duracion'];
 						$this->esactual = $row['esactual'];
         			}
         			// liberar la memoria

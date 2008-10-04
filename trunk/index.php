@@ -97,7 +97,7 @@
 					/*$wgCursos = new Widget("Maestrias Actuales y Proximas", "Cursos/index.php?opt=actual", $mcm->showCourses(), "WidgetRight");
 					$wgCursos->Show();*/
 					$wdg = new WidgetCursos();
-					$wdg->claseCSS="WidgetRight";
+					$wdg->claseCSS="WidgetRightHighLighted";
 					$wdg->Titulo="Maestrias Actuales y Proximas";
 					$wdg->masURL="Cursos/index.php?opt=actual";
 					$wdg->Show();

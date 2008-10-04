@@ -373,34 +373,25 @@ function SavePost(idPost, uid, plainTextContent){
 			var divIdExtra = 1;
 			var dt = new Date();
 			for(var i=0; i<allItems.length; i++){
-				if(allItems[i].id == ("input-" + idPost)){
+				if (allItems[i].id == ("input-" + idPost)) {
+					//alert(allItems[i].value);
 					postItems.push(allItems[i].value);
-				}				
+				}
 			}
 			elements = document.getElementsByTagName("div");
 			for (var i = 0; i < elements.length; i++) {
 				if (elements[i].id == ("div-" + idPost + "-" + divIdExtra)) {
+					//alert(elements[i].innerHTML);
 					postItems.push(elements[i].innerHTML);
 					divIdExtra++;
 				}
 			}
 			codigoPost = document.getElementById("txt-" + idPost).value;
 			nombrePost = postItems[0];
-			desarrolloPost = postItems[1];
-			duracionPost = postItems[2];
-			cmaPost = (postItems[3] == ""? "0": postItems[3]);
-			iniclPost = document.getElementById("fch-" + idPost).value.substr(0, 10) + " 00:00:00";
-			//alert("inicio clases: " + iniclPost);
-			gradoPost = postItems[4];
-			invPost = (postItems[5] == ""? "0": postItems[5]);
-			descPost = postItems[6];
-			misionPost = postItems[7];
-			visionPost = postItems[8];
-			poblaPost = postItems[9];
-			horarioPost = postItems[10];
+			descPost = postItems[1];
 			cursoPost = (document.getElementById("tipocursos").value == "actual"? 1: 0);
-			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&codigo=" + codigoPost + "&nombre=" + nombrePost + "&desarrollo=" + desarrolloPost + "&duracion=" + duracionPost + "&cma=" + cmaPost
-			+"&inicl=" + iniclPost + "&grado=" + gradoPost + "&inv=" + invPost + "&desc=" + descPost + "&mision=" + misionPost + "&vision=" + visionPost + "&poblac=" + poblaPost + "&horario=" + horarioPost + "&id=" + indexPost + "&esactual=" + cursoPost
+			xmlHttp = AjaxSend("action=" + actionPost + "&table=" + tablaPost + "&codigo=" + codigoPost + "&nombre=" + nombrePost
+			+ "&desc=" + descPost + "&id=" + indexPost + "&esactual=" + cursoPost
 			, obj);
 			break;
 			

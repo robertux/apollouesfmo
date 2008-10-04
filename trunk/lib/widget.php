@@ -207,7 +207,7 @@ class WidgetCursos extends Widget{
 	public function Show(){
 		echo("
 		<div class='$this->claseCSS'>
-		<div class='WidgetTitle'><a id='TitleBlock' href='$this->masURL'><div id='TitleText'>$this->Titulo</div></a></div>
+		<div class='WidgetTitle'><a id='TitleBlockHighLighted' href='$this->masURL'><div id='TitleTextHighLighted'>$this->Titulo</div></a></div>
 			$this->Contenido
 			<div class='footer'><a href='$this->masURL'>Ver m&aacute;s...</a></div>
 		</div>
