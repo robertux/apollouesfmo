@@ -60,6 +60,21 @@
 	margin: 5px 0px 10px 0px;
 }
 
+.WidgetRightHighLighted{
+	background-image: url(../Media/widgets/WidgetBkgRight.png);
+	border-style: solid;
+	border-color: #b90203;
+	border-width: 1px;
+	position: relative;
+	/*padding: 5px 5px 5px 5px;*/
+	right: 0px;
+	float: right;
+	top: 0px;
+	height: 170px;
+	width: 340px;
+	margin: 5px 0px 10px 0px;
+}
+
 .WidgetTitle{	
 	position: relative;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -110,12 +125,36 @@ a:hover { color: #850505; }*/
 	border-color: #FFFFFF;*/
 }
 
+#TitleBlockHighLighted {
+	background-color: #b90203;
+	color: #000000;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 12pt;
+	position:absolute;	
+	height: 100%;
+	width: 100%;
+	/*border-style: solid;
+	border-width: 1px;
+	border-color: #FFFFFF;*/
+}
+
 #TitleBlock:hover{
 	background-color: #a20404;
 	text-decoration: underline;
 }
 
 #TitleText{
+	position: absolute;
+	top: 20%;
+	left: 5%;
+	color: #d2d2d2;
+	/*border-style: solid;
+	border-color: #FFFFFF;
+	border-width: 1px;*/
+}
+
+#TitleTextHighLighted{
 	position: absolute;
 	top: 20%;
 	left: 5%;

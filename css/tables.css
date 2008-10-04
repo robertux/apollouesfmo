@@ -24,6 +24,7 @@ table tr td {
 	border-color: #ddd;
 	border-width: 1px;
 	border-style: solid;
+	text-align: left;
 }
 
 table tr #left{
@@ -53,4 +54,6 @@ table th{
 	border-color: #ddd;
 	border-width: 1px;
 	border-style: solid;
+	text-align: left;
+	padding: 0 5px 0 8px;
 }

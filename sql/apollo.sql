@@ -789,7 +789,7 @@ CREATE TABLE  `apollo`.`general` (
 
 /*!40000 ALTER TABLE `general` DISABLE KEYS */;
 LOCK TABLES `general` WRITE;
-INSERT INTO `apollo`.`general` VALUES  ('about','<p><span style=\"text-decoration: underline;\"><em><strong></strong></em></span>La Unidad de PostGrado es de reciente creaciÃ³n y ha sido fundada para planificar, gestionar, coordinar, ejecutar y evaluar los programas de postgrado que se lleven a cabo en la UES-FMO. Esta unidad es estratÃ©gica en la formaciÃ³n de profesionales de alto nivel acadÃ©mico en sus distintas especializaciones, con incidencia en la identificaciÃ³n, discusiÃ³n y propuestas de alternativas de soluciÃ³n a los problemas mas sentidos por la poblaciÃ³n de la zona occidental del paÃ­s.</p>'),
+INSERT INTO `apollo`.`general` VALUES  ('about','<p>Unidad de PostGrado es de reciente creaciÃ³n y ha sido fundada para planificar, gestionar, coordinar, ejecutar y evaluar los programas de postgrado que se lleven a cabo en la <span style=\"color: rgb(0, 0, 0);\">UES-<span>FMO</span></span><span style=\"color: rgb(0, 0, 0);\">.</span> Esta unidad es estratÃ©gica en la formaciÃ³n de profesionales de alto nivel acadÃ©mico en sus distintas especializaciones, con incidencia en la identificaciÃ³n, discusiÃ³n y propuestas de alternativas de soluciÃ³n a los problemas mas sentidos por la poblaciÃ³n de la zona occidental del paÃ­s.</p>'),
  ('autores','<p>Los autores de este proyecto son: <b>Roberto C. Linares M.</b>  y  <b>Rodrigo S. Amaya C.</b>\r\nAmbos son dos estudiantes de <b>Ingenieria de Sistemas Informaticos</b>, en su ultimo ciclo de carrera (Ciclo II - 2008).\r\n<i>Este proyecto es parte de su servicio de horas sociales.</i>\r\n</p>'),
  ('contacto','<p>Para mayor informacion puede llamarnos a los telefonos:</p><p style=\"text-align: center;\"><strong>2484-0821</strong> y <strong>2484-0866</strong></p><p>con <strong>VerÃ³nica de GonzÃ¡les </strong>o al correo electronico:</p><p style=\"text-align: center;\"><strong>veronica.jazmin@gmail.com</strong></p>'),
  ('proyecto','Este proyecto fue desarrollado unicamente con herramientas y librerias con licencia GNU/GPL 2.0 (software libre). \nEl software usado para este proyecto es el siguiente:\n<ul>\n<li>Apache 1.3.x</li>\n<li>PHP 5.x.x</li>\n<li>MySQL 5.x.x</li>\n</ul>\n\nY estas son algunas herramientas extra de desarrollo:\n<ul>\n<li>Aptana Studio</li>\n<li>Zend Studio (Trial Edition)</li>\n<li>Notepad++</li>\n<li>svn</li>\n<li>TortoiseSVN</li>\n<li>FireBug</li>\n</ul>\n... y muchas mas!.\n\n<p>Puedes leer sobre el desarrollo de este proyecto en el blog: <a href=\"http://apollo.infoluciones.org/\">http://apollo.infoluciones.org/</a></p>');
@@ -950,21 +950,11 @@ DROP TABLE IF EXISTS `apollo`.`postgrado`;
 CREATE TABLE  `apollo`.`postgrado` (
   `id` int(11) NOT NULL auto_increment,
   `nombre` varchar(200) NOT NULL,
-  `notaminima` double unsigned default '7',
   `descripcion` text,
-  `inicioclases` datetime default NULL,
-  `grado_obtener` varchar(150) default NULL,
-  `poblacion` text,
-  `horario` text,
-  `inversion` double default NULL,
   `codigo` varchar(10) NOT NULL,
-  `mision` text,
-  `vision` text,
-  `desarrollo` text,
-  `duracion` varchar(200) default NULL,
-  `esactual` tinyint(1) default NULL,
+  `esactual` tinyint(1) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `apollo`.`postgrado`
@@ -972,8 +962,10 @@ CREATE TABLE  `apollo`.`postgrado` (
 
 /*!40000 ALTER TABLE `postgrado` DISABLE KEYS */;
 LOCK TABLES `postgrado` WRITE;
-INSERT INTO `apollo`.`postgrado` VALUES  (8,'Ninguna',7,NULL,NULL,NULL,NULL,NULL,NULL,'MA-0000',NULL,NULL,NULL,NULL,NULL),
- (9,'Maestria de Prueba',7,'<p>Este es un registro de prueba, para que pueda observar como lucen las maestrias. Borrelo cuando le sea posible.</p>','2008-09-02 00:00:00','Master en Administracion Financiera','<p>Graduados de carreras afines</p>','<p>Lunes a Viernes</p><ul><li>de 6:30 a 8:00 pm<br></li></ul>',35,'PR-00001','<p>Mision de la maestria</p>','<p>Vision de la maestria</p>','','Dieciocho meses.',1);
+INSERT INTO `apollo`.`postgrado` VALUES  (8,'Ninguna',NULL,'MA-0000',0),
+ (9,'Maestria de Prueba','<p>Este es un registro de prueba, para que pueda observar como lucen las maestrias. Borrelo cuando le sea posible.</p>','PR-00001',0),
+ (10,'foobar3','<p>foobar3</p>','AA-00003',1),
+ (11,'foobarBB','<p>Descripcion del <span style=\"color: rgb(0, 0, 0);\">Foobar</span><span style=\"background-color: rgb(255, 255, 255);\"> BB</span></p>','BB-00001',1);
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `postgrado` ENABLE KEYS */;
 

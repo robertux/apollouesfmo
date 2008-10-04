@@ -107,22 +107,10 @@ $conn = new cConexion();
 					case "postgrado":					
 						$codigoPost = $_GET["codigo"];
 						$nombrePost = $_GET["nombre"];
-						$desarrolloPost = $_GET["desarrollo"];
-						$duracionPost = $_GET["duracion"];
-						$cmaPost = $_GET["cma"];
-						$iniclPost = $_GET["inicl"];
-						$gradoPost = $_GET["grado"];
-						$invPost = $_GET["inv"];
 						$descPost = $_GET["desc"];
-						$misionPost = $_GET["mision"];
-						$visionPost = $_GET["vision"];
-						$poblaPost = $_GET["poblac"];
-						$horarioPost = $_GET["horario"];
 						$esactual = $_GET["esactual"];
 						
-						$query = "insert into postgrado values($id, '$nombrePost', $cmaPost, '$descPost', '$iniclPost', '$gradoPost', "
-						. "'$poblaPost', '$horarioPost', $invPost, '$codigoPost', '$misionPost', '$visionPost', "
-						. "'$desarrolloPost', '$duracionPost', $esactual);";
+						$query = "insert into postgrado values($id, '$nombrePost', '$descPost', '$codigoPost', $esactual);";
 						echo $query;
 						break;
 						
@@ -249,21 +237,9 @@ $conn = new cConexion();
 						//echo "postgrado";
 						$codigoPost = $_GET["codigo"];
 						$nombrePost = $_GET["nombre"];
-						$desarrolloPost = $_GET["desarrollo"];
-						$duracionPost = $_GET["duracion"];
-						$cmaPost = $_GET["cma"];
-						$iniclPost = $_GET["inicl"];
-						$gradoPost = $_GET["grado"];
-						$invPost = $_GET["inv"];
 						$descPost = $_GET["desc"];
-						$misionPost = $_GET["mision"];
-						$visionPost = $_GET["vision"];
-						$poblaPost = $_GET["poblac"];
-						$horarioPost = $_GET["horario"];
 						
-						$query = "update postgrado set nombre='$nombrePost', notaminima=$cmaPost, descripcion='$descPost', inicioclases='$iniclPost', grado_obtener='$gradoPost', "
-						. "poblacion='$poblaPost', horario='$horarioPost', inversion=$invPost, codigo='$codigoPost', mision='$misionPost', vision='$visionPost', "
-						. "desarrollo='$desarrolloPost', duracion='$duracionPost' where id=$id";
+						$query = "update postgrado set nombre='$nombrePost', descripcion='$descPost', codigo='$codigoPost' where id=$id";
 						break;
 						
 					case "evento":
@@ -426,16 +402,6 @@ $conn = new cConexion();
 					$vTable = new VerticalTable();
 					$vTable->rows[] = new VerticalTableRow(array("Nombre", ""), $pst->id, "text", "200");
 					$vTable->rows[] = new VerticalTableRow(array("Descripcion", ""), $pst->id . "-1", "area");
-					$vTable->rows[] = new VerticalTableRow(array("Mision", ""), $pst->id . "-2", "area");
-					$vTable->rows[] = new VerticalTableRow(array("Vision", ""), $pst->id . "-3", "area");
-					$vTable->rows[] = new VerticalTableRow(array("Desarrollo del Programa", ""), $pst->id);
-					$vTable->rows[] = new VerticalTableRow(array("Duracion", ""), $pst->id, "text", "200");
-					$vTable->rows[] = new VerticalTableRow(array("Calificacion Minima de Aprobacion", ""), $pst->id, "numero");
-					$vTable->rows[] = new VerticalTableRow(array("Inicio de Clases", date("Y-m-d")), $pst->id, "fecha");
-					$vTable->rows[] = new VerticalTableRow(array("Grado a Obtener", ""), $pst->id, "text", "150");
-					$vTable->rows[] = new VerticalTableRow(array("Poblacion a la que se Dirige el Programa", ""), $pst->id . "-4", "area");
-					$vTable->rows[] = new VerticalTableRow(array("Horario", ""), $pst->id . "-5", "area");
-					$vTable->rows[] = new VerticalTableRow(array("Inversion", ""), $pst->id, "numero");
 					$pst->contenido .= $vTable->ToString();
 					$pst->plainTextContent = false;
 					$pst->editableTitle = true;
