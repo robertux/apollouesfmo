@@ -13,13 +13,15 @@
     	 */
     	public $usr;
 		//var $sBox;
+		var $isBase;
 		
 		/*!
 		 * Constructor
 		 */
-		function VisualUsuario(){
+		function VisualUsuario($pIsBase = false){
 			$this->usr = new cUsuario();
 			//$this->sBox = new SearchBox();
+			$this->isBase = $pIsBase;
 		}
 		
 		/*!
@@ -86,12 +88,16 @@
 		 */
 		function ShowUserInfo(){
 			$tbox = new ToolBox(false, false, false, true);
+			if($this->isBase)
+				$tbox->btnHelp->onClick = "window.open('Documentacion/Videos/apollo.login.htm', 'ayuda','height=596,width=928')";
+			else
+				$tbox->btnHelp->onClick = "window.open('../Documentacion/Videos/apollo.login.htm', 'ayuda','height=596,width=928')";
 			echo("
 			<form id='frmLogout' action='index.php?action=logout' method='POST' accept-charset='utf-8'>					
 
 					<div class='LoginBoxFrame'>
 						<div class='LoginBoxInnerFrame'>
-							"/* . $tbox->ToString() */. "
+							" . $tbox->btnHelp->ToString() . "
 							<label for='btnSubmit' class='lblInput'>Bienvenido <b>" . $this->usr->nombre . " [" . $this->usr->privilegio . "]</b></label>							
 							<input type='submit' id='btnSubmit' value='Cerrar Sesion' class='btnSubmit'/>							
 						</div>
@@ -106,11 +112,15 @@
 		function ShowLoginBox($errorMsg){
 			$action = "";
 			$tbox = new ToolBox(false, false, false, true);
+			if($this->isBase)
+				$tbox->btnHelp->onClick = "window.open('Documentacion/Videos/apollo.login.htm', 'ayuda','height=596,width=928')";
+			else
+				$tbox->btnHelp->onClick = "window.open('../Documentacion/Videos/apollo.login.htm', 'ayuda','height=596,width=928')";
 			echo("
 				<form id='frmLogin' action='index.php?action=login' method='POST' accept-charset='utf-8'>
 						<div class='LoginBoxFrame'>
 							<div class='LoginBoxInnerFrame'>
-								"/* . ($errorMsg == ""? $tbox->btnHelp->ToString(): "") */. "
+								" . ($errorMsg == ""? $tbox->btnHelp->ToString(): "") . "								
 								<label for='txtNombre' class='lblInput'>usuario: </label>
 								<input type='text' id='txtNombre' name='txtNombre' class='txtInput'/>
 								<label for='txtClave' class='lblInput'>clave: </label>
