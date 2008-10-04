@@ -26,18 +26,22 @@
 		else
 			echo "<link rel=\"stylesheet\" href=\"css/transpWidgets.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\"> \n";			
 		echo "<link rel=\"stylesheet\" href=\"css/forms.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n
+		<link rel=\"stylesheet\" href=\"css/toolbox.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n
 		<link rel=\"stylesheet\" href=\"css/solidBlockMainMenu.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n
 		<link rel=\"stylesheet\" href=\"css/style.css\" type=\"text/css\" media=\"screen, projection\" title=\"PostGrados - UES - FMO Hojas de Estilo\">\n
 		</head>";
 ?>
 				<?php
-					$vuser = new VisualUsuario();
+					$vuser = new VisualUsuario(true);
 					$vuser->Show();
 				?>				
 
 <div id="tables" style="position: relative; top: 20px;">
 <table width="910" height="60" border="0" align="center" cellpadding="0" cellspacing="0" background="Media/hd3.png">
   <tr>
+  	<td valign="top" style="padding-top: 10px; padding-left: 10px;">
+		<input type="button" onclick="window.open('Documentacion/Videos/apollo.principal.htm', 'ayuda','height=596,width=928')" class="hlp" title="ayuda" id="hlp" />	
+	</td>
     <td>
     	<div id="logo" style="top: 0px">
 			<div id="principal">Principal</div>
