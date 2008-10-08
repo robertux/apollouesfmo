@@ -33,7 +33,7 @@ echo "Exito eliminando archivos *.wnk"
 echo "Comprimiendo Carpeta..."
 tar -cf apollo.tar ./
 bzip2 -z apollo.tar
-rm apollo.tar
+#rm apollo.tar #esta de mas, bzip2 mata el archivo origianl
 #echo "Exito al comprimir la carpeta con todo su contenido."
 #echo "Generando copia del archivo con nuevo nombre..."
 #REV=`svn status --verbose | grep " . " | head -1` #retorna algo como: "32 32 ramayac ./archivo "
