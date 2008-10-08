@@ -12,17 +12,17 @@ do [ -d $DIR ] #just in case :)
 done
 echo "Exito eliminando directorios svn"
 
-echo "Eliminando archivos *.xfc"
-ARCHIVOS=`find . -type d -name *.xfc`
+echo "Eliminando archivos *.xcf"
+ARCHIVOS=`find . -type f -name *.xcf`
 for ARCH in $ARCHIVOS
 do [ -d $ARCH ] #just in case :)
 	#echo "Ejecutando: rm -r --force $ARCH ..."
 	rm -r --force $ARCH #2>/dev/null
 done
-echo "Exito eliminando archivos *.xfc"
+echo "Exito eliminando archivos *.xcf"
 
 echo "Eliminando archivos *.wnk"
-ARCHIVOS=`find . -type d -name *.wnk`
+ARCHIVOS=`find . -type f -name *.wnk`
 for ARCH in $ARCHIVOS
 do [ -d $ARCH ] #just in case :)
 	#echo "Ejecutando: rm -r --force $ARCH ..."
@@ -31,8 +31,7 @@ done
 echo "Exito eliminando archivos *.wnk"
 
 echo "Comprimiendo Carpeta..."
-DIR=`pwd`
-tar -cf ./apollo.tar $DIR
+tar -cf apollo.tar ./
 bzip2 -z apollo.tar
 rm apollo.tar
 #echo "Exito al comprimir la carpeta con todo su contenido."
