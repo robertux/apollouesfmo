@@ -65,8 +65,8 @@
 	position: relative;
 	padding-top: 18px;
 	padding-bottom: 10px;
-	top: 15px;
-	margin: 10px 10px  10px 10px;
+	top: 5px;
+	margin: 10px 30px  10px 10px;
 }
 
 
@@ -122,7 +122,8 @@
 	border-style: solid;
 	border-color: black;
 	border-width: 1px;
-	width: 100%;
+	/*width: 100%;*/
+	width: 350px;
 }
 
 /*-------------------Posts internos---------------*/
@@ -132,6 +133,7 @@
 	border-color: #ddd;
 	border-width: 1px;
 	margin-bottom: 15px;
+	top: 8px;
 	
 	left: 0px;
 }
