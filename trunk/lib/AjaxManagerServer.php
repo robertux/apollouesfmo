@@ -305,7 +305,7 @@ $conn = new cConexion();
 				//!Obtenemos los parametros que nos enviaron...
 				$currentPg = 0;
 				$currentPg = $_GET["current"];
-				$uid = $_GET["uid"];
+				$uid = $_GET["uid"];				
 				$_SESSION["CurrentUser"] = $uid;
 				$direction = $_GET["new"];
 				$condicion = $_GET["cond"];
