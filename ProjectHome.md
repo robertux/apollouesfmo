@@ -1,0 +1,1 @@
+Un portal web para la unidad de postgrados de la UES-FMO. Desarrollado con PHP y MySql.
